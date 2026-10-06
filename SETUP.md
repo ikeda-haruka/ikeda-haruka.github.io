@@ -74,20 +74,21 @@ git branch -M main
 git push -u origin main
 ```
 
-3. **デプロイ**
+3. **デプロイ（推奨：main/(root) を使用）**
+
+このリポジトリはユーザーページ（`ikeda-haruka.github.io`）として作成されています。
+ユーザーページでは `main` ブランチのルート（`/ (root)`）を公開ソースにする方法が簡単で推奨されます。
+
+手順：
 
 ```bash
-npm run deploy
+# 既にコミット・プッシュ済みであれば以下で公開されます
+git push -u origin main
 ```
 
-このコマンドは以下を実行します：
-
-- `npm run build` - プロジェクトをビルド
-- `gh-pages -d dist` - `dist/` フォルダを GitHub Pages に pushする
-
-4. **確認**
-
 数分後、`https://ikeda-haruka.github.io` でサイトが公開されます。
+
+（補足）`gh-pages` ブランチを使う方法は不要です。`gh-pages` を使った自動デプロイ手順が残っている場合は `package.json` の `deploy` スクリプトを削除するか、`gh-pages` をアンインストールしてください。
 
 ## 🛠️ 技術スタック
 
