@@ -19,16 +19,15 @@ export default function Hero({ profileImage }: HeroProps) {
         </h1>
 
         <div className="text-xl sm:text-2xl text-gray-300 mb-2">
-          Java + AI エンジニア
+          フルスタックエンジニア
         </div>
 
         <div className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
           <p>
-            決済システムから化学物質管理まで、様々な業務システムの開発・運用に携わってきました。
+            Vue.js・Next.jsなどのフロントエンドから、バックエンド、API連携、WordPressによるCMS構築まで幅広く対応します。
           </p>
           <p className="mt-2">
-            Java/SpringBoot、機械学習、SpecKit による仕様駆動開発など、
-            企業の技術課題を解決するエンジニアです。
+            AI活用やレガシーシステムのモダナイゼーション、外部サービス連携も含め、企画から開発・運用まで一貫して支援します。
           </p>
         </div>
 
