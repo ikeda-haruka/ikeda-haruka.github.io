@@ -28,7 +28,7 @@ export default function Header({ onNavClick }: HeaderProps) {
     { name: "スキル", id: "skills" },
     { name: "職務経歴", id: "experience" },
     { name: "制作物", id: "projects" },
-    { name: "システム構成図", id: "architecture" },
+    { name: "制作方法・構成図", id: "architecture" },
     { name: "お問い合わせ", id: "contact" },
   ];
 

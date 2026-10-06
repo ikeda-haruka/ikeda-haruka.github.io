@@ -1,11 +1,135 @@
+const portfolioLayers = [
+  {
+    name: "React 19 / TypeScript",
+    detail: "画面をコンポーネント単位で実装",
+  },
+  {
+    name: "Vite",
+    detail: "型チェック後に本番向けビルド",
+  },
+  {
+    name: "HTML / CSS / JS",
+    detail: "ブラウザで動作する静的ファイル",
+  },
+  {
+    name: "GitHub Pages",
+    detail: "Actionsからビルド成果物を公開",
+  },
+];
+
+const creationSteps = [
+  {
+    number: "01",
+    title: "情報設計",
+    description:
+      "プロフィール、スキル、職務経歴、プロジェクト、問い合わせを整理し、必要な情報へ移動しやすい構成にします。",
+  },
+  {
+    number: "02",
+    title: "実装・レスポンシブ対応",
+    description:
+      "ReactとTypeScriptでセクションを分割し、Tailwind CSSで画面幅に応じたレイアウトを組み立てます。",
+  },
+  {
+    number: "03",
+    title: "ビルド・公開",
+    description:
+      "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pagesへ静的ファイルをデプロイします。",
+  },
+];
+
 export default function Architecture() {
   return (
     <section className="py-20 bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">システム構成図</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">
+            制作方法・システム構成図
+          </h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
+
+        <div className="mb-16">
+          <div className="mb-8">
+            <p className="text-sm font-semibold text-blue-400">PORTFOLIO</p>
+            <h3 className="text-2xl font-bold text-white mt-2">
+              このポートフォリオの制作と公開
+            </h3>
+            <p className="text-gray-300 mt-3 leading-relaxed max-w-4xl">
+              情報を探しやすい構成に整理し、React・TypeScript・Tailwind CSSで実装しています。Viteで静的ファイルを生成し、GitHub Actionsを通じてGitHub Pagesへ公開する構成です。
+            </p>
+          </div>
+
+          <figure aria-labelledby="portfolio-architecture-title">
+            <figcaption
+              id="portfolio-architecture-title"
+              className="text-sm font-semibold text-gray-300 mb-4"
+            >
+              システム構成・公開フロー
+            </figcaption>
+            <ol className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-2">
+              {portfolioLayers.map((layer, index) => (
+                <li key={layer.name} className="relative">
+                  <div className="h-full border border-gray-700 bg-gray-800 p-5 rounded-lg">
+                    <p className="text-xs font-semibold text-blue-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h4 className="text-lg font-bold text-white mt-2">
+                      {layer.name}
+                    </h4>
+                    <p className="text-sm text-gray-400 mt-2 leading-relaxed">
+                      {layer.detail}
+                    </p>
+                  </div>
+                  {index < portfolioLayers.length - 1 && (
+                    <>
+                      <span
+                        className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 text-blue-400 text-xl"
+                        aria-hidden="true"
+                      >
+                        →
+                      </span>
+                      <span
+                        className="md:hidden block text-center text-blue-400 text-xl"
+                        aria-hidden="true"
+                      >
+                        ↓
+                      </span>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </figure>
+
+          <div className="mt-10">
+            <h4 className="text-lg font-bold text-white mb-4">制作の進め方</h4>
+            <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {creationSteps.map((step) => (
+                <li key={step.number} className="border-t-2 border-blue-500 pt-4">
+                  <p className="text-sm font-semibold text-blue-400">
+                    STEP {step.number}
+                  </p>
+                  <h5 className="text-lg font-bold text-white mt-2">
+                    {step.title}
+                  </h5>
+                  <p className="text-sm text-gray-400 mt-2 leading-relaxed">
+                    {step.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <p className="mt-8 border-l-2 border-emerald-500 pl-4 text-sm text-gray-300 leading-relaxed">
+            閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。
+          </p>
+        </div>
+
+        <div className="border-t border-gray-700 pt-10">
+          <h3 className="text-2xl font-bold text-white mb-8">
+            業務システムの構成実績
+          </h3>
 
         {/* 化学物質管理システム構成図 */}
         <div className="bg-gray-800 rounded-lg p-8 border border-gray-700 mb-8">
@@ -710,6 +834,7 @@ export default function Architecture() {
               </svg>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
