@@ -10,15 +10,15 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 bg-gray-800">
+    <section className="py-20 bg-slate-100">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">お問い合わせ</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-4">お問い合わせ</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
-        <div className="bg-gray-900 rounded-lg p-8 border border-gray-700">
-          <p className="text-gray-300 text-center mb-8">
+        <div className="bg-white rounded-lg p-8 border border-slate-200 shadow-sm">
+          <p className="text-slate-700 text-center mb-8">
             プロジェクト相談、技術的な質問、または採用に関するお話など、
             お気軽にお問い合わせください。
           </p>
@@ -44,8 +44,8 @@ export default function Contact() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">メール</h3>
-                <p className="text-gray-400">ikedaharuka0215@gmail.com</p>
+                <h3 className="text-lg font-semibold text-slate-900">メール</h3>
+                <p className="text-slate-600">ikedaharuka0215@gmail.com</p>
               </div>
               <button
                 onClick={handleCopyEmail}
@@ -69,12 +69,12 @@ export default function Contact() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">GitHub</h3>
+                <h3 className="text-lg font-semibold text-slate-900">GitHub</h3>
                 <a
                   href="https://github.com/ikeda-haruka"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                  className="text-blue-600 hover:text-blue-500 transition-colors"
                 >
                   github.com/ikeda-haruka
                 </a>
@@ -95,19 +95,19 @@ export default function Contact() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">実績・評価</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg font-semibold text-slate-900">実績・評価</h3>
+                <p className="text-slate-600">
                   過去のプロジェクト成果などについては、メールでお問い合わせください
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-gray-700">
-            <h3 className="text-lg font-semibold text-white mb-4">
+          <div className="mt-8 pt-8 border-t border-slate-200">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4">
               フォローアップリクエスト
             </h3>
-            <div className="space-y-3 text-sm text-gray-400">
+            <div className="space-y-3 text-sm text-slate-600">
               <p>
                 ✓
                 決済システム、化学物質管理システムなどの大規模エンタープライズシステム開発実績があります

@@ -4,8 +4,8 @@ interface HeroProps {
 
 export default function Hero({ profileImage }: HeroProps) {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 pt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 via-white to-slate-100 pt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-8">
           <img
             src={profileImage}
@@ -14,15 +14,15 @@ export default function Hero({ profileImage }: HeroProps) {
           />
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+        <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
           池田 遥香
         </h1>
 
-        <div className="text-xl sm:text-2xl text-gray-300 mb-2">
+        <div className="text-xl sm:text-2xl text-slate-700 mb-2 font-semibold">
           フルスタックエンジニア
         </div>
 
-        <div className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+        <div className="text-slate-600 text-lg mb-8 max-w-3xl mx-auto">
           <p>
             Vue.js・Next.jsなどのフロントエンドから、バックエンド、API連携、WordPressによるCMS構築まで幅広く対応します。
           </p>
@@ -40,13 +40,13 @@ export default function Hero({ profileImage }: HeroProps) {
             href="https://github.com/ikeda-haruka"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
           >
             GitHub
           </a>
           <a
             href="mailto:ikedaharuka0215@gmail.com"
-            className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
+            className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-900 font-semibold rounded-lg transition-colors"
           >
             メールで連絡
           </a>
@@ -54,7 +54,7 @@ export default function Hero({ profileImage }: HeroProps) {
 
         <div className="flex justify-center mb-16">
           <svg
-            className="w-6 h-6 text-gray-400 animate-bounce"
+            className="w-6 h-6 text-slate-500 animate-bounce"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

@@ -62,14 +62,14 @@ const skillsData: SkillCategory[] = [
 
 export default function Skills() {
   return (
-    <section className="py-20 bg-gray-800">
+    <section className="py-20 bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 mb-4">
             対応領域・スキル
           </h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-          <p className="text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-slate-600 mt-6 max-w-3xl mx-auto leading-relaxed">
             フロントエンドからバックエンド、CMS、インフラまで。技術選定からAPI・外部サービス連携、AI活用、モダナイゼーションまで一貫して対応します。
           </p>
         </div>
@@ -78,11 +78,11 @@ export default function Skills() {
           {skillsData.map((category, index) => (
             <div
               key={index}
-              className="bg-gray-900 rounded-lg p-6 border border-gray-700 hover:border-blue-500 transition-colors"
+              className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:border-blue-500 transition-colors"
             >
               <div className="flex items-center mb-4">
                 <span className="text-3xl mr-3">{category.icon}</span>
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-xl font-bold text-slate-900">
                   {category.category}
                 </h3>
               </div>
@@ -90,7 +90,7 @@ export default function Skills() {
                 {category.skills.map((skill, skillIndex) => (
                   <span
                     key={skillIndex}
-                    className="px-3 py-1 bg-blue-900 text-blue-100 rounded-full text-sm font-medium"
+                    className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-100"
                   >
                     {skill}
                   </span>
@@ -100,13 +100,13 @@ export default function Skills() {
           ))}
         </div>
 
-        <div className="mt-10 bg-gray-900 rounded-lg p-6 sm:p-8 border border-gray-700">
+        <div className="mt-10 bg-white rounded-xl p-6 sm:p-8 border border-slate-200 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
             <div>
-              <p className="text-sm font-semibold text-blue-400">CMS構築</p>
-              <h3 className="text-2xl font-bold text-white mt-1">WordPress</h3>
+              <p className="text-sm font-semibold text-blue-600">CMS構築</p>
+              <h3 className="text-2xl font-bold text-slate-900 mt-1">WordPress</h3>
             </div>
-            <p className="text-gray-300 sm:text-right">
+            <p className="text-slate-600 sm:text-right">
               更新しやすく、目的に合わせて運用できるサイトを構築します。
             </p>
           </div>
@@ -123,8 +123,8 @@ export default function Skills() {
               "問い合わせフォーム",
               "管理者限定設定",
             ].map((item) => (
-              <li key={item} className="flex items-start text-gray-300">
-                <span className="text-blue-400 mr-2" aria-hidden="true">
+              <li key={item} className="flex items-start text-slate-700">
+                <span className="text-blue-600 mr-2" aria-hidden="true">
                   ✓
                 </span>
                 <span>{item}</span>

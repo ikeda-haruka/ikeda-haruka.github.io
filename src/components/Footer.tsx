@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 border-t border-gray-700">
+    <footer className="bg-slate-50 border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center">
-          <div className="text-gray-400 text-sm">
+          <div className="text-slate-600 text-sm">
             <p>© 2025 池田遥香. All rights reserved.</p>
           </div>
           <div className="flex gap-6 mt-4 sm:mt-0">
@@ -11,7 +11,7 @@ export default function Footer() {
               href="https://github.com/ikeda-haruka"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-slate-900 transition-colors"
               title="GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -20,7 +20,7 @@ export default function Footer() {
             </a>
             <a
               href="mailto:ikedaharuka0215@gmail.com"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-slate-900 transition-colors"
               title="Email"
             >
               <svg
@@ -39,7 +39,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="text-center text-xs text-gray-500 mt-6">
+        <div className="text-center text-xs text-slate-500 mt-6">
           <p>Powered by React 19 + TypeScript + Tailwind CSS</p>
         </div>
       </div>

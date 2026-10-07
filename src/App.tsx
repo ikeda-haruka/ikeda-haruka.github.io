@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-900 text-gray-100">
+    <div className="bg-slate-50 text-slate-900">
       <Header onNavClick={handleNavClick} />
 
       <div ref={sectionRefs.profile}>

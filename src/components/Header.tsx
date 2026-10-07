@@ -38,10 +38,10 @@ export default function Header({ onNavClick }: HeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 w-full bg-gray-900 bg-opacity-95 backdrop-blur-sm border-b border-gray-700 z-50">
+    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-slate-200 z-50 shadow-sm">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-white font-bold text-xl">
+          <div className="text-slate-900 font-bold text-xl">
             <a href="#" onClick={() => handleClick("profile")}>
               池田遥香
             </a>
@@ -53,7 +53,7 @@ export default function Header({ onNavClick }: HeaderProps) {
               <button
                 key={section.id}
                 onClick={() => handleClick(section.id)}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium"
               >
                 {section.name}
               </button>
@@ -62,7 +62,7 @@ export default function Header({ onNavClick }: HeaderProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden text-slate-600 hover:text-slate-900"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg
@@ -87,12 +87,12 @@ export default function Header({ onNavClick }: HeaderProps) {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 border-t border-slate-200 mt-2 pt-2 bg-white">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleClick(section.id)}
-                className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800 transition-colors rounded"
+                className="block w-full text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors rounded"
               >
                 {section.name}
               </button>

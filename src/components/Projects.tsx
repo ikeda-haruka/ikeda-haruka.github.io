@@ -62,12 +62,14 @@ const projectsData: Project[] = [
       "Tomcat",
       "Oracle Database",
       "Bash",
+      "NAS",
     ],
     features: [
       "大量明細の高速取得・処理機能",
       "即日振込実行エンジン",
       "Hulft カスタマーセンター連携",
       "プロキシを含む複雑なネットワーク設定の管理",
+      "NAS導入時のセットアップ・動作検証",
       "24/7 監視・対応体制による高可用性",
     ],
   },
@@ -75,10 +77,10 @@ const projectsData: Project[] = [
 
 export default function Projects() {
   return (
-    <section className="py-20 bg-gray-800">
+    <section className="py-20 bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 mb-4">
             制作物・プロジェクト
           </h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
@@ -88,40 +90,40 @@ export default function Projects() {
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-colors"
+              className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors shadow-sm"
             >
               <div className="p-6 sm:p-8">
                 <div className="mb-2">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-slate-900">
                     {project.title}
                   </h3>
-                  <p className="text-blue-400 font-semibold mt-1">
+                  <p className="text-blue-600 font-semibold mt-1">
                     {project.subtitle}
                   </p>
                 </div>
 
-                <p className="text-gray-300 mt-4">{project.description}</p>
+                <p className="text-slate-700 mt-4">{project.description}</p>
 
-                <div className="mt-6 p-4 bg-gray-800 rounded border border-gray-700">
-                  <h4 className="text-sm font-semibold text-gray-300 mb-2">
+                <div className="mt-6 p-4 bg-slate-50 rounded border border-slate-200">
+                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
                     プロジェクト概要
                   </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed">
                     {project.overview}
                   </p>
                 </div>
 
                 <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-gray-300 mb-3">
+                  <h4 className="text-sm font-semibold text-slate-700 mb-3">
                     主な機能
                   </h4>
                   <ul className="space-y-2">
                     {project.features.map((feature, featIndex) => (
                       <li
                         key={featIndex}
-                        className="text-gray-400 text-sm flex items-start"
+                        className="text-slate-600 text-sm flex items-start"
                       >
-                        <span className="text-blue-400 mr-2">→</span>
+                        <span className="text-blue-600 mr-2">→</span>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -129,14 +131,14 @@ export default function Projects() {
                 </div>
 
                 <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-gray-300 mb-2">
+                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
                     使用技術
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-blue-900 text-blue-100 rounded-full text-xs font-medium"
+                        className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100"
                       >
                         {tech}
                       </span>
@@ -159,9 +161,9 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="mt-12 p-6 bg-blue-900 bg-opacity-30 rounded-lg border border-blue-500 border-opacity-30">
-          <p className="text-gray-300 text-sm">
-            <span className="font-semibold text-blue-300">注：</span>{" "}
+        <div className="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-200">
+          <p className="text-slate-700 text-sm">
+            <span className="font-semibold text-blue-700">注：</span>{" "}
             SES案件の社内ネットワークアプリケーションのため、コードは公開していません。
             プロジェクトの詳細やコード例についてはお気軽にお問い合わせください。
           </p>
