@@ -9,7 +9,7 @@ interface Experience {
 
 const experienceData: Experience[] = [
   {
-    period: "2025年10月 - 現在",
+    period: "2025年4月 - 現在",
     title: "シニアエンジニア",
     company: "化学物質管理システム開発",
     description:
@@ -42,7 +42,7 @@ const experienceData: Experience[] = [
     ],
   },
   {
-    period: "2024年 - 2025年9月",
+    period: "2024年10月 - 2025年3月",
     title: "エンジニア",
     company: "銀行系決済システム開発",
     description:
