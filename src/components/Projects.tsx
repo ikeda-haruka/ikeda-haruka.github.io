@@ -11,11 +11,11 @@ interface Project {
 const projectsData: Project[] = [
   {
     title: "化学物質管理システム（PoC・バージョンアップ）",
-    subtitle: "SpecKit による仕様駆動開発の実践",
+    subtitle: "アプリ開発から外部連携・サーバー移行・運用まで",
     description:
-      "レガシーな Struts + JSP アプリケーション（JDK8）を SpringBoot 3 + Vue.js へリプレイス。SpecKit を用いた仕様駆動開発により、要件定義から実装までのプロセスを最適化。",
+      "レガシーな Struts + JSP アプリケーション（JDK8）を SpringBoot 3 + Vue.js へリプレイス。SpecKit を用いた仕様駆動開発の PoC に加え、外部サービス連携、インフラ・リポジトリ移行、日々の保守運用を担当。",
     overview:
-      "化学物質の使用・管理を一元化するシステム。JAMP（chemSHERPA）から CMP への移行対応を同時実施。企業の法令遵守と効率的な化学物質管理を実現。",
+      "化学物質の使用・管理を一元化するシステム。JAMP（chemSHERPA）から CMP への移行に伴う要件定義に参画し、企業の法令遵守と効率的な化学物質管理を支援。業務主管部門からの依頼対応や共通管理の要件書レビューも実施。",
     technologies: [
       "Java 21",
       "SpringBoot",
@@ -24,6 +24,15 @@ const projectsData: Project[] = [
       "Tomcat 11",
       "SpecKit",
       "Oracle DB",
+      "IMDS",
+      "SMTP",
+      "リバースプロキシ",
+      "電子証明書",
+      "GitLab",
+      "GitHub",
+      "JP1",
+      "ITSM",
+      "Windows タスク スケジューラ",
     ],
     features: [
       "マイグレーション: Struts/JSP から SpringBoot/Vue.js への段階的リプレイス",
@@ -31,6 +40,12 @@ const projectsData: Project[] = [
       "JAMP から CMP への法令対応",
       "IaaS クラウドリフト前提の設計",
       "マルチテナント対応の検討",
+      "電子証明書が必要なリバースプロキシ経由でのベンダーパッケージ連携、および IMDS（International Material Data System）との外部連携",
+      "複数部署共用サーバーからアプリ専用サーバーへの移行、GitLab から GitHub への移行",
+      "SMTP サーバーを利用したメール送信",
+      "ITSMによるインシデント・変更・問題・ナレッジ管理。エスカレーションされたインシデントへの対応と、同部署内の変更管理アセスメント",
+      "月初の手動ログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などで実行",
+      "業務主管部門からのデータ抽出・改修依頼への随時対応、共通管理の要件書レビュー",
     ],
   },
   {

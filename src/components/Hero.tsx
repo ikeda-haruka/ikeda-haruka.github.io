@@ -29,6 +29,10 @@ export default function Hero({ profileImage }: HeroProps) {
           <p className="mt-2">
             AI活用やレガシーシステムのモダナイゼーション、外部サービス連携も含め、企画から開発・運用まで一貫して支援します。
           </p>
+          <p className="mt-2">
+            できるだけ低予算で継続運用できるWebサイト・Webアプリの構成や運用方法をご提案します。GitHub
+            CopilotやChatGPTを活用したAI開発の導入・活用についても、ご要望に合わせて解決策を提示します。
+          </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
