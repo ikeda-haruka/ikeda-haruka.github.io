@@ -2,6 +2,7 @@ import { useRef } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
+import Qualifications from "./components/Qualifications";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Architecture from "./components/Architecture";
@@ -34,6 +35,8 @@ function App() {
       <div ref={sectionRefs.skills}>
         <Skills />
       </div>
+
+      <Qualifications />
 
       <div ref={sectionRefs.experience}>
         <Experience />
