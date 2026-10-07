@@ -8,10 +8,10 @@ interface Experience {
 
 const experienceData: Experience[] = [
   {
-    title: "シニアエンジニア",
+    title: "エンジニア",
     company: "化学物質管理システム開発",
     description:
-      "Java 21 + SpringBoot + Vue.js を使用した化学物質管理システムの開発・運用。アプリ改修に加え、外部連携、サーバー・リポジトリ移行、ジョブ運用、ITSMを通じた保守業務を担当。SpecKit による仕様駆動開発の PoC 実施や、レガシーシステム（JDK8 + Struts + iBatis）から最新技術へのリプレイスも推進。",
+      "Java 21 + SpringBoot + Vue.js を使用した化学物質管理システムの技術検証・保守開発を担当。アプリ改修に加え、外部連携、サーバー・リポジトリ移行、ジョブ運用、ITSMを通じた保守業務に携わる。SpecKit による仕様駆動開発の PoC や、レガシーシステム（JDK8 + Struts + iBatis）のリプレイスに伴う検証・改修も実施。",
     technologies: [
       "Java 21",
       "SpringBoot",
@@ -28,8 +28,8 @@ const experienceData: Experience[] = [
       "IMDS",
     ],
     achievements: [
-      "レガシーシステムのバージョンアップを実施し、新技術への移行を推進",
-      "仕様駆動開発の PoC を主導し、開発プロセスの効率化を実現",
+      "レガシーシステムのバージョンアップに伴う検証・改修を実施",
+      "仕様駆動開発の PoC を実施し、開発プロセスの効率化を検証",
       "IaaS へのクラウドリフトの事前検証を実施",
       "JAMP（chemSHERPA）から CMP への移行に伴う要件定義に参画",
       "電子証明書を必要とするリバースプロキシ経由のベンダーパッケージ連携、および IMDS（自動車業界共通の材料データベース）との外部連携を実施。メール送信には SMTP サーバーを利用",
@@ -43,7 +43,7 @@ const experienceData: Experience[] = [
     title: "エンジニア",
     company: "銀行系決済システム開発",
     description:
-      "Java 8 を使用した大規模な銀行決済システムの開発・運用。大量明細獲得と即日振込機能の実装。SVN による構成管理。インフラ設定やプロキシ設定など基盤寄りの業務も担当。",
+      "Java 8 を使用した大規模な銀行決済システムの基盤・保守開発を担当。大量明細獲得と即日振込機能の実装に加え、SVN による構成管理、インフラ・プロキシ設定などに携わる。",
     technologies: ["Java 8", "Hulft", "SVN", "Tomcat", "Oracle Database", "NAS"],
     achievements: [
       "大量明細獲得・即日振込機能の実装と本番運用",
