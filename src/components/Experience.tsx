@@ -16,6 +16,7 @@ const experienceData: Experience[] = [
       "Java 21",
       "SpringBoot",
       "Vue.js",
+      "Figma",
       "Tomcat 11",
       "SpecKit",
       "TypeScript",
@@ -28,6 +29,8 @@ const experienceData: Experience[] = [
       "IMDS",
     ],
     achievements: [
+      "Figmaのアプリデザインガイドラインをライブラリとして活用し、化学物質管理システム向けにカスタマイズしたUI部品を作成。設計に沿ったVue.js部品をプロジェクト内に実装",
+      "社内公開されているアプリデザインガイドラインの公開方法に着想を得て、本ポートフォリオもGitHub Pagesで公開",
       "レガシーシステムのバージョンアップに伴う検証・改修を実施",
       "仕様駆動開発の PoC を実施し、開発プロセスの効率化を検証",
       "IaaS へのクラウドリフトの事前検証を実施",

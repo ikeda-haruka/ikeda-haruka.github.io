@@ -20,6 +20,7 @@ const projectsData: Project[] = [
       "Java 21",
       "SpringBoot",
       "Vue.js",
+      "Figma",
       "TypeScript",
       "Tomcat 11",
       "SpecKit",
@@ -35,6 +36,8 @@ const projectsData: Project[] = [
       "Windows タスク スケジューラ",
     ],
     features: [
+      "Figmaのアプリデザインガイドラインを基に、システム向けにカスタマイズしたUI部品を設計・作成",
+      "Figmaの設計に沿ったVue.js部品をプロジェクト内に実装",
       "マイグレーション: Struts/JSP から SpringBoot/Vue.js への段階的リプレイス",
       "SpecKit による仕様駆動開発のPoC実施と検証",
       "JAMP から CMP への法令対応",
