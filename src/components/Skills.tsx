@@ -37,6 +37,7 @@ const skillsData: SkillCategory[] = [
       "VS Code",
       "iBatis",
       "sqlmap.xml",
+      "ローコード開発",
     ],
     icon: "⚙️",
   },
@@ -63,6 +64,9 @@ const skillsData: SkillCategory[] = [
     skills: [
       "WordPress",
       "オリジナルデザイン",
+      "LP制作",
+      "バナー作成",
+      "Webデザイン",
       "固定ページ・投稿ページ",
       "カスタム投稿タイプ",
       "カテゴリ・タグ設計",
@@ -114,6 +118,16 @@ export default function Skills() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 bg-white rounded-xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <h3 className="text-xl font-bold text-slate-900 mb-4">保有資格</h3>
+          <ul className="space-y-2 text-slate-700">
+            <li>Visual Design using Adobe Photoshop 2023</li>
+            <li>
+              Graphic Design &amp; Illustration using Adobe Illustrator 2023
+            </li>
+          </ul>
         </div>
       </div>
     </section>
