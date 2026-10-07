@@ -1,5 +1,4 @@
 interface Experience {
-  period: string;
   title: string;
   company: string;
   description: string;
@@ -9,7 +8,6 @@ interface Experience {
 
 const experienceData: Experience[] = [
   {
-    period: "2025年4月 - 現在",
     title: "シニアエンジニア",
     company: "化学物質管理システム開発",
     description:
@@ -42,7 +40,6 @@ const experienceData: Experience[] = [
     ],
   },
   {
-    period: "2024年10月 - 2025年3月",
     title: "エンジニア",
     company: "銀行系決済システム開発",
     description:
@@ -71,15 +68,9 @@ export default function Experience() {
           {experienceData.map((exp, index) => (
             <div
               key={index}
-              className="relative bg-slate-50 rounded-xl p-6 border border-slate-200 shadow-sm"
+              className="bg-slate-50 rounded-xl p-6 border border-slate-200 shadow-sm"
             >
-              {/* Timeline dot */}
-              <div className="absolute -left-4 top-6 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-sm"></div>
-
-              <div className="ml-4">
-                <div className="text-sm font-semibold text-blue-600">
-                  {exp.period}
-                </div>
+              <div>
                 <h3 className="text-2xl font-bold text-slate-900 mt-2">
                   {exp.title}
                 </h3>
