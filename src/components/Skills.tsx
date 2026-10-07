@@ -58,6 +58,22 @@ const skillsData: SkillCategory[] = [
     ],
     icon: "☁️",
   },
+  {
+    category: "CMS・サイト構築",
+    skills: [
+      "WordPress",
+      "オリジナルデザイン",
+      "固定ページ・投稿ページ",
+      "カスタム投稿タイプ",
+      "カテゴリ・タグ設計",
+      "レスポンシブ対応",
+      "プラグイン導入・設定",
+      "SEO対策",
+      "問い合わせフォーム",
+      "管理者限定設定",
+    ],
+    icon: "🌐",
+  },
 ];
 
 export default function Skills() {
@@ -98,39 +114,6 @@ export default function Skills() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-10 bg-white rounded-xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
-            <div>
-              <p className="text-sm font-semibold text-blue-600">CMS構築</p>
-              <h3 className="text-2xl font-bold text-slate-900 mt-1">WordPress</h3>
-            </div>
-            <p className="text-slate-600 sm:text-right">
-              更新しやすく、目的に合わせて運用できるサイトを構築します。
-            </p>
-          </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
-            {[
-              "WordPressによるサイト構築",
-              "オリジナルデザインへの対応",
-              "固定ページ・投稿ページの設計",
-              "カスタム投稿タイプ",
-              "カテゴリ・タグ設計",
-              "レスポンシブ対応",
-              "プラグイン導入・設定",
-              "SEO対策",
-              "問い合わせフォーム",
-              "管理者限定設定",
-            ].map((item) => (
-              <li key={item} className="flex items-start text-slate-700">
-                <span className="text-blue-600 mr-2" aria-hidden="true">
-                  ✓
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
