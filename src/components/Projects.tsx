@@ -7,7 +7,7 @@ import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
 import adminBlogEditImg from "../assets/oloroso-admin/admin-blog-edit.png";
 import adminSettingsImg from "../assets/oloroso-admin/admin-settings.png";
 
-type ProjectCategory = "portfolio" | "client";
+type ProjectCategory = "portfolio" | "client_web" | "client_enterprise";
 
 interface Screenshot {
   src: string;
@@ -30,6 +30,7 @@ interface Project {
   id: string;
   category: ProjectCategory;
   categoryLabel: string;
+  badgeType: "portfolio" | "client_web" | "client_enterprise";
   title: string;
   subtitle: string;
   description: string;
@@ -49,6 +50,7 @@ const projectsData: Project[] = [
     id: "oloroso",
     category: "portfolio",
     categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
     title: "フラメンコスタジオ「Estudio Oloroso」公式WEBサイト",
     subtitle: "Next.js + Decap CMS によるモダンWeb制作・ヘッドレスCMS構築",
     description:
@@ -149,8 +151,9 @@ const projectsData: Project[] = [
   },
   {
     id: "biwakogym",
-    category: "client",
+    category: "client_web",
     categoryLabel: "参画案件（Webサイト共同開発）",
+    badgeType: "client_web",
     title: "トレーニングジム「BIWAKO GYM」公式WEBサイト",
     subtitle: "滋賀県草津市のトレーニング＆コンディショニングジム 公式WEBサイト（2名共同開発）",
     description:
@@ -183,8 +186,9 @@ const projectsData: Project[] = [
   },
   {
     id: "chemical",
-    category: "client",
+    category: "client_enterprise",
     categoryLabel: "参画案件（業務システム）",
+    badgeType: "client_enterprise",
     title: "化学物質管理システム（PoC・バージョンアップ）",
     subtitle: "アプリ開発から外部連携・サーバー移行・運用まで",
     description:
@@ -228,8 +232,9 @@ const projectsData: Project[] = [
   },
   {
     id: "bank",
-    category: "client",
+    category: "client_enterprise",
     categoryLabel: "参画案件（業務システム）",
+    badgeType: "client_enterprise",
     title: "銀行系決済システム",
     subtitle: "大量明細処理・即日振込機能の実装",
     description:
@@ -256,7 +261,7 @@ const projectsData: Project[] = [
   },
 ];
 
-type FilterType = "all" | "portfolio" | "client";
+type FilterType = "all" | "web" | "portfolio" | "client";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
@@ -284,34 +289,47 @@ export default function Projects() {
     };
   }, [selectedScreenshot]);
 
+  // カテゴリ別フィルタリング
+  const webProjects = projectsData.filter(
+    (p) => p.category === "portfolio" || p.category === "client_web",
+  );
   const portfolioProjects = projectsData.filter(
     (p) => p.category === "portfolio",
   );
-  const clientProjects = projectsData.filter((p) => p.category === "client");
+  const clientWebProjects = projectsData.filter(
+    (p) => p.category === "client_web",
+  );
+  const enterpriseProjects = projectsData.filter(
+    (p) => p.category === "client_enterprise",
+  );
+  const allClientProjects = projectsData.filter(
+    (p) => p.category === "client_web" || p.category === "client_enterprise",
+  );
 
   const renderProjectCard = (project: Project) => (
     <div
       key={project.id}
-      className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors shadow-sm"
+      className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl group"
     >
-      {/* 画面キャッチ（WEBサイトのファーストビュー） */}
+      {/* 画面キャッチ（WEBサイトのファーストビュー・ブラウザモック） */}
       {project.image && (
         <div className="border-b border-slate-200 bg-slate-900">
-          <div className="bg-slate-800/90 px-4 py-2 flex items-center justify-between border-b border-slate-700/80">
+          <div className="bg-slate-800/95 px-4 py-2.5 flex items-center justify-between border-b border-slate-700/80">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
             </div>
-            <div className="text-[11px] text-slate-400 font-mono px-3 py-0.5 bg-slate-900/80 rounded border border-slate-700/60 truncate max-w-[240px] sm:max-w-md">
+            <div className="text-[11px] text-slate-400 font-mono px-3.5 py-0.5 bg-slate-950/70 rounded-full border border-slate-700/60 truncate max-w-[240px] sm:max-w-md">
               {project.demo || "https://oloroso.vercel.app/"}
             </div>
-            <div className="text-[11px] text-emerald-400 font-medium hidden sm:block">
-              ● 公開中
+            <div className="text-[11px] text-emerald-400 font-semibold hidden sm:flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>LIVE</span>
             </div>
           </div>
           <div
-            className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden cursor-pointer group bg-slate-950"
+            className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden cursor-pointer group/img bg-slate-950"
             onClick={() =>
               setSelectedScreenshot({
                 src: project.image!,
@@ -324,46 +342,54 @@ export default function Projects() {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+              className="w-full h-full object-cover object-top group-hover/img:scale-[1.02] transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
-              <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg transition-opacity flex items-center gap-1.5">
-                🔍 画面キャッチを拡大表示
+            <div className="absolute inset-0 bg-slate-950/0 group-hover/img:bg-slate-950/25 transition-colors flex items-center justify-center">
+              <span className="opacity-0 group-hover/img:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-4 py-2 rounded-full shadow-xl transition-all duration-200 flex items-center gap-2 transform translate-y-1 group-hover/img:translate-y-0">
+                <span>🔍</span>
+                <span>画面キャッチを拡大表示</span>
               </span>
             </div>
           </div>
         </div>
       )}
 
-      <div className="p-6 sm:p-8">
-        <div className="mb-2">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
+      <div className="p-6 sm:p-9">
+        <div className="mb-4">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
             <span
-              className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
-                project.category === "portfolio"
+              className={`text-xs font-bold px-3 py-1 rounded-full ${
+                project.badgeType === "portfolio"
                   ? "bg-purple-100 text-purple-700 border border-purple-200"
-                  : "bg-blue-100 text-blue-700 border border-blue-200"
+                  : project.badgeType === "client_web"
+                  ? "bg-blue-100 text-blue-700 border border-blue-200"
+                  : "bg-slate-100 text-slate-700 border border-slate-200"
               }`}
             >
               {project.categoryLabel}
             </span>
             {project.demo && (
-              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                Webサイト公開中
+              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>公開中Webサイト</span>
               </span>
             )}
           </div>
-          <h3 className="text-2xl font-bold text-slate-900">{project.title}</h3>
-          <p className="text-blue-600 font-semibold mt-1">{project.subtitle}</p>
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            {project.title}
+          </h3>
+          <p className="text-indigo-600 font-semibold mt-1.5 text-base sm:text-lg">
+            {project.subtitle}
+          </p>
         </div>
 
-        <p className="text-slate-700 mt-4 leading-relaxed">
+        <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
           {project.description}
         </p>
 
-        <div className="mt-6 p-4 bg-slate-50 rounded border border-slate-200">
-          <h4 className="text-sm font-semibold text-slate-700 mb-2">
-            プロジェクト概要
+        <div className="mt-6 p-4 sm:p-5 bg-slate-50/80 rounded-xl border border-slate-200/80">
+          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+            Overview / 概要
           </h4>
           <p className="text-slate-600 text-sm leading-relaxed">
             {project.overview}
@@ -371,29 +397,33 @@ export default function Projects() {
         </div>
 
         <div className="mt-6">
-          <h4 className="text-sm font-semibold text-slate-700 mb-3">主な機能</h4>
-          <ul className="space-y-2">
+          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+            Key Features / 主な機能・実装
+          </h4>
+          <ul className="grid grid-cols-1 gap-2">
             {project.features.map((feature, featIndex) => (
               <li
                 key={featIndex}
-                className="text-slate-600 text-sm flex items-start"
+                className="text-slate-700 text-sm flex items-start bg-slate-50/50 p-2.5 rounded-lg border border-slate-100"
               >
-                <span className="text-blue-600 mr-2 shrink-0">→</span>
-                <span>{feature}</span>
+                <span className="text-indigo-600 font-bold mr-2.5 shrink-0">
+                  ✦
+                </span>
+                <span className="leading-snug">{feature}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="mt-6">
-          <h4 className="text-sm font-semibold text-slate-700 mb-2">
-            使用技術
+          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
+            Technologies / 使用技術スタック
           </h4>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100"
+                className="px-3 py-1 bg-slate-50 text-slate-700 rounded-lg text-xs font-medium border border-slate-200 group-hover:border-indigo-200 transition-colors"
               >
                 {tech}
               </span>
@@ -405,12 +435,16 @@ export default function Projects() {
         {project.screenshots && project.screenshots.length > 0 && (
           <div className="mt-8 pt-6 border-t border-slate-200">
             <div className="mb-4">
-              <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                <span>📷</span>
-                <span>CMS管理画面スクリーンショット（Decap CMS）</span>
-              </h4>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold">
+                  CMS
+                </span>
+                <h4 className="text-base font-bold text-slate-900">
+                  管理画面スクリーンショット（Decap CMS）
+                </h4>
+              </div>
               <p className="text-xs text-slate-500 mt-1">
-                ※管理画面（/admin/）はGitHubアカウント認証による管理者専用アクセスのため、実際の更新画面を掲載しています。クリックで拡大表示できます。
+                ※管理画面（/admin/）はGitHubアカウント認証による管理者限定アクセスのため、実際の更新画面を掲載しています。クリックで拡大できます。
               </p>
             </div>
 
@@ -419,23 +453,23 @@ export default function Projects() {
                 <div
                   key={shotIndex}
                   onClick={() => setSelectedScreenshot(shot)}
-                  className="group cursor-pointer bg-slate-50 border border-slate-200 hover:border-blue-500 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md flex flex-col"
+                  className="group/shot cursor-pointer bg-white border border-slate-200 hover:border-indigo-400 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-md flex flex-col"
                 >
-                  <div className="relative aspect-video bg-slate-200 overflow-hidden">
+                  <div className="relative aspect-video bg-slate-100 overflow-hidden">
                     <img
                       src={shot.src}
                       alt={shot.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover object-top group-hover/shot:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/20 transition-colors flex items-center justify-center">
-                      <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-slate-800 text-xs font-semibold px-2.5 py-1 rounded shadow-sm transition-opacity">
-                        🔍 クリックで拡大
+                    <div className="absolute inset-0 bg-indigo-950/0 group-hover/shot:bg-indigo-950/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover/shot:opacity-100 bg-white/95 text-slate-800 text-xs font-bold px-3 py-1 rounded-full shadow-md transition-opacity">
+                        🔍 拡大表示
                       </span>
                     </div>
                   </div>
-                  <div className="p-3 flex-1 flex flex-col justify-between">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                  <div className="p-3.5 flex-1 flex flex-col justify-between bg-slate-50/60">
+                    <div className="text-xs font-bold text-slate-800 group-hover/shot:text-indigo-600 transition-colors">
                       {shot.title}
                     </div>
                     <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
@@ -452,12 +486,16 @@ export default function Projects() {
         {project.documents && project.documents.length > 0 && (
           <div className="mt-8 pt-6 border-t border-slate-200">
             <div className="mb-4">
-              <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                <span>📄</span>
-                <span>設計・提案ドキュメント（企画提案書・画面要件定義）</span>
-              </h4>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-xs font-bold">
+                  DOCS
+                </span>
+                <h4 className="text-base font-bold text-slate-900">
+                  設計・提案ドキュメント（企画提案書・画面要件定義）
+                </h4>
+              </div>
               <p className="text-xs text-slate-500 mt-1">
-                リニューアル推進にあたり作成したデザイン企画提案書および全画面レイアウト・コンテンツ要件定義書です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
+                リニューアル推進にあたり作成したデザイン企画提案書（PPTX）および全画面レイアウト・コンテンツ要件定義書（XLSX）です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
               </p>
             </div>
 
@@ -465,12 +503,12 @@ export default function Projects() {
               {project.documents.map((doc, docIndex) => (
                 <div
                   key={docIndex}
-                  className="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-purple-300 transition-all flex flex-col justify-between shadow-xs hover:shadow-sm"
+                  className="bg-slate-50/90 border border-slate-200 rounded-2xl p-5 hover:border-purple-300 transition-all flex flex-col justify-between shadow-2xs hover:shadow-sm"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <span
-                        className={`text-[11px] font-bold px-2 py-0.5 rounded tracking-wide ${
+                        className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide ${
                           doc.format === "PPTX"
                             ? "bg-orange-100 text-orange-700 border border-orange-200"
                             : "bg-emerald-100 text-emerald-700 border border-emerald-200"
@@ -513,7 +551,7 @@ export default function Projects() {
                       href={doc.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded text-xs font-semibold transition-colors shadow-xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors shadow-2xs"
                     >
                       <span>GitHubで確認</span>
                       <span className="text-[10px]">↗</span>
@@ -521,7 +559,7 @@ export default function Projects() {
                     <a
                       href={resolveDocUrl(doc.downloadUrl)}
                       download={doc.filename}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded text-xs font-semibold transition-colors shadow-xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
                     >
                       <span>ダウンロード</span>
                       <span className="text-[10px]">↓</span>
@@ -534,15 +572,16 @@ export default function Projects() {
         )}
 
         {(project.demo || project.github) && (
-          <div className="mt-6 flex flex-wrap gap-3 pt-2">
+          <div className="mt-8 flex flex-wrap gap-3 pt-4 border-t border-slate-100">
             {project.demo && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition-colors text-sm shadow-sm"
+                className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl transition-all text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
-                Webサイトを見る →
+                <span>公開Webサイトを見る</span>
+                <span className="ml-1.5">↗</span>
               </a>
             )}
             {project.github && (
@@ -550,9 +589,10 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded transition-colors text-sm shadow-sm"
+                className="inline-flex items-center px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-all text-sm shadow-xs hover:shadow-md"
               >
-                GitHub で見る →
+                <span>GitHub で確認</span>
+                <span className="ml-1.5">↗</span>
               </a>
             )}
           </div>
@@ -562,25 +602,30 @@ export default function Projects() {
   );
 
   return (
-    <section className="py-20 bg-slate-100">
+    <section className="py-20 bg-slate-50 border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            制作物・参画実績
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-3">
+            <span>✨</span>
+            <span>WORKS & PORTFOLIO</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            制作実績・参画プロジェクト
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
-          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            個人で設計・実装・公開したWeb制作物と、業務で担当した大規模基盤・システム開発の参画実績をご紹介します。
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
+          <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            企画・UIデザイン・モダンフロントエンド・ヘッドレスCMS導入まで一貫して手掛けたWeb制作物から、
+            2名でのWebサイト共同開発、金融・大規模業務システムの参画実績までご紹介します。
           </p>
 
           {/* カテゴリ切り替えタブ */}
-          <div className="mt-8 inline-flex p-1 bg-slate-200/80 rounded-xl shadow-inner">
+          <div className="mt-8 inline-flex flex-wrap justify-center p-1.5 bg-slate-200/80 rounded-2xl shadow-inner gap-1">
             <button
               type="button"
               onClick={() => setActiveFilter("all")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
                 activeFilter === "all"
-                  ? "bg-white text-blue-600 shadow-sm"
+                  ? "bg-white text-slate-900 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -588,85 +633,130 @@ export default function Projects() {
             </button>
             <button
               type="button"
+              onClick={() => setActiveFilter("web")}
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
+                activeFilter === "web"
+                  ? "bg-white text-indigo-600 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              🌐 Webサイト制作 ({webProjects.length})
+            </button>
+            <button
+              type="button"
               onClick={() => setActiveFilter("portfolio")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
                 activeFilter === "portfolio"
                   ? "bg-white text-purple-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              🎨 ポートフォリオ制作物 ({portfolioProjects.length})
+              🎨 自主制作物 ({portfolioProjects.length})
             </button>
             <button
               type="button"
               onClick={() => setActiveFilter("client")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
                 activeFilter === "client"
                   ? "bg-white text-blue-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              🏢 参画案件・業務開発 ({clientProjects.length})
+              🏢 参画案件 ({allClientProjects.length})
             </button>
           </div>
         </div>
 
         {/* コンテンツ表示エリア */}
         <div className="space-y-16">
-          {/* ポートフォリオ実績用制作物グループ */}
-          {(activeFilter === "all" || activeFilter === "portfolio") && (
+          {/* 1. Webサイト制作実績グループ（Oloroso & BIWAKO GYM） */}
+          {(activeFilter === "all" ||
+            activeFilter === "web" ||
+            activeFilter === "portfolio") && (
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-purple-200 gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-indigo-200 gap-2">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      ポートフォリオ実績用制作物（公開作品）
+                      {activeFilter === "portfolio"
+                        ? "ポートフォリオ実績用制作物（自主制作）"
+                        : "Webサイト制作実績（公開中）"}
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    企画・デザイン・モダンフロントエンド開発・ヘッドレスCMS導入まで一貫して制作した公開作品です。
+                    デザイン・モダンフロントエンド・ヘッドレスCMS・SEO構造化データを統合したWebサイト実績です。
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200 self-start sm:self-auto">
-                  {portfolioProjects.length}件
+                <span className="text-xs font-semibold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200 self-start sm:self-auto">
+                  {activeFilter === "portfolio"
+                    ? `${portfolioProjects.length}件`
+                    : `${webProjects.length}件`}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 gap-8">
-                {portfolioProjects.map(renderProjectCard)}
+                {activeFilter === "portfolio"
+                  ? portfolioProjects.map(renderProjectCard)
+                  : webProjects.map(renderProjectCard)}
               </div>
             </div>
           )}
 
-          {/* 参画案件グループ */}
-          {(activeFilter === "all" || activeFilter === "client") && (
+          {/* 2. 参画案件（Webサイト共同開発 BIWAKO GYM）※clientタブ選択時のみWeb案件として表示 */}
+          {activeFilter === "client" && (
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-blue-200 gap-2">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      参画案件（業務システム・基盤開発）
+                      Webサイト共同開発 参画案件
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    実在の店舗・クライアントに向けたWebサイトの共同開発案件です。
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
+                  {clientWebProjects.length}件
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 gap-8">
+                {clientWebProjects.map(renderProjectCard)}
+              </div>
+            </div>
+          )}
+
+          {/* 3. 参画案件（業務システム・基盤開発）グループ */}
+          {(activeFilter === "all" || activeFilter === "client") && (
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-slate-300 gap-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                      参画案件（エンタープライズ・業務システム開発）
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-500 mt-1">
                     金融系決済基盤や企業向け化学物質管理システムの要件定義・設計・開発・運用保守の参画実績です。
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
-                  {clientProjects.length}件
+                <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 self-start sm:self-auto">
+                  {enterpriseProjects.length}件
                 </span>
               </div>
 
               <div className="grid grid-cols-1 gap-8">
-                {clientProjects.map(renderProjectCard)}
+                {enterpriseProjects.map(renderProjectCard)}
               </div>
 
               {/* 守秘義務に関する注記 */}
-              <div className="mt-8 p-5 bg-amber-50/80 rounded-xl border border-amber-200">
-                <div className="flex items-start gap-2.5">
-                  <span className="text-amber-600 font-bold text-base mt-0.5">
+              <div className="mt-8 p-5 bg-amber-50/70 rounded-2xl border border-amber-200/80">
+                <div className="flex items-start gap-3">
+                  <span className="text-amber-600 font-bold text-lg leading-none mt-0.5">
                     ℹ️
                   </span>
                   <div>

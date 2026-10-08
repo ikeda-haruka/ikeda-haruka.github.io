@@ -24,11 +24,10 @@ export default function Header({ onNavClick }: HeaderProps) {
     | "contact";
 
   const sections: { name: string; id: SectionId }[] = [
-    { name: "プロフィール", id: "profile" },
-    { name: "スキル", id: "skills" },
-    { name: "職務経歴", id: "experience" },
-    { name: "制作物", id: "projects" },
-    { name: "制作方法・構成図", id: "architecture" },
+    { name: "制作実績", id: "projects" },
+    { name: "スキル・領域", id: "skills" },
+    { name: "制作プロセス・構成", id: "architecture" },
+    { name: "経歴・バックグラウンド", id: "experience" },
     { name: "お問い合わせ", id: "contact" },
   ];
 
@@ -38,26 +37,43 @@ export default function Header({ onNavClick }: HeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-slate-200 z-50 shadow-sm">
+    <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 z-50 transition-all">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-slate-900 font-bold text-xl">
-            <a href="#" onClick={() => handleClick("profile")}>
-              池田遥香
-            </a>
+          <div className="text-slate-900 font-bold text-lg sm:text-xl tracking-tight">
+            <button
+              onClick={() => handleClick("profile")}
+              className="hover:text-indigo-600 transition-colors flex items-center gap-2 cursor-pointer"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+              <span>池田 遥香</span>
+              <span className="text-xs font-normal text-slate-400 hidden sm:inline">
+                / Portfolio
+              </span>
+            </button>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleClick(section.id)}
-                className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium"
+                className={`text-sm font-semibold transition-colors cursor-pointer ${
+                  section.id === "projects"
+                    ? "text-indigo-600 hover:text-indigo-700"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
               >
                 {section.name}
               </button>
             ))}
+            <button
+              onClick={() => handleClick("contact")}
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition-all shadow-xs"
+            >
+              Contact
+            </button>
           </div>
 
           {/* Mobile Menu Button */}

@@ -60,40 +60,52 @@ const experienceData: Experience[] = [
 
 export default function Experience() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-slate-50 border-t border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">職務経歴</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200/80 text-slate-700 text-xs font-semibold mb-3">
+            <span>💼</span>
+            <span>CAREER & BACKGROUND</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            経歴・エンジニアリング背景
+          </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
+          <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            ミッションクリティカルな金融決済や化学物質管理システムの開発・保守運用を通じて培った、
+            高い信頼性・保守性・セキュリティ設計力。Webサイト制作においてもこの確かな技術力が基盤となっています。
+          </p>
         </div>
 
         <div className="space-y-8">
           {experienceData.map((exp, index) => (
             <div
               key={index}
-              className="bg-slate-50 rounded-xl p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 hover:border-slate-300 transition-all shadow-xs hover:shadow-md"
             >
               <div>
-                <h3 className="text-2xl font-bold text-slate-900 mt-2">
-                  {exp.title}
-                </h3>
-                <div className="text-lg text-slate-700 font-semibold">
-                  {exp.company}
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="px-3 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
+                    {exp.title}
+                  </span>
                 </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  {exp.company}
+                </h3>
 
-                <p className="text-slate-700 mt-4 leading-relaxed">
+                <p className="text-slate-600 mt-3 text-sm sm:text-base leading-relaxed">
                   {exp.description}
                 </p>
 
-                <div className="mt-4">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
+                <div className="mt-5">
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
                     使用技術
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {exp.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-slate-200 text-slate-700 rounded text-xs font-medium"
+                        className="px-2.5 py-1 bg-slate-50 text-slate-700 rounded-lg text-xs font-medium border border-slate-200"
                       >
                         {tech}
                       </span>
@@ -101,17 +113,19 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
-                    主な成果
+                <div className="mt-5 pt-4 border-t border-slate-100">
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+                    主な実績・担当領域
                   </h4>
-                  <ul className="space-y-1">
+                  <ul className="space-y-1.5">
                     {exp.achievements.map((achievement, achIndex) => (
                       <li
                         key={achIndex}
-                        className="text-slate-600 text-sm flex items-start"
+                        className="text-slate-700 text-xs sm:text-sm flex items-start leading-relaxed"
                       >
-                        <span className="text-blue-600 mr-2">✓</span>
+                        <span className="text-indigo-600 font-bold mr-2 shrink-0">
+                          ✓
+                        </span>
                         <span>{achievement}</span>
                       </li>
                     ))}

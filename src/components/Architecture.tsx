@@ -280,13 +280,20 @@ function CorporatePaymentFlow() {
 
 export default function Architecture() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-20 border-t border-slate-200">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-slate-900">
-            制作方法・システム構成図
+        <div className="mb-14 text-center">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
+            <span>📐</span>
+            <span>PROCESS & ARCHITECTURE</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            制作プロセス・システム構成
           </h2>
-          <div className="mx-auto h-1 w-20 bg-blue-500"></div>
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
+          <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            Webサイト制作における設計・実装・CI/CD公開フローと、業務システムにおけるアーキテクチャ構成実績です。
+          </p>
         </div>
 
         <div className="mb-16">
