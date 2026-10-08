@@ -59,6 +59,7 @@ const skillsData: SkillCategory[] = [
     description: "最新のAIコーディングツールと堅牢なバージョン管理・CI/CD環境",
     skills: [
       "GitHub / GitHub Actions",
+      "GitHub Issues（チケット・タスク管理）",
       "GitLab / SVN",
       "Copilot for VS Code (AI活用)",
       "SpecKit（仕様駆動開発）",

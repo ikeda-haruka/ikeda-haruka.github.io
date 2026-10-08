@@ -33,21 +33,21 @@ const portfolioLayers: FlowStep[] = [
 const creationSteps = [
   {
     number: "01",
-    title: "情報設計",
+    title: "情報設計・タスク管理",
     description:
-      "プロフィール、スキル、職務経歴、プロジェクト、問い合わせを整理し、必要な情報へ移動しやすい構成にします。",
+      "構成案や画面要件を整理し、GitHub Issues等でタスクをチケット化。実装フェーズの進捗を可視化しながら体系的に設計を進めます。",
   },
   {
     number: "02",
     title: "実装・レスポンシブ対応",
     description:
-      "ReactとTypeScriptでセクションを分割し、Tailwind CSSで画面幅に応じたレイアウトを組み立てます。",
+      "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで画面幅に応じたモダンなUIと操作性を組み立てます。",
   },
   {
     number: "03",
-    title: "ビルド・公開",
+    title: "ビルド・CI/CD自動公開",
     description:
-      "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pagesへ静的ファイルをデプロイします。",
+      "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pages / Vercelへ静的ファイルを自動デプロイします。",
   },
 ];
 

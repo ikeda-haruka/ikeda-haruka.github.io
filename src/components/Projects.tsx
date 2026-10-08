@@ -20,10 +20,16 @@ interface ProjectDocument {
   filename: string;
   format: "PPTX" | "XLSX" | "CSV" | "PDF";
   size: string;
+  statusBadge?: string;
   description: string;
   keyPoints: string[];
   downloadUrl: string;
   githubUrl: string;
+  githubButtonText?: string;
+  extraAction?: {
+    label: string;
+    url: string;
+  };
 }
 
 interface Project {
@@ -41,6 +47,7 @@ interface Project {
   imageCaption?: string;
   github?: string;
   demo?: string;
+  issuesUrl?: string;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
 }
@@ -56,7 +63,7 @@ const projectsData: Project[] = [
     description:
       "Web制作・フロントエンド開発実績用の架空フラメンコスタジオ「Estudio Oloroso（エストゥディオ・オロロソ）」のWebサイト。Next.js (App Router) と Decap CMS（旧 Netlify CMS）を採用し、GitベースのヘッドレスCMS構成により、非エンジニアでもMarkdown形式で手軽にお知らせやブログを更新できる運用設計を実現。",
     overview:
-      "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。Next.js Route Handler による GitHub OAuth 認証でサーバーレスに管理画面（/admin/）を連携し、Vercelへデプロイ・公開しています。",
+      "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。初期Excel要件定義からGitHub Issuesへ全タスクをチケット化し、進捗可視化・アジャイル管理を実践しています。",
     image: olorosoCaptureImg,
     imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
     technologies: [
@@ -65,6 +72,7 @@ const projectsData: Project[] = [
       "TypeScript",
       "Tailwind CSS",
       "Decap CMS",
+      "GitHub Issues (タスク管理)",
       "GitHub (OAuth / API)",
       "Vercel",
       "Markdown / Frontmatter",
@@ -75,6 +83,7 @@ const projectsData: Project[] = [
     features: [
       "Next.js (App Router / Turbopack) による高速なページ遷移とSSG（静的サイト生成）/ SSRハイブリッド設計",
       "Decap CMS（GitベースCMS）を導入し、GitHubリポジトリ（Markdown/Frontmatter）と直結したブログ・お知らせコンテンツ管理",
+      "初期Excel要件定義書からGitHub Issuesへ全タスクをチケット化し、ラベル・ステータスを活用した可視化タスク管理を実施",
       "Next.js Route Handlerを活用したGitHub OAuth認証による、外部認証サーバー不要のセキュアなCMS管理画面連携（/admin/）",
       "ブランドアイデンティティ（深みのあるワインレッド×シャンパンゴールド）に基づく上品で洗練されたUI/UXデザイン",
       "スマートフォン追従型フローティングCTA（LINE予約・体験予約）、アコーディオンFAQ、Stickyヘッダーなどのモバイル最適化",
@@ -83,6 +92,7 @@ const projectsData: Project[] = [
     ],
     demo: "https://oloroso.vercel.app/",
     github: "https://github.com/ikeda-haruka/oloroso",
+    issuesUrl: "https://github.com/ikeda-haruka/oloroso/issues",
     documents: [
       {
         title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
@@ -107,18 +117,24 @@ const projectsData: Project[] = [
         filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧.xlsx",
         format: "XLSX",
         size: "29 KB",
+        statusBadge: "GitHub Issuesへタスク移行済（docs/old保管）",
         description:
-          "サイト全体（P01〜P06および共通コンポーネント）の画面設計および外部連携・移行仕様を統合したExcel定義書。「WEBサイト構成一覧」「外部連携・移行仕様」の2シート構成。",
+          "サイト全体（P01〜P06および共通コンポーネント）の画面設計・要件定義一覧を整理した初期Excel定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
         keyPoints: [
-          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン仕様",
+          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン初期要件定義",
+          "GitHub Issuesへのタスク移行（各画面・機能の実装課題をチケット化し、ラベル・マイルストーンで進捗管理）",
           "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
-          "外部サービス連携仕様（Instagram Graph API、エキテンブログパーツ、Googleフォーム・LINE連携等）",
-          "旧ブログ（ココログ）からの移行仕様およびSEOリダイレクト設計",
+          "外部サービス連携仕様（Instagram API、LINE・Googleフォーム連携等）および旧ブログ移行仕様",
         ],
         downloadUrl:
           "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.xlsx",
         githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/old/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
+        githubButtonText: "GitHub (docs/old) で確認",
+        extraAction: {
+          label: "GitHub Issues（タスク管理）を見る",
+          url: "https://github.com/ikeda-haruka/oloroso/issues",
+        },
       },
     ],
     screenshots: [
@@ -506,7 +522,7 @@ export default function Projects() {
                   className="bg-slate-50/90 border border-slate-200 rounded-2xl p-5 hover:border-purple-300 transition-all flex flex-col justify-between shadow-2xs hover:shadow-sm"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                       <span
                         className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide ${
                           doc.format === "PPTX"
@@ -516,6 +532,11 @@ export default function Projects() {
                       >
                         {doc.format} • {doc.size}
                       </span>
+                      {doc.statusBadge && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                          {doc.statusBadge}
+                        </span>
+                      )}
                     </div>
 
                     <h5 className="font-bold text-slate-900 text-sm leading-snug">
@@ -553,7 +574,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors shadow-2xs"
                     >
-                      <span>GitHubで確認</span>
+                      <span>{doc.githubButtonText || "GitHubで確認"}</span>
                       <span className="text-[10px]">↗</span>
                     </a>
                     <a
@@ -564,14 +585,63 @@ export default function Projects() {
                       <span>ダウンロード</span>
                       <span className="text-[10px]">↓</span>
                     </a>
+                    {doc.extraAction && (
+                      <a
+                        href={doc.extraAction.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-bold transition-colors shadow-2xs"
+                      >
+                        <span>{doc.extraAction.label}</span>
+                        <span className="text-[10px]">↗</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* GitHub Issues タスク管理ハイライトバナー */}
+            {project.issuesUrl && (
+              <div className="mt-5 p-5 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-2xl border border-indigo-500/30 text-white shadow-md">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0 text-xl">
+                      📋
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                          Task & Issue Management
+                        </span>
+                        <span className="text-xs text-indigo-300 font-medium">
+                          Excel要件定義からチケット駆動開発へ移行
+                        </span>
+                      </div>
+                      <h5 className="text-base font-bold text-white tracking-tight">
+                        GitHub Issues によるアジャイル・チケット駆動のタスク管理
+                      </h5>
+                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed max-w-2xl">
+                        初期Excel定義書（レイアウト構成・コンテンツ一覧）の記載内容はすべてGitHub Issuesへタスク（チケット）として落とし込み、ラベル（UI, CMS, SEO, Docs等）やマイルストーンで進捗・ステータスを可視化管理しています。仕様策定から実際の開発チケット運用までを一貫して推進できるスキルを実践しています。
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={project.issuesUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer self-start md:self-auto"
+                  >
+                    <span>GitHub Issues（タスク一覧）</span>
+                    <span className="text-[10px]">↗</span>
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
-        {(project.demo || project.github) && (
+        {(project.demo || project.github || project.issuesUrl) && (
           <div className="mt-8 flex flex-wrap gap-3 pt-4 border-t border-slate-100">
             {project.demo && (
               <a
@@ -592,6 +662,17 @@ export default function Projects() {
                 className="inline-flex items-center px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-all text-sm shadow-xs hover:shadow-md"
               >
                 <span>GitHub で確認</span>
+                <span className="ml-1.5">↗</span>
+              </a>
+            )}
+            {project.issuesUrl && (
+              <a
+                href={project.issuesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold rounded-xl transition-all text-sm shadow-2xs hover:shadow-xs"
+              >
+                <span>📋 GitHub Issues（タスク管理）</span>
                 <span className="ml-1.5">↗</span>
               </a>
             )}
