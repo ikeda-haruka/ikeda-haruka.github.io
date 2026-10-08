@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import olorosoCaptureImg from "../assets/oloroso-capture.png";
+import biwakogymCaptureImg from "../assets/biwakogym-capture.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -144,6 +145,40 @@ const projectsData: Project[] = [
         caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
       },
     ],
+  },
+  {
+    id: "biwakogym",
+    category: "client",
+    categoryLabel: "参画案件（Webサイト共同開発）",
+    title: "トレーニングジム「BIWAKO GYM」公式WEBサイト",
+    subtitle: "滋賀県草津市のトレーニング＆コンディショニングジム 公式WEBサイト（2名共同開発）",
+    description:
+      "滋賀県草津市に構えるトレーニング＆ストレッチ＆コンディショニングジム「BIWAKO GYM（ビワコジム）」の公式WEBサイト。エンジニア2名体制での共同開発案件として参画し、企画設計からフロントエンド実装、レスポンシブ対応、UI/UX最適化、SEO構造化データマークアップまでを担当。",
+    overview:
+      "「もう、ジムで迷わない。」をキーコンセプトに、鍛錬マシン全29台と3ステップサポートを強みとするジムの魅力を伝えるWebサイト。無料体験（Trial）、料金体系表、店舗アクセス、お問い合わせまでのユーザー動線を徹底追求。視覚的な引き込みを図るファーストビューやスクロール連動アニメーション、スマートフォンからの操作性を考慮したモバイルファースト設計を採用。",
+    image: biwakogymCaptureImg,
+    imageCaption: "BIWAKO GYM 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "レスポンシブWebデザイン",
+      "Google Fonts (Outfit / Zen Kaku Gothic New)",
+      "JSON-LD (HealthClub 構造化データ)",
+      "SEO / OGP",
+      "UI/UX設計",
+      "2名共同開発",
+    ],
+    features: [
+      "2名体制での役割分担・コードレビューを通じた効率的な共同開発推進",
+      "「BIWAKO GYM」の力強さと清潔感を両立させたダークトーン×アクセントブルーのモダンデザイン",
+      "鍛錬マシンフロアの臨場感を伝えるフルスクリーン・ファーストビューとマーキー（流れるテキスト）演出",
+      "無料体験（Trial）へのコンバージョンを最大化する導線設計（ヘッダー常設CTA・お問い合わせフォーム連動）",
+      "スマートフォン閲覧に最適化したハンバーガーメニュー・開閉ナビゲーションおよびタッチ操作対応",
+      "Schema.org（HealthClub / LocalBusiness）準拠のJSON-LD構造化マークアップによる地域SEO（MEO）強化",
+      "店舗情報（営業時間・定休日・電話・マップ・料金表）を迷わず確認できるアクセシビリティ設計",
+    ],
+    demo: "https://biwakogym.com/",
   },
   {
     id: "chemical",
@@ -638,7 +673,7 @@ export default function Projects() {
                       参画案件に関する留意事項
                     </h5>
                     <p className="text-xs text-amber-900/90 mt-1 leading-relaxed">
-                      参画案件（社内ネットワークアプリケーション等）は守秘義務およびセキュリティの観点から、ソースコードや非公開情報は掲載しておりません。システムの技術的アプローチや担当領域について記載しています。より詳細な経験内容についてはお問い合わせください。
+                      参画案件のうち、社内ネットワークアプリケーション等の業務系システムは守秘義務およびセキュリティの観点からソースコードや非公開情報は掲載しておりません（BIWAKO GYM等の公開Webサイトはリンクより実際の画面をご確認いただけます）。システムの技術的アプローチや担当領域の詳細はお気軽にお問い合わせください。
                     </p>
                   </div>
                 </div>
