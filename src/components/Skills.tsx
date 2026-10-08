@@ -15,6 +15,7 @@ const skillsData: SkillCategory[] = [
       "Vue.js",
       "Next.js",
       "React",
+      "Tailwind CSS",
       "JSP",
       "Struts",
     ],
@@ -63,6 +64,7 @@ const skillsData: SkillCategory[] = [
     category: "CMS・サイト構築",
     skills: [
       "WordPress",
+      "Decap CMS",
       "オリジナルデザイン",
       "LP制作",
       "バナー作成",

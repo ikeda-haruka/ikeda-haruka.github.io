@@ -145,7 +145,7 @@ src/
 
 ### システム構成図の更新
 
-`src/components/Architecture.tsx` の SVG を修正
+`src/components/Architecture.tsx` のカードとフローを修正
 
 ## 🎨 デザイン
 

@@ -1,19 +1,32 @@
-const portfolioLayers = [
+interface DiagramCard {
+  title: string;
+  detail: string;
+}
+
+interface FlowStep extends DiagramCard {
+  tone: "blue" | "green" | "purple" | "red";
+}
+
+const portfolioLayers: FlowStep[] = [
   {
-    name: "React 19 / TypeScript",
+    title: "React 19 / TypeScript",
     detail: "画面をコンポーネント単位で実装",
+    tone: "blue",
   },
   {
-    name: "Vite",
+    title: "Vite",
     detail: "型チェック後に本番向けビルド",
+    tone: "purple",
   },
   {
-    name: "HTML / CSS / JS",
+    title: "HTML / CSS / JS",
     detail: "ブラウザで動作する静的ファイル",
+    tone: "green",
   },
   {
-    name: "GitHub Pages",
+    title: "GitHub Pages",
     detail: "Actionsからビルド成果物を公開",
+    tone: "red",
   },
 ];
 
@@ -38,29 +51,127 @@ const creationSteps = [
   },
 ];
 
-interface SystemDiagramProps {
-  variant: "legacy" | "modern";
+const flowToneClasses: Record<FlowStep["tone"], string> = {
+  blue: "border-blue-600 bg-blue-600 text-white",
+  green: "border-emerald-600 bg-emerald-600 text-white",
+  purple: "border-violet-600 bg-violet-600 text-white",
+  red: "border-red-600 bg-red-600 text-white",
+};
+
+function FlowSequence({ steps, label }: { steps: FlowStep[]; label: string }) {
+  return (
+    <ol
+      aria-label={label}
+      className="grid grid-cols-1 gap-y-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0"
+    >
+      {steps.map((step, index) => (
+        <li key={step.title} className="relative">
+          <div
+            className={`h-full rounded-lg border p-5 shadow-sm ${flowToneClasses[step.tone]}`}
+          >
+            <p className="text-xs font-semibold opacity-80">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h4 className="mt-2 !text-lg !text-white font-bold">
+              {step.title}
+            </h4>
+            <p className="mt-2 text-sm leading-relaxed opacity-90">
+              {step.detail}
+            </p>
+          </div>
+          {index < steps.length - 1 && (
+            <>
+              <span
+                className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 text-blue-600 text-xl"
+                aria-hidden="true"
+              >
+                →
+              </span>
+              <span
+                className="block text-center text-blue-600 text-xl lg:hidden"
+                aria-hidden="true"
+              >
+                ↓
+              </span>
+            </>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
 }
 
-function ChemicalSystemDiagram({ variant }: SystemDiagramProps) {
+function CardGrid({
+  cards,
+  className = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+  tone = "blue",
+}: {
+  cards: DiagramCard[];
+  className?: string;
+  tone?: "blue" | "slate";
+}) {
+  const cardTone =
+    tone === "blue"
+      ? "border-blue-200 bg-blue-50"
+      : "border-slate-200 bg-slate-100";
+
+  return (
+    <ul className={`grid gap-3 ${className}`}>
+      {cards.map((card) => (
+        <li
+          key={card.title}
+          className={`rounded-lg border p-4 ${cardTone}`}
+        >
+          <h5 className="font-bold text-slate-900">{card.title}</h5>
+          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+            {card.detail}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function DiagramGroup({
+  title,
+  description,
+  children,
+}: {
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mt-8">
+      <h5 className="mb-3 text-lg font-bold text-slate-900">{title}</h5>
+      {description && (
+        <p className="mb-4 text-sm leading-relaxed text-slate-600">
+          {description}
+        </p>
+      )}
+      {children}
+    </div>
+  );
+}
+
+function ChemicalSystemFlow({ variant }: { variant: "legacy" | "modern" }) {
   const isLegacy = variant === "legacy";
-  const id = `chemical-${variant}`;
-  const layers = isLegacy
+  const layers: FlowStep[] = isLegacy
     ? [
-        { title: "利用者", detail: "Webブラウザ", color: "#2563eb" },
-        { title: "画面", detail: "Struts / JSP", color: "#7c3aed" },
-        { title: "アプリケーション", detail: "JDK 8 / iBatis", color: "#7c3aed" },
-        { title: "データベース", detail: "Oracle Database", color: "#dc2626" },
+        { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+        { title: "画面", detail: "Struts / JSP", tone: "purple" },
+        { title: "アプリケーション", detail: "JDK 8 / iBatis", tone: "purple" },
+        { title: "データベース", detail: "Oracle Database", tone: "red" },
       ]
     : [
-        { title: "利用者", detail: "Webブラウザ", color: "#2563eb" },
-        { title: "Web画面", detail: "Vue.js / TypeScript", color: "#059669" },
+        { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+        { title: "Web画面", detail: "Vue.js / TypeScript", tone: "green" },
         {
           title: "API・アプリケーション",
           detail: "Java 21 / SpringBoot 3",
-          color: "#7c3aed",
+          tone: "purple",
         },
-        { title: "データベース", detail: "Oracle Database", color: "#dc2626" },
+        { title: "データベース", detail: "Oracle Database", tone: "red" },
       ];
   const integrations = [
     { title: "業界標準", detail: "JAMP (chemSHERPA) → CMP" },
@@ -81,437 +192,110 @@ function ChemicalSystemDiagram({ variant }: SystemDiagramProps) {
         { title: "ジョブ運用", detail: "JP1 / タスクスケジューラ" },
         { title: "保守運用", detail: "ITSMで管理" },
       ];
-  const positions = [20, 230, 440, 650];
 
   return (
-    <svg
-      viewBox="0 0 840 570"
-      className="w-full min-w-[700px] max-w-[840px]"
-      role="img"
-      aria-labelledby={`${id}-title ${id}-description`}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <title id={`${id}-title`}>
-        化学物質管理システムの{isLegacy ? "レガシー版" : "モダナイゼーション後版"}構成図
-      </title>
-      <desc id={`${id}-description`}>
-        利用者から画面、アプリケーション、データベースへの処理の流れと、
-        外部連携および運用基盤を示す構成図です。
-      </desc>
-      <defs>
-        <marker
-          id={`${id}-arrow`}
-          markerWidth="10"
-          markerHeight="10"
-          refX="9"
-          refY="3"
-          orient="auto"
-        >
-          <polygon points="0 0, 10 3, 0 6" fill="#64748b" />
-        </marker>
-        <marker
-          id={`${id}-dashed-arrow`}
-          markerWidth="10"
-          markerHeight="10"
-          refX="9"
-          refY="3"
-          orient="auto"
-        >
-          <polygon points="0 0, 10 3, 0 6" fill="#2563eb" />
-        </marker>
-      </defs>
+    <div>
+      <DiagramGroup
+        title="アプリケーション処理"
+        description="利用者から画面・アプリケーションを経て、データベースへ処理が流れます。"
+      >
+        <FlowSequence steps={layers} label="アプリケーション処理の流れ" />
+      </DiagramGroup>
 
-      <text x="32" y="35" fill="#0f172a" fontSize="18" fontWeight="700">
-        アプリケーション処理
-      </text>
-      {layers.map((layer, index) => (
-        <g key={layer.title}>
-          <rect
-            x={positions[index]}
-            y="70"
-            width="190"
-            height="100"
-            rx="12"
-            fill={layer.color}
-          />
-          <text
-            x={positions[index] + 95}
-            y="113"
-            textAnchor="middle"
-            fill="white"
-            fontSize="16"
-            fontWeight="700"
-          >
-            {layer.title}
-          </text>
-          <text
-            x={positions[index] + 95}
-            y="140"
-            textAnchor="middle"
-            fill="white"
-            fontSize="13"
-          >
-            {layer.detail}
-          </text>
-          {index < layers.length - 1 && (
-            <line
-              x1={positions[index] + 190}
-              y1="120"
-              x2={positions[index + 1] - 8}
-              y2="120"
-              stroke="#64748b"
-              strokeWidth="3"
-              markerEnd={`url(#${id}-arrow)`}
-            />
-          )}
-        </g>
-      ))}
+      <DiagramGroup
+        title="外部サービス連携"
+        description="アプリケーションから接続する外部サービス・連携先"
+      >
+        <CardGrid cards={integrations} />
+      </DiagramGroup>
 
-      <text x="32" y="220" fill="#0f172a" fontSize="18" fontWeight="700">
-        外部サービス連携
-      </text>
-      <line
-        x1="115"
-        y1="252"
-        x2="745"
-        y2="252"
-        stroke="#2563eb"
-        strokeWidth="2"
-        strokeDasharray="7 6"
-      />
-      <line
-        x1="535"
-        y1="170"
-        x2="612"
-        y2="252"
-        stroke="#2563eb"
-        strokeWidth="2"
-        strokeDasharray="7 6"
-        markerEnd={`url(#${id}-dashed-arrow)`}
-      />
-      {integrations.map((integration, index) => (
-        <g key={integration.title}>
-          <line
-            x1={positions[index] + 95}
-            y1="252"
-            x2={positions[index] + 95}
-            y2="275"
-            stroke="#2563eb"
-            strokeWidth="2"
-            strokeDasharray="7 6"
-          />
-          <rect
-            x={positions[index]}
-            y="275"
-            width="190"
-            height="82"
-            rx="10"
-            fill="#eff6ff"
-            stroke="#93c5fd"
-            strokeWidth="2"
-          />
-          <text
-            x={positions[index] + 95}
-            y="309"
-            textAnchor="middle"
-            fill="#1e3a8a"
-            fontSize="15"
-            fontWeight="700"
-          >
-            {integration.title}
-          </text>
-          <text
-            x={positions[index] + 95}
-            y="334"
-            textAnchor="middle"
-            fill="#334155"
-            fontSize="12"
-          >
-            {integration.detail}
-          </text>
-        </g>
-      ))}
+      <DiagramGroup title="運用・開発基盤">
+        <CardGrid cards={operations} tone="slate" />
+      </DiagramGroup>
 
-      <text x="32" y="405" fill="#0f172a" fontSize="18" fontWeight="700">
-        運用・開発基盤
-      </text>
-      {operations.map((operation, index) => (
-        <g key={operation.title}>
-          <rect
-            x={positions[index]}
-            y="425"
-            width="190"
-            height="82"
-            rx="10"
-            fill="#f1f5f9"
-            stroke="#cbd5e1"
-            strokeWidth="2"
-          />
-          <text
-            x={positions[index] + 95}
-            y="459"
-            textAnchor="middle"
-            fill="#0f172a"
-            fontSize="15"
-            fontWeight="700"
-          >
-            {operation.title}
-          </text>
-          <text
-            x={positions[index] + 95}
-            y="484"
-            textAnchor="middle"
-            fill="#334155"
-            fontSize="12"
-          >
-            {operation.detail}
-          </text>
-        </g>
-      ))}
       {!isLegacy && (
-        <text x="32" y="545" fill="#475569" fontSize="13">
+        <p className="mt-6 border-l-2 border-blue-500 pl-4 text-sm text-slate-600">
           SpecKitによる仕様駆動開発のPoCも実施
-        </text>
+        </p>
       )}
-    </svg>
+    </div>
   );
 }
 
-function CorporatePaymentDiagram() {
+function CorporatePaymentFlow() {
+  const steps: FlowStep[] = [
+    { title: "企業の業務システム", detail: "会計・ERP等", tone: "blue" },
+    { title: "連携・転送", detail: "ファイル連携 / Hulft", tone: "green" },
+    {
+      title: "決済アプリケーション",
+      detail: "Java 8 / Tomcat",
+      tone: "purple",
+    },
+    {
+      title: "銀行側決済サービス",
+      detail: "振込・口座情報連携",
+      tone: "red",
+    },
+  ];
+  const operations = [
+    { title: "ネットワーク", detail: "プロキシ設定・保守" },
+    { title: "ソース管理", detail: "SVN" },
+    { title: "バッチ連携", detail: "Hulft / Bash" },
+    { title: "ファイル共有", detail: "NAS セットアップ・検証" },
+    { title: "実行環境", detail: "オンプレミス" },
+  ];
+
   return (
-    <svg
-      viewBox="0 0 1000 450"
-      className="w-full min-w-[760px] max-w-[1000px]"
-      role="img"
-      aria-labelledby="payment-diagram-title payment-diagram-description"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <title id="payment-diagram-title">
-        法人向け決済システムの概念構成図
-      </title>
-      <desc id="payment-diagram-description">
-        企業の会計・業務システムから連携基盤を経由して決済アプリケーションへ接続し、
-        データベースと銀行側の決済サービスを連携する構成です。
-        下段に開発・運用基盤と担当した主な機能を示しています。
-      </desc>
-      <defs>
-        <marker
-          id="payment-arrow"
-          markerWidth="10"
-          markerHeight="10"
-          refX="9"
-          refY="3"
-          orient="auto"
-        >
-          <polygon points="0 0, 10 3, 0 6" fill="#64748b" />
-        </marker>
-        <marker
-          id="payment-blue-arrow"
-          markerWidth="10"
-          markerHeight="10"
-          refX="9"
-          refY="3"
-          orient="auto"
-        >
-          <polygon points="0 0, 10 3, 0 6" fill="#2563eb" />
-        </marker>
-      </defs>
-
-      <text x="30" y="35" fill="#0f172a" fontSize="18" fontWeight="700">
-        業務データ・決済処理の流れ
-      </text>
-
-      <rect x="30" y="65" width="205" height="95" rx="12" fill="#2563eb" />
-      <text
-        x="132"
-        y="105"
-        textAnchor="middle"
-        fill="white"
-        fontSize="16"
-        fontWeight="700"
+    <div>
+      <DiagramGroup
+        title="業務データ・決済処理の流れ"
+        description="企業の業務システムから連携基盤・決済アプリケーションを経由し、銀行側の決済サービスへ接続します。"
       >
-        企業の業務システム
-      </text>
-      <text x="132" y="132" textAnchor="middle" fill="white" fontSize="13">
-        会計・ERP等
-      </text>
+        <FlowSequence steps={steps} label="法人向け決済処理の流れ" />
+      </DiagramGroup>
 
-      <rect
-        x="275"
-        y="65"
-        width="195"
-        height="95"
-        rx="12"
-        fill="#0f766e"
-      />
-      <text
-        x="372"
-        y="105"
-        textAnchor="middle"
-        fill="white"
-        fontSize="16"
-        fontWeight="700"
+      <DiagramGroup
+        title="データベース"
+        description="決済アプリケーションが振込・明細データを参照・更新します。"
       >
-        連携・転送
-      </text>
-      <text x="372" y="132" textAnchor="middle" fill="white" fontSize="13">
-        ファイル連携 / Hulft
-      </text>
-
-      <rect
-        x="510"
-        y="65"
-        width="220"
-        height="95"
-        rx="12"
-        fill="#7c3aed"
-      />
-      <text
-        x="620"
-        y="105"
-        textAnchor="middle"
-        fill="white"
-        fontSize="16"
-        fontWeight="700"
-      >
-        決済アプリケーション
-      </text>
-      <text x="620" y="132" textAnchor="middle" fill="white" fontSize="13">
-        Java 8 / Tomcat
-      </text>
-
-      <rect x="770" y="65" width="200" height="95" rx="12" fill="#dc2626" />
-      <text
-        x="870"
-        y="105"
-        textAnchor="middle"
-        fill="white"
-        fontSize="16"
-        fontWeight="700"
-      >
-        銀行側決済サービス
-      </text>
-      <text x="870" y="132" textAnchor="middle" fill="white" fontSize="13">
-        振込・口座情報連携
-      </text>
-
-      {[235, 470, 730].map((x) => (
-        <line
-          key={x}
-          x1={x}
-          y1="112"
-          x2={x + 35}
-          y2="112"
-          stroke="#64748b"
-          strokeWidth="3"
-          markerEnd="url(#payment-arrow)"
+        <CardGrid
+          cards={[
+            { title: "Oracle Database", detail: "振込・明細データ" },
+          ]}
+          className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          tone="slate"
         />
-      ))}
+      </DiagramGroup>
 
-      <line
-        x1="620"
-        y1="160"
-        x2="620"
-        y2="217"
-        stroke="#2563eb"
-        strokeWidth="2"
-        markerEnd="url(#payment-blue-arrow)"
-      />
-      <rect
-        x="510"
-        y="220"
-        width="220"
-        height="70"
-        rx="10"
-        fill="#fff1f2"
-        stroke="#fda4af"
-        strokeWidth="2"
-      />
-      <text
-        x="620"
-        y="250"
-        textAnchor="middle"
-        fill="#881337"
-        fontSize="15"
-        fontWeight="700"
-      >
-        Oracle Database
-      </text>
-      <text x="620" y="274" textAnchor="middle" fill="#475569" fontSize="12">
-        振込・明細データ
-      </text>
+      <DiagramGroup title="開発・運用基盤">
+        <CardGrid cards={operations} tone="slate" />
+      </DiagramGroup>
 
-      <text x="30" y="220" fill="#0f172a" fontSize="18" fontWeight="700">
-        開発・運用基盤
-      </text>
-      {[
-        { title: "ネットワーク", detail: "プロキシ設定・保守" },
-        { title: "ソース管理", detail: "SVN" },
-        { title: "バッチ連携", detail: "Hulft / Bash" },
-        { title: "ファイル共有", detail: "NAS セットアップ・検証" },
-        { title: "実行環境", detail: "オンプレミス" },
-      ].map((item, index) => {
-        const x = 30 + index * 190;
-        return (
-          <g key={item.title}>
-            <rect
-              x={x}
-              y="320"
-              width="170"
-              height="72"
-              rx="10"
-              fill="#f1f5f9"
-              stroke="#cbd5e1"
-              strokeWidth="2"
-            />
-            <text
-              x={x + 85}
-              y="349"
-              textAnchor="middle"
-              fill="#0f172a"
-              fontSize="15"
-              fontWeight="700"
-            >
-              {item.title}
-            </text>
-            <text
-              x={x + 85}
-              y="375"
-              textAnchor="middle"
-              fill="#334155"
-              fontSize="13"
-            >
-              {item.detail}
-            </text>
-          </g>
-        );
-      })}
-
-      <text x="30" y="430" fill="#475569" fontSize="13">
+      <p className="mt-6 border-l-2 border-blue-500 pl-4 text-sm text-slate-600">
         担当機能：大量明細の取得・処理 ／ 即日振込機能の実装
-      </text>
-    </svg>
+      </p>
+    </div>
   );
 }
 
 export default function Architecture() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-slate-900">
             制作方法・システム構成図
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+          <div className="mx-auto h-1 w-20 bg-blue-500"></div>
         </div>
 
         <div className="mb-16">
           <div className="mb-8">
             <p className="text-sm font-semibold text-blue-600">PORTFOLIO</p>
-            <h3 className="text-2xl font-bold text-slate-900 mt-2">
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">
               このポートフォリオの制作と公開
             </h3>
-            <p className="text-slate-700 mt-3 leading-relaxed max-w-4xl">
+            <p className="mt-3 max-w-4xl leading-relaxed text-slate-700">
               情報を探しやすい構成に整理し、React・TypeScript・Tailwind
               CSSで実装しています。Viteで静的ファイルを生成し、GitHub
               Actionsを通じてGitHub Pagesへ公開する構成です。
@@ -521,60 +305,30 @@ export default function Architecture() {
           <figure aria-labelledby="portfolio-architecture-title">
             <figcaption
               id="portfolio-architecture-title"
-              className="text-sm font-semibold text-slate-700 mb-4"
+              className="mb-4 text-sm font-semibold text-slate-700"
             >
               システム構成・公開フロー
             </figcaption>
-            <ol className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-2">
-              {portfolioLayers.map((layer, index) => (
-                <li key={layer.name} className="relative">
-                  <div className="h-full border border-slate-200 bg-slate-50 p-5 rounded-lg shadow-sm">
-                    <p className="text-xs font-semibold text-blue-600">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h4 className="text-lg font-bold text-slate-900 mt-2">
-                      {layer.name}
-                    </h4>
-                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                      {layer.detail}
-                    </p>
-                  </div>
-                  {index < portfolioLayers.length - 1 && (
-                    <>
-                      <span
-                        className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 text-blue-600 text-xl"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                      <span
-                        className="md:hidden block text-center text-blue-600 text-xl"
-                        aria-hidden="true"
-                      >
-                        ↓
-                      </span>
-                    </>
-                  )}
-                </li>
-              ))}
-            </ol>
+            <FlowSequence
+              steps={portfolioLayers}
+              label="ポートフォリオの制作・公開フロー"
+            />
           </figure>
 
           <div className="mt-10">
-            <h4 className="text-lg font-bold text-slate-900 mb-4">制作の進め方</h4>
-            <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h4 className="mb-4 text-lg font-bold text-slate-900">
+              制作の進め方
+            </h4>
+            <ol className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {creationSteps.map((step) => (
-                <li
-                  key={step.number}
-                  className="border-t-2 border-blue-500 pt-4"
-                >
+                <li key={step.number} className="border-t-2 border-blue-500 pt-4">
                   <p className="text-sm font-semibold text-blue-600">
                     STEP {step.number}
                   </p>
-                  <h5 className="text-lg font-bold text-slate-900 mt-2">
+                  <h5 className="mt-2 text-lg font-bold text-slate-900">
                     {step.title}
                   </h5>
-                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {step.description}
                   </p>
                 </li>
@@ -582,14 +336,14 @@ export default function Architecture() {
             </ol>
           </div>
 
-          <p className="mt-8 border-l-2 border-emerald-500 pl-4 text-sm text-slate-700 leading-relaxed">
+          <p className="mt-8 border-l-2 border-emerald-500 pl-4 text-sm leading-relaxed text-slate-700">
             閲覧時はブラウザがGitHub
             PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。
           </p>
         </div>
 
         <div className="border-t border-slate-200 pt-10">
-          <h3 className="text-2xl font-bold text-slate-900 mb-8">
+          <h3 className="mb-8 text-2xl font-bold text-slate-900">
             業務システムの構成実績
           </h3>
 
@@ -610,16 +364,12 @@ export default function Architecture() {
             </p>
 
             <div className="mb-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-              <h4 className="text-xl font-bold text-slate-900">
-                レガシー版
-              </h4>
+              <h4 className="text-xl font-bold text-slate-900">レガシー版</h4>
               <p className="mb-5 mt-2 leading-relaxed text-slate-600">
                 JDK 8・Struts・JSP・iBatisを中心とした従来構成です。
                 複数部署共用サーバー上で稼働し、外部連携や手動作業を含む運用を行っていました。
               </p>
-              <div className="overflow-x-auto rounded-lg bg-white">
-                <ChemicalSystemDiagram variant="legacy" />
-              </div>
+              <ChemicalSystemFlow variant="legacy" />
             </div>
 
             <div className="mb-8 rounded-xl border border-blue-200 bg-white p-5 shadow-sm sm:p-6">
@@ -631,9 +381,7 @@ export default function Architecture() {
                 専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。
                 CMPへの移行は要件定義への参画内容として示しています。
               </p>
-              <div className="overflow-x-auto rounded-lg bg-white">
-                <ChemicalSystemDiagram variant="modern" />
-              </div>
+              <ChemicalSystemFlow variant="modern" />
             </div>
 
             <div className="grid gap-8 md:grid-cols-2">
@@ -669,18 +417,18 @@ export default function Architecture() {
           >
             <h3
               id="payment-system-title"
-              className="text-2xl font-bold text-slate-900 mb-3"
+              className="mb-3 text-2xl font-bold text-slate-900"
             >
               銀行系決済システム（実績）
             </h3>
-            <p className="max-w-4xl leading-relaxed text-slate-700 mb-6">
+            <p className="mb-6 max-w-4xl leading-relaxed text-slate-700">
               法人の業務システムと銀行側の決済サービスを連携するシステムの保守開発を担当しました。
               大量明細の取得・処理、即日振込機能の実装に加え、Java 8・Tomcatのアプリケーション、
               Oracle Database、Hulftによるデータ連携やプロキシ設定を含む運用に携わりました。
               以下は公開情報と担当実績をもとにした概念図であり、会社名・製品名や個別の接続先は記載していません。
             </p>
-            <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white p-4 sm:p-6">
-              <CorporatePaymentDiagram />
+            <div className="rounded-lg border border-slate-200 bg-white p-4 sm:p-6">
+              <CorporatePaymentFlow />
             </div>
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               <div className="rounded-lg border border-slate-200 bg-white p-5">
@@ -693,7 +441,9 @@ export default function Architecture() {
                 </ul>
               </div>
               <div className="rounded-lg border border-slate-200 bg-white p-5">
-                <h4 className="mb-2 font-bold text-slate-900">担当・使用技術</h4>
+                <h4 className="mb-2 font-bold text-slate-900">
+                  担当・使用技術
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-700">
                   Java 8・Tomcat・Oracle Databaseを用いた保守開発を担当。
                   SVNによる構成管理、Hulftでのデータ連携、プロキシを含むサーバー環境の設定・保守に加え、
