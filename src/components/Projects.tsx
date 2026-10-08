@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import olorosoCaptureImg from "../assets/oloroso-capture.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
 import adminBlogEditImg from "../assets/oloroso-admin/admin-blog-edit.png";
 import adminSettingsImg from "../assets/oloroso-admin/admin-settings.png";
+
+type ProjectCategory = "portfolio" | "client";
 
 interface Screenshot {
   src: string;
@@ -12,12 +15,17 @@ interface Screenshot {
 }
 
 interface Project {
+  id: string;
+  category: ProjectCategory;
+  categoryLabel: string;
   title: string;
   subtitle: string;
   description: string;
   overview: string;
   technologies: string[];
   features: string[];
+  image?: string;
+  imageCaption?: string;
   github?: string;
   demo?: string;
   screenshots?: Screenshot[];
@@ -25,12 +33,17 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    id: "oloroso",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
     title: "フラメンコスタジオ「Estudio Oloroso」公式WEBサイト",
     subtitle: "Next.js + Decap CMS によるモダンWeb制作・ヘッドレスCMS構築",
     description:
       "Web制作・フロントエンド開発実績用の架空フラメンコスタジオ「Estudio Oloroso（エストゥディオ・オロロソ）」のWebサイト。Next.js (App Router) と Decap CMS（旧 Netlify CMS）を採用し、GitベースのヘッドレスCMS構成により、非エンジニアでもMarkdown形式で手軽にお知らせやブログを更新できる運用設計を実現。",
     overview:
       "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。Next.js Route Handler による GitHub OAuth 認証でサーバーレスに管理画面（/admin/）を連携し、Vercelへデプロイ・公開しています。",
+    image: olorosoCaptureImg,
+    imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
     technologies: [
       "Next.js (App Router)",
       "React",
@@ -84,6 +97,9 @@ const projectsData: Project[] = [
     ],
   },
   {
+    id: "chemical",
+    category: "client",
+    categoryLabel: "参画案件（業務システム）",
     title: "化学物質管理システム（PoC・バージョンアップ）",
     subtitle: "アプリ開発から外部連携・サーバー移行・運用まで",
     description:
@@ -126,6 +142,9 @@ const projectsData: Project[] = [
     ],
   },
   {
+    id: "bank",
+    category: "client",
+    categoryLabel: "参画案件（業務システム）",
     title: "銀行系決済システム",
     subtitle: "大量明細処理・即日振込機能の実装",
     description:
@@ -152,7 +171,10 @@ const projectsData: Project[] = [
   },
 ];
 
+type FilterType = "all" | "portfolio" | "client";
+
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [selectedScreenshot, setSelectedScreenshot] =
     useState<Screenshot | null>(null);
 
@@ -172,156 +194,318 @@ export default function Projects() {
     };
   }, [selectedScreenshot]);
 
+  const portfolioProjects = projectsData.filter(
+    (p) => p.category === "portfolio",
+  );
+  const clientProjects = projectsData.filter((p) => p.category === "client");
+
+  const renderProjectCard = (project: Project) => (
+    <div
+      key={project.id}
+      className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors shadow-sm"
+    >
+      {/* 画面キャッチ（WEBサイトのファーストビュー） */}
+      {project.image && (
+        <div className="border-b border-slate-200 bg-slate-900">
+          <div className="bg-slate-800/90 px-4 py-2 flex items-center justify-between border-b border-slate-700/80">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+            </div>
+            <div className="text-[11px] text-slate-400 font-mono px-3 py-0.5 bg-slate-900/80 rounded border border-slate-700/60 truncate max-w-[240px] sm:max-w-md">
+              {project.demo || "https://oloroso.vercel.app/"}
+            </div>
+            <div className="text-[11px] text-emerald-400 font-medium hidden sm:block">
+              ● 公開中
+            </div>
+          </div>
+          <div
+            className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden cursor-pointer group bg-slate-950"
+            onClick={() =>
+              setSelectedScreenshot({
+                src: project.image!,
+                title: `${project.title} - 画面キャッチ`,
+                caption:
+                  project.imageCaption || "トップページ ファーストビュー",
+              })
+            }
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
+              <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg transition-opacity flex items-center gap-1.5">
+                🔍 画面キャッチを拡大表示
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="p-6 sm:p-8">
+        <div className="mb-2">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span
+              className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
+                project.category === "portfolio"
+                  ? "bg-purple-100 text-purple-700 border border-purple-200"
+                  : "bg-blue-100 text-blue-700 border border-blue-200"
+              }`}
+            >
+              {project.categoryLabel}
+            </span>
+            {project.demo && (
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Webサイト公開中
+              </span>
+            )}
+          </div>
+          <h3 className="text-2xl font-bold text-slate-900">{project.title}</h3>
+          <p className="text-blue-600 font-semibold mt-1">{project.subtitle}</p>
+        </div>
+
+        <p className="text-slate-700 mt-4 leading-relaxed">
+          {project.description}
+        </p>
+
+        <div className="mt-6 p-4 bg-slate-50 rounded border border-slate-200">
+          <h4 className="text-sm font-semibold text-slate-700 mb-2">
+            プロジェクト概要
+          </h4>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            {project.overview}
+          </p>
+        </div>
+
+        <div className="mt-6">
+          <h4 className="text-sm font-semibold text-slate-700 mb-3">主な機能</h4>
+          <ul className="space-y-2">
+            {project.features.map((feature, featIndex) => (
+              <li
+                key={featIndex}
+                className="text-slate-600 text-sm flex items-start"
+              >
+                <span className="text-blue-600 mr-2 shrink-0">→</span>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-6">
+          <h4 className="text-sm font-semibold text-slate-700 mb-2">
+            使用技術
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech, techIndex) => (
+              <span
+                key={techIndex}
+                className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* CMS管理画面スクリーンショットギャラリー */}
+        {project.screenshots && project.screenshots.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mb-4">
+              <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                <span>📷</span>
+                <span>CMS管理画面スクリーンショット（Decap CMS）</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1">
+                ※管理画面（/admin/）はGitHubアカウント認証による管理者専用アクセスのため、実際の更新画面を掲載しています。クリックで拡大表示できます。
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {project.screenshots.map((shot, shotIndex) => (
+                <div
+                  key={shotIndex}
+                  onClick={() => setSelectedScreenshot(shot)}
+                  className="group cursor-pointer bg-slate-50 border border-slate-200 hover:border-blue-500 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md flex flex-col"
+                >
+                  <div className="relative aspect-video bg-slate-200 overflow-hidden">
+                    <img
+                      src={shot.src}
+                      alt={shot.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-slate-800 text-xs font-semibold px-2.5 py-1 rounded shadow-sm transition-opacity">
+                        🔍 クリックで拡大
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-3 flex-1 flex flex-col justify-between">
+                    <div className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      {shot.title}
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
+                      {shot.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {(project.demo || project.github) && (
+          <div className="mt-6 flex flex-wrap gap-3 pt-2">
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition-colors text-sm shadow-sm"
+              >
+                Webサイトを見る →
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded transition-colors text-sm shadow-sm"
+              >
+                GitHub で見る →
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-20 bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            制作物・プロジェクト
+            制作物・参画実績
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            個人で設計・実装・公開したWeb制作物と、業務で担当した大規模基盤・システム開発の参画実績をご紹介します。
+          </p>
+
+          {/* カテゴリ切り替えタブ */}
+          <div className="mt-8 inline-flex p-1 bg-slate-200/80 rounded-xl shadow-inner">
+            <button
+              type="button"
+              onClick={() => setActiveFilter("all")}
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+                activeFilter === "all"
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              すべて ({projectsData.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter("portfolio")}
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+                activeFilter === "portfolio"
+                  ? "bg-white text-purple-600 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              🎨 ポートフォリオ制作物 ({portfolioProjects.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter("client")}
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+                activeFilter === "client"
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              🏢 参画案件・業務開発 ({clientProjects.length})
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8">
-          {projectsData.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors shadow-sm"
-            >
-              <div className="p-6 sm:p-8">
-                <div className="mb-2">
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    {project.title}
-                  </h3>
-                  <p className="text-blue-600 font-semibold mt-1">
-                    {project.subtitle}
+        {/* コンテンツ表示エリア */}
+        <div className="space-y-16">
+          {/* ポートフォリオ実績用制作物グループ */}
+          {(activeFilter === "all" || activeFilter === "portfolio") && (
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-purple-200 gap-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                      ポートフォリオ実績用制作物（公開作品）
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    企画・デザイン・モダンフロントエンド開発・ヘッドレスCMS導入まで一貫して制作した公開作品です。
                   </p>
                 </div>
+                <span className="text-xs font-semibold text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200 self-start sm:self-auto">
+                  {portfolioProjects.length}件
+                </span>
+              </div>
 
-                <p className="text-slate-700 mt-4">{project.description}</p>
-
-                <div className="mt-6 p-4 bg-slate-50 rounded border border-slate-200">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
-                    プロジェクト概要
-                  </h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {project.overview}
-                  </p>
-                </div>
-
-                <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-3">
-                    主な機能
-                  </h4>
-                  <ul className="space-y-2">
-                    {project.features.map((feature, featIndex) => (
-                      <li
-                        key={featIndex}
-                        className="text-slate-600 text-sm flex items-start"
-                      >
-                        <span className="text-blue-600 mr-2">→</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
-                    使用技術
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {project.screenshots && project.screenshots.length > 0 && (
-                  <div className="mt-8 pt-6 border-t border-slate-200">
-                    <div className="mb-4">
-                      <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                        <span>📷</span>
-                        <span>CMS管理画面スクリーンショット（Decap CMS）</span>
-                      </h4>
-                      <p className="text-xs text-slate-500 mt-1">
-                        ※管理画面（/admin/）はGitHubアカウント認証による管理者専用アクセスのため、実際の更新画面を掲載しています。クリックで拡大表示できます。
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {project.screenshots.map((shot, shotIndex) => (
-                        <div
-                          key={shotIndex}
-                          onClick={() => setSelectedScreenshot(shot)}
-                          className="group cursor-pointer bg-slate-50 border border-slate-200 hover:border-blue-500 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md flex flex-col"
-                        >
-                          <div className="relative aspect-video bg-slate-200 overflow-hidden">
-                            <img
-                              src={shot.src}
-                              alt={shot.title}
-                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                              loading="lazy"
-                            />
-                            <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/20 transition-colors flex items-center justify-center">
-                              <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-slate-800 text-xs font-semibold px-2.5 py-1 rounded shadow-sm transition-opacity">
-                                🔍 クリックで拡大
-                              </span>
-                            </div>
-                          </div>
-                          <div className="p-3 flex-1 flex flex-col justify-between">
-                            <div className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                              {shot.title}
-                            </div>
-                            <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
-                              {shot.caption}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {(project.demo || project.github) && (
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition-colors text-sm shadow-sm"
-                      >
-                        Webサイトを見る →
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded transition-colors text-sm shadow-sm"
-                      >
-                        GitHub で見る →
-                      </a>
-                    )}
-                  </div>
-                )}
+              <div className="grid grid-cols-1 gap-8">
+                {portfolioProjects.map(renderProjectCard)}
               </div>
             </div>
-          ))}
-        </div>
+          )}
 
-        <div className="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-200">
-          <p className="text-slate-700 text-sm">
-            <span className="font-semibold text-blue-700">注：</span>{" "}
-            業務系システム（社内ネットワークアプリケーション）は守秘義務のためコードを非公開としておりますが、個人制作・ポートフォリオ作品（Estudio Oloroso等）はGitHubリポジトリおよび公開デモサイトをご覧いただけます。各プロジェクトの詳細やコード例についてはお気軽にお問い合わせください。
-          </p>
+          {/* 参画案件グループ */}
+          {(activeFilter === "all" || activeFilter === "client") && (
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-blue-200 gap-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                      参画案件（業務システム・基盤開発）
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    金融系決済基盤や企業向け化学物質管理システムの要件定義・設計・開発・運用保守の参画実績です。
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
+                  {clientProjects.length}件
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 gap-8">
+                {clientProjects.map(renderProjectCard)}
+              </div>
+
+              {/* 守秘義務に関する注記 */}
+              <div className="mt-8 p-5 bg-amber-50/80 rounded-xl border border-amber-200">
+                <div className="flex items-start gap-2.5">
+                  <span className="text-amber-600 font-bold text-base mt-0.5">
+                    ℹ️
+                  </span>
+                  <div>
+                    <h5 className="text-xs sm:text-sm font-bold text-amber-900">
+                      参画案件に関する留意事項
+                    </h5>
+                    <p className="text-xs text-amber-900/90 mt-1 leading-relaxed">
+                      参画案件（社内ネットワークアプリケーション等）は守秘義務およびセキュリティの観点から、ソースコードや非公開情報は掲載しておりません。システムの技術的アプローチや担当領域について記載しています。より詳細な経験内容についてはお問い合わせください。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
