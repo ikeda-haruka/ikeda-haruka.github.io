@@ -495,7 +495,7 @@ export default function Projects() {
               </span>
             )}
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
             {project.title}
           </h3>
           <p className="text-indigo-600 font-semibold mt-1.5 text-base sm:text-lg">
@@ -919,8 +919,9 @@ export default function Projects() {
             <span>✨</span>
             <span>WORKS & PORTFOLIO</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            制作実績・参画プロジェクト
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <span className="inline-block">制作実績・</span>
+            <span className="inline-block">参画プロジェクト</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">

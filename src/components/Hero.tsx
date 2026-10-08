@@ -35,15 +35,15 @@ export default function Hero({
               <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2">
                 Web Designer & Frontend Engineer
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-                洗練された<span className="gradient-text">Web体験</span>を、
-                <br />
-                デザインと技術で形に。
+              <h1 className="text-[25px] sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.15]">
+                <span className="inline-block">洗練された<span className="gradient-text">Web体験</span>を、</span>
+                <br className="hidden sm:inline" />
+                <span className="inline-block">デザインと技術で形に。</span>
               </h1>
             </div>
 
             {/* リード文 */}
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               Next.jsやDecap CMS、WordPressによるモダンなWebサイト制作から、Photoshop/Illustratorを用いたUI/UXデザイン、金融・大規模業務システムで培った堅牢な設計・実装まで。
               <br className="hidden sm:inline" />
               美しさと使いやすさ、そして信頼性を兼ね備えたWeb体験をワンストップで実現します。

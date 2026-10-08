@@ -67,8 +67,9 @@ export default function Experience() {
             <span>💼</span>
             <span>CAREER & BACKGROUND</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            経歴・エンジニアリング背景
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <span className="inline-block">経歴・</span>
+            <span className="inline-block">エンジニアリング背景</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
