@@ -22,6 +22,7 @@ interface ProjectDocument {
   format: "PPTX" | "XLSX" | "CSV" | "PDF";
   size: string;
   statusBadge?: string;
+  creationMethod?: string;
   description: string;
   keyPoints: string[];
   downloadUrl: string;
@@ -63,6 +64,7 @@ interface Project {
   issuesUrl?: string;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
+  documentProcessNote?: string;
   flowSteps?: FlowStep[];
   creationSteps?: CreationStep[];
   flowNote?: string;
@@ -109,15 +111,19 @@ const projectsData: Project[] = [
     demo: "https://oloroso.vercel.app/",
     github: "https://github.com/ikeda-haruka/oloroso",
     issuesUrl: "https://github.com/ikeda-haruka/oloroso/issues",
+    documentProcessNote:
+      "本ドキュメント群は、GoogleスライドおよびGoogleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させたものを目視確認して詳細レビューを行ったものが成果物となっています。AIプロンプトによる迅速なドラフト作成と人間による入念な品質検証・精査を組み合わせたドキュメント作成プロセスを実践しています。",
     documents: [
       {
         title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
         filename: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案.pptx",
         format: "PPTX",
         size: "6.6 MB",
+        creationMethod: "Googleスライド × Geminiプロンプト作成 ＋ 目視レビュー",
         description:
-          "既存の受講生・ファンに向けたデジタル体験の向上を目的とした提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅。",
+          "Googleスライドを使用し、Geminiにプロンプトを投げかけて作成させた構成案・スライド内容を目視確認して詳細レビューを行った企画提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅した成果物です。",
         keyPoints: [
+          "Googleスライドを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
           "デザインコンセプト策定（洗練された情熱 / Sophisticated Passion）",
           "情報アーキテクチャ（IA）およびサイトマップ設計",
           "主要画面のUI改善案（ファーストビュー、スマホ最適化カレンダー、ブログ統合、予約フォーム等）",
@@ -134,9 +140,11 @@ const projectsData: Project[] = [
         format: "XLSX",
         size: "29 KB",
         statusBadge: "GitHub Issuesへタスク移行済（docs/old保管）",
+        creationMethod: "Googleスプレッドシート × Geminiプロンプト作成 ＋ 目視レビュー",
         description:
-          "サイト全体（P01〜P06および共通コンポーネント）の画面設計・要件定義一覧を整理した初期Excel定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
+          "Googleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させた画面構成・要件定義項目を目視確認して詳細レビューを行った初期定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
         keyPoints: [
+          "Googleスプレッドシートを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
           "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン初期要件定義",
           "GitHub Issuesへのタスク移行（各画面・機能の実装課題をチケット化し、ラベル・マイルストーンで進捗管理）",
           "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
@@ -598,18 +606,38 @@ export default function Projects() {
         {project.documents && project.documents.length > 0 && (
           <div className="mt-8 pt-6 border-t border-slate-200">
             <div className="mb-4">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-xs font-bold">
                   DOCS
                 </span>
                 <h4 className="text-base font-bold text-slate-900">
                   設計・提案ドキュメント（企画提案書・画面要件定義）
                 </h4>
+                <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold border border-indigo-200/80">
+                  🤖 Geminiプロンプト作成 × 目視レビュー成果物
+                </span>
               </div>
               <p className="text-xs text-slate-500 mt-1">
                 リニューアル推進にあたり作成したデザイン企画提案書（PPTX）および全画面レイアウト・コンテンツ要件定義書（XLSX）です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
               </p>
             </div>
+
+            {/* 作成プロセスの説明バナー */}
+            {project.documentProcessNote && (
+              <div className="mb-4 p-4 bg-gradient-to-r from-purple-50/90 via-indigo-50/70 to-purple-50/90 border border-purple-200 rounded-2xl text-xs leading-relaxed shadow-2xs">
+                <div className="flex items-start gap-2.5">
+                  <span className="text-base leading-none mt-0.5">💡</span>
+                  <div>
+                    <span className="font-bold text-purple-950 text-xs sm:text-sm">
+                      ドキュメント作成プロセス（Google Workspace × 生成AI活用・目視レビュー）:
+                    </span>
+                    <p className="mt-1 text-slate-700 leading-relaxed text-xs">
+                      {project.documentProcessNote}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.documents.map((doc, docIndex) => (
@@ -639,7 +667,14 @@ export default function Projects() {
                       {doc.title}
                     </h5>
 
-                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    {doc.creationMethod && (
+                      <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-100/70 text-purple-900 border border-purple-200/90 text-[11px] font-semibold">
+                        <span>✨</span>
+                        <span>{doc.creationMethod}</span>
+                      </div>
+                    )}
+
+                    <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
                       {doc.description}
                     </p>
 
