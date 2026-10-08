@@ -46,7 +46,7 @@ function App() {
         <Skills />
       </div>
 
-      {/* 制作プロセス・システム構成図 */}
+      {/* システム構成・アーキテクチャ実績 */}
       <div ref={sectionRefs.architecture}>
         <Architecture />
       </div>

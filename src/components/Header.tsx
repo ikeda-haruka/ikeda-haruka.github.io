@@ -26,7 +26,7 @@ export default function Header({ onNavClick }: HeaderProps) {
   const sections: { name: string; id: SectionId }[] = [
     { name: "制作実績", id: "projects" },
     { name: "スキル・領域", id: "skills" },
-    { name: "制作プロセス・構成", id: "architecture" },
+    { name: "システム構成", id: "architecture" },
     { name: "経歴・バックグラウンド", id: "experience" },
     { name: "お問い合わせ", id: "contact" },
   ];

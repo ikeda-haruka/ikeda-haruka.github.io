@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import olorosoCaptureImg from "../assets/oloroso-capture.png";
 import biwakogymCaptureImg from "../assets/biwakogym-capture.png";
+import portfolioCaptureImg from "../assets/portfolio-capture.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -32,6 +33,18 @@ interface ProjectDocument {
   };
 }
 
+interface FlowStep {
+  title: string;
+  detail: string;
+  tone: "blue" | "green" | "purple" | "red";
+}
+
+interface CreationStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
 interface Project {
   id: string;
   category: ProjectCategory;
@@ -50,6 +63,9 @@ interface Project {
   issuesUrl?: string;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
+  flowSteps?: FlowStep[];
+  creationSteps?: CreationStep[];
+  flowNote?: string;
 }
 
 const projectsData: Project[] = [
@@ -164,6 +180,86 @@ const projectsData: Project[] = [
         caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
       },
     ],
+  },
+  {
+    id: "portfolio",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "エンジニアポートフォリオ「ikeda-haruka.github.io」",
+    subtitle: "React 19 + TypeScript + Tailwind CSS によるモダンWeb制作・CI/CD自動公開",
+    description:
+      "Webデザイナー＆フロントエンドエンジニアとしての制作実績、Adobe公認認定資格、システムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、コンポーネント指向設計と大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。GitHub ActionsによるCI/CD自動デプロイパイプラインを構築。",
+    overview:
+      "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・GitHub Issuesによるタスク管理・実装・CI/CD公開までワンストップで制作。CSSカスケードレイヤーを意識した堅牢なスタイリング、グラスモーフィズムを取り入れたUI、Webアクセシビリティ・タイポグラフィにも配慮しています。",
+    image: portfolioCaptureImg,
+    imageCaption: "当ポートフォリオWEBサイト トップ画面キャッチ（ファーストビュー）",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Vite",
+      "GitHub Pages",
+      "GitHub Actions (CI/CD)",
+      "GitHub Issues (タスク管理)",
+      "レスポンシブWebデザイン",
+      "アクセシビリティ",
+    ],
+    features: [
+      "React 19 と TypeScript による型安全かつ拡張性の高いコンポーネント指向UI設計",
+      "Tailwind CSS v4 を用いた最新のユーティリティファーストスタイリングとグラスモーフィズム演出",
+      "大画面ワイドモニター（2560px〜）からスマートフォンまで左右均等に配置されるレスポンシブ中央揃え設計",
+      "GitHub Issuesを活用した要件定義・タスクチケット化による可視化されたアジャイル進捗管理",
+      "Vite による高速ビルドと GitHub Actions による GitHub Pages への完全自動デプロイ（CI/CD）",
+      "ブラウザ完結の高速静的SPA構成により、表示パフォーマンスとセキュアな配信を両立",
+    ],
+    demo: "https://ikeda-haruka.github.io/",
+    github: "https://github.com/ikeda-haruka/ikeda-haruka.github.io",
+    issuesUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues",
+    creationSteps: [
+      {
+        number: "01",
+        title: "情報設計・タスク管理",
+        description:
+          "構成案や画面要件を整理し、GitHub Issuesでタスクをチケット化。実装フェーズの進捗を可視化しながら体系的に設計を進めます。",
+      },
+      {
+        number: "02",
+        title: "実装・レスポンシブ対応",
+        description:
+          "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで画面幅に応じたモダンなUIと操作性を組み立てます。",
+      },
+      {
+        number: "03",
+        title: "ビルド・CI/CD自動公開",
+        description:
+          "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pagesへ静的ファイルを自動デプロイします。",
+      },
+    ],
+    flowSteps: [
+      {
+        title: "React 19 / TypeScript",
+        detail: "画面をコンポーネント単位で型安全に実装",
+        tone: "blue",
+      },
+      {
+        title: "Vite",
+        detail: "型チェック後に高速かつ軽量に本番向けビルド",
+        tone: "purple",
+      },
+      {
+        title: "HTML / CSS / JS",
+        detail: "ブラウザで直接動作する静的ファイル生成",
+        tone: "green",
+      },
+      {
+        title: "GitHub Pages",
+        detail: "GitHub Actionsを通じて自動デプロイ・公開",
+        tone: "red",
+      },
+    ],
+    flowNote:
+      "閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。",
   },
   {
     id: "biwakogym",
@@ -637,6 +733,104 @@ export default function Projects() {
                   </a>
                 </div>
               </div>
+            )}
+          </div>
+        )}
+
+        {/* 制作プロセス・進め方（3ステップ） */}
+        {project.creationSteps && project.creationSteps.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mb-4">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-bold">
+                  PROCESS
+                </span>
+                <h4 className="text-base font-bold text-slate-900">
+                  制作の進め方（3ステップ）
+                </h4>
+              </div>
+              <p className="text-xs text-slate-500 mt-1">
+                要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。
+              </p>
+            </div>
+
+            <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {project.creationSteps.map((step) => (
+                <li
+                  key={step.number}
+                  className="bg-slate-50/80 border border-slate-200/90 rounded-xl p-4 flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[11px] font-bold text-blue-600 bg-blue-100/70 px-2 py-0.5 rounded-md">
+                      STEP {step.number}
+                    </span>
+                    <h5 className="mt-2 text-sm font-bold text-slate-900">
+                      {step.title}
+                    </h5>
+                    <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {/* システム構成・公開フロー */}
+        {project.flowSteps && project.flowSteps.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mb-4">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold">
+                  CI/CD & ARCHITECTURE
+                </span>
+                <h4 className="text-base font-bold text-slate-900">
+                  システム構成・公開フロー
+                </h4>
+              </div>
+              <p className="text-xs text-slate-500 mt-1">
+                TypeScriptによる型チェックからViteによる本番ビルド、GitHub ActionsによるGitHub Pages自動公開までのアーキテクチャです。
+              </p>
+            </div>
+
+            <ol
+              aria-label="ポートフォリオの制作・公開フロー"
+              className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {project.flowSteps.map((step, index) => {
+                const toneBg =
+                  step.tone === "blue"
+                    ? "border-blue-600 bg-blue-600 text-white"
+                    : step.tone === "green"
+                      ? "border-emerald-600 bg-emerald-600 text-white"
+                      : step.tone === "purple"
+                        ? "border-violet-600 bg-violet-600 text-white"
+                        : "border-red-600 bg-red-600 text-white";
+                return (
+                  <li key={step.title} className="relative">
+                    <div
+                      className={`h-full rounded-xl border p-4 shadow-2xs ${toneBg}`}
+                    >
+                      <p className="text-[11px] font-semibold opacity-80">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <h5 className="mt-1 text-sm font-bold text-white">
+                        {step.title}
+                      </h5>
+                      <p className="mt-1.5 text-xs leading-relaxed opacity-90">
+                        {step.detail}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+
+            {project.flowNote && (
+              <p className="mt-4 border-l-2 border-emerald-500 pl-3.5 text-xs leading-relaxed text-slate-600">
+                {project.flowNote}
+              </p>
             )}
           </div>
         )}

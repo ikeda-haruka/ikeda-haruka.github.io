@@ -7,49 +7,6 @@ interface FlowStep extends DiagramCard {
   tone: "blue" | "green" | "purple" | "red";
 }
 
-const portfolioLayers: FlowStep[] = [
-  {
-    title: "React 19 / TypeScript",
-    detail: "画面をコンポーネント単位で実装",
-    tone: "blue",
-  },
-  {
-    title: "Vite",
-    detail: "型チェック後に本番向けビルド",
-    tone: "purple",
-  },
-  {
-    title: "HTML / CSS / JS",
-    detail: "ブラウザで動作する静的ファイル",
-    tone: "green",
-  },
-  {
-    title: "GitHub Pages",
-    detail: "Actionsからビルド成果物を公開",
-    tone: "red",
-  },
-];
-
-const creationSteps = [
-  {
-    number: "01",
-    title: "情報設計・タスク管理",
-    description:
-      "構成案や画面要件を整理し、GitHub Issues等でタスクをチケット化。実装フェーズの進捗を可視化しながら体系的に設計を進めます。",
-  },
-  {
-    number: "02",
-    title: "実装・レスポンシブ対応",
-    description:
-      "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで画面幅に応じたモダンなUIと操作性を組み立てます。",
-  },
-  {
-    number: "03",
-    title: "ビルド・CI/CD自動公開",
-    description:
-      "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pages / Vercelへ静的ファイルを自動デプロイします。",
-  },
-];
 
 const flowToneClasses: Record<FlowStep["tone"], string> = {
   blue: "border-blue-600 bg-blue-600 text-white",
@@ -285,74 +242,19 @@ export default function Architecture() {
         <div className="mb-14 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
             <span>📐</span>
-            <span>PROCESS & ARCHITECTURE</span>
+            <span>SYSTEM ARCHITECTURE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            制作プロセス・システム構成
+            システム構成・アーキテクチャ実績
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Webサイト制作における設計・実装・CI/CD公開フローと、業務システムにおけるアーキテクチャ構成実績です。
+            ミッションクリティカルな金融決済システムや企業向け化学物質管理システムにおける、
+            論理構成図・外部サービス連携・インフラ移行・モダナイゼーション実績です。
           </p>
         </div>
 
-        <div className="mb-16">
-          <div className="mb-8">
-            <p className="text-sm font-semibold text-blue-600">PORTFOLIO</p>
-            <h3 className="mt-2 text-2xl font-bold text-slate-900">
-              このポートフォリオの制作と公開
-            </h3>
-            <p className="mt-3 max-w-4xl leading-relaxed text-slate-700">
-              情報を探しやすい構成に整理し、React・TypeScript・Tailwind
-              CSSで実装しています。Viteで静的ファイルを生成し、GitHub
-              Actionsを通じてGitHub Pagesへ公開する構成です。
-            </p>
-          </div>
-
-          <figure aria-labelledby="portfolio-architecture-title">
-            <figcaption
-              id="portfolio-architecture-title"
-              className="mb-4 text-sm font-semibold text-slate-700"
-            >
-              システム構成・公開フロー
-            </figcaption>
-            <FlowSequence
-              steps={portfolioLayers}
-              label="ポートフォリオの制作・公開フロー"
-            />
-          </figure>
-
-          <div className="mt-10">
-            <h4 className="mb-4 text-lg font-bold text-slate-900">
-              制作の進め方
-            </h4>
-            <ol className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {creationSteps.map((step) => (
-                <li key={step.number} className="border-t-2 border-blue-500 pt-4">
-                  <p className="text-sm font-semibold text-blue-600">
-                    STEP {step.number}
-                  </p>
-                  <h5 className="mt-2 text-lg font-bold text-slate-900">
-                    {step.title}
-                  </h5>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                    {step.description}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <p className="mt-8 border-l-2 border-emerald-500 pl-4 text-sm leading-relaxed text-slate-700">
-            閲覧時はブラウザがGitHub
-            PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。
-          </p>
-        </div>
-
-        <div className="border-t border-slate-200 pt-10">
-          <h3 className="mb-8 text-2xl font-bold text-slate-900">
-            業務システムの構成実績
-          </h3>
+        <div className="space-y-12">
 
           <section
             aria-labelledby="chemical-system-title"
