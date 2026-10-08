@@ -14,6 +14,17 @@ interface Screenshot {
   caption: string;
 }
 
+interface ProjectDocument {
+  title: string;
+  filename: string;
+  format: "PPTX" | "CSV" | "PDF";
+  size: string;
+  description: string;
+  keyPoints: string[];
+  downloadUrl: string;
+  githubUrl: string;
+}
+
 interface Project {
   id: string;
   category: ProjectCategory;
@@ -29,6 +40,7 @@ interface Project {
   github?: string;
   demo?: string;
   screenshots?: Screenshot[];
+  documents?: ProjectDocument[];
 }
 
 const projectsData: Project[] = [
@@ -68,6 +80,43 @@ const projectsData: Project[] = [
     ],
     demo: "https://oloroso.vercel.app/",
     github: "https://github.com/ikeda-haruka/oloroso",
+    documents: [
+      {
+        title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
+        filename: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案.pptx",
+        format: "PPTX",
+        size: "6.6 MB",
+        description:
+          "既存の受講生・ファンに向けたデジタル体験の向上を目的とした提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅。",
+        keyPoints: [
+          "デザインコンセプト策定（洗練された情熱 / Sophisticated Passion）",
+          "情報アーキテクチャ（IA）およびサイトマップ設計",
+          "主要画面のUI改善案（ファーストビュー、スマホ最適化カレンダー、ブログ統合、予約フォーム等）",
+          "制作スケジュール・推進ロードマップ（全12スライド）",
+        ],
+        downloadUrl:
+          "/docs/oloroso/Estudio_Oloroso_Design_Preview_and_Renewal_Proposal.pptx",
+        githubUrl:
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%EF%BC%86%E3%83%AA%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%AB%E6%A7%8B%E6%88%90%E6%A1%88.pptx",
+      },
+      {
+        title: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧",
+        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧 - WEBサイト構成一覧.csv",
+        format: "CSV",
+        size: "17 KB",
+        description:
+          "サイト全体（P01〜P06および共通コンポーネント）の画面設計・要件定義一覧表。各ブロックの配置エリア、掲載要素、デザイン仕様、システム要件、ターゲット、優先度を緻密に定義。",
+        keyPoints: [
+          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ定義",
+          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ等）",
+          "ユーザー行動動線（CVR改善）とコンポーネント要件（Stickyヘッダー、スマホ追従CTA等）の紐付け",
+        ],
+        downloadUrl:
+          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.csv",
+        githubUrl:
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7%20-%20WEB%E3%82%B5%E3%82%A4%E3%83%88%E6%A7%8B%E6%88%90%E4%B8%80%E8%A6%A7.csv",
+      },
+    ],
     screenshots: [
       {
         src: adminNewsListImg,
@@ -177,6 +226,11 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [selectedScreenshot, setSelectedScreenshot] =
     useState<Screenshot | null>(null);
+
+  const resolveDocUrl = (url: string) => {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+    return `${base}${url}`;
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -351,6 +405,91 @@ export default function Projects() {
                     <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
                       {shot.caption}
                     </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 設計・提案資料（企画提案書・要件定義一覧） */}
+        {project.documents && project.documents.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mb-4">
+              <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                <span>📄</span>
+                <span>設計・提案ドキュメント（企画提案書・画面要件定義）</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1">
+                リニューアル推進にあたり作成したデザイン企画提案書および全画面レイアウト・コンテンツ要件定義書です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {project.documents.map((doc, docIndex) => (
+                <div
+                  key={docIndex}
+                  className="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-purple-300 transition-all flex flex-col justify-between shadow-xs hover:shadow-sm"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span
+                        className={`text-[11px] font-bold px-2 py-0.5 rounded tracking-wide ${
+                          doc.format === "PPTX"
+                            ? "bg-orange-100 text-orange-700 border border-orange-200"
+                            : "bg-emerald-100 text-emerald-700 border border-emerald-200"
+                        }`}
+                      >
+                        {doc.format} • {doc.size}
+                      </span>
+                    </div>
+
+                    <h5 className="font-bold text-slate-900 text-sm leading-snug">
+                      {doc.title}
+                    </h5>
+
+                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                      {doc.description}
+                    </p>
+
+                    <div className="mt-3 pt-3 border-t border-slate-200/80">
+                      <div className="text-[11px] font-semibold text-slate-700 mb-1.5">
+                        主な記載項目:
+                      </div>
+                      <ul className="space-y-1">
+                        {doc.keyPoints.map((point, pIndex) => (
+                          <li
+                            key={pIndex}
+                            className="text-[11px] text-slate-600 flex items-start"
+                          >
+                            <span className="text-purple-600 mr-1.5 shrink-0">
+                              ✓
+                            </span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center gap-2">
+                    <a
+                      href={doc.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded text-xs font-semibold transition-colors shadow-xs"
+                    >
+                      <span>GitHubで確認</span>
+                      <span className="text-[10px]">↗</span>
+                    </a>
+                    <a
+                      href={resolveDocUrl(doc.downloadUrl)}
+                      download={doc.filename}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded text-xs font-semibold transition-colors shadow-xs"
+                    >
+                      <span>ダウンロード</span>
+                      <span className="text-[10px]">↓</span>
+                    </a>
                   </div>
                 </div>
               ))}
