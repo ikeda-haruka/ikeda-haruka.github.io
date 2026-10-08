@@ -60,8 +60,8 @@ const experienceData: Experience[] = [
 
 export default function Experience() {
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-slate-50 border-t border-slate-200 w-full">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200/80 text-slate-700 text-xs font-semibold mb-3">
             <span>💼</span>

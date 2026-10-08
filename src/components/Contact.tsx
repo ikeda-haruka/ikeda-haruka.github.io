@@ -10,8 +10,8 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-slate-50 border-t border-slate-200 w-full">
+      <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-3">
             <span>📫</span>

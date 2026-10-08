@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <footer className="w-full bg-slate-50 border-t border-slate-200">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="text-slate-600 text-sm">
             <p>© 2025 池田遥香. All rights reserved.</p>

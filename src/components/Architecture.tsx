@@ -280,8 +280,8 @@ function CorporatePaymentFlow() {
 
 export default function Architecture() {
   return (
-    <section className="bg-white py-20 border-t border-slate-200">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 border-t border-slate-200 w-full">
+      <div className="w-full mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-14 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
             <span>📐</span>
