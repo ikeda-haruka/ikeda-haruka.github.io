@@ -18,7 +18,7 @@ interface Screenshot {
 interface ProjectDocument {
   title: string;
   filename: string;
-  format: "PPTX" | "CSV" | "PDF";
+  format: "PPTX" | "XLSX" | "CSV" | "PDF";
   size: string;
   description: string;
   keyPoints: string[];
@@ -102,20 +102,21 @@ const projectsData: Project[] = [
       },
       {
         title: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧",
-        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧 - WEBサイト構成一覧.csv",
-        format: "CSV",
-        size: "17 KB",
+        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧.xlsx",
+        format: "XLSX",
+        size: "29 KB",
         description:
-          "サイト全体（P01〜P06および共通コンポーネント）の画面設計・要件定義一覧表。各ブロックの配置エリア、掲載要素、デザイン仕様、システム要件、ターゲット、優先度を緻密に定義。",
+          "サイト全体（P01〜P06および共通コンポーネント）の画面設計および外部連携・移行仕様を統合したExcel定義書。「WEBサイト構成一覧」「外部連携・移行仕様」の2シート構成。",
         keyPoints: [
-          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ定義",
-          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ等）",
-          "ユーザー行動動線（CVR改善）とコンポーネント要件（Stickyヘッダー、スマホ追従CTA等）の紐付け",
+          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン仕様",
+          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
+          "外部サービス連携仕様（Instagram Graph API、エキテンブログパーツ、Googleフォーム・LINE連携等）",
+          "旧ブログ（ココログ）からの移行仕様およびSEOリダイレクト設計",
         ],
         downloadUrl:
-          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.csv",
+          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.xlsx",
         githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7%20-%20WEB%E3%82%B5%E3%82%A4%E3%83%88%E6%A7%8B%E6%88%90%E4%B8%80%E8%A6%A7.csv",
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
       },
     ],
     screenshots: [
