@@ -15,6 +15,8 @@ const skillsData: SkillCategory[] = [
     skills: [
       "Visual Design using Adobe Photoshop 2023 (公認資格)",
       "Graphic Design & Illustration using Adobe Illustrator 2023 (公認資格)",
+      "イベントフライヤー・チラシ制作 (DTP印刷入稿データ作成)",
+      "人物写真レタッチ・切り抜き・合成エフェクト",
       "Figma",
       "Webデザイン・UI/UX設計",
       "LP制作・バナー作成",

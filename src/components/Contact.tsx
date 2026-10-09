@@ -224,7 +224,7 @@ export default function Contact() {
               </div>
               <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                 <span className="text-indigo-600 font-bold mr-1">✦</span>
-                Photoshop / Illustrator によるUI・素材デザイン
+                Photoshop / Illustrator によるUI・フライヤー・グラフィック制作
               </div>
               <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                 <span className="text-indigo-600 font-bold mr-1">✦</span>

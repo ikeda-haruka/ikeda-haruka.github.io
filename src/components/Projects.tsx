@@ -13,8 +13,13 @@ import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
 import adminBlogEditImg from "../assets/oloroso-admin/admin-blog-edit.png";
 import adminSettingsImg from "../assets/oloroso-admin/admin-settings.png";
+import flyerFlamencoImg from "../assets/flyer-flamenco.jpg";
 
-type ProjectCategory = "portfolio" | "client_web" | "client_enterprise";
+type ProjectCategory =
+  | "portfolio"
+  | "client_web"
+  | "client_enterprise"
+  | "graphic";
 
 interface Screenshot {
   src: string;
@@ -65,7 +70,7 @@ interface Project {
   id: string;
   category: ProjectCategory;
   categoryLabel: string;
-  badgeType: "portfolio" | "client_web" | "client_enterprise";
+  badgeType: "portfolio" | "client_web" | "client_enterprise" | "graphic";
   title: string;
   subtitle: string;
   description: string;
@@ -352,6 +357,40 @@ const projectsData: Project[] = [
     demo: "https://biwakogym.com/",
   },
   {
+    id: "flamenco-flyer",
+    category: "graphic",
+    categoryLabel: "グラフィックデザイン / DTP印刷物",
+    badgeType: "graphic",
+    title: "フラメンコイベント「鬼頭幸穂 オープンクラス」公式フライヤー",
+    subtitle: "Photoshop & Illustrator によるA4フライヤー（両面・2パターン）デザイン制作",
+    description:
+      "大阪・南船場スタジオで開催されたフラメンコワークショップ「鬼頭幸穂 オープンクラス（第4弾）」の公式イベントフライヤー。Adobe PhotoshopおよびIllustratorを使用し、メインビジュアルとなるダンサーの切り抜き・色調補正・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
+    overview:
+      "フラメンコ特有の上品な情熱と格式を表現した「ブラックver（表面・ダークトーン）」と、クラス詳細や料金・キャンペーン情報を見やすく整理した「ホワイトver（裏面・ライトトーン）」の両面デザインを制作。季節感（6月開催の紫陽花やカエルモチーフ）や親しみやすいトーンを取り入れつつ、QRコード（SNS特設ページ・メール申込み）を配置して高い集客・導線効果を両立しました。印刷入稿（CMYK/高解像度）およびSNS告知用Webフライヤーの両形式に対応。",
+    image: flyerFlamencoImg,
+    imageCaption: "鬼頭幸穂 オープンクラス 公式フライヤー（左: ダークトーン表面 / 右: ライトトーン裏面）",
+    technologies: [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "DTP / 印刷入稿データ作成",
+      "グラフィックデザイン",
+      "人物写真切り抜き・レタッチ",
+      "色調補正・エフェクト合成",
+      "タイポグラフィ",
+      "情報アーキテクチャ（IA）",
+      "配色設計",
+      "QRコード導線設計",
+    ],
+    features: [
+      "Adobe公認資格（Photoshop / Illustrator）のスキルを活かしたプロ品質のビジュアルメイキングとベクターレイアウト",
+      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジを引き立てる黒背景と星の煌めき・光彩エフェクト加工（Photoshop）",
+      "3クラス（テクニカ・ブレリア振付・コムニカシオン）の内容、割引キャンペーン、キャンセルポリシー、スタジオ費用などの複雑な情報を一目で理解できるレイアウト設計（Illustrator）",
+      "6月開催の季節感（紫陽花・傘・カエルのあしらい）を巧みにブレンドし、参加者の心理的ハードルを下げる親しみやすいデザイン",
+      "Facebook特設ページおよびメール申し込み用のQRコードを明瞭に配置し、紙媒体からデジタルへのスムーズなコンバージョン導線を構築",
+      "オフセット印刷・オンデマンド印刷に対応した高解像度CMYK入稿データ作成、およびSNS（Instagram/Facebook）告知用RGB画像の作成",
+    ],
+  },
+  {
     id: "chemical",
     category: "client_enterprise",
     categoryLabel: "参画案件（業務システム）",
@@ -428,7 +467,7 @@ const projectsData: Project[] = [
   },
 ];
 
-type FilterType = "all" | "web" | "portfolio" | "client";
+type FilterType = "all" | "web" | "graphic" | "client";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
@@ -460,8 +499,8 @@ export default function Projects() {
   const webProjects = projectsData.filter(
     (p) => p.category === "portfolio" || p.category === "client_web",
   );
-  const portfolioProjects = projectsData.filter(
-    (p) => p.category === "portfolio",
+  const graphicProjects = projectsData.filter(
+    (p) => p.category === "graphic",
   );
   const clientWebProjects = projectsData.filter(
     (p) => p.category === "client_web",
@@ -478,8 +517,63 @@ export default function Projects() {
       key={project.id}
       className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl group"
     >
-      {/* 画面キャッチ（PC版・スマホ版 それぞれ独立したデバイスフレームで掲示） */}
-      {(project.imagePc || project.image) && (
+      {/* A. グラフィック・フライヤー展示フレーム */}
+      {project.category === "graphic" && project.image && (
+        <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
+          {/* 上部ヘッダー */}
+          <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-bold text-amber-300 bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-700/50 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span>DTP・グラフィックデザイン展示</span>
+              </span>
+              <span className="text-xs text-slate-400 hidden sm:inline">
+                Adobe Photoshop & Illustrator 制作実績
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-slate-300 bg-slate-800/90 px-3 py-0.5 rounded-full border border-slate-700">
+                A4イベントフライヤー（両面デザイン）
+              </span>
+            </div>
+          </div>
+
+          {/* フライヤー展示ステージ */}
+          <div
+            className="p-4 sm:p-8 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 flex flex-col items-center justify-center cursor-pointer group/flyer"
+            onClick={() =>
+              setSelectedScreenshot({
+                src: project.image!,
+                title: `${project.title} - 完成フライヤー`,
+                caption:
+                  project.imageCaption ||
+                  "A4フライヤー両面デザイン（Photoshop / Illustrator制作）",
+              })
+            }
+          >
+            <div className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 group-hover/flyer:border-amber-400/80 transition-all duration-300 bg-slate-900">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-auto object-contain group-hover/flyer:scale-[1.01] transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-slate-950/0 group-hover/flyer:bg-slate-950/25 transition-colors flex items-center justify-center">
+                <span className="opacity-0 group-hover/flyer:opacity-100 bg-white/95 text-slate-900 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-2xl transition-all duration-200 flex items-center gap-1.5">
+                  <span>🔍</span>
+                  <span>クリックして高解像度で拡大表示</span>
+                </span>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 mt-3 text-center flex items-center gap-1.5">
+              <span>💡</span>
+              <span>{project.imageCaption || "クリックで拡大表示できます"}</span>
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* B. 画面キャッチ（PC版・スマホ版 それぞれ独立したデバイスフレームで掲示） */}
+      {project.category !== "graphic" && (project.imagePc || project.image) && (
         <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
           {/* 上部プレビュー・ステージヘッダー（ブラウザ枠ではなく、マルチデバイス展示ヘッダー） */}
           <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
@@ -622,7 +716,9 @@ export default function Projects() {
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <span
               className={`text-xs font-bold px-3 py-1 rounded-full ${
-                project.badgeType === "portfolio"
+                project.badgeType === "graphic"
+                  ? "bg-amber-100 text-amber-800 border border-amber-200"
+                  : project.badgeType === "portfolio"
                   ? "bg-purple-100 text-purple-700 border border-purple-200"
                   : project.badgeType === "client_web"
                   ? "bg-blue-100 text-blue-700 border border-blue-200"
@@ -661,7 +757,9 @@ export default function Projects() {
 
         <div className="mt-6">
           <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-            Key Features / 主な機能・実装
+            {project.category === "graphic"
+              ? "Design Highlights / 制作ポイント・デザイン設計"
+              : "Key Features / 主な機能・実装"}
           </h4>
           <ul className="grid grid-cols-1 gap-2">
             {project.features.map((feature, featIndex) => (
@@ -1106,8 +1204,7 @@ export default function Projects() {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            企画・UIデザイン・モダンフロントエンド・ヘッドレスCMS導入まで一貫して手掛けたWeb制作物から、
-            2名体制でのWebサイト共同開発、Java/SpringBootによるバックエンド・大規模業務システムの参画実績までご紹介します。
+            企画・UIデザイン・モダンフロントエンド・ヘッドレスCMS導入まで一貫して手掛けたWeb制作物、Photoshop/Illustratorによるイベントフライヤーデザイン、Java/SpringBootによるバックエンド・大規模業務システムの参画実績までご紹介します。
           </p>
 
           {/* カテゴリ切り替えタブ */}
@@ -1136,14 +1233,14 @@ export default function Projects() {
             </button>
             <button
               type="button"
-              onClick={() => setActiveFilter("portfolio")}
+              onClick={() => setActiveFilter("graphic")}
               className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
-                activeFilter === "portfolio"
-                  ? "bg-white text-purple-600 shadow-sm"
+                activeFilter === "graphic"
+                  ? "bg-white text-amber-700 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              🎨 自主制作物 ({portfolioProjects.length})
+              🎨 フライヤー・DTP ({graphicProjects.length})
             </button>
             <button
               type="button"
@@ -1161,19 +1258,15 @@ export default function Projects() {
 
         {/* コンテンツ表示エリア */}
         <div className="space-y-16">
-          {/* 1. Webサイト制作実績グループ（Oloroso & BIWAKO GYM） */}
-          {(activeFilter === "all" ||
-            activeFilter === "web" ||
-            activeFilter === "portfolio") && (
+          {/* 1. Webサイト制作実績グループ（Oloroso & BIWAKO GYM & ポートフォリオ） */}
+          {(activeFilter === "all" || activeFilter === "web") && (
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-indigo-200 gap-2">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      {activeFilter === "portfolio"
-                        ? "ポートフォリオ実績用制作物（自主制作）"
-                        : "Webサイト制作実績（公開中）"}
+                      Webサイト制作実績（公開中）
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -1181,21 +1274,43 @@ export default function Projects() {
                   </p>
                 </div>
                 <span className="text-xs font-semibold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200 self-start sm:self-auto">
-                  {activeFilter === "portfolio"
-                    ? `${portfolioProjects.length}件`
-                    : `${webProjects.length}件`}
+                  {webProjects.length}件
                 </span>
               </div>
 
               <div className="grid grid-cols-1 gap-8">
-                {activeFilter === "portfolio"
-                  ? portfolioProjects.map(renderProjectCard)
-                  : webProjects.map(renderProjectCard)}
+                {webProjects.map(renderProjectCard)}
               </div>
             </div>
           )}
 
-          {/* 2. 参画案件（Webサイト共同開発 BIWAKO GYM）※clientタブ選択時のみWeb案件として表示 */}
+          {/* 2. グラフィックデザイン・フライヤー実績グループ */}
+          {(activeFilter === "all" || activeFilter === "graphic") && (
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-amber-300 gap-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                      グラフィックデザイン・フライヤー制作実績
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Adobe Photoshop & Illustratorを活用した、イベントフライヤー・印刷物（DTP）・画像レタッチ制作実績です。
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 self-start sm:self-auto">
+                  {graphicProjects.length}件
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 gap-8">
+                {graphicProjects.map(renderProjectCard)}
+              </div>
+            </div>
+          )}
+
+          {/* 3. 参画案件（Webサイト共同開発 BIWAKO GYM）※clientタブ選択時のみWeb案件として表示 */}
           {activeFilter === "client" && (
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-blue-200 gap-2">
