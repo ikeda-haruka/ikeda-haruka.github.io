@@ -371,11 +371,11 @@ const projectsData: Project[] = [
     title: "フラメンコ＆音楽イベント公式フライヤー・SNSプロモーションデザイン",
     subtitle: "Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
     description:
-      "フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4両面印刷用フライヤーからInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
+      "フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4印刷用フライヤー（ダークトーン／ライトトーンの2パターンデザイン提案）からInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
     overview:
       "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマ、打楽器ワークショップのリズム感に合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメント、幾何学リズムパターンなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築しました。",
     image: flyerFlamencoImg,
-    imageCaption: "A4両面完成フライヤー（左: ダークトーン表面 / 右: ライトトーン裏面）",
+    imageCaption: "A4完成フライヤー 2パターン提案（左: ダークトーン / 右: ライトトーン）",
     technologies: [
       "Adobe Photoshop",
       "Adobe Illustrator",
@@ -400,9 +400,9 @@ const projectsData: Project[] = [
     screenshots: [
       {
         src: flyerFlamencoImg,
-        title: "A4両面完成フライヤー（初夏・第4弾）",
+        title: "A4完成フライヤー 2パターン提案（初夏・第4弾）",
         caption:
-          "左: フラメンコの格式と情熱を表現したブラックver（表面） / 右: 受講生の利便性を考慮して情報を整理したホワイトver（裏面）の両面印刷用データ",
+          "左: フラメンコの格式と情熱を表現したブラックver / 右: 爽やかで可読性を重視したホワイトver。クライアントへのデザイン提案として制作した2パターンの印刷用フライヤーデータ",
       },
       {
         src: graphicFlyerWinterImg,
@@ -591,7 +591,7 @@ export default function Projects() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[11px] text-slate-300 bg-slate-800/90 px-3 py-0.5 rounded-full border border-slate-700">
-                A4イベントフライヤー（両面デザイン）
+                A4イベントフライヤー（2パターンデザイン提案）
               </span>
             </div>
           </div>
@@ -605,7 +605,7 @@ export default function Projects() {
                 title: `${project.title} - 完成フライヤー`,
                 caption:
                   project.imageCaption ||
-                  "A4フライヤー両面デザイン（Photoshop / Illustrator制作）",
+                  "A4フライヤー 2パターン提案（Photoshop / Illustrator制作）",
               })
             }
           >
@@ -628,14 +628,14 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* 制作シリーズ・デザインギャラリー（全7作品） */}
+          {/* 制作物デザインギャラリー（全8作品） */}
           {project.screenshots && project.screenshots.length > 0 && (
             <div className="bg-slate-900/90 p-4 sm:p-6 border-t border-slate-800">
               <div className="flex items-center justify-between mb-3.5">
                 <div className="flex items-center gap-2">
                   <span className="text-amber-400 font-bold text-xs sm:text-sm flex items-center gap-1.5">
                     <span>✨</span>
-                    <span>四季シリーズ 制作デザイン一覧（全{project.screenshots.length}作品）</span>
+                    <span>制作物デザインギャラリー（全{project.screenshots.length}作品）</span>
                   </span>
                   <span className="text-[11px] text-slate-400 hidden sm:inline">
                     クリックで高解像度拡大プレビュー
@@ -901,8 +901,10 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* CMS管理画面スクリーンショットギャラリー */}
-        {project.screenshots && project.screenshots.length > 0 && (
+        {/* CMS管理画面スクリーンショットギャラリー（Web・CMS案件のみ） */}
+        {project.category !== "graphic" &&
+          project.screenshots &&
+          project.screenshots.length > 0 && (
           <div className="mt-8 pt-6 border-t border-slate-200">
             <div className="mb-4">
               <div className="flex items-center gap-2">
