@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 const { spawn, execSync } = require('child_process');
 
 function findEdgeBinary() {
@@ -15,31 +16,114 @@ function findEdgeBinary() {
   throw new Error('Microsoft Edge binary not found.');
 }
 
-function captureUrl(edgePath, url, outputPath, width, height, waitMs = 3000) {
-  return new Promise((resolve, reject) => {
-    console.log(`📸 Capturing [${width}x${height}] ${url} -> ${path.basename(outputPath)}...`);
-    const args = [
-      '--headless',
-      '--disable-gpu',
-      `--window-size=${width},${height}`,
-      `--screenshot=${outputPath}`,
-      url
-    ];
-
-    const proc = spawn(edgePath, args, { stdio: 'inherit' });
-    proc.on('close', (code) => {
-      if (code === 0 && fs.existsSync(outputPath)) {
-        console.log(`✓ Saved ${outputPath} (${fs.statSync(outputPath).size} bytes)`);
-        resolve();
-      } else {
-        reject(new Error(`Failed to capture ${url} (exit code ${code})`));
-      }
-    });
-  });
-}
-
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function captureWithCDP(edgePath, tasks) {
+  const port = 9222;
+  console.log('🌐 Starting Edge browser with remote debugging port ' + port + '...');
+
+  const edgeProc = spawn(edgePath, [
+    '--headless=new',
+    `--remote-debugging-port=${port}`,
+    '--hide-scrollbars',
+    '--disable-gpu',
+    'about:blank'
+  ]);
+
+  await wait(2000);
+
+  try {
+    // 1. Get browser WebSocket debugger URL
+    const versionInfo = await new Promise((resolve, reject) => {
+      http.get(`http://127.0.0.1:${port}/json/version`, res => {
+        let data = '';
+        res.on('data', c => data += c);
+        res.on('end', () => resolve(JSON.parse(data)));
+      }).on('error', reject);
+    });
+
+    const browserWs = new WebSocket(versionInfo.webSocketDebuggerUrl);
+    let browserId = 1;
+    const sendBrowser = (method, params = {}) => new Promise((resolve) => {
+      const curId = browserId++;
+      const handler = (e) => {
+        const msg = JSON.parse(e.data);
+        if (msg.id === curId) {
+          browserWs.removeEventListener('message', handler);
+          resolve(msg.result);
+        }
+      };
+      browserWs.addEventListener('message', handler);
+      browserWs.send(JSON.stringify({ id: curId, method, params }));
+    });
+
+    await new Promise(r => browserWs.onopen = r);
+
+    // 2. Process each capture task
+    for (const task of tasks) {
+      console.log(`\n📸 Capturing [${task.isMobile ? 'Mobile' : 'PC'} ${task.width}x${task.height}] ${task.url}...`);
+      
+      const { targetId } = await sendBrowser('Target.createTarget', { url: task.url });
+      const pageWs = new WebSocket(`ws://127.0.0.1:${port}/devtools/page/${targetId}`);
+      let pageId = 1;
+      const sendPage = (method, params = {}) => new Promise((resolve) => {
+        const curId = pageId++;
+        const handler = (e) => {
+          const msg = JSON.parse(e.data);
+          if (msg.id === curId) {
+            pageWs.removeEventListener('message', handler);
+            resolve(msg.result);
+          }
+        };
+        pageWs.addEventListener('message', handler);
+        pageWs.send(JSON.stringify({ id: curId, method, params }));
+      });
+
+      await new Promise(r => pageWs.onopen = r);
+
+      // Emulation: set exact device metrics
+      await sendPage('Emulation.setDeviceMetricsOverride', {
+        width: task.width,
+        height: task.height,
+        deviceScaleFactor: task.isMobile ? 2 : 1,
+        mobile: task.isMobile
+      });
+
+      if (task.isMobile) {
+        await sendPage('Emulation.setUserAgentOverride', {
+          userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
+        });
+      }
+
+      // Wait for page rendering and animations
+      await wait(task.waitMs || (task.isMobile ? 2500 : 2000));
+
+      // Capture screenshot
+      const { data } = await sendPage('Page.captureScreenshot', {
+        format: 'png',
+        clip: { x: 0, y: 0, width: task.width, height: task.height, scale: 1 }
+      });
+
+      fs.writeFileSync(task.outputPath, Buffer.from(data, 'base64'));
+      console.log(`✓ Saved ${path.basename(task.outputPath)} (${fs.statSync(task.outputPath).size} bytes)`);
+
+      // Close page target
+      pageWs.close();
+      await sendBrowser('Target.closeTarget', { targetId });
+    }
+
+    browserWs.close();
+  } finally {
+    if (process.platform === 'win32') {
+      try {
+        execSync(`taskkill /pid ${edgeProc.pid} /T /F`, { stdio: 'ignore' });
+      } catch (e) {}
+    } else {
+      edgeProc.kill();
+    }
+  }
 }
 
 async function main() {
@@ -49,7 +133,7 @@ async function main() {
     fs.mkdirSync(assetsDir, { recursive: true });
   }
 
-  console.log('🚀 Starting automated screen capture synchronization...\n');
+  console.log('🚀 Starting CDP-powered automated screen capture synchronization...\n');
 
   // 1. Build and launch local Vite preview server for self-portfolio
   console.log('📦 Building portfolio for preview capture...');
@@ -62,41 +146,42 @@ async function main() {
     stdio: 'ignore'
   });
 
-  // Wait for preview server to be ready
   await wait(3000);
 
   try {
-    // A. Portfolio captures (Local latest build)
     const portfolioPc = path.join(assetsDir, 'portfolio-capture-pc.png');
     const portfolioMobile = path.join(assetsDir, 'portfolio-capture-mobile.png');
     const portfolioLegacy = path.join(assetsDir, 'portfolio-capture.png');
 
-    await captureUrl(edgePath, 'http://localhost:4173', portfolioPc, 1280, 800);
-    await captureUrl(edgePath, 'http://localhost:4173', portfolioMobile, 390, 844);
-    // Copy PC to legacy path for backward compatibility
-    fs.copyFileSync(portfolioPc, portfolioLegacy);
-
-    // B. Estudio Oloroso captures
     const olorosoPc = path.join(assetsDir, 'oloroso-capture-pc.png');
     const olorosoMobile = path.join(assetsDir, 'oloroso-capture-mobile.png');
     const olorosoLegacy = path.join(assetsDir, 'oloroso-capture.png');
 
-    await captureUrl(edgePath, 'https://oloroso.vercel.app/', olorosoPc, 1280, 800);
-    await captureUrl(edgePath, 'https://oloroso.vercel.app/', olorosoMobile, 390, 844);
-    fs.copyFileSync(olorosoPc, olorosoLegacy);
-
-    // C. BIWAKO GYM captures
     const biwakoPc = path.join(assetsDir, 'biwakogym-capture-pc.png');
     const biwakoMobile = path.join(assetsDir, 'biwakogym-capture-mobile.png');
     const biwakoLegacy = path.join(assetsDir, 'biwakogym-capture.png');
 
-    await captureUrl(edgePath, 'https://biwakogym.com/', biwakoPc, 1280, 800);
-    await captureUrl(edgePath, 'https://biwakogym.com/', biwakoMobile, 390, 844);
+    const tasks = [
+      // Portfolio
+      { url: 'http://localhost:4173', outputPath: portfolioPc, width: 1280, height: 800, isMobile: false },
+      { url: 'http://localhost:4173', outputPath: portfolioMobile, width: 390, height: 844, isMobile: true, waitMs: 2500 },
+      // Estudio Oloroso
+      { url: 'https://oloroso.vercel.app/', outputPath: olorosoPc, width: 1280, height: 800, isMobile: false },
+      { url: 'https://oloroso.vercel.app/', outputPath: olorosoMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
+      // BIWAKO GYM
+      { url: 'https://biwakogym.com/', outputPath: biwakoPc, width: 1280, height: 800, isMobile: false },
+      { url: 'https://biwakogym.com/', outputPath: biwakoMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
+    ];
+
+    await captureWithCDP(edgePath, tasks);
+
+    // Sync legacy files
+    fs.copyFileSync(portfolioPc, portfolioLegacy);
+    fs.copyFileSync(olorosoPc, olorosoLegacy);
     fs.copyFileSync(biwakoPc, biwakoLegacy);
 
-    console.log('\n🎉 All screen captures successfully synchronized!');
+    console.log('\n🎉 All screen captures successfully synchronized with true mobile emulation!');
   } finally {
-    // Kill preview process
     if (process.platform === 'win32') {
       try {
         execSync(`taskkill /pid ${preview.pid} /T /F`, { stdio: 'ignore' });

@@ -588,19 +588,20 @@ export default function Projects() {
                   </div>
 
                   {/* スマホフレームモックアップ本体 */}
-                  <div className="w-full max-w-[230px] sm:max-w-[250px] rounded-[36px] p-2.5 bg-slate-800 border-2 border-slate-700/90 shadow-2xl relative aspect-[9/18.5] group-hover/mobile:border-pink-500/70 transition-all duration-300">
+                  <div className="w-full max-w-[220px] sm:max-w-[240px] rounded-[38px] p-2.5 bg-slate-800 border-2 border-slate-700/90 shadow-2xl relative group-hover/mobile:border-pink-500/70 transition-all duration-300">
                     {/* ダイナミックアイランド・スピーカー */}
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-10 border border-slate-800/80 flex items-center justify-end pr-2">
-                      <div className="w-2 h-2 rounded-full bg-indigo-900/80"></div>
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-20 border border-slate-800/80 flex items-center justify-end pr-2 pointer-events-none">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-900/80"></div>
                     </div>
                     {/* ホームインジケーター（下部バー） */}
-                    <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 w-24 h-1 bg-slate-400/50 rounded-full z-10"></div>
-                    {/* 画面コンテンツ */}
-                    <div className="w-full h-full rounded-[26px] overflow-hidden bg-slate-950 relative">
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-slate-400/50 rounded-full z-20 pointer-events-none"></div>
+
+                    {/* 画面コンテンツ（iPhone 390x844アスペクト比） */}
+                    <div className="w-full aspect-[390/844] rounded-[28px] overflow-hidden bg-slate-950 relative">
                       <img
                         src={project.imageMobile}
                         alt={`${project.title} スマホ版`}
-                        className="w-full h-full object-cover object-top group-hover/mobile:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full object-cover object-top group-hover/mobile:scale-[1.02] transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-slate-950/0 group-hover/mobile:bg-slate-950/20 transition-colors flex items-center justify-center">
                         <span className="opacity-0 group-hover/mobile:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-xl transition-all duration-200">
