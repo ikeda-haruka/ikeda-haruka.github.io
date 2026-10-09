@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "issue": "node scripts/create-issue.cjs"
+    "issue": "node scripts/create-issue.cjs",
+    "issue:close": "node scripts/close-issue.cjs"
   },
   "dependencies": {
     "react": "^19.2.8",

@@ -72,8 +72,21 @@ async function createIssue({ repo = 'ikeda-haruka/ikeda-haruka.github.io', title
   return issue;
 }
 
+async function closeIssue({ repo = 'ikeda-haruka/ikeda-haruka.github.io', issueNumber, comment = '' }) {
+  if (comment) {
+    await githubRequest('POST', `/repos/${repo}/issues/${issueNumber}/comments`, { body: comment });
+  }
+  const issue = await githubRequest('PATCH', `/repos/${repo}/issues/${issueNumber}`, {
+    state: 'closed',
+    state_reason: 'completed'
+  });
+  console.log(`✓ Closed Issue #${issueNumber} as completed`);
+  return issue;
+}
+
 module.exports = {
   getGitHubToken,
   githubRequest,
-  createIssue
+  createIssue,
+  closeIssue
 };
