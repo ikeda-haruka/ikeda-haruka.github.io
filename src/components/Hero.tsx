@@ -35,10 +35,9 @@ export default function Hero({
               <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2">
                 Web Designer & Frontend Engineer
               </p>
-              <h1 className="text-[25px] sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.15]">
-                <span className="inline-block">洗練された<span className="gradient-text">Web体験</span>を、</span>
-                <br className="hidden sm:inline" />
-                <span className="inline-block">デザインと技術で形に。</span>
+              <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
+                <span className="block">洗練された<span className="gradient-text">Web体験</span>を、</span>
+                <span className="block mt-1 sm:mt-1.5">デザインと技術で形に。</span>
               </h1>
             </div>
 
