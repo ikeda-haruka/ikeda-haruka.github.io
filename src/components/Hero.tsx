@@ -33,7 +33,7 @@ export default function Hero({
             {/* 大見出し */}
             <div>
               <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2">
-                Web Designer & Frontend Engineer
+                WEB Designer & Full-stack Engineer
               </p>
               <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
                 <span className="block">洗練された<span className="gradient-text">Web体験</span>を、</span>
@@ -43,9 +43,9 @@ export default function Hero({
 
             {/* リード文 */}
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Next.jsやDecap CMS、WordPressによるモダンなWebサイト制作から、Photoshop/Illustratorを用いたUI/UXデザイン、金融・大規模業務システムで培った堅牢な設計・実装まで。
+              Next.jsやDecap CMS、WordPressによるモダンWeb制作から、Photoshop/IllustratorによるUIデザイン、Java/SpringBootやAPI連携といったバックエンド開発まで。
               <br className="hidden sm:inline" />
-              美しさと使いやすさ、そして信頼性を兼ね備えたWeb体験をワンストップで実現します。
+              デザインからシステム構築まで一貫して手掛け、美しさと堅牢性を兼ね備えたWeb体験をワンストップで実現します。
             </p>
 
             {/* 技術ハイライトピル */}
@@ -54,6 +54,8 @@ export default function Hero({
                 "Next.js / React",
                 "TypeScript",
                 "Tailwind CSS",
+                "Java / SpringBoot",
+                "REST API / Backend",
                 "Decap CMS",
                 "WordPress",
                 "UI/UX Design",
@@ -120,7 +122,7 @@ export default function Hero({
                       Haruka Ikeda
                     </p>
                     <p className="text-xs text-slate-500 mt-1">
-                      Web Creator & Engineer
+                      WEB Designer & Full-stack Engineer
                     </p>
                   </div>
                 </div>
@@ -129,13 +131,13 @@ export default function Hero({
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">制作領域</span>
                     <span className="font-bold text-slate-800">
-                      モダンWeb制作・UIデザイン
+                      WEBデザイン & フルスタック開発
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">得意スタック</span>
                     <span className="font-bold text-slate-800">
-                      Next.js / Headless CMS / Tailwind
+                      Next.js / Java・SpringBoot / Headless CMS
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">

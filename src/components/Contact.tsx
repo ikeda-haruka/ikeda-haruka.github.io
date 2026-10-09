@@ -22,7 +22,7 @@ export default function Contact() {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-            Webサイト制作・デザインのご相談、技術的なご質問、コミュニティ交流など、どうぞお気軽にご連絡ください。
+            Webサイト制作・UIデザインやバックエンド・API開発のご相談、技術的なご質問、コミュニティ交流など、どうぞお気軽にご連絡ください。
           </p>
         </div>
 

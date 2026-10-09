@@ -221,7 +221,7 @@ const projectsData: Project[] = [
     title: "エンジニアポートフォリオ「ikeda-haruka.github.io」",
     subtitle: "React 19 + TypeScript + GitHub Issues自動タスク起票・CI/CDによるアジャイル制作",
     description:
-      "Webデザイナー＆フロントエンドエンジニアとしての制作実績、Adobe公認認定資格、システムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。さらに、開発要件や改修依頼をGitHub REST API経由で自動チケット化する「自動タスク追加ワークフロー」を独自構築し、チケット駆動開発を実践。GitHub ActionsによるCI/CD自動デプロイパイプラインを整備。",
+      "WEBデザイナー＆フルスタックエンジニアとしての制作実績、Adobe公認認定資格、フロントエンドからバックエンド・インフラ連携まで網羅するシステムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。さらに、開発要件や改修依頼をGitHub REST API経由で自動チケット化する「自動タスク追加ワークフロー」を独自構築し、チケット駆動開発を実践。GitHub ActionsによるCI/CD自動デプロイパイプラインを整備。",
     overview:
       "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・自動タスク起票ツールによるアジャイル管理・実装・CI/CD公開までワンストップで制作。要件発生からGitHub Issues起票・コミット連携（Closes #XX）・本番デプロイまでを完全自動化し、エンジニアとしての自動化推進力と品質管理力を体現しています。",
     image: portfolioCaptureImg,
@@ -1107,7 +1107,7 @@ export default function Projects() {
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             企画・UIデザイン・モダンフロントエンド・ヘッドレスCMS導入まで一貫して手掛けたWeb制作物から、
-            2名でのWebサイト共同開発、金融・大規模業務システムの参画実績までご紹介します。
+            2名体制でのWebサイト共同開発、Java/SpringBootによるバックエンド・大規模業務システムの参画実績までご紹介します。
           </p>
 
           {/* カテゴリ切り替えタブ */}
