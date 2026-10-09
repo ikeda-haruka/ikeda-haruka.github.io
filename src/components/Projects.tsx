@@ -478,40 +478,40 @@ export default function Projects() {
       key={project.id}
       className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl group"
     >
-      {/* 画面キャッチ（PC版・スマホ版 両方を掲示） */}
+      {/* 画面キャッチ（PC版・スマホ版 それぞれ独立したデバイスフレームで掲示） */}
       {(project.imagePc || project.image) && (
         <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
-          {/* 上部ブラウザ・デバイスバー */}
+          {/* 上部プレビュー・ステージヘッダー（ブラウザ枠ではなく、マルチデバイス展示ヘッダー） */}
           <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
-              </div>
-              <div className="text-[11px] text-slate-400 font-mono px-3.5 py-0.5 bg-slate-950/80 rounded-full border border-slate-700/60 truncate max-w-[200px] sm:max-w-xs md:max-w-md">
-                {project.demo || "https://oloroso.vercel.app/"}
-              </div>
+              <span className="text-[11px] font-bold text-indigo-300 bg-indigo-950/80 px-2.5 py-0.5 rounded-full border border-indigo-700/50 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                <span>マルチデバイス実機プレビュー</span>
+              </span>
+              <span className="text-xs text-slate-400 hidden sm:inline">
+                PC（1280px）＆ スマホ（iPhone）両対応
+              </span>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[11px] text-indigo-300 font-medium bg-indigo-950/80 px-2.5 py-0.5 rounded-full border border-indigo-700/50 flex items-center gap-1.5">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                <span>PC・スマホ両対応</span>
-              </span>
               {project.demo && (
-                <div className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-950/70 px-2.5 py-0.5 rounded-full border border-emerald-800/60">
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-950/70 hover:bg-emerald-900/70 px-2.5 py-0.5 rounded-full border border-emerald-800/60 transition-colors"
+                >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>LIVE</span>
-                </div>
+                  <span>LIVEサイトを開く ↗</span>
+                </a>
               )}
             </div>
           </div>
 
           {/* PC版 ＆ スマホ版 ディスプレイ領域 */}
-          <div className="p-4 sm:p-6 lg:p-7 bg-gradient-to-b from-slate-900 to-slate-950">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
-              {/* PC版（デスクトップ） */}
+          <div className="p-4 sm:p-6 lg:p-7 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              {/* ① PC版: 独立したデスクトップブラウザウィンドウ */}
               <div
                 className={`${project.imageMobile ? "lg:col-span-8" : "lg:col-span-12"} group/pc cursor-pointer`}
                 onClick={() =>
@@ -532,21 +532,39 @@ export default function Projects() {
                     <span>拡大</span>
                   </span>
                 </div>
-                <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-slate-700/80 shadow-xl bg-slate-900 group-hover/pc:border-indigo-500/80 transition-all duration-300">
-                  <img
-                    src={project.imagePc || project.image}
-                    alt={`${project.title} PC版`}
-                    className="w-full h-full object-cover object-top group-hover/pc:scale-[1.02] transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/0 group-hover/pc:bg-slate-950/20 transition-colors flex items-center justify-center">
-                    <span className="opacity-0 group-hover/pc:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl transition-all duration-200">
-                      PC版を拡大
-                    </span>
+
+                {/* PC専用ブラウザウィンドウフレーム */}
+                <div className="rounded-xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group-hover/pc:border-indigo-500/70 transition-all duration-300">
+                  {/* PC専用ブラウザ上部バー（赤黄緑ドット ＋ URLバー） */}
+                  <div className="bg-slate-800/95 px-3.5 py-2 flex items-center justify-between border-b border-slate-700/80">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-400/90 inline-block"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90 inline-block"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/90 inline-block"></span>
+                    </div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono px-3 py-0.5 bg-slate-950/80 rounded-full border border-slate-700/60 truncate max-w-[180px] sm:max-w-xs">
+                      {project.demo || "https://..."}
+                    </div>
+                    <div className="w-6"></div>
+                  </div>
+
+                  {/* PC画面スクリーンショット */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+                    <img
+                      src={project.imagePc || project.image}
+                      alt={`${project.title} PC版`}
+                      className="w-full h-full object-cover object-top group-hover/pc:scale-[1.02] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/0 group-hover/pc:bg-slate-950/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover/pc:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl transition-all duration-200">
+                        PC版を拡大
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* スマホ版（iPhoneモックアップ風） */}
+              {/* ② スマホ版: 独立したスマートフォン（iPhone端末モックアップ） */}
               {project.imageMobile && (
                 <div
                   className="lg:col-span-4 flex flex-col items-center group/mobile cursor-pointer"
@@ -558,7 +576,7 @@ export default function Projects() {
                     })
                   }
                 >
-                  <div className="w-full flex items-center justify-between mb-2 max-w-[240px] sm:max-w-[260px]">
+                  <div className="w-full flex items-center justify-between mb-2 max-w-[230px] sm:max-w-[250px]">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
                       <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-pink-400 font-mono border border-slate-700">MOBILE</span>
                       <span>スマホ表示 (iPhone)</span>
@@ -569,8 +587,8 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  {/* スマホフレームモックアップ */}
-                  <div className="w-full max-w-[230px] sm:max-w-[250px] rounded-[32px] p-2.5 bg-slate-850 bg-slate-800/90 border-2 border-slate-700/90 shadow-2xl relative aspect-[9/18.5] group-hover/mobile:border-pink-500/70 transition-all duration-300">
+                  {/* スマホフレームモックアップ本体 */}
+                  <div className="w-full max-w-[230px] sm:max-w-[250px] rounded-[36px] p-2.5 bg-slate-800 border-2 border-slate-700/90 shadow-2xl relative aspect-[9/18.5] group-hover/mobile:border-pink-500/70 transition-all duration-300">
                     {/* ダイナミックアイランド・スピーカー */}
                     <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-10 border border-slate-800/80 flex items-center justify-end pr-2">
                       <div className="w-2 h-2 rounded-full bg-indigo-900/80"></div>
@@ -578,7 +596,7 @@ export default function Projects() {
                     {/* ホームインジケーター（下部バー） */}
                     <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 w-24 h-1 bg-slate-400/50 rounded-full z-10"></div>
                     {/* 画面コンテンツ */}
-                    <div className="w-full h-full rounded-[22px] overflow-hidden bg-slate-950 relative">
+                    <div className="w-full h-full rounded-[26px] overflow-hidden bg-slate-950 relative">
                       <img
                         src={project.imageMobile}
                         alt={`${project.title} スマホ版`}
