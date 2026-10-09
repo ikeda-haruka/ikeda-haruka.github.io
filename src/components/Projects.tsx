@@ -14,6 +14,12 @@ import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
 import adminBlogEditImg from "../assets/oloroso-admin/admin-blog-edit.png";
 import adminSettingsImg from "../assets/oloroso-admin/admin-settings.png";
 import flyerFlamencoImg from "../assets/flyer-flamenco.jpg";
+import graphicFlyerWinterImg from "../assets/works_graphics/graphic_flyer_winter.jpg";
+import graphicSnsEarlysummerImg from "../assets/works_graphics/graphic_sns_earlysummer.webp";
+import graphicSnsAutumnImg from "../assets/works_graphics/graphic_sns_autumn.webp";
+import graphicSnsSpringImg from "../assets/works_graphics/graphic_sns_spring.webp";
+import graphicSnsSummerImg from "../assets/works_graphics/graphic_sns_summer.jpg";
+import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide_detail.webp";
 
 type ProjectCategory =
   | "portfolio"
@@ -359,35 +365,80 @@ const projectsData: Project[] = [
   {
     id: "flamenco-flyer",
     category: "graphic",
-    categoryLabel: "グラフィックデザイン / DTP印刷物",
+    categoryLabel: "グラフィックデザイン / DTP・SNS制作",
     badgeType: "graphic",
-    title: "フラメンコイベント「鬼頭幸穂 オープンクラス」公式フライヤー",
-    subtitle: "Photoshop & Illustrator によるA4フライヤー（両面・2パターン）デザイン制作",
+    title: "フラメンコイベント公式フライヤー＆SNS告知デザイン（四季シリーズ）",
+    subtitle: "Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
     description:
-      "大阪・南船場スタジオで開催されたフラメンコワークショップ「鬼頭幸穂 オープンクラス（第4弾）」の公式イベントフライヤー。Adobe PhotoshopおよびIllustratorを使用し、メインビジュアルとなるダンサーの切り抜き・色調補正・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
+      "フラメンコイベント・ワークショップに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4両面印刷用フライヤーからInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
     overview:
-      "フラメンコ特有の上品な情熱と格式を表現した「ブラックver（表面・ダークトーン）」と、クラス詳細や料金・キャンペーン情報を見やすく整理した「ホワイトver（裏面・ライトトーン）」の両面デザインを制作。季節感（6月開催の紫陽花やカエルモチーフ）や親しみやすいトーンを取り入れつつ、QRコード（SNS特設ページ・メール申込み）を配置して高い集客・導線効果を両立しました。印刷入稿（CMYK/高解像度）およびSNS告知用Webフライヤーの両形式に対応。",
+      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマに合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメントなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築しました。",
     image: flyerFlamencoImg,
-    imageCaption: "鬼頭幸穂 オープンクラス 公式フライヤー（左: ダークトーン表面 / 右: ライトトーン裏面）",
+    imageCaption: "A4両面完成フライヤー（左: ダークトーン表面 / 右: ライトトーン裏面）",
     technologies: [
       "Adobe Photoshop",
       "Adobe Illustrator",
       "DTP / 印刷入稿データ作成",
       "グラフィックデザイン",
+      "SNSバナー・カルーセル制作",
       "人物写真切り抜き・レタッチ",
       "色調補正・エフェクト合成",
       "タイポグラフィ",
       "情報アーキテクチャ（IA）",
-      "配色設計",
+      "季節別コンセプトカラー設計",
       "QRコード導線設計",
     ],
     features: [
-      "Adobe公認資格（Photoshop / Illustrator）のスキルを活かしたプロ品質のビジュアルメイキングとベクターレイアウト",
-      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジを引き立てる黒背景と星の煌めき・光彩エフェクト加工（Photoshop）",
-      "3クラス（テクニカ・ブレリア振付・コムニカシオン）の内容、割引キャンペーン、キャンセルポリシー、スタジオ費用などの複雑な情報を一目で理解できるレイアウト設計（Illustrator）",
-      "6月開催の季節感（紫陽花・傘・カエルのあしらい）を巧みにブレンドし、参加者の心理的ハードルを下げる親しみやすいデザイン",
-      "Facebook特設ページおよびメール申し込み用のQRコードを明瞭に配置し、紙媒体からデジタルへのスムーズなコンバージョン導線を構築",
-      "オフセット印刷・オンデマンド印刷に対応した高解像度CMYK入稿データ作成、およびSNS（Instagram/Facebook）告知用RGB画像の作成",
+      "四季（春・初夏・夏・初秋・冬）の開催時期に応じた色彩心理・季節モチーフの巧みな使い分けと世界観構築",
+      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや布地テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
+      "クラス詳細（テクニカ・振付・コムニカシオン）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
+      "Instagram/Facebookのタイムラインで視線を引きつけるスクエア比率（1:1）のバナーおよびカルーセル解説スライドの展開",
+      "印刷入稿用（高解像度CMYK/塗り足し・トンボ設定）およびWeb・SNS配信（RGB）のマルチフォーマット制作",
+      "メールおよびSNS申込みへ直結するQRコード配置による高いコンバージョン導線設計",
+    ],
+    screenshots: [
+      {
+        src: flyerFlamencoImg,
+        title: "A4両面完成フライヤー（初夏・第4弾）",
+        caption:
+          "左: フラメンコの格式と情熱を表現したブラックver（表面） / 右: 受講生の利便性を考慮して情報を整理したホワイトver（裏面）の両面印刷用データ",
+      },
+      {
+        src: graphicFlyerWinterImg,
+        title: "冬開催 公式フライヤー（12月・1月開催）",
+        caption:
+          "ホリデーシーズンを演出するバーガンディ×雪の結晶×オーナメント。ダンサー写真の立体的な光彩エフェクトとシックなA4フライヤーレイアウト",
+      },
+      {
+        src: graphicSnsEarlysummerImg,
+        title: "初夏開催 SNS告知バナー（6月開催）",
+        caption:
+          "水彩アルコールインクアート調のパープルグラデーションとゴールドフレーム。躍動感あふれる写真を活かしたInstagram用スクエアバナー（1:1）",
+      },
+      {
+        src: graphicSnsAutumnImg,
+        title: "初秋開催 SNS告知バナー（第7弾 9月開催）",
+        caption:
+          "フォレストグリーンと紅葉あしらいを取り入れた初秋の告知デザイン。ページめくり風の視覚演出でタイムライン上の視認性を高めたフィード画像",
+      },
+      {
+        src: graphicSnsSlideDetailImg,
+        title: "初秋開催 クラス解説カルーセルスライド",
+        caption:
+          "Instagramカルーセル投稿用に制作したクラス詳細解説スライド。各クラスの指導ポイントや対象レベル、受講条件を読みやすく構造化",
+      },
+      {
+        src: graphicSnsSpringImg,
+        title: "春開催 SNS告知スライド（5月開催）",
+        caption:
+          "爽やかなミントブルーとネイビーの配色。大判ショール（マントン）を羽織った人物写真の背景を精緻に切り抜いたモダンデザイン",
+      },
+      {
+        src: graphicSnsSummerImg,
+        title: "夏開催 SNS告知スライド（第5弾 7月開催）",
+        caption:
+          "シルバー×ブラックの星の煌めき・ボケ光彩エフェクト。夏の夜のワークショップを盛り上げるラグジュアリーな告知スライド",
+      },
     ],
   },
   {
@@ -569,6 +620,57 @@ export default function Projects() {
               <span>{project.imageCaption || "クリックで拡大表示できます"}</span>
             </p>
           </div>
+
+          {/* 制作シリーズ・デザインギャラリー（全7作品） */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <div className="bg-slate-900/90 p-4 sm:p-6 border-t border-slate-800">
+              <div className="flex items-center justify-between mb-3.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-amber-400 font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <span>✨</span>
+                    <span>四季シリーズ 制作デザイン一覧（全{project.screenshots.length}作品）</span>
+                  </span>
+                  <span className="text-[11px] text-slate-400 hidden sm:inline">
+                    クリックで高解像度拡大プレビュー
+                  </span>
+                </div>
+                <span className="text-[10px] text-slate-500 font-mono">
+                  Photoshop & Illustrator
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                {project.screenshots.map((item, sIndex) => (
+                  <div
+                    key={sIndex}
+                    onClick={() => setSelectedScreenshot(item)}
+                    className="group/thumb bg-slate-950/80 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-400/80 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-xs hover:shadow-lg"
+                  >
+                    <div className="relative aspect-square overflow-hidden bg-slate-900 flex items-center justify-center p-2">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="max-h-full max-w-full object-contain group-hover/thumb:scale-105 transition-transform duration-300 rounded"
+                      />
+                      <div className="absolute inset-0 bg-slate-950/0 group-hover/thumb:bg-slate-950/30 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover/thumb:opacity-100 bg-white/95 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full shadow transition-all">
+                          拡大 🔍
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-2.5 bg-slate-900/90 border-t border-slate-800/80">
+                      <h5 className="text-[11px] font-bold text-slate-200 truncate group-hover/thumb:text-amber-300 transition-colors">
+                        {item.title}
+                      </h5>
+                      <p className="text-[10px] text-slate-400 line-clamp-2 mt-0.5 leading-tight">
+                        {item.caption}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
