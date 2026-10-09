@@ -19,6 +19,17 @@ export default function Footer() {
               </svg>
             </a>
             <a
+              href="https://connpass.com/user/ikhrWeb/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-600 hover:text-[#c53d43] transition-colors"
+              title="connpass (ikhrWeb)"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 16a6 6 0 1 1 0-12c2.08 0 3.95.83 5.31 2.19l-2.12 2.12A3 3 0 1 0 12 15a3 3 0 0 0 2.83-2H12v-3h5.83A6.002 6.002 0 0 1 12 18z"/>
+              </svg>
+            </a>
+            <a
               href="mailto:ikedaharuka0215@gmail.com"
               className="text-slate-600 hover:text-slate-900 transition-colors"
               title="Email"
