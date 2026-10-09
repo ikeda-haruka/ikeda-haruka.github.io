@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import olorosoCaptureImg from "../assets/oloroso-capture.png";
+import olorosoCapturePcImg from "../assets/oloroso-capture-pc.png";
+import olorosoCaptureMobileImg from "../assets/oloroso-capture-mobile.png";
 import biwakogymCaptureImg from "../assets/biwakogym-capture.png";
+import biwakogymCapturePcImg from "../assets/biwakogym-capture-pc.png";
+import biwakogymCaptureMobileImg from "../assets/biwakogym-capture-mobile.png";
 import portfolioCaptureImg from "../assets/portfolio-capture.png";
+import portfolioCapturePcImg from "../assets/portfolio-capture-pc.png";
+import portfolioCaptureMobileImg from "../assets/portfolio-capture-mobile.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -68,6 +74,10 @@ interface Project {
   features: string[];
   image?: string;
   imageCaption?: string;
+  imagePc?: string;
+  imageMobile?: string;
+  imagePcCaption?: string;
+  imageMobileCaption?: string;
   github?: string;
   demo?: string;
   issuesUrl?: string;
@@ -94,6 +104,10 @@ const projectsData: Project[] = [
       "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。初期Excel要件定義からGitHub Issuesへ全タスクをチケット化し、進捗可視化・アジャイル管理を実践しています。",
     image: olorosoCaptureImg,
     imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: olorosoCapturePcImg,
+    imageMobile: olorosoCaptureMobileImg,
+    imagePcCaption: "Estudio Oloroso 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
+    imageMobileCaption: "Estudio Oloroso 公式WEBサイト スマホ版トップ画面キャッチ（iPhone最適化・追従CTA）",
     technologies: [
       "Next.js (App Router)",
       "React",
@@ -212,11 +226,16 @@ const projectsData: Project[] = [
       "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・自動タスク起票ツールによるアジャイル管理・実装・CI/CD公開までワンストップで制作。要件発生からGitHub Issues起票・コミット連携（Closes #XX）・本番デプロイまでを完全自動化し、エンジニアとしての自動化推進力と品質管理力を体現しています。",
     image: portfolioCaptureImg,
     imageCaption: "当ポートフォリオWEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: portfolioCapturePcImg,
+    imageMobile: portfolioCaptureMobileImg,
+    imagePcCaption: "当ポートフォリオWEBサイト PC版トップ画面キャッチ（最新の美しい大見出しレイアウト）",
+    imageMobileCaption: "当ポートフォリオWEBサイト スマホ版トップ画面キャッチ（iPhone最適化・レスポンシブ表示）",
     technologies: [
       "React 19",
       "TypeScript",
       "Tailwind CSS v4",
       "Vite",
+      "Edge Headless (画面キャプチャ自動同期)",
       "GitHub Issues (自動タスク起票)",
       "GitHub REST API",
       "Git Credential Manager",
@@ -228,10 +247,11 @@ const projectsData: Project[] = [
     ],
     features: [
       "GitHub Issues自動タスク起票ワークフロー: 開発要件や機能改修依頼をGitHub REST API経由で自動的にチケット化（Issue起票・ラベル分類・コミット連携自動クローズ）する仕組みを自作・導入し、チケット駆動開発を完全自動化",
+      "画面キャプチャ自動同期ツール（PC版・スマホ版マルチデバイス自動撮影）: 最新のビルド成果物からEdgeヘッドレス経由でPC版（1280px）およびスマホ版（iPhone 390px）のスクリーンショットを自動生成・アセットへ同期するワークフローを自作・導入し、表示内容の常時同期を実現",
       "React 19 と TypeScript による型安全かつ拡張性の高いコンポーネント指向UI設計",
       "Tailwind CSS v4 を用いた最新のユーティリティファーストスタイリングとグラスモーフィズム演出",
       "大画面ワイドモニター（2560px〜）からスマートフォンまで左右均等に配置されるレスポンシブ中央揃え設計",
-      "日本語タイポグラフィ最適化: 禁則処理とinline-blockによる助詞落ち・1文字落ち防止",
+      "日本語タイポグラフィ最適化: 禁則処理とブロック分割による助詞落ち・不自然な改行防止",
       "Vite による高速ビルドと GitHub Actions による GitHub Pages への完全自動デプロイ（CI/CD）",
       "ブラウザ完結の高速静的SPA構成により、表示パフォーマンスとセキュアな配信を両立",
     ],
@@ -240,11 +260,11 @@ const projectsData: Project[] = [
     issuesUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
     taskAutomationBanner: {
       badge: "Task Automation & Issue Bot",
-      subtitle: "自作スクリプトによる完全自動タスク起票ワークフロー",
-      title: "GitHub Issues 自動タスク追加・チケット駆動開発の仕組み",
+      subtitle: "自作スクリプトによる完全自動タスク起票 ＆ 画面キャプチャ常時同期",
+      title: "GitHub Issues 自動タスク追加・チケット駆動開発 ＆ 画面キャプチャ自動同期",
       description:
-        "Git Credential ManagerとGitHub REST APIを連携させた自動起票ツールを自作導入。開発要件や機能改修依頼を受け取った際に自動でIssueを新規起票し、ラベル分類・進捗管理・コミット連携（Closes #XX）による自動クローズまでを一貫して自動化。実務に即したチケット駆動開発と業務効率化を実践しています。",
-      linkText: "実際のGitHub Issues一覧を見る（全12件）",
+        "Git Credential ManagerとGitHub REST APIを連携させた自動起票ツールを自作導入。開発要件や機能改修依頼を受け取った際に自動でIssueを新規起票し、ラベル分類・進捗管理・コミット連携（Closes #XX）による自動クローズまでを一貫して自動化。さらに、Edgeヘッドレスブラウザ連携により、本番ビルドからPC版・スマホ版両方の画面キャッチを常に最新状態へと自動同期するツールを整備。実務に即したチケット駆動開発と継続的自動化を体現しています。",
+      linkText: "実際のGitHub Issues一覧を見る（全14件）",
       linkUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
     },
     creationSteps: [
@@ -305,6 +325,10 @@ const projectsData: Project[] = [
       "「もう、ジムで迷わない。」をキーコンセプトに、鍛錬マシン全29台と3ステップサポートを強みとするジムの魅力を伝えるWebサイト。無料体験（Trial）、料金体系表、店舗アクセス、お問い合わせまでのユーザー動線を徹底追求。視覚的な引き込みを図るファーストビューやスクロール連動アニメーション、スマートフォンからの操作性を考慮したモバイルファースト設計を採用。",
     image: biwakogymCaptureImg,
     imageCaption: "BIWAKO GYM 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: biwakogymCapturePcImg,
+    imageMobile: biwakogymCaptureMobileImg,
+    imagePcCaption: "BIWAKO GYM 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
+    imageMobileCaption: "BIWAKO GYM 公式WEBサイト スマホ版トップ画面キャッチ（モバイルファースト・ナビゲーション）",
     technologies: [
       "HTML5",
       "CSS3",
@@ -454,44 +478,121 @@ export default function Projects() {
       key={project.id}
       className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl group"
     >
-      {/* 画面キャッチ（WEBサイトのファーストビュー・ブラウザモック） */}
-      {project.image && (
-        <div className="border-b border-slate-200 bg-slate-900">
-          <div className="bg-slate-800/95 px-4 py-2.5 flex items-center justify-between border-b border-slate-700/80">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+      {/* 画面キャッチ（PC版・スマホ版 両方を掲示） */}
+      {(project.imagePc || project.image) && (
+        <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
+          {/* 上部ブラウザ・デバイスバー */}
+          <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+              </div>
+              <div className="text-[11px] text-slate-400 font-mono px-3.5 py-0.5 bg-slate-950/80 rounded-full border border-slate-700/60 truncate max-w-[200px] sm:max-w-xs md:max-w-md">
+                {project.demo || "https://oloroso.vercel.app/"}
+              </div>
             </div>
-            <div className="text-[11px] text-slate-400 font-mono px-3.5 py-0.5 bg-slate-950/70 rounded-full border border-slate-700/60 truncate max-w-[240px] sm:max-w-md">
-              {project.demo || "https://oloroso.vercel.app/"}
-            </div>
-            <div className="text-[11px] text-emerald-400 font-semibold hidden sm:flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>LIVE</span>
+
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-indigo-300 font-medium bg-indigo-950/80 px-2.5 py-0.5 rounded-full border border-indigo-700/50 flex items-center gap-1.5">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                <span>PC・スマホ両対応</span>
+              </span>
+              {project.demo && (
+                <div className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-950/70 px-2.5 py-0.5 rounded-full border border-emerald-800/60">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>LIVE</span>
+                </div>
+              )}
             </div>
           </div>
-          <div
-            className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden cursor-pointer group/img bg-slate-950"
-            onClick={() =>
-              setSelectedScreenshot({
-                src: project.image!,
-                title: `${project.title} - 画面キャッチ`,
-                caption:
-                  project.imageCaption || "トップページ ファーストビュー",
-              })
-            }
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover object-top group-hover/img:scale-[1.02] transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-slate-950/0 group-hover/img:bg-slate-950/25 transition-colors flex items-center justify-center">
-              <span className="opacity-0 group-hover/img:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-4 py-2 rounded-full shadow-xl transition-all duration-200 flex items-center gap-2 transform translate-y-1 group-hover/img:translate-y-0">
-                <span>🔍</span>
-                <span>画面キャッチを拡大表示</span>
-              </span>
+
+          {/* PC版 ＆ スマホ版 ディスプレイ領域 */}
+          <div className="p-4 sm:p-6 lg:p-7 bg-gradient-to-b from-slate-900 to-slate-950">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+              {/* PC版（デスクトップ） */}
+              <div
+                className={`${project.imageMobile ? "lg:col-span-8" : "lg:col-span-12"} group/pc cursor-pointer`}
+                onClick={() =>
+                  setSelectedScreenshot({
+                    src: project.imagePc || project.image!,
+                    title: `${project.title} - PC版デスクトップ画面`,
+                    caption: project.imagePcCaption || project.imageCaption || "PC版ファーストビュー",
+                  })
+                }
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                    <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-indigo-400 font-mono border border-slate-700">PC</span>
+                    <span>デスクトップ表示 (1280px)</span>
+                  </div>
+                  <span className="text-[11px] text-slate-400 group-hover/pc:text-indigo-300 transition-colors flex items-center gap-1">
+                    <span>🔍</span>
+                    <span>拡大</span>
+                  </span>
+                </div>
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-slate-700/80 shadow-xl bg-slate-900 group-hover/pc:border-indigo-500/80 transition-all duration-300">
+                  <img
+                    src={project.imagePc || project.image}
+                    alt={`${project.title} PC版`}
+                    className="w-full h-full object-cover object-top group-hover/pc:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover/pc:bg-slate-950/20 transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover/pc:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl transition-all duration-200">
+                      PC版を拡大
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* スマホ版（iPhoneモックアップ風） */}
+              {project.imageMobile && (
+                <div
+                  className="lg:col-span-4 flex flex-col items-center group/mobile cursor-pointer"
+                  onClick={() =>
+                    setSelectedScreenshot({
+                      src: project.imageMobile!,
+                      title: `${project.title} - スマホ版画面`,
+                      caption: project.imageMobileCaption || "スマートフォン最適化表示",
+                    })
+                  }
+                >
+                  <div className="w-full flex items-center justify-between mb-2 max-w-[240px] sm:max-w-[260px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                      <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-pink-400 font-mono border border-slate-700">MOBILE</span>
+                      <span>スマホ表示 (iPhone)</span>
+                    </div>
+                    <span className="text-[11px] text-slate-400 group-hover/mobile:text-pink-300 transition-colors flex items-center gap-1">
+                      <span>🔍</span>
+                      <span>拡大</span>
+                    </span>
+                  </div>
+
+                  {/* スマホフレームモックアップ */}
+                  <div className="w-full max-w-[230px] sm:max-w-[250px] rounded-[32px] p-2.5 bg-slate-850 bg-slate-800/90 border-2 border-slate-700/90 shadow-2xl relative aspect-[9/18.5] group-hover/mobile:border-pink-500/70 transition-all duration-300">
+                    {/* ダイナミックアイランド・スピーカー */}
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-10 border border-slate-800/80 flex items-center justify-end pr-2">
+                      <div className="w-2 h-2 rounded-full bg-indigo-900/80"></div>
+                    </div>
+                    {/* ホームインジケーター（下部バー） */}
+                    <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 w-24 h-1 bg-slate-400/50 rounded-full z-10"></div>
+                    {/* 画面コンテンツ */}
+                    <div className="w-full h-full rounded-[22px] overflow-hidden bg-slate-950 relative">
+                      <img
+                        src={project.imageMobile}
+                        alt={`${project.title} スマホ版`}
+                        className="w-full h-full object-cover object-top group-hover/mobile:scale-[1.03] transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-slate-950/0 group-hover/mobile:bg-slate-950/20 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover/mobile:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-xl transition-all duration-200">
+                          スマホ版を拡大
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

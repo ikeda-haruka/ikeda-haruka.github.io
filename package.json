@@ -9,6 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "capture": "node scripts/sync-captures.cjs",
+    "build:sync": "node scripts/sync-captures.cjs && tsc -b && vite build",
     "issue": "node scripts/create-issue.cjs",
     "issue:close": "node scripts/close-issue.cjs"
   },
