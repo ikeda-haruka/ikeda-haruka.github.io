@@ -20,6 +20,7 @@ import graphicSnsAutumnImg from "../assets/works_graphics/graphic_sns_autumn.web
 import graphicSnsSpringImg from "../assets/works_graphics/graphic_sns_spring.webp";
 import graphicSnsSummerImg from "../assets/works_graphics/graphic_sns_summer.jpg";
 import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide_detail.webp";
+import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
 
 type ProjectCategory =
   | "portfolio"
@@ -367,12 +368,12 @@ const projectsData: Project[] = [
     category: "graphic",
     categoryLabel: "グラフィックデザイン / DTP・SNS制作",
     badgeType: "graphic",
-    title: "フラメンコイベント公式フライヤー＆SNS告知デザイン（四季シリーズ）",
+    title: "フラメンコ＆音楽イベント公式フライヤー・SNSプロモーションデザイン",
     subtitle: "Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
     description:
-      "フラメンコイベント・ワークショップに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4両面印刷用フライヤーからInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
+      "フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4両面印刷用フライヤーからInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
     overview:
-      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマに合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメントなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築しました。",
+      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマ、打楽器ワークショップのリズム感に合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメント、幾何学リズムパターンなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築しました。",
     image: flyerFlamencoImg,
     imageCaption: "A4両面完成フライヤー（左: ダークトーン表面 / 右: ライトトーン裏面）",
     technologies: [
@@ -389,9 +390,9 @@ const projectsData: Project[] = [
       "QRコード導線設計",
     ],
     features: [
-      "四季（春・初夏・夏・初秋・冬）の開催時期に応じた色彩心理・季節モチーフの巧みな使い分けと世界観構築",
-      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや布地テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
-      "クラス詳細（テクニカ・振付・コムニカシオン）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
+      "四季（春・初夏・夏・初秋・冬）の開催時期やイベント特性に応じた色彩心理・モチーフの巧みな使い分けと世界観構築",
+      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや楽器テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
+      "クラス詳細（テクニカ・振付・コムニカシオン、初心者向け打楽器講座）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
       "Instagram/Facebookのタイムラインで視線を引きつけるスクエア比率（1:1）のバナーおよびカルーセル解説スライドの展開",
       "印刷入稿用（高解像度CMYK/塗り足し・トンボ設定）およびWeb・SNS配信（RGB）のマルチフォーマット制作",
       "メールおよびSNS申込みへ直結するQRコード配置による高いコンバージョン導線設計",
@@ -438,6 +439,12 @@ const projectsData: Project[] = [
         title: "夏開催 SNS告知スライド（第5弾 7月開催）",
         caption:
           "シルバー×ブラックの星の煌めき・ボケ光彩エフェクト。夏の夜のワークショップを盛り上げるラグジュアリーな告知スライド",
+      },
+      {
+        src: graphicCajonWorkshopImg,
+        title: "打楽器ワークショップ SNS告知バナー（カホンクルシージョ）",
+        caption:
+          "イエロー×ボルドーの幾何学パターンと演奏者写真の切り抜き。初心者向けワークショップの親しみやすさとリズム感を表現したSNS告知バナー（秋葉原会場・QRコード導線設計）",
       },
     ],
   },
