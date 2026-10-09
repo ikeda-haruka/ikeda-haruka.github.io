@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export default function Contact() {
-  const [copiedField, setCopiedField] = useState<"email" | "discord" | null>(null);
+  const [copiedField, setCopiedField] = useState<"email" | "discord" | "crowdworks" | null>(null);
 
-  const handleCopy = (text: string, field: "email" | "discord") => {
+  const handleCopy = (text: string, field: "email" | "discord" | "crowdworks") => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
     setTimeout(() => setCopiedField(null), 2000);
@@ -65,7 +65,53 @@ export default function Contact() {
               </button>
             </div>
 
-            {/* 2. Discord */}
+            {/* 2. CrowdWorks */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/80 hover:bg-slate-50 border border-slate-200/80 transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#0083CA] text-white shrink-0 shadow-xs">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-slate-900">クラウドワークス</h3>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-[#0083CA] border border-sky-200">お仕事依頼・仮払い対応</span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-600">
+                    <span>ワーカーID: <strong className="font-mono text-slate-900 font-semibold">7258993</strong></span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy("7258993", "crowdworks")}
+                      className="inline-flex items-center text-[10px] text-slate-500 hover:text-slate-800 font-medium px-1.5 py-0.5 rounded bg-slate-200/70 hover:bg-slate-300 transition-colors cursor-pointer"
+                      title="ワーカーIDをコピー"
+                    >
+                      {copiedField === "crowdworks" ? "コピー済" : "IDコピー"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://crowdworks.jp/public/employees/7258993?ref=share_url_wkprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-4 py-2.5 bg-[#0083CA] hover:bg-[#006fae] text-white text-xs font-bold rounded-xl transition-all shadow-xs shrink-0 text-center"
+              >
+                プロフィール ↗
+              </a>
+            </div>
+
+            {/* 3. Discord */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/80 hover:bg-slate-50 border border-slate-200/80 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#5865F2] text-white shrink-0 shadow-xs">
@@ -98,7 +144,7 @@ export default function Contact() {
               </button>
             </div>
 
-            {/* 3. connpass */}
+            {/* 4. connpass */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/80 hover:bg-slate-50 border border-slate-200/80 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#c53d43] text-white shrink-0 shadow-xs">
@@ -130,7 +176,7 @@ export default function Contact() {
               </a>
             </div>
 
-            {/* 4. GitHub */}
+            {/* 5. GitHub */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/80 hover:bg-slate-50 border border-slate-200/80 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-slate-900 text-white shrink-0 shadow-xs">
@@ -185,6 +231,9 @@ export default function Contact() {
                 Java / SpringBoot による堅牢なAPI・システム開発
               </div>
             </div>
+            <p className="text-[11px] text-slate-400 mt-3 text-center sm:text-left">
+              ※ メールでの直接ご相談・お取引のほか、クラウドワークスを通じた仮払い・契約にも柔軟に対応いたします。
+            </p>
           </div>
         </div>
       </div>
