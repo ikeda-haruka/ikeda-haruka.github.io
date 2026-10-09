@@ -59,6 +59,7 @@ export default function Hero({
                 "WordPress",
                 "UI/UX Design",
                 "Adobe Photoshop & Illustrator",
+                "GitHub Issues / CI/CD",
               ].map((tech) => (
                 <span
                   key={tech}

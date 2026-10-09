@@ -46,6 +46,15 @@ interface CreationStep {
   description: string;
 }
 
+interface TaskAutomationBanner {
+  badge: string;
+  subtitle: string;
+  title: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+}
+
 interface Project {
   id: string;
   category: ProjectCategory;
@@ -68,6 +77,7 @@ interface Project {
   flowSteps?: FlowStep[];
   creationSteps?: CreationStep[];
   flowNote?: string;
+  taskAutomationBanner?: TaskAutomationBanner;
 }
 
 const projectsData: Project[] = [
@@ -195,11 +205,11 @@ const projectsData: Project[] = [
     categoryLabel: "ポートフォリオ実績用制作物",
     badgeType: "portfolio",
     title: "エンジニアポートフォリオ「ikeda-haruka.github.io」",
-    subtitle: "React 19 + TypeScript + Tailwind CSS によるモダンWeb制作・CI/CD自動公開",
+    subtitle: "React 19 + TypeScript + GitHub Issues自動タスク起票・CI/CDによるアジャイル制作",
     description:
-      "Webデザイナー＆フロントエンドエンジニアとしての制作実績、Adobe公認認定資格、システムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、コンポーネント指向設計と大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。GitHub ActionsによるCI/CD自動デプロイパイプラインを構築。",
+      "Webデザイナー＆フロントエンドエンジニアとしての制作実績、Adobe公認認定資格、システムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。さらに、開発要件や改修依頼をGitHub REST API経由で自動チケット化する「自動タスク追加ワークフロー」を独自構築し、チケット駆動開発を実践。GitHub ActionsによるCI/CD自動デプロイパイプラインを整備。",
     overview:
-      "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・GitHub Issuesによるタスク管理・実装・CI/CD公開までワンストップで制作。CSSカスケードレイヤーを意識した堅牢なスタイリング、グラスモーフィズムを取り入れたUI、Webアクセシビリティ・タイポグラフィにも配慮しています。",
+      "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・自動タスク起票ツールによるアジャイル管理・実装・CI/CD公開までワンストップで制作。要件発生からGitHub Issues起票・コミット連携（Closes #XX）・本番デプロイまでを完全自動化し、エンジニアとしての自動化推進力と品質管理力を体現しています。",
     image: portfolioCaptureImg,
     imageCaption: "当ポートフォリオWEBサイト トップ画面キャッチ（ファーストビュー）",
     technologies: [
@@ -207,41 +217,54 @@ const projectsData: Project[] = [
       "TypeScript",
       "Tailwind CSS v4",
       "Vite",
+      "GitHub Issues (自動タスク起票)",
+      "GitHub REST API",
+      "Git Credential Manager",
       "GitHub Pages",
       "GitHub Actions (CI/CD)",
-      "GitHub Issues (タスク管理)",
+      "チケット駆動開発 / 自動化",
       "レスポンシブWebデザイン",
       "アクセシビリティ",
     ],
     features: [
+      "GitHub Issues自動タスク起票ワークフロー: 開発要件や機能改修依頼をGitHub REST API経由で自動的にチケット化（Issue起票・ラベル分類・コミット連携自動クローズ）する仕組みを自作・導入し、チケット駆動開発を完全自動化",
       "React 19 と TypeScript による型安全かつ拡張性の高いコンポーネント指向UI設計",
       "Tailwind CSS v4 を用いた最新のユーティリティファーストスタイリングとグラスモーフィズム演出",
       "大画面ワイドモニター（2560px〜）からスマートフォンまで左右均等に配置されるレスポンシブ中央揃え設計",
-      "GitHub Issuesを活用した要件定義・タスクチケット化による可視化されたアジャイル進捗管理",
+      "日本語タイポグラフィ最適化: 禁則処理とinline-blockによる助詞落ち・1文字落ち防止",
       "Vite による高速ビルドと GitHub Actions による GitHub Pages への完全自動デプロイ（CI/CD）",
       "ブラウザ完結の高速静的SPA構成により、表示パフォーマンスとセキュアな配信を両立",
     ],
     demo: "https://ikeda-haruka.github.io/",
     github: "https://github.com/ikeda-haruka/ikeda-haruka.github.io",
-    issuesUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues",
+    issuesUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
+    taskAutomationBanner: {
+      badge: "Task Automation & Issue Bot",
+      subtitle: "自作スクリプトによる完全自動タスク起票ワークフロー",
+      title: "GitHub Issues 自動タスク追加・チケット駆動開発の仕組み",
+      description:
+        "Git Credential ManagerとGitHub REST APIを連携させた自動起票ツールを自作導入。開発要件や機能改修依頼を受け取った際に自動でIssueを新規起票し、ラベル分類・進捗管理・コミット連携（Closes #XX）による自動クローズまでを一貫して自動化。実務に即したチケット駆動開発と業務効率化を実践しています。",
+      linkText: "実際のGitHub Issues一覧を見る（全12件）",
+      linkUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
+    },
     creationSteps: [
       {
         number: "01",
-        title: "情報設計・タスク管理",
+        title: "情報設計・GitHub Issues自動タスク起票",
         description:
-          "構成案や画面要件を整理し、GitHub Issuesでタスクをチケット化。実装フェーズの進捗を可視化しながら体系的に設計を進めます。",
+          "構成案や画面要件を整理し、自作スクリプトとGitHub API連携により依頼内容をGitHub Issuesへ自動チケット化。タスク着手から完了クローズまで完全可視化されたチケット駆動開発を推進します。",
       },
       {
         number: "02",
-        title: "実装・レスポンシブ対応",
+        title: "実装・マルチデバイス最適化",
         description:
-          "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで画面幅に応じたモダンなUIと操作性を組み立てます。",
+          "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで大画面からモバイル（iPhone等）まで美しい改行・レイアウトを組み立てます。",
       },
       {
         number: "03",
-        title: "ビルド・CI/CD自動公開",
+        title: "ビルド・CI/CD自動公開・Issueクローズ",
         description:
-          "npm run buildで型チェックと本番ビルドを行い、GitHub ActionsからGitHub Pagesへ静的ファイルを自動デプロイします。",
+          "本番ビルド後、GitHub ActionsからGitHub Pagesへ自動デプロイ。コミットメッセージ連携により関連Issueを自動完了（Closed）にします。",
       },
     ],
     flowSteps: [
@@ -867,6 +890,44 @@ export default function Projects() {
                 {project.flowNote}
               </p>
             )}
+          </div>
+        )}
+
+        {/* GitHub Issues 自動タスク追加・チケット駆動開発ハイライトバナー */}
+        {project.taskAutomationBanner && (
+          <div className="mt-8 p-5 sm:p-6 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-2xl border border-indigo-500/40 text-white shadow-lg">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0 text-2xl shadow-inner">
+                  ⚡
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      {project.taskAutomationBanner.badge}
+                    </span>
+                    <span className="text-xs text-indigo-300 font-medium">
+                      {project.taskAutomationBanner.subtitle}
+                    </span>
+                  </div>
+                  <h5 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    {project.taskAutomationBanner.title}
+                  </h5>
+                  <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed max-w-2xl">
+                    {project.taskAutomationBanner.description}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={project.taskAutomationBanner.linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer self-start md:self-auto"
+              >
+                <span>{project.taskAutomationBanner.linkText}</span>
+                <span className="text-xs">↗</span>
+              </a>
+            </div>
           </div>
         )}
 
