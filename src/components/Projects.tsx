@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import olorosoCaptureImg from "../assets/oloroso-capture.png";
 import olorosoCapturePcImg from "../assets/oloroso-capture-pc.png";
 import olorosoCaptureMobileImg from "../assets/oloroso-capture-mobile.png";
+import nailsalonCaptureImg from "../assets/nailsalon-capture.png";
+import nailsalonCapturePcImg from "../assets/nailsalon-capture-pc.png";
+import nailsalonCaptureMobileImg from "../assets/nailsalon-capture-mobile.png";
+import nailsalonUiMensImg from "../assets/nailsalon-ui-mens.png";
+import nailsalonUiMypageImg from "../assets/nailsalon-ui-mypage.png";
+import nailsalonUiShopImg from "../assets/nailsalon-ui-shop.png";
 import biwakogymCaptureImg from "../assets/biwakogym-capture.png";
 import biwakogymCapturePcImg from "../assets/biwakogym-capture-pc.png";
 import biwakogymCaptureMobileImg from "../assets/biwakogym-capture-mobile.png";
@@ -145,6 +151,187 @@ interface Project {
 }
 
 const projectsData: Project[] = [
+  {
+    id: "nailsalon",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "表参道パラジェル＆水光マグネット専門サロン「Salon de Fraise」公式WEBサイト",
+    subtitle: "Next.js + Tailwind CSS・大人可愛いUI設計＆完全永久無料Spring Boot 3.3バックエンド・メンズサロン（HOMME）展開",
+    description:
+      "表参道駅徒歩4分の自爪を削らないパラジェル＆水光マグネットネイル専門店「Salon de Fraise（サロン・ド・フレーズ）」の公式ブランドWebサイト。20〜30代女性に愛される上質で洗練された『大人可愛い』世界観（白・ラベンダーモーブ・シャンパンゴールド）を軸に、50色以上の水光マグネット体験シミュレーターやネイルカラー＆スタイル診断、空席シミュレーターなど高度なインタラクティブUIを実装。さらに男性特有の爪の悩みに特化したメンズ専用サロン『Salon de Fraise HOMME（サロン・ド・フレーズ オム）』および自爪風マットネイルチップ等を扱うメンズ公式ECショップ（/mens/shop）、会員ランク（4段階）・誕生月50%OFFクーポン・ポイント還元機能付きマイページ（/mypage）まで包括的に開発。バックエンドにはRenderマネージドPostgreSQLの30日失効制約を回避する『組み込みH2ファイル永続化＋Render無料枠（Java 21 / Spring Boot 3.3 REST API）』の完全永久無料アーキテクチャを策定し、二重予約防止・空き枠計算・排他制御インデックスまで設計・実装しました。全20件の課題・改善をGitHub Issuesでチケット駆動管理しています。",
+    overview:
+      "「自爪を削らない、うるおい美爪。透き通る水光ラベンダーとシャンパンゴールドの煌めき」をテーマに、レディース専門サロンからメンズ専門サロン（HOMME）、会員マイページ、オンラインショップまで網羅したサロンDXプラットフォーム。HotPepper Beauty・公式LINE・電話のマルチ予約動線、明朗会計メニュー表、在籍ネイリスト（全8名）の顔写真ポートレート、未生成・404画像のブランドロゴ自動フォールバック表示、WCAG高コントラスト対応など、細部まで徹底して作り込みました。GitHub Issues（全20件クローズ）を活用し、Tailwind CSSバンドル最適化から大人可愛いデザインリニューアル、永久無料バックエンド仕様書の策定までを高速イテレーションで解決しています。",
+    image: nailsalonCaptureImg,
+    imageCaption: "Salon de Fraise 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: nailsalonCapturePcImg,
+    imageMobile: nailsalonCaptureMobileImg,
+    imagePcCaption: "Salon de Fraise 公式WEBサイト PC版トップ画面キャッチ（大人可愛い水光ラベンダー×シャンパンゴールド）",
+    imageMobileCaption: "Salon de Fraise 公式WEBサイト スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆予約CTA）",
+    technologies: [
+      "Next.js (App Router)",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS (グラスモーフィズム)",
+      "Java 21 / Spring Boot 3.3 (REST API)",
+      "H2 Database (PostgreSQL互換ファイル永続化)",
+      "完全永久無料バックエンド設計 (Render)",
+      "チケット駆動開発 (GitHub Issues 全20件)",
+      "二重予約防止・排他制御インデックス設計",
+      "会員ランク制度・ポイント還元・クーポンUI",
+      "水光マグネット体験シミュレーター (マウス追従)",
+      "ネイルカラー＆スタイル診断ウィジェット",
+      "メンズ専用サロン (HOMME) / メンズEC展開",
+      "レスポンシブWebデザイン (Mobile First)",
+      "404フォールバック・画像自動代替システム",
+      "Vercel (CI/CD自動デプロイ)",
+    ],
+    features: [
+      "GitHub Issues全20件によるチケット駆動改善: プロジェクト初期化からデザインフルリニューアル、画像差し替え、メンズサロン・EC新設、会員ランク制度、永久無料バックエンド仕様書策定まで、全20件の課題をチケット駆動で完遂",
+      "完全永久無料バックエンド設計（Issue #20, #15, #16）: RenderマネージドPostgreSQLの30日失効制約を解消するため、組み込みH2（PostgreSQL互換ファイル永続化モード）＋Render無料枠によるJava 21 / Spring Boot 3.3 REST APIアーキテクチャを策定。クレカ不要・無期限・完全無料で安定稼働",
+      "二重予約防止・排他制御インデックス設計（Issue #14）: データベース論理設計（ER図・DDL）において、空き枠計算・二重予約判定用の複合インデックス（idx_reservations_slot）や指名ネイリスト重複防止インデックス（idx_reservations_staff）を実装",
+      "20〜30代向け「大人可愛い」洗練デザインリニューアル（Issue #11, #13）: ユーザーフィードバックに基づき、甘すぎる配色から白・ラベンダーモーブ・シャンパンゴールドの上品な世界観へフル刷新。すりガラス（グラスモーフィズム）や水光エフェクトを融合",
+      "サロン実務に即した爪先・ネイルマクロ写真への完全刷新（Issue #12）: パラジェル専門店の価値を伝えるため、人物の顔写真から自爪を削らないパラジェル施術・爪先マクロ写真・50色水光マグネット写真へ徹底刷新",
+      "メンズ専用サロン「Salon de Fraise HOMME」＆公式ECショップ（Issue #17）: 「男なのにネイル？」の固定概念を覆すダークトーンのメンズ専用ページ（/mens）と、自爪風完全マットネイルチップや速乾オイルを扱うメンズEC（/mens/shop）を新設。男性ネイリスト5名体制",
+      "会員ランク制度・誕生月50%OFFクーポン・ポイント還元（Issue #18）: Regular/Silver/Gold/Platinumの4段階会員ランク、1%〜5%のポイント還元率計算、誕生月50%OFFクーポン、会員マイページ（/mypage）での進捗バー・保有クーポン一覧UIを実装",
+      "ネイリスト全員のプロ顔写真＆画像フォールバック機構（Issue #19）: 男女全8名のプロポートレート設定に加え、ProductImageコンポーネントによる未生成・404画像の公式ブランドロゴ（レディース／メンズ別）自動代替表示を一元化",
+      "水光マグネット体験シミュレーター＆スタイル診断（Issue #4, #9）: マウス追従で微粒子マグネットパウダーの光沢が変わるシミュレーターや、3問で自分に合うスタイルがわかるインタラクティブ診断、空席シミュレーターを実装",
+    ],
+    demo: "https://nailsalon-inky.vercel.app/",
+    github: "https://github.com/ikeda-haruka/nailsalon",
+    issuesUrl: "https://github.com/ikeda-haruka/nailsalon/issues",
+    screenshotsBadge: "UI & FullStack",
+    screenshotsTitle: "レディース・メンズ（HOMME）・会員マイページ＆ECギャラリー",
+    screenshotsNote:
+      "20〜30代女性向けの大人可愛い本館サロン、ダークトーンのメンズ専用サロン（HOMME）、会員ランク・クーポンを管理するマイページ、自爪風マットチップ等を直接注文できるメンズ公式ECまで、多角的なサロンDX設計のハイライトです。クリックで拡大プレビューできます。",
+    screenshots: [
+      {
+        src: nailsalonUiMensImg,
+        title: "メンズ専用サロン「Salon de Fraise HOMME」（/mens）",
+        caption:
+          "「男なのに、なんでネイル？その言葉に、もう息苦しさを感じなくていい。」を掲げたメンズ専用パラジェルサロン。ダークトーン×ゴールドの重厚な世界観、在籍男性ネイリスト5名、完全個室・半個室、ツヤ消し自爪風処方を訴求。",
+      },
+      {
+        src: nailsalonUiMypageImg,
+        title: "会員マイページ・ランク＆クーポン案内（/mypage）",
+        caption:
+          "Regular・Silver・Gold・Platinumの4段階会員ランク制度、誕生月50%OFFクーポン、1%〜5%ポイント還元に対応した会員専用マイページ。デモ会員ログイン機能も備え、ランク進捗バーや保有クーポン一覧を視覚的に提示。",
+      },
+      {
+        src: nailsalonUiShopImg,
+        title: "メンズ公式オンラインショップ（/mens/shop）",
+        caption:
+          "自爪風完全マットネイルチップや速乾ネイルオイルを販売する専用EC。新規登録1,000pt進呈、商品コードによるクイック注文フォーム、宅配便限定・出荷日明記など、信頼性の高いEC体験を構築。",
+      },
+    ],
+    taskAutomationBanner: {
+      badge: "GitHub Issues 全20件クローズ",
+      subtitle: "アジャイルな課題解決とフルスタックアーキテクチャの確立",
+      title: "GitHub Issues（全20件）による品質向上・フルスタック機能拡張プロセス",
+      description:
+        "プロジェクト初期化・デザインシステム策定から、Tailwind CSSバンドル修正、20〜30代女性向け『大人可愛い』世界観へのフル刷新、メンズ専用サロン・ECショップの新設、会員ランク制度・誕生月クーポン設計、そしてRenderでの完全永久無料（Java 21 / Spring Boot 3.3 + H2ファイル永続化）バックエンド仕様書策定まで、全20件の課題をチケット駆動で解決しました。",
+      linkText: "GitHub Issues（全20件の改善タスク）を見る",
+      linkUrl: "https://github.com/ikeda-haruka/nailsalon/issues",
+    },
+    siteStructure: {
+      title: "WEBサイト構成図・サロンDXアーキテクチャ（全8+ページ群）",
+      subtitle: "レディース本館 × メンズHOMME × 会員マイページ × 公式EC × Spring Boot API",
+      description:
+        "レディース向けパラジェル専門サロンにとどまらず、メンズ専用サロン（HOMME）、会員ランクマイページ、メンズ公式ECショップ、そしてJava 21 / Spring Boot 3.3による予約・会員バックエンドAPIまでを有機的に連携させた、総合的なサロンDXプラットフォームとして設計・開発されています。各リンクから実際のページを確認可能です。",
+      categories: [
+        {
+          category: "1. レディース本館（Salon de Fraise）",
+          badge: "Ladies Salon",
+          badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+          pages: [
+            {
+              name: "サロン トップ画面",
+              path: "index.html / (top)",
+              desc: "大人可愛いHero・パラジェル＆フィルイン強み・実績数値",
+              url: "https://nailsalon-inky.vercel.app/",
+              isHighlight: true,
+            },
+            {
+              name: "最旬デザインカタログ",
+              path: "#gallery",
+              desc: "春夏秋冬・オフィス・水光マグネット50色フィルターギャラリー",
+              url: "https://nailsalon-inky.vercel.app/#gallery",
+            },
+            {
+              name: "水光マグネット体験シミュレーター",
+              path: "#magnet-lab",
+              desc: "マウス追従で微粒子マグネットパウダーの輝きが変わる動的UI",
+              url: "https://nailsalon-inky.vercel.app/#magnet-lab",
+            },
+            {
+              name: "明朗会計・メニュー料金表",
+              path: "#menu",
+              desc: "定額コース・オフ無料・回数券・LINE限定クーポン案内",
+              url: "https://nailsalon-inky.vercel.app/#menu",
+            },
+          ],
+        },
+        {
+          category: "2. メンズ専用サロン（Salon de Fraise HOMME）",
+          badge: "Mens Salon",
+          badgeColor: "bg-slate-800 text-amber-200 border-slate-700",
+          pages: [
+            {
+              name: "メンズサロン トップ画面",
+              path: "/mens",
+              desc: "男性向けダークトーンUI・深爪/爪割れケア・完全個室・男性ネイリスト5名",
+              url: "https://nailsalon-inky.vercel.app/mens",
+              isHighlight: true,
+            },
+            {
+              name: "メンズ公式オンラインショップ",
+              path: "/mens/shop",
+              desc: "自爪風マットネイルチップ・速乾オイル販売・クイック注文コード",
+              url: "https://nailsalon-inky.vercel.app/mens/shop",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "3. 会員プログラム＆予約システム層",
+          badge: "Member & Reservation",
+          badgeColor: "bg-amber-100 text-amber-900 border-amber-200",
+          pages: [
+            {
+              name: "会員マイページ",
+              path: "/mypage",
+              desc: "Regular〜Platinum 4段階ランク進捗・誕生月50%OFFクーポン・保有ポイント",
+              url: "https://nailsalon-inky.vercel.app/mypage",
+              isHighlight: true,
+            },
+            {
+              name: "HotPepper / LINE / 電話 予約",
+              path: "#reservation",
+              desc: "24h即時予約・公式LINE空席カレンダー・電話のマルチ予約動線",
+              url: "https://nailsalon-inky.vercel.app/#reservation",
+            },
+          ],
+        },
+        {
+          category: "4. バックエンドAPI＆インフラ層",
+          badge: "Backend & DB",
+          badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+          pages: [
+            {
+              name: "Spring Boot 3.3 REST API",
+              path: "Java 21 / Spring Boot / Render",
+              desc: "二重予約防止・空き枠計算・排他制御インデックス・会員認証API",
+            },
+            {
+              name: "H2ファイル永続化DB（完全永久無料）",
+              path: "H2 Database / PostgreSQL Mode",
+              desc: "30日失効なし・¥0・無期限・クレジットカード不要の堅牢設計",
+            },
+          ],
+        },
+      ],
+    },
+  },
   {
     id: "oloroso",
     category: "portfolio",

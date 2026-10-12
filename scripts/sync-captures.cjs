@@ -187,10 +187,17 @@ async function main() {
     const proteinMobile = path.join(assetsDir, 'protein-capture-mobile.png');
     const proteinLegacy = path.join(assetsDir, 'protein-capture.png');
 
+    const nailsalonPc = path.join(assetsDir, 'nailsalon-capture-pc.png');
+    const nailsalonMobile = path.join(assetsDir, 'nailsalon-capture-mobile.png');
+    const nailsalonLegacy = path.join(assetsDir, 'nailsalon-capture.png');
+
     const tasks = [
       // Portfolio
       { url: 'http://localhost:4173', outputPath: portfolioPc, width: 1280, height: 800, isMobile: false },
       { url: 'http://localhost:4173', outputPath: portfolioMobile, width: 390, height: 844, isMobile: true, waitMs: 2500 },
+      // Nailsalon (Salon de Fraise)
+      { url: 'https://nailsalon-inky.vercel.app/', outputPath: nailsalonPc, width: 1280, height: 800, isMobile: false, waitMs: 3000 },
+      { url: 'https://nailsalon-inky.vercel.app/', outputPath: nailsalonMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
       // Estudio Oloroso
       { url: 'https://oloroso.vercel.app/', outputPath: olorosoPc, width: 1280, height: 800, isMobile: false },
       { url: 'https://oloroso.vercel.app/', outputPath: olorosoMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
@@ -206,6 +213,7 @@ async function main() {
 
     // Sync legacy files
     fs.copyFileSync(portfolioPc, portfolioLegacy);
+    fs.copyFileSync(nailsalonPc, nailsalonLegacy);
     fs.copyFileSync(olorosoPc, olorosoLegacy);
     fs.copyFileSync(biwakoPc, biwakoLegacy);
     fs.copyFileSync(proteinPc, proteinLegacy);
