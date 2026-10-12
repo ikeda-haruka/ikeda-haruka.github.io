@@ -27,8 +27,9 @@ async function captureWithCDP(edgePath, tasks) {
   const edgeProc = spawn(edgePath, [
     '--headless=new',
     `--remote-debugging-port=${port}`,
+    '--window-size=1280,800',
+    '--force-device-scale-factor=1',
     '--hide-scrollbars',
-    '--disable-gpu',
     'about:blank'
   ]);
 
@@ -103,7 +104,7 @@ async function captureWithCDP(edgePath, tasks) {
       // Capture screenshot
       const { data } = await sendPage('Page.captureScreenshot', {
         format: 'png',
-        clip: { x: 0, y: 0, width: task.width, height: task.height, scale: 1 }
+        captureBeyondViewport: false
       });
 
       fs.writeFileSync(task.outputPath, Buffer.from(data, 'base64'));
