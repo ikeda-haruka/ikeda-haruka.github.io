@@ -13,6 +13,8 @@ import proteinCapturePcImg from "../assets/protein-capture-pc.png";
 import proteinCaptureMobileImg from "../assets/protein-capture-mobile.png";
 import proteinUiDrawerImg from "../assets/protein-ui-drawer.png";
 import proteinUiMarqueeImg from "../assets/protein-ui-marquee.png";
+import proteinUiLineupImg from "../assets/protein-ui-lineup.png";
+import proteinUiDetailImg from "../assets/protein-ui-detail.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -270,11 +272,11 @@ const projectsData: Project[] = [
     categoryLabel: "ポートフォリオ実績用制作物",
     badgeType: "portfolio",
     title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式ブランドサイト",
-    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（LINE連携・会員・採用・動的演出）",
+    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（一覧→個別詳細遷移・細部作り込み・LINE連携・会員・動的演出）",
     description:
-      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。ハンバーガー展開時のカード型ドロワーUI、上下2段で交差して流れる『デュアルトラック・プルーフストリーム』マーキーアニメーション、ユーザーが1日1回投票でき即時グラフに反映される『新作フレーバー総選挙』アンケート投票機能など、動きと遊び心に満ちたモダンなWebデザインを実装。さらに公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
+      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。ライフスタイル別のカード型商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へシームレスに遷移し、主要栄養成分4連カード・★4.8レビュー・原材料表示・返金保証付き定期オファーボックスまで細部を徹底的に作り込んだリッチなEC体験を実現。ハンバーガー展開時のカード型ドロワーUI、上下2段で交差して流れる『デュアルトラック・プルーフストリーム』マーキーアニメーション、ユーザーが1日1回投票でき即時グラフに反映される『新作フレーバー総選挙』アンケート投票機能など、動きと遊び心に満ちたモダンなWebデザインを実装。さらに公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
     overview:
-      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブアンケート機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。洗練されたカード型モバイルドロワーメニューや滑らかなマーキーアニメーションなど、訪問者が楽しみながら回遊できる『遊び心満載のギミック』を散りばめました。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
+      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、カード型商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へのシームレスな遷移動線、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブアンケート機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。商品詳細ページでは栄養成分4連カードや★4.8レビュー、原材料表、レシピ、オファーボックスなど細部まで徹底して作り込み、カード型モバイルドロワーや動くマーキー演出など遊び心満載のギミックを実装。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
     image: proteinCaptureImg,
     imageCaption: "BERRY MILK 公式ブランドサイト トップ画面キャッチ（ファーストビュー）",
     imagePc: proteinCapturePcImg,
@@ -288,6 +290,7 @@ const projectsData: Project[] = [
       "レスポンシブWebデザイン (Mobile First)",
       "LPデザインシステム設計 (イチゴミルク配色)",
       "情報アーキテクチャ (IA) / サイトマップ設計",
+      "EコマースUI設計 (商品一覧カード → 詳細個別ページ遷移)",
       "チケット駆動開発 (GitHub Issues 全45件)",
       "公式LINEアカウント連携 (コンシェルジュ/CRM)",
       "会員認証・マイページ設計 (login.html)",
@@ -301,6 +304,8 @@ const projectsData: Project[] = [
       "Edge Headless (画面キャプチャ自動同期)",
     ],
     features: [
+      "カード型商品一覧（LINEUP）から商品詳細ページへのシームレスな遷移動線: ライフスタイルや利用シーン（毎日の朝食・リフレッシュ・置き換えダイエット・睡眠前）に合わせて選べる4種の商品ラインナップをカード型UIで整理。「詳細を見る →」ボタンから各商品の個別詳細ページ（product-milk.html等）へとスムーズに誘導し、離脱を防ぐ回遊性の高いEC導線を構築",
+      "細部まで徹底的に作り込んだ個別商品詳細ページ（product-milk.html等）: 福岡県産あまおう苺果汁バッジや★4.8（1,280件）のレビュー表示、主要栄養成分4連カード（タンパク質20g/コラーゲン1,500mg/植物性乳酸菌1,000億個/98kcal）、3つのこだわり、詳細な原材料・栄養成分表、美味しい飲み方レシピ（3STEP）、30日間全額返金保証・定期縛りなしのコンバージョンボックスまで、実在のD2Cブランドと遜色ない密度で細部まで実装",
       "ユーザー参加型の遊び心ギミック（新作フレーバー総選挙）: 4つのフレーバー候補から選んで投票すると、閲覧日時点の最新集計グラフへリアルタイム反映されるインタラクティブなアンケート機能を実装。訪問者の滞在時間を延ばしファン化を促すエンタメ体験を創出",
       "動くWEBデザイン演出（デュアルトラック・プルーフストリーム）: ファーストビュー直下で実績数値と製品スペックの2系統が上下で逆方向に滑らかに流れる無限ループCSSマーキーアニメーションを構築。視覚的なリズム感と圧倒的な社会的証明を両立",
       "洗練されたモバイルドロワーメニュー設計: ハンバーガー展開時に全画面で開くドロワー内に、WEB限定特典オファーや会員ログイン導線を最上部に配置。各メニューを丸みのあるカード型UI・可愛い絵文字・英語サブ表記で構造化し、迷わせない直感的なモバイル体験を提供",
@@ -320,11 +325,23 @@ const projectsData: Project[] = [
     demo: "https://protein-sandy.vercel.app/",
     github: "https://github.com/ikeda-haruka/protein",
     issuesUrl: "https://github.com/ikeda-haruka/protein/issues",
-    screenshotsBadge: "UI & Animation",
-    screenshotsTitle: "動的Webデザイン・モバイルUI＆遊び心ギミックギャラリー",
+    screenshotsBadge: "UI & 動線設計",
+    screenshotsTitle: "商品一覧・個別詳細ページ・動的演出＆モバイルUIギャラリー",
     screenshotsNote:
-      "実機検証を重ねたカード型モバイルドロワーメニューや、2段交差で滑らかに流れる「デュアルトラック・プルーフストリーム」マーキー演出など、動きと遊び心にこだわったUI設計のハイライトです。クリックで拡大プレビューできます。",
+      "カード型の商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へのスムーズな遷移動線、主要成分4連カードやオファーボックスなど細部まで作り込んだ詳細ページ、動くマーキー演出、モバイルドロワーまで、実務水準のWeb UI設計のハイライトです。クリックで拡大プレビューできます。",
     screenshots: [
+      {
+        src: proteinUiLineupImg,
+        title: "カード型商品一覧（LINEUP）",
+        caption:
+          "4種（プロテイン・内臓脂肪ケアティー・スムージー・睡眠ケア）の利用シーン、スペック、税込価格をカード型UIで整理。「詳細を見る →」から各商品の詳細個別ページへシームレスに遷移する購買動線を設計。",
+      },
+      {
+        src: proteinUiDetailImg,
+        title: "商品紹介の詳細ページ（BERRY MILK PROTEIN）",
+        caption:
+          "一覧から遷移した先の個別詳細ページ。あまおう苺果汁バッジや楽天3冠・GMP認証、★4.8（1,280件）レビュー、主要栄養成分4連カード（タンパク質20g/コラーゲン1,500mg等）、定期初回20%OFFオファーや返金保証まで細部を徹底的に作り込み。",
+      },
       {
         src: proteinUiDrawerImg,
         title: "モバイルドロワーメニュー（カード型ナビゲーション）",
@@ -355,10 +372,10 @@ const projectsData: Project[] = [
         "本制作では、上記参考サイト（lovely-muffin-d4cf61.netlify.app）の優れたWeb構成・訴求動線をベースに、女性専用インナーケア向けに「イチゴミルク配色」の独自デザインシステムと画面構造を設計・再構築しました。既存資産を分析して新たなターゲット層向けに昇華させるデザイン＆エンジニアリング力を体現しています。",
     },
     siteStructure: {
-      title: "WEBサイト構成図・情報アーキテクチャ（全10+ページ群）",
-      subtitle: "メインLP × 公式LINE連携 × 会員機能 × 会社・採用情報",
+      title: "WEBサイト構成図・情報アーキテクチャ（全14+ページ群）",
+      subtitle: "メインLP × 個別商品詳細 × 公式LINE × 会員機能 × 会社・採用",
       description:
-        "単一のランディングページにとどまらず、D2Cブランドとしての信頼性と顧客体験（LTV）を最大化するため、公式LINEコンシェルジュ連携、定期会員マイページ、ブランドストーリー、品質基準、会社概要、採用情報（新卒・中途）までを包括的に網羅した画面構成・動線設計を構築しています。各リンクから実際のページを確認可能です。",
+        "単一のランディングページにとどまらず、D2Cブランドとしての信頼性と顧客体験（LTV）を最大化するため、カード型商品一覧からの個別商品詳細ページ群（各商品ごとの成分・オファー・レシピ作り込み）、公式LINEコンシェルジュ連携、定期会員マイページ、ブランドストーリー、品質基準、会社概要、採用情報（新卒・中途）までを包括的に網羅した画面構成・動線設計を構築しています。各リンクから実際のページを確認可能です。",
       categories: [
         {
           category: "1. メインLP（集客・訴求層）",
@@ -368,32 +385,65 @@ const projectsData: Project[] = [
             {
               name: "公式LP トップ画面",
               path: "index.html#top",
-              desc: "ファーストビュー・お悩み提起・専門家監修・商品紹介",
+              desc: "ファーストビュー・動的マーキー・お悩み提起・専門家監修",
               url: "https://protein-sandy.vercel.app/",
               isHighlight: true,
             },
             {
-              name: "商品ラインナップ・他社比較",
-              path: "index.html#protein",
-              desc: "3商品展開（プロテイン/お茶/スムージー）・比較表",
-              url: "https://protein-sandy.vercel.app/#protein",
+              name: "カード型商品一覧（LINEUP）",
+              path: "index.html#lineup",
+              desc: "4商品展開（プロテイン/お茶/スムージー/睡眠）・個別詳細への動線",
+              url: "https://protein-sandy.vercel.app/#lineup",
+              isHighlight: true,
             },
             {
               name: "愛用者の声＆フレーバー投票",
               path: "index.html#vote",
-              desc: "リアルクチコミ・次期フレーバー投票（動的UI）",
+              desc: "リアルクチコミ・次期フレーバー投票（1日1回・動的集計UI）",
               url: "https://protein-sandy.vercel.app/#vote",
             },
             {
               name: "よくある質問（FAQ）",
               path: "index.html#faq",
-              desc: "アコーディオン開閉FAQ・返金保証案内",
+              desc: "アコーディオン開閉FAQ・30日間全額返金保証案内",
               url: "https://protein-sandy.vercel.app/#faq",
             },
           ],
         },
         {
-          category: "2. 購入・会員＆LINE連携層",
+          category: "2. 個別商品詳細ページ群（PDP・商品深掘り層）",
+          badge: "Product Detail",
+          badgeColor: "bg-pink-100 text-pink-800 border-pink-200",
+          pages: [
+            {
+              name: "美ボディ苺ミルクプロテイン 詳細",
+              path: "product-milk.html",
+              desc: "★4.8レビュー・成分4大カード・3大こだわり・原材料表・レシピ3選・定期初回オファー",
+              url: "https://protein-sandy.vercel.app/product-milk.html",
+              isHighlight: true,
+            },
+            {
+              name: "内臓脂肪ケアスリムティー 詳細",
+              path: "product-tea.html",
+              desc: "機能性表示食品届出・難消化性デキストリン・3フレーバー仕様",
+              url: "https://protein-sandy.vercel.app/product-tea.html",
+            },
+            {
+              name: "生酵素ベリースムージー 詳細",
+              path: "product-smoothie.html",
+              desc: "チアシード・生酵素120種・置き換えダイエット仕様詳細",
+              url: "https://protein-sandy.vercel.app/product-smoothie.html",
+            },
+            {
+              name: "睡眠ケア プロテイン 詳細",
+              path: "product-night.html",
+              desc: "カゼイン・GABA 100mg・ラベンダーベリー味・夜間リカバリー仕様",
+              url: "https://protein-sandy.vercel.app/product-night.html",
+            },
+          ],
+        },
+        {
+          category: "3. 購入・会員＆LINE連携層",
           badge: "CV & CRM",
           badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
           pages: [
@@ -421,7 +471,7 @@ const projectsData: Project[] = [
           ],
         },
         {
-          category: "3. ブランド・品質ストーリー層",
+          category: "4. ブランド・品質ストーリー層",
           badge: "Brand & Quality",
           badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
           pages: [
@@ -440,7 +490,7 @@ const projectsData: Project[] = [
           ],
         },
         {
-          category: "4. 会社情報・採用情報層",
+          category: "5. 会社情報・採用情報層",
           badge: "Corporate & Recruit",
           badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
           pages: [
@@ -1173,7 +1223,13 @@ export default function Projects() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+              className={`grid grid-cols-1 sm:grid-cols-2 ${
+                project.screenshots.length % 4 === 0
+                  ? "lg:grid-cols-4"
+                  : "lg:grid-cols-3"
+              } gap-4`}
+            >
               {project.screenshots.map((shot, shotIndex) => (
                 <div
                   key={shotIndex}
