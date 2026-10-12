@@ -15,6 +15,7 @@ import proteinUiDrawerImg from "../assets/protein-ui-drawer.png";
 import proteinUiMarqueeImg from "../assets/protein-ui-marquee.png";
 import proteinUiLineupImg from "../assets/protein-ui-lineup.png";
 import proteinUiDetailImg from "../assets/protein-ui-detail.png";
+import proteinUiPollImg from "../assets/protein-ui-poll.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -325,11 +326,17 @@ const projectsData: Project[] = [
     demo: "https://protein-sandy.vercel.app/",
     github: "https://github.com/ikeda-haruka/protein",
     issuesUrl: "https://github.com/ikeda-haruka/protein/issues",
-    screenshotsBadge: "UI & 動線設計",
-    screenshotsTitle: "商品一覧・個別詳細ページ・動的演出＆モバイルUIギャラリー",
+    screenshotsBadge: "UI & Interactive",
+    screenshotsTitle: "動的Webデザイン・モバイルUI＆遊び心ギミックギャラリー",
     screenshotsNote:
-      "カード型の商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へのスムーズな遷移動線、主要成分4連カードやオファーボックスなど細部まで作り込んだ詳細ページ、動くマーキー演出、モバイルドロワーまで、実務水準のWeb UI設計のハイライトです。クリックで拡大プレビューできます。",
+      "ユーザー参加型のアンケート機能「新作フレーバー総選挙」、カード型商品一覧からの詳細個別ページ遷移、動くマーキー演出「デュアルトラック・プルーフストリーム」、カード型モバイルドロワーまで、遊び心と実務品質を兼ね備えたWeb UIハイライトです。クリックで拡大プレビューできます。",
     screenshots: [
+      {
+        src: proteinUiPollImg,
+        title: "アンケート投票機能「新作フレーバー総選挙」",
+        caption:
+          "「次回の新作フレーバーはどれがいい？」をテーマにしたユーザー参加型の遊び心ギミック。キャラメルラテ・マスカットジャスミン・ショコラベリー・アップルシナモンの4候補から1日1回投票可能。閲覧日時点の最新集計データとパーセンテージグラフが即時更新されるリアルタイム同期UIを構築。",
+      },
       {
         src: proteinUiLineupImg,
         title: "カード型商品一覧（LINEUP）",
