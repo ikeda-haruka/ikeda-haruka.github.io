@@ -11,6 +11,8 @@ import portfolioCaptureMobileImg from "../assets/portfolio-capture-mobile.png";
 import proteinCaptureImg from "../assets/protein-capture.png";
 import proteinCapturePcImg from "../assets/protein-capture-pc.png";
 import proteinCaptureMobileImg from "../assets/protein-capture-mobile.png";
+import proteinUiDrawerImg from "../assets/protein-ui-drawer.png";
+import proteinUiMarqueeImg from "../assets/protein-ui-marquee.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -127,6 +129,9 @@ interface Project {
   issuesUrl?: string;
   referenceSite?: ReferenceSite;
   siteStructure?: SiteStructure;
+  screenshotsBadge?: string;
+  screenshotsTitle?: string;
+  screenshotsNote?: string;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
   documentProcessNote?: string;
@@ -265,11 +270,11 @@ const projectsData: Project[] = [
     categoryLabel: "ポートフォリオ実績用制作物",
     badgeType: "portfolio",
     title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式ブランドサイト",
-    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（LINE連携・会員・採用・会社情報）",
+    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（LINE連携・会員・採用・動的演出）",
     description:
-      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。さらに、単一のLPにとどまらず、公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
+      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。ハンバーガー展開時のカード型ドロワーUI、上下2段で交差して流れる『デュアルトラック・プルーフストリーム』マーキーアニメーション、ユーザーが1日1回投票でき即時グラフに反映される『新作フレーバー総選挙』アンケート投票機能など、動きと遊び心に満ちたモダンなWebデザインを実装。さらに公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
     overview:
-      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブ機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
+      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブアンケート機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。洗練されたカード型モバイルドロワーメニューや滑らかなマーキーアニメーションなど、訪問者が楽しみながら回遊できる『遊び心満載のギミック』を散りばめました。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
     image: proteinCaptureImg,
     imageCaption: "BERRY MILK 公式ブランドサイト トップ画面キャッチ（ファーストビュー）",
     imagePc: proteinCapturePcImg,
@@ -296,6 +301,9 @@ const projectsData: Project[] = [
       "Edge Headless (画面キャプチャ自動同期)",
     ],
     features: [
+      "ユーザー参加型の遊び心ギミック（新作フレーバー総選挙）: 4つのフレーバー候補から選んで投票すると、閲覧日時点の最新集計グラフへリアルタイム反映されるインタラクティブなアンケート機能を実装。訪問者の滞在時間を延ばしファン化を促すエンタメ体験を創出",
+      "動くWEBデザイン演出（デュアルトラック・プルーフストリーム）: ファーストビュー直下で実績数値と製品スペックの2系統が上下で逆方向に滑らかに流れる無限ループCSSマーキーアニメーションを構築。視覚的なリズム感と圧倒的な社会的証明を両立",
+      "洗練されたモバイルドロワーメニュー設計: ハンバーガー展開時に全画面で開くドロワー内に、WEB限定特典オファーや会員ログイン導線を最上部に配置。各メニューを丸みのあるカード型UI・可愛い絵文字・英語サブ表記で構造化し、迷わせない直感的なモバイル体験を提供",
       "GitHub Issues全45件によるチケット駆動改善: 要件定義からモバイル実機バグ修正、CVR向上、ビジュアル整合性精査までを課題チケット化し、全45回の高速イテレーションを経て高品質に完成",
       "実機検証に基づくモバイルUXの極限最適化（Issue #16, #24, #30, #33）: モバイルハンバーガーメニュー開閉不具合、Hero要素重複、LINEUPカード画像見切れなどを実機検証で発見し即座にチケット解消",
       "プライバシー・個人情報保護に配慮したレビューUI（Issue #40）: 愛用者の声セクションにおいて実名を非表示とし、イニシャルアイコンおよび年代・職業（例: 28歳・会社員）へ統一して実在ブランド基準のコンプライアンスを徹底",
@@ -312,6 +320,24 @@ const projectsData: Project[] = [
     demo: "https://protein-sandy.vercel.app/",
     github: "https://github.com/ikeda-haruka/protein",
     issuesUrl: "https://github.com/ikeda-haruka/protein/issues",
+    screenshotsBadge: "UI & Animation",
+    screenshotsTitle: "動的Webデザイン・モバイルUI＆遊び心ギミックギャラリー",
+    screenshotsNote:
+      "実機検証を重ねたカード型モバイルドロワーメニューや、2段交差で滑らかに流れる「デュアルトラック・プルーフストリーム」マーキー演出など、動きと遊び心にこだわったUI設計のハイライトです。クリックで拡大プレビューできます。",
+    screenshots: [
+      {
+        src: proteinUiDrawerImg,
+        title: "モバイルドロワーメニュー（カード型ナビゲーション）",
+        caption:
+          "ハンバーガーメニューをタップすると展開されるフルスクリーン・ドロワー。特典オファー・マイページ導線を最上部に配置し、12個のメニューを可愛いアイコン付きカード型UIで整理。片手操作でも迷わない直感的なモバイル体験を実現。",
+      },
+      {
+        src: proteinUiMarqueeImg,
+        title: "動くWEBデザイン「デュアルトラック・プルーフストリーム」",
+        caption:
+          "ファーストビュー直下で実績データ（リピート率92.4%・満足度96.8%等）と商品スペック（飲む美容液・あまおう苺果汁等）の2列が上下で交差しながら無限ループで滑らかに流れるCSSマーキー演出。訪問者の視線を自然に引き込み、高い社会的証明を演出。",
+      },
+    ],
     taskAutomationBanner: {
       badge: "GitHub Issues 全45件クローズ",
       subtitle: "チケット駆動開発によるアジャイルなUI/UX高速イテレーション",
@@ -1126,7 +1152,7 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* CMS管理画面スクリーンショットギャラリー（Web・CMS案件のみ） */}
+        {/* スクリーンショット・UI機能ギャラリー（Web案件） */}
         {project.category !== "graphic" &&
           project.screenshots &&
           project.screenshots.length > 0 && (
@@ -1134,14 +1160,16 @@ export default function Projects() {
             <div className="mb-4">
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold">
-                  CMS
+                  {project.screenshotsBadge || "CMS"}
                 </span>
                 <h4 className="text-base font-bold text-slate-900">
-                  管理画面スクリーンショット（Decap CMS）
+                  {project.screenshotsTitle ||
+                    "管理画面スクリーンショット（Decap CMS）"}
                 </h4>
               </div>
               <p className="text-xs text-slate-500 mt-1">
-                ※管理画面（/admin/）はGitHubアカウント認証による管理者限定アクセスのため、実際の更新画面を掲載しています。クリックで拡大できます。
+                {project.screenshotsNote ||
+                  "※管理画面（/admin/）はGitHubアカウント認証による管理者限定アクセスのため、実際の更新画面を掲載しています。クリックで拡大できます。"}
               </p>
             </div>
 
