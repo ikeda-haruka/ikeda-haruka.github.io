@@ -98,6 +98,27 @@ async function captureWithCDP(edgePath, tasks) {
         });
       }
 
+      // Wait for all images to complete loading
+      try {
+        await sendPage('Runtime.evaluate', {
+          awaitPromise: true,
+          expression: `
+            new Promise((resolve) => {
+              const check = () => {
+                const imgs = Array.from(document.images);
+                if (imgs.every(img => img.complete && (img.naturalWidth > 0 || !img.src))) {
+                  resolve(true);
+                } else {
+                  setTimeout(check, 100);
+                }
+              };
+              check();
+              setTimeout(() => resolve(false), 8000);
+            })
+          `
+        });
+      } catch (e) {}
+
       // Wait for page rendering and animations
       await wait(task.waitMs || (task.isMobile ? 2500 : 2000));
 
@@ -177,7 +198,7 @@ async function main() {
       { url: 'https://biwakogym.com/', outputPath: biwakoPc, width: 1280, height: 800, isMobile: false },
       { url: 'https://biwakogym.com/', outputPath: biwakoMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
       // BERRY MILK (protein-sandy)
-      { url: 'https://protein-sandy.vercel.app/', outputPath: proteinPc, width: 1280, height: 800, isMobile: false },
+      { url: 'https://protein-sandy.vercel.app/', outputPath: proteinPc, width: 1280, height: 800, isMobile: false, waitMs: 3000 },
       { url: 'https://protein-sandy.vercel.app/', outputPath: proteinMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
     ];
 
