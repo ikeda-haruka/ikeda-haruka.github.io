@@ -8,6 +8,9 @@ import biwakogymCaptureMobileImg from "../assets/biwakogym-capture-mobile.png";
 import portfolioCaptureImg from "../assets/portfolio-capture.png";
 import portfolioCapturePcImg from "../assets/portfolio-capture-pc.png";
 import portfolioCaptureMobileImg from "../assets/portfolio-capture-mobile.png";
+import proteinCaptureImg from "../assets/protein-capture.png";
+import proteinCapturePcImg from "../assets/protein-capture-pc.png";
+import proteinCaptureMobileImg from "../assets/protein-capture-mobile.png";
 import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
 import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
 import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
@@ -73,6 +76,13 @@ interface TaskAutomationBanner {
   linkUrl: string;
 }
 
+interface ReferenceSite {
+  url: string;
+  badge?: string;
+  title: string;
+  description: string;
+}
+
 interface Project {
   id: string;
   category: ProjectCategory;
@@ -93,6 +103,7 @@ interface Project {
   github?: string;
   demo?: string;
   issuesUrl?: string;
+  referenceSite?: ReferenceSite;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
   documentProcessNote?: string;
@@ -224,6 +235,56 @@ const projectsData: Project[] = [
         caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
       },
     ],
+  },
+  {
+    id: "protein",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式LP",
+    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム設計＆マルチデバイス開発",
+    description:
+      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ランディングページ（LP）。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。HTML5 / CSS3 / JavaScriptにより、大画面PCからスマートフォンまで完全レスポンシブなモダンWebサイトとして設計・開発しました。",
+    overview:
+      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブ機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。課題や改修タスクはGitHub Issuesでチケット管理し、イテレーティブなUIブラッシュアップを実践しています。",
+    image: proteinCaptureImg,
+    imageCaption: "BERRY MILK 公式LP トップ画面キャッチ（ファーストビュー）",
+    imagePc: proteinCapturePcImg,
+    imageMobile: proteinCaptureMobileImg,
+    imagePcCaption: "BERRY MILK 公式LP PC版トップ画面キャッチ（イチゴミルク配色のファーストビュー）",
+    imageMobileCaption: "BERRY MILK 公式LP スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆CTA）",
+    technologies: [
+      "HTML5",
+      "CSS3 (Flexbox / CSS Grid)",
+      "JavaScript (ES6+)",
+      "レスポンシブWebデザイン (Mobile First)",
+      "LPデザインシステム設計 (イチゴミルク配色)",
+      "Web構成リバースエンジニアリング",
+      "Google Fonts (Barlow Condensed / Noto Sans JP)",
+      "UI/UX設計 (アコーディオン / フレーバー投票 / ドロワーメニュー)",
+      "GitHub Issues (タスク・仕様管理)",
+      "Vercel (CI/CD自動デプロイ)",
+      "Edge Headless (画面キャプチャ自動同期)",
+    ],
+    features: [
+      "リファレンス構成分析（リバースエンジニアリング）: 既存LPの優れた訴求動線を構造化分析し、女性向けブランドに最適化した情報アーキテクチャへ再構築",
+      "独自デザインシステム構築: いちごミルクを象徴するパステルピンク（#FF7597）、ベリーレッド、ミルクホワイトの洗練された配色パレットとフォントタイポグラフィを策定",
+      "スマートフォンファースト設計: モバイルドロワーメニュー、常時固定ヘッダー、視線誘導を高めるオファーボタン、スムーズスクロールの実装",
+      "インタラクティブUI: 次期フレーバー人気投票機能、開閉可能なFAQアコーディオン、カルーセル・タブ切り替え等のユーザー体験演出",
+      "商品バリエーション展開: あまおう苺ミルクプロテイン（900g）、内臓脂肪ケアティー（30包）、生酵素ベリースムージー（750g）の3プロダクト詳細設計",
+      "社会的証明・CVR最適化: 管理栄養士監修、他社製品との詳細比較マトリクス表、リアルな愛用者レビュー、安心の30日間返金保証・縛りなし明記",
+      "GitHub Issuesによるタスク管理: デザイン改善や機能追加、マルチデバイス調整の課題をチケット駆動で可視化・推進",
+    ],
+    demo: "https://protein-sandy.vercel.app/",
+    github: "https://github.com/ikeda-haruka/protein",
+    issuesUrl: "https://github.com/ikeda-haruka/protein/issues",
+    referenceSite: {
+      url: "https://lovely-muffin-d4cf61.netlify.app/",
+      badge: "構成リファレンス元",
+      title: "既存Web構成（SPプロテイン LP）のリバースエンジニアリングと再構築",
+      description:
+        "本制作では、上記参考サイト（lovely-muffin-d4cf61.netlify.app）の優れたWeb構成・訴求動線をベースに、女性専用インナーケア向けに「イチゴミルク配色」の独自デザインシステムと画面構造を設計・再構築しました。既存資産を分析して新たなターゲット層向けに昇華させるデザイン＆エンジニアリング力を体現しています。",
+    },
   },
   {
     id: "portfolio",
@@ -1260,7 +1321,48 @@ export default function Projects() {
           </div>
         )}
 
-        {(project.demo || project.github || project.issuesUrl) && (
+        {/* 参考Web構成リファレンス・デザインシステム設計バナー */}
+        {project.referenceSite && (
+          <div className="mt-8 p-5 sm:p-6 bg-gradient-to-br from-rose-50/80 via-pink-50/40 to-slate-50/80 rounded-2xl border border-rose-200 text-slate-900 shadow-xs">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-300 flex items-center justify-center shrink-0 text-2xl shadow-inner">
+                  🍓
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 border border-rose-200">
+                      {project.referenceSite.badge || "構成リファレンス元"}
+                    </span>
+                    <span className="text-xs text-rose-600 font-semibold">
+                      既存LP構成のリバースエンジニアリング＆再設計
+                    </span>
+                  </div>
+                  <h5 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                    {project.referenceSite.title}
+                  </h5>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed max-w-2xl">
+                    {project.referenceSite.description}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={project.referenceSite.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer self-start md:self-auto"
+              >
+                <span>参考サイトを見る</span>
+                <span className="text-xs">↗</span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        {(project.demo ||
+          project.github ||
+          project.issuesUrl ||
+          project.referenceSite) && (
           <div className="mt-8 flex flex-wrap gap-3 pt-4 border-t border-slate-100">
             {project.demo && (
               <a
@@ -1292,6 +1394,17 @@ export default function Projects() {
                 className="inline-flex items-center px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold rounded-xl transition-all text-sm shadow-2xs hover:shadow-xs"
               >
                 <span>📋 GitHub Issues（タスク管理）</span>
+                <span className="ml-1.5">↗</span>
+              </a>
+            )}
+            {project.referenceSite && (
+              <a
+                href={project.referenceSite.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-5 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold rounded-xl transition-all text-sm shadow-2xs hover:shadow-xs"
+              >
+                <span>🔍 参考サイト（構成ベース元）</span>
                 <span className="ml-1.5">↗</span>
               </a>
             )}

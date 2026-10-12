@@ -161,6 +161,10 @@ async function main() {
     const biwakoMobile = path.join(assetsDir, 'biwakogym-capture-mobile.png');
     const biwakoLegacy = path.join(assetsDir, 'biwakogym-capture.png');
 
+    const proteinPc = path.join(assetsDir, 'protein-capture-pc.png');
+    const proteinMobile = path.join(assetsDir, 'protein-capture-mobile.png');
+    const proteinLegacy = path.join(assetsDir, 'protein-capture.png');
+
     const tasks = [
       // Portfolio
       { url: 'http://localhost:4173', outputPath: portfolioPc, width: 1280, height: 800, isMobile: false },
@@ -171,6 +175,9 @@ async function main() {
       // BIWAKO GYM
       { url: 'https://biwakogym.com/', outputPath: biwakoPc, width: 1280, height: 800, isMobile: false },
       { url: 'https://biwakogym.com/', outputPath: biwakoMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
+      // BERRY MILK (protein-sandy)
+      { url: 'https://protein-sandy.vercel.app/', outputPath: proteinPc, width: 1280, height: 800, isMobile: false },
+      { url: 'https://protein-sandy.vercel.app/', outputPath: proteinMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
     ];
 
     await captureWithCDP(edgePath, tasks);
@@ -179,6 +186,7 @@ async function main() {
     fs.copyFileSync(portfolioPc, portfolioLegacy);
     fs.copyFileSync(olorosoPc, olorosoLegacy);
     fs.copyFileSync(biwakoPc, biwakoLegacy);
+    fs.copyFileSync(proteinPc, proteinLegacy);
 
     console.log('\n🎉 All screen captures successfully synchronized with true mobile emulation!');
   } finally {
