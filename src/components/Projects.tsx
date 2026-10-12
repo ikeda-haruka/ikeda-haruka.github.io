@@ -83,6 +83,28 @@ interface ReferenceSite {
   description: string;
 }
 
+interface SitePageItem {
+  name: string;
+  path: string;
+  desc: string;
+  url?: string;
+  isHighlight?: boolean;
+}
+
+interface SiteMapCategory {
+  category: string;
+  badge?: string;
+  badgeColor?: string;
+  pages: SitePageItem[];
+}
+
+interface SiteStructure {
+  title: string;
+  subtitle: string;
+  description: string;
+  categories: SiteMapCategory[];
+}
+
 interface Project {
   id: string;
   category: ProjectCategory;
@@ -104,6 +126,7 @@ interface Project {
   demo?: string;
   issuesUrl?: string;
   referenceSite?: ReferenceSite;
+  siteStructure?: SiteStructure;
   screenshots?: Screenshot[];
   documents?: ProjectDocument[];
   documentProcessNote?: string;
@@ -241,24 +264,28 @@ const projectsData: Project[] = [
     category: "portfolio",
     categoryLabel: "ポートフォリオ実績用制作物",
     badgeType: "portfolio",
-    title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式LP",
-    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム設計＆マルチデバイス開発",
+    title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式ブランドサイト",
+    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（LINE連携・会員・採用・会社情報）",
     description:
-      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ランディングページ（LP）。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。HTML5 / CSS3 / JavaScriptにより、大画面PCからスマートフォンまで完全レスポンシブなモダンWebサイトとして設計・開発しました。",
+      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。さらに、単一のLPにとどまらず、公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
     overview:
-      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブ機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。課題や改修タスクはGitHub Issuesでチケット管理し、イテレーティブなUIブラッシュアップを実践しています。",
+      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、商品詳細（プロテイン・内臓脂肪ケアティー・生酵素スムージー）、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブ機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
     image: proteinCaptureImg,
-    imageCaption: "BERRY MILK 公式LP トップ画面キャッチ（ファーストビュー）",
+    imageCaption: "BERRY MILK 公式ブランドサイト トップ画面キャッチ（ファーストビュー）",
     imagePc: proteinCapturePcImg,
     imageMobile: proteinCaptureMobileImg,
-    imagePcCaption: "BERRY MILK 公式LP PC版トップ画面キャッチ（イチゴミルク配色のファーストビュー）",
-    imageMobileCaption: "BERRY MILK 公式LP スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆CTA）",
+    imagePcCaption: "BERRY MILK 公式ブランドサイト PC版トップ画面キャッチ（イチゴミルク配色のファーストビュー）",
+    imageMobileCaption: "BERRY MILK 公式ブランドサイト スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆CTA）",
     technologies: [
       "HTML5",
       "CSS3 (Flexbox / CSS Grid)",
       "JavaScript (ES6+)",
       "レスポンシブWebデザイン (Mobile First)",
       "LPデザインシステム設計 (イチゴミルク配色)",
+      "情報アーキテクチャ (IA) / サイトマップ設計",
+      "公式LINEアカウント連携 (コンシェルジュ/CRM)",
+      "会員認証・マイページ設計 (login.html)",
+      "コーポレート・採用ページ設計 (company / recruit)",
       "Web構成リバースエンジニアリング",
       "Google Fonts (Barlow Condensed / Noto Sans JP)",
       "UI/UX設計 (アコーディオン / フレーバー投票 / ドロワーメニュー)",
@@ -267,7 +294,11 @@ const projectsData: Project[] = [
       "Edge Headless (画面キャプチャ自動同期)",
     ],
     features: [
-      "リファレンス構成分析（リバースエンジニアリング）: 既存LPの優れた訴求動線を構造化分析し、女性向けブランドに最適化した情報アーキテクチャへ再構築",
+      "公式LINEコンシェルジュ連携: 専任女性コンシェルジュ・管理栄養士への24時間相談窓口および次回お届け周期のスキップ・変更をLINEから行えるCRM動線を設計・実装",
+      "会員用ログインページ・定期マイページ設計（login.html）: 会員ログイン認証UI、パスワード再設定、定期購入ステータス管理への導線を完備",
+      "コーポレート・採用情報ページの展開（company.html / recruit）: 会社概要、SANDYグループ系列企業情報、新卒採用・中途採用の各募集ページを完備し、ブランドとしての社会的信用を確立",
+      "ブランドストーリー＆品質基準サブページ: 女性開発チームの秘話（story.html）や国内GMP認定工場の安心安全基準（quality.html）を設け、購入前の不安を払拭する信頼設計",
+      "リファレンス構成分析（リバースエンジニアリング）: 既存LPの優れた訴求動線を構造化分析し、女性向けインナーケアブランドに最適化した情報アーキテクチャへ再構築",
       "独自デザインシステム構築: いちごミルクを象徴するパステルピンク（#FF7597）、ベリーレッド、ミルクホワイトの洗練された配色パレットとフォントタイポグラフィを策定",
       "スマートフォンファースト設計: モバイルドロワーメニュー、常時固定ヘッダー、視線誘導を高めるオファーボタン、スムーズスクロールの実装",
       "インタラクティブUI: 次期フレーバー人気投票機能、開閉可能なFAQアコーディオン、カルーセル・タブ切り替え等のユーザー体験演出",
@@ -284,6 +315,127 @@ const projectsData: Project[] = [
       title: "既存Web構成（SPプロテイン LP）のリバースエンジニアリングと再構築",
       description:
         "本制作では、上記参考サイト（lovely-muffin-d4cf61.netlify.app）の優れたWeb構成・訴求動線をベースに、女性専用インナーケア向けに「イチゴミルク配色」の独自デザインシステムと画面構造を設計・再構築しました。既存資産を分析して新たなターゲット層向けに昇華させるデザイン＆エンジニアリング力を体現しています。",
+    },
+    siteStructure: {
+      title: "WEBサイト構成図・情報アーキテクチャ（全10+ページ群）",
+      subtitle: "メインLP × 公式LINE連携 × 会員機能 × 会社・採用情報",
+      description:
+        "単一のランディングページにとどまらず、D2Cブランドとしての信頼性と顧客体験（LTV）を最大化するため、公式LINEコンシェルジュ連携、定期会員マイページ、ブランドストーリー、品質基準、会社概要、採用情報（新卒・中途）までを包括的に網羅した画面構成・動線設計を構築しています。各リンクから実際のページを確認可能です。",
+      categories: [
+        {
+          category: "1. メインLP（集客・訴求層）",
+          badge: "Main LP",
+          badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
+          pages: [
+            {
+              name: "公式LP トップ画面",
+              path: "index.html#top",
+              desc: "ファーストビュー・お悩み提起・専門家監修・商品紹介",
+              url: "https://protein-sandy.vercel.app/",
+              isHighlight: true,
+            },
+            {
+              name: "商品ラインナップ・他社比較",
+              path: "index.html#protein",
+              desc: "3商品展開（プロテイン/お茶/スムージー）・比較表",
+              url: "https://protein-sandy.vercel.app/#protein",
+            },
+            {
+              name: "愛用者の声＆フレーバー投票",
+              path: "index.html#vote",
+              desc: "リアルクチコミ・次期フレーバー投票（動的UI）",
+              url: "https://protein-sandy.vercel.app/#vote",
+            },
+            {
+              name: "よくある質問（FAQ）",
+              path: "index.html#faq",
+              desc: "アコーディオン開閉FAQ・返金保証案内",
+              url: "https://protein-sandy.vercel.app/#faq",
+            },
+          ],
+        },
+        {
+          category: "2. 購入・会員＆LINE連携層",
+          badge: "CV & CRM",
+          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+          pages: [
+            {
+              name: "初回特別オファー・購入",
+              path: "offer.html",
+              desc: "定期割引・30日間返金保証付きの専用購入フォーム",
+              url: "https://protein-sandy.vercel.app/offer.html",
+              isHighlight: true,
+            },
+            {
+              name: "公式LINEコンシェルジュ",
+              path: "line.me/@460hfpvz",
+              desc: "LINE友だち連携・24時間チャット相談・スキップ窓口",
+              url: "https://line.me/R/ti/p/@460hfpvz",
+              isHighlight: true,
+            },
+            {
+              name: "会員ログイン・マイページ",
+              path: "login.html",
+              desc: "定期購入コースの配送日変更・スキップ・会員認証",
+              url: "https://protein-sandy.vercel.app/login.html",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "3. ブランド・品質ストーリー層",
+          badge: "Brand & Quality",
+          badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+          pages: [
+            {
+              name: "女性開発チームの秘話",
+              path: "story.html",
+              desc: "ブランド誕生の背景・女性向け開発エピソード",
+              url: "https://protein-sandy.vercel.app/story.html",
+            },
+            {
+              name: "品質基準・安心へのこだわり",
+              path: "quality.html",
+              desc: "国内GMP認定工場・厳選原料・安全性検査の公開",
+              url: "https://protein-sandy.vercel.app/quality.html",
+            },
+          ],
+        },
+        {
+          category: "4. 会社情報・採用情報層",
+          badge: "Corporate & Recruit",
+          badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+          pages: [
+            {
+              name: "会社概要・企業情報",
+              path: "company.html",
+              desc: "運営企業情報（SANDYグループ系列）・理念・沿革",
+              url: "https://protein-sandy.vercel.app/company.html",
+              isHighlight: true,
+            },
+            {
+              name: "新卒採用情報",
+              path: "recruit-newgrad.html",
+              desc: "新卒募集要項・求める人物像・選考フロー",
+              url: "https://protein-sandy.vercel.app/recruit-newgrad.html",
+              isHighlight: true,
+            },
+            {
+              name: "中途採用情報",
+              path: "recruit-midcareer.html",
+              desc: "キャリア募集・各職種案内",
+              url: "https://protein-sandy.vercel.app/recruit-midcareer.html",
+              isHighlight: true,
+            },
+            {
+              name: "特定商取引法 / プライバシー",
+              path: "tokushoho.html / privacy.html",
+              desc: "EC運営に必要な法定表記および個人情報保護方針",
+              url: "https://protein-sandy.vercel.app/tokushoho.html",
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -1317,6 +1469,100 @@ export default function Projects() {
                 <span>{project.taskAutomationBanner.linkText}</span>
                 <span className="text-xs">↗</span>
               </a>
+            </div>
+          </div>
+        )}
+
+        {/* WEBサイト構成図・サイトマップ（情報アーキテクチャ） */}
+        {project.siteStructure && (
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mb-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200/80">
+                  SITE ARCHITECTURE
+                </span>
+                <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                  {project.siteStructure.title}
+                </h4>
+                <span className="text-xs text-rose-600 font-semibold">
+                  {project.siteStructure.subtitle}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                {project.siteStructure.description}
+              </p>
+            </div>
+
+            {/* サイト構成グリッド（4層カテゴリ別） */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {project.siteStructure.categories.map((cat, catIdx) => (
+                <div
+                  key={catIdx}
+                  className="bg-slate-50/90 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-2xs hover:border-rose-300 transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-200">
+                      <span className="text-xs font-bold text-slate-800">
+                        {cat.category}
+                      </span>
+                      {cat.badge && (
+                        <span
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                            cat.badgeColor ||
+                            "bg-slate-100 text-slate-700 border-slate-200"
+                          }`}
+                        >
+                          {cat.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <ul className="space-y-2.5">
+                      {cat.pages.map((page, pageIdx) => (
+                        <li
+                          key={pageIdx}
+                          className={`p-2.5 rounded-xl border transition-all text-xs ${
+                            page.isHighlight
+                              ? "bg-white border-rose-200 shadow-2xs"
+                              : "bg-white/60 border-slate-200/80"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span className="font-bold text-slate-800 flex items-center gap-1.5">
+                              {page.isHighlight && (
+                                <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                              )}
+                              <span>{page.name}</span>
+                            </span>
+                            {page.url && (
+                              <a
+                                href={page.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[10px] font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-0.5 px-1.5 py-0.5 rounded hover:bg-rose-50 transition-colors shrink-0"
+                                title="実際のページを開く"
+                              >
+                                <span>開く</span>
+                                <span>↗</span>
+                              </a>
+                            )}
+                          </div>
+                          <span className="text-[10px] font-mono text-slate-400 block mt-0.5">
+                            {page.path}
+                          </span>
+                          <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                            {page.desc}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-3 pt-2 text-[10px] text-slate-400 border-t border-slate-200/60 text-right">
+                    全 {cat.pages.length} 画面・導線
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
