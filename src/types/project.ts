@@ -34,6 +34,43 @@ export interface FlowStep {
   tone: "blue" | "green" | "purple" | "red";
 }
 
+export interface ArchitectureCard {
+  title: string;
+  detail: string;
+}
+
+export interface ArchitectureGroup {
+  title: string;
+  description?: string;
+  cards: ArchitectureCard[];
+  tone?: "blue" | "slate" | "indigo" | "emerald";
+}
+
+export interface ArchitectureVariant {
+  label: string; // 例: "レガシー版" / "モダナイゼーション後版"
+  description: string;
+  steps: FlowStep[];
+  groups?: ArchitectureGroup[];
+  note?: string;
+}
+
+export interface ArchitectureHighlight {
+  title: string;
+  items: string[];
+}
+
+export interface SystemArchitecture {
+  title: string;
+  subtitle?: string;
+  description: string;
+  steps?: FlowStep[];
+  flowLabel?: string;
+  variants?: ArchitectureVariant[]; // chemical などの移行前後比較
+  groups?: ArchitectureGroup[];
+  highlights?: ArchitectureHighlight[]; // 主な機能・連携、主な成果
+  note?: string;
+}
+
 export interface CreationStep {
   number: string;
   title: string;
@@ -102,6 +139,7 @@ export interface Project {
   issuesUrl?: string;
   referenceSite?: ReferenceSite;
   siteStructure?: SiteStructure;
+  architecture?: SystemArchitecture; // システム構成・アーキテクチャ
   screenshotsBadge?: string;
   screenshotsTitle?: string;
   screenshotsNote?: string;

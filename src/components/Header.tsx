@@ -2,31 +2,18 @@ import { useState } from "react";
 
 interface HeaderProps {
   onNavClick: (
-    section:
-      | "profile"
-      | "skills"
-      | "experience"
-      | "projects"
-      | "architecture"
-      | "contact",
+    section: "profile" | "skills" | "experience" | "projects" | "contact",
   ) => void;
 }
 
 export default function Header({ onNavClick }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  type SectionId =
-    | "profile"
-    | "skills"
-    | "experience"
-    | "projects"
-    | "architecture"
-    | "contact";
+  type SectionId = "profile" | "skills" | "experience" | "projects" | "contact";
 
   const sections: { name: string; id: SectionId }[] = [
     { name: "制作実績", id: "projects" },
     { name: "スキル・領域", id: "skills" },
-    { name: "システム構成", id: "architecture" },
     { name: "経歴・バックグラウンド", id: "experience" },
     { name: "お問い合わせ", id: "contact" },
   ];

@@ -4,7 +4,6 @@ import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import ProjectDetailPage from "./components/ProjectDetailPage";
 import Skills from "./components/Skills";
-import Architecture from "./components/Architecture";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -20,7 +19,6 @@ type SectionKey =
   | "profile"
   | "projects"
   | "skills"
-  | "architecture"
   | "experience"
   | "contact";
 
@@ -32,7 +30,6 @@ function App() {
   const profileRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
-  const architectureRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +38,6 @@ function App() {
       profile: profileRef,
       projects: projectsRef,
       skills: skillsRef,
-      architecture: architectureRef,
       experience: experienceRef,
       contact: contactRef,
     };
@@ -130,11 +126,6 @@ function App() {
       {/* スキル・対応領域（Adobe認定資格統合） */}
       <div ref={skillsRef}>
         <Skills />
-      </div>
-
-      {/* システム構成・アーキテクチャ実績 */}
-      <div ref={architectureRef}>
-        <Architecture />
       </div>
 
       {/* 経歴・バックグラウンド */}

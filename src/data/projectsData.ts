@@ -228,6 +228,78 @@ export const projectsData: Project[] = [
         },
       ],
     },
+    architecture: {
+      title: "サロンDXシステム構成・フルスタックアーキテクチャ",
+      subtitle: "Next.js 19 × Spring Boot 3.3 × Render永久無料H2ファイル永続化",
+      description:
+        "20〜30代向け大人可愛い世界観のレディース本館、メンズ専用サロン（HOMME）、会員マイページ、公式ECのマルチフロントエンドと、Java 21 / Spring Boot 3.3による堅牢な予約・会員APIバックエンドを有機的に連携。RenderマネージドPostgreSQLの30日失効制約を解消する『組み込みH2ファイル永続化』による完全永久無料アーキテクチャを確立しました。",
+      steps: [
+        {
+          title: "Webブラウザ / スマホ",
+          detail: "レディース本館・メンズHOMME・公式EC・マイページ",
+          tone: "blue",
+        },
+        {
+          title: "フロントエンド基盤",
+          detail: "Next.js 19 / TypeScript / Vercel (CI/CD)",
+          tone: "green",
+        },
+        {
+          title: "REST API バックエンド",
+          detail: "Java 21 / Spring Boot 3.3 (Render無料枠)",
+          tone: "purple",
+        },
+        {
+          title: "ファイル永続化DB",
+          detail: "H2 Database (PostgreSQL互換・完全無料)",
+          tone: "red",
+        },
+      ],
+      flowLabel: "エンドユーザーアクセスからバックエンド永続化までの処理フロー",
+      groups: [
+        {
+          title: "排他制御・データベース設計",
+          description:
+            "二重予約を物理的に遮断し、空席を高速判定する複合インデックス設計",
+          tone: "indigo",
+          cards: [
+            {
+              title: "複合インデックス (idx_reservations_slot)",
+              detail: "日付・開始終了時間・スロットの重複予約を物理的に遮断",
+            },
+            {
+              title: "指名インデックス (idx_reservations_staff)",
+              detail: "同一時間帯におけるネイリスト指名の重複予約を完全防止",
+            },
+            {
+              title: "ファイル永続化モード",
+              detail: "DB再起動でもデータが消えない永久無料ファイルストレージ",
+            },
+          ],
+        },
+        {
+          title: "マルチ予約・外部サービス連携",
+          tone: "blue",
+          cards: [
+            { title: "HotPepper Beauty", detail: "24h即時予約システム連携" },
+            { title: "公式LINE友だち", detail: "空席カレンダー・チャット相談窓口" },
+            { title: "電話予約動線", detail: "店舗直通ワンタップ発信" },
+            { title: "GitHub Issues", detail: "全20件の課題・チケット駆動管理" },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "完全永久無料アーキテクチャの確立（Issue #20, #15, #16）",
+          items: [
+            "RenderマネージドPostgreSQLの30日失効制約を排した組み込みH2ファイル永続化モードの導入",
+            "クレジットカード登録不要・無期限・完全無料で稼働するSpring Boot 3.3 REST APIの実現",
+            "JPA/Hibernateによるトランザクション分離レベル設定と排他制御の担保",
+          ],
+        },
+      ],
+      note: "RenderマネージドPostgreSQLの30日失効制約を回避するため、組み込みH2ファイル永続化を採用し完全永久無料（クレカ不要・無期限・¥0）稼働を実現",
+    },
   },
   {
     id: "oloroso",
@@ -361,6 +433,83 @@ export const projectsData: Project[] = [
         caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
       },
     ],
+    architecture: {
+      title: "モダンWeb ＆ ヘッドレスCMSアーキテクチャ",
+      subtitle: "Next.js (App Router) × Decap CMS × GitHub OAuth連携",
+      description:
+        "Next.jsのハイブリッドレンダリング（SSG/SSR）と、GitベースのヘッドレスCMS（Decap CMS）を連携。非エンジニアでも管理画面（/admin/）からお知らせやブログを直接更新でき、GitHubリポジトリへのMarkdown自動保存とVercelのCI/CD自動デプロイが連動する運用コスト最小化アーキテクチャです。",
+      steps: [
+        {
+          title: "閲覧者 / スタッフ",
+          detail: "Webサイト閲覧 ／ CMS管理画面 (/admin/)",
+          tone: "blue",
+        },
+        {
+          title: "認証・Route Handler",
+          detail: "Next.js OAuth Route Handler (GitHub API連携)",
+          tone: "purple",
+        },
+        {
+          title: "コンテンツ管理基盤",
+          detail: "Decap CMS (Git直結・Markdown保存)",
+          tone: "green",
+        },
+        {
+          title: "ビルド・ホスティング",
+          detail: "Vercel SSG/SSR (自動CI/CDデプロイ)",
+          tone: "red",
+        },
+      ],
+      flowLabel: "コンテンツ更新から静的サイト生成・公開までのフロー",
+      groups: [
+        {
+          title: "コンテンツ・データ構造",
+          tone: "indigo",
+          cards: [
+            {
+              title: "お知らせコレクション",
+              detail: "休講情報・代講・発表会通知 (Markdown / Frontmatter)",
+            },
+            {
+              title: "ブログコレクション",
+              detail: "アイキャッチ画像・カテゴリー・Markdownエディタ連携",
+            },
+            {
+              title: "スタジオ設定",
+              detail: "所在地・営業時間・SEOメタデータなどのサイト共通設定を一元管理",
+            },
+          ],
+        },
+        {
+          title: "開発・SEO・外部連携",
+          tone: "slate",
+          cards: [
+            {
+              title: "GitHub OAuth認証",
+              detail: "外部認証サーバー不要のRoute HandlerによるセキュアCMS連携",
+            },
+            {
+              title: "JSON-LD構造化データ",
+              detail: "DanceStudio / LocalBusiness 準拠の地域SEO対策",
+            },
+            {
+              title: "チケット駆動開発",
+              detail: "初期Excel要件定義からGitHub Issuesへ全タスクを移行して管理",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "ヘッドレスCMS運用設計のポイント",
+          items: [
+            "非エンジニアのスタッフ・講師でもブラウザから手軽に休講情報やブログをリアルタイムプレビュー更新可能",
+            "データベースサーバー不要のGitベース（Markdownファイル）永続化による高可用性と低運用コストの両立",
+            "Next.js App Routerの静的生成（SSG）による高速表示パフォーマンス",
+          ],
+        },
+      ],
+    },
   },
   {
     id: "protein",
@@ -638,6 +787,83 @@ export const projectsData: Project[] = [
         },
       ],
     },
+    architecture: {
+      title: "D2CブランドWebサイト・情報アーキテクチャ＆システム構成",
+      subtitle: "レスポンシブWeb LP × 個別商品PDP × 公式LINE × 会員ログイン",
+      description:
+        "既存Web構成のリバースエンジニアリング分析を基盤に、単一LPを超えて商品個別詳細ページ群（PDP）、公式LINEコンシェルジュ、定期会員マイページ、動的演出ギミックまでを有機的に結合した総合D2C情報アーキテクチャです。",
+      steps: [
+        {
+          title: "一般訪問者・ターゲット層",
+          detail: "スマホ / PC からのLPアクセス・回遊",
+          tone: "blue",
+        },
+        {
+          title: "動的Webデザイン層",
+          detail: "デュアルトラック・プルーフストリーム / フレーバー総選挙",
+          tone: "purple",
+        },
+        {
+          title: "Eコマース回遊層",
+          detail: "LINEUP商品一覧 → 個別商品詳細 (4連成分・定期オファー)",
+          tone: "green",
+        },
+        {
+          title: "CRM・会員基盤",
+          detail: "公式LINEコンシェルジュ / 定期会員ログイン (login.html)",
+          tone: "red",
+        },
+      ],
+      flowLabel: "集客から商品深掘り・CRM連携までの顧客体験フロー",
+      groups: [
+        {
+          title: "動的UI・ギミック設計",
+          tone: "indigo",
+          cards: [
+            {
+              title: "新作フレーバー総選挙",
+              detail: "1日1回投票・リアルタイムグラフ集計UI",
+            },
+            {
+              title: "デュアルトラック・マーキー",
+              detail: "実績数値×スペックの2段交差ループ演出",
+            },
+            {
+              title: "カード型モバイルドロワー",
+              detail: "全12メニュー・可愛い絵文字付き直感ナビ",
+            },
+          ],
+        },
+        {
+          title: "インフラ・品質管理・開発基盤",
+          tone: "slate",
+          cards: [
+            {
+              title: "ホスティング",
+              detail: "Vercel による高速静的エッジ配信とCI/CDパイプライン",
+            },
+            {
+              title: "チケット駆動開発",
+              detail: "GitHub Issues 全45件クローズ達成による高速イテレーション",
+            },
+            {
+              title: "画面同期自動化",
+              detail: "Edgeヘッドレス自動スクリーンショット同期ツールの整備",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "D2Cブランドサイトとしての情報設計（IA）の工夫",
+          items: [
+            "カード型商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へのシームレスな回遊設計",
+            "女性専任コンシェルジュ・管理栄養士相談および次回配送変更ができる公式LINE（CRM）連携",
+            "新卒・中途採用情報、会社概要、開発秘話ストーリー、GMP品質基準を完備し社会的信頼を獲得",
+          ],
+        },
+      ],
+    },
   },
   {
     id: "portfolio",
@@ -747,6 +973,88 @@ export const projectsData: Project[] = [
     ],
     flowNote:
       "閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。",
+    architecture: {
+      title: "ポートフォリオ制作・CI/CD ＆ 開発自動化アーキテクチャ",
+      subtitle:
+        "React 19 × Vite × GitHub Issues自動起票Bot × Edge自動撮影 × GitHub Actions",
+      description:
+        "開発要件発生からGitHub REST API経由での自動Issueチケット起票、最新本番成果物のEdgeヘッドレスによるPC/スマホマルチデバイス自動撮影・アセット同期、そしてGitHub ActionsによるGitHub Pagesへの完全自動デプロイまでを自作ツールで一気通貫させた継続的自動化アーキテクチャです。",
+      steps: [
+        {
+          title: "React 19 / TypeScript",
+          detail: "画面をコンポーネント単位で型安全に実装",
+          tone: "blue",
+        },
+        {
+          title: "Vite 高速ビルド",
+          detail: "型チェック後に高速かつ軽量に本番向けバンドル",
+          tone: "purple",
+        },
+        {
+          title: "Edge Headless 自動撮影",
+          detail: "PC版(1280px)＆スマホ版(390px)を自動キャプチャ同期",
+          tone: "green",
+        },
+        {
+          title: "GitHub Pages (CI/CD)",
+          detail: "GitHub Actionsを通じて完全自動デプロイ・公開",
+          tone: "red",
+        },
+      ],
+      flowLabel: "自作開発自動化ツール群とCI/CDパイプラインの流れ",
+      groups: [
+        {
+          title: "自作開発自動化ツール群",
+          tone: "indigo",
+          cards: [
+            {
+              title: "GitHub Issues 自動起票Bot",
+              detail:
+                "REST API & Git Credential Manager連携で依頼内容を自動チケット化",
+            },
+            {
+              title: "Edgeヘッドレス画面同期スクリプト",
+              detail:
+                "最新ビルドからPC/スマホ実機スクリーンショットを常時自動更新",
+            },
+            {
+              title: "チケット自動完了連携",
+              detail:
+                "コミットメッセージ（Closes #XX）で関連Issueを自動クローズ",
+            },
+          ],
+        },
+        {
+          title: "フロントエンド技術スタック",
+          tone: "slate",
+          cards: [
+            {
+              title: "Tailwind CSS v4",
+              detail: "最新ユーティリティ＆グラスモーフィズム演出",
+            },
+            {
+              title: "ハッシュルーティング",
+              detail:
+                "GitHub Pages環境での404回避・直リンク共有（#/project/:id）対応",
+            },
+            {
+              title: "日本語タイポグラフィ",
+              detail: "禁則処理・ブロック分割による不自然な改行防止",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "エンジニアとしての自動化推進力",
+          items: [
+            "要件定義からGitHub Issues起票・コミット連携・本番公開までを完全自動化",
+            "ブラウザ完結の高速静的SPA構成により、表示パフォーマンスとセキュアな配信を両立",
+          ],
+        },
+      ],
+      note: "閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。",
+    },
   },
   {
     id: "biwakogym",
@@ -795,6 +1103,57 @@ export const projectsData: Project[] = [
       "店舗情報（営業時間・定休日・電話・マップ・料金表）を迷わず確認できるアクセシビリティ設計",
     ],
     demo: "https://biwakogym.com/",
+    architecture: {
+      title: "ジム公式Webサイト構成・制作アーキテクチャ",
+      subtitle:
+        "HTML5/CSS3/JavaScript × 2名共同開発 × Schema.org 地域SEO",
+      description:
+        "「もう、ジムで迷わない。」をコンセプトに、2名体制での役割分担・コードレビューを通じた効率的なフロントエンド共同開発を推進。無料体験コンバージョン動線と、Schema.org準拠の地域SEO（MEO）構造化データを実装しました。",
+      steps: [
+        {
+          title: "閲覧者（PC / スマホ）",
+          detail: "レスポンシブWebデザインによる快適な閲覧体験",
+          tone: "blue",
+        },
+        {
+          title: "フロントエンド実装",
+          detail: "HTML5 / CSS3 / JavaScript (モダンUI演出)",
+          tone: "purple",
+        },
+        {
+          title: "コンバージョン動線",
+          detail: "ヘッダー常設CTA・無料体験予約フォーム連携",
+          tone: "green",
+        },
+        {
+          title: "検索エンジン（SEO/MEO）",
+          detail: "HealthClub / LocalBusiness JSON-LD構造化データ",
+          tone: "red",
+        },
+      ],
+      flowLabel: "ユーザー動線とWebサイト構成フロー",
+      groups: [
+        {
+          title: "共同開発・技術仕様",
+          tone: "indigo",
+          cards: [
+            {
+              title: "2名体制の共同開発",
+              detail: "GitHubを活用した役割分担と相互コードレビュー",
+            },
+            {
+              title: "モバイルファースト設計",
+              detail: "スマホ開閉ハンバーガーメニュー＆タッチ操作最適化",
+            },
+            {
+              title: "地域SEO強化",
+              detail:
+                "滋賀県草津市のジム検索に強いSchema.org構造化マークアップ",
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     id: "flamenco-flyer",
@@ -946,6 +1305,108 @@ export const projectsData: Project[] = [
       "月初の手動ログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などで実行",
       "業務主管部門からのデータ抽出・改修依頼への随時対応、共通管理の要件書レビュー",
     ],
+    architecture: {
+      title: "化学物質管理システム構成図・アーキテクチャ",
+      subtitle: "レガシーStruts環境からJava 21・SpringBoot 3・Vue.jsへのマイグレーション構成",
+      description:
+        "レガシー環境からJava 21・SpringBoot 3・Vue.jsを用いた構成への移行と、外部サービス連携・サーバー／リポジトリ移行・ジョブ運用の改善を担当しました。以下に移行前後の論理構成と、主な成果を示します。",
+      variants: [
+        {
+          label: "レガシー版（移行前）",
+          description:
+            "JDK 8・Struts・JSP・iBatisを中心とした従来構成です。複数部署共用サーバー上で稼働し、外部連携や手動作業を含む運用を行っていました。",
+          steps: [
+            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+            { title: "画面", detail: "Struts / JSP", tone: "purple" },
+            { title: "アプリケーション", detail: "JDK 8 / iBatis", tone: "purple" },
+            { title: "データベース", detail: "Oracle Database", tone: "red" },
+          ],
+          groups: [
+            {
+              title: "外部サービス連携",
+              description: "アプリケーションから接続する外部サービス・連携先",
+              tone: "blue",
+              cards: [
+                { title: "業界標準", detail: "JAMP (chemSHERPA)" },
+                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
+                { title: "外部データ連携", detail: "IMDS" },
+                { title: "メール送信", detail: "SMTPサーバー" },
+              ],
+            },
+            {
+              title: "運用・開発基盤",
+              tone: "slate",
+              cards: [
+                { title: "サーバー", detail: "複数部署で共用" },
+                { title: "リポジトリ", detail: "GitLab" },
+                { title: "ログ削除", detail: "月初に手動実施" },
+                { title: "バッチ運用", detail: "JP1で定期実行" },
+              ],
+            },
+          ],
+        },
+        {
+          label: "モダナイゼーション後版（移行後）",
+          description:
+            "Java 21・SpringBoot 3・Vue.js・TypeScriptを用いた構成です。専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。CMPへの移行は要件定義への参画内容として示しています。",
+          steps: [
+            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+            { title: "Web画面", detail: "Vue.js / TypeScript", tone: "green" },
+            {
+              title: "API・アプリケーション",
+              detail: "Java 21 / SpringBoot 3",
+              tone: "purple",
+            },
+            { title: "データベース", detail: "Oracle Database", tone: "red" },
+          ],
+          groups: [
+            {
+              title: "外部サービス連携",
+              description: "アプリケーションから接続する外部サービス・連携先",
+              tone: "blue",
+              cards: [
+                { title: "業界標準", detail: "JAMP (chemSHERPA) → CMP" },
+                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
+                { title: "外部データ連携", detail: "IMDS" },
+                { title: "メール送信", detail: "SMTPサーバー" },
+              ],
+            },
+            {
+              title: "運用・開発基盤",
+              tone: "slate",
+              cards: [
+                { title: "サーバー", detail: "アプリ専用環境へ移行" },
+                { title: "リポジトリ", detail: "GitHubへ移行" },
+                { title: "ジョブ運用", detail: "JP1 / タスクスケジューラ" },
+                { title: "保守運用", detail: "ITSMで管理" },
+              ],
+            },
+          ],
+          note: "SpecKitによる仕様駆動開発のPoCも実施",
+        },
+      ],
+      highlights: [
+        {
+          title: "主な機能・連携",
+          items: [
+            "化学物質情報の管理と、JAMP（chemSHERPA）からCMPへの移行に伴う要件整理",
+            "電子証明書を用いたリバースプロキシ経由のベンダーパッケージ連携",
+            "IMDSとの外部連携およびSMTPサーバーを利用したメール送信",
+            "JP1による日次・定期バッチ運用と、Windowsタスクスケジューラによるログ削除の自動化",
+          ],
+        },
+        {
+          title: "主な成果",
+          items: [
+            "JDK 8・Struts・iBatisを用いたレガシーシステムのバージョンアップと、最新技術への移行を推進",
+            "複数部署共用サーバーからアプリ専用サーバーへ移行し、GitLabからGitHubへのリポジトリ移行を実施",
+            "手動で行っていた月初のログ削除を自動化し、定期ジョブ運用を整備",
+            "SpecKitによる仕様駆動開発のPoCを主導し、開発プロセスの効率化を検証",
+            "ITSMでインシデント・変更・問題・ナレッジを管理し、保守運用を支援",
+          ],
+        },
+      ],
+    },
   },
   {
     id: "bank",
@@ -984,5 +1445,71 @@ export const projectsData: Project[] = [
       "NAS導入時のセットアップ・動作検証",
       "24/7 監視・対応体制による高可用性",
     ],
+    architecture: {
+      title: "銀行系決済システム構成図・アーキテクチャ",
+      subtitle: "法人向け大量明細データ中継・即日振込決済インフラ",
+      description:
+        "法人の業務システムと銀行側の決済サービスを連携するシステムの保守開発を担当しました。大量明細の取得・処理、即日振込機能の実装に加え、Java 8・Tomcatのアプリケーション、Oracle Database、Hulftによるデータ連携やプロキシ設定を含む運用に携わりました。以下は公開情報と担当実績をもとにした概念図であり、会社名・製品名や個別の接続先は記載していません。",
+      steps: [
+        { title: "企業の業務システム", detail: "会計・ERP等", tone: "blue" },
+        { title: "連携・転送", detail: "ファイル連携 / Hulft", tone: "green" },
+        {
+          title: "決済アプリケーション",
+          detail: "Java 8 / Tomcat",
+          tone: "purple",
+        },
+        {
+          title: "銀行側決済サービス",
+          detail: "振込・口座情報連携",
+          tone: "red",
+        },
+      ],
+      flowLabel: "法人向け決済処理の流れ",
+      groups: [
+        {
+          title: "データベース",
+          description: "決済アプリケーションが振込・明細データを参照・更新します。",
+          tone: "slate",
+          cards: [
+            {
+              title: "Oracle Database",
+              detail: "振込・大量明細データ高速トランザクション",
+            },
+          ],
+        },
+        {
+          title: "開発・運用基盤",
+          tone: "slate",
+          cards: [
+            { title: "ネットワーク", detail: "プロキシ設定・保守" },
+            { title: "ソース管理", detail: "SVNによる厳格なバージョン管理" },
+            { title: "バッチ連携", detail: "Hulft / Bashスクリプト" },
+            { title: "ファイル共有", detail: "NAS セットアップ・動作検証" },
+            { title: "実行環境", detail: "24/7 高可用性オンプレミス基盤" },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "主な機能",
+          items: [
+            "大量の振込明細を高速に取得・処理する機能",
+            "即日振込実行エンジン",
+            "Hulftを利用した定期データ連携",
+            "企業内システムと決済アプリケーションの連携",
+          ],
+        },
+        {
+          title: "担当・使用技術",
+          items: [
+            "Java 8・Tomcat・Oracle Databaseを用いた保守開発を担当",
+            "SVNによる構成管理、Hulftでのデータ連携、プロキシを含むサーバー環境の設定・保守",
+            "NASのセットアップと動作検証も実施",
+            "24/7 監視・対応体制による高可用性の維持",
+          ],
+        },
+      ],
+      note: "担当機能：大量明細の取得・処理 ／ 即日振込機能の実装",
+    },
   },
 ];

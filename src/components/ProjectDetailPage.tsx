@@ -1,11 +1,103 @@
 import { useEffect, useState } from "react";
-import type { Screenshot } from "../types/project";
+import type {
+  ArchitectureCard,
+  FlowStep,
+  Screenshot,
+} from "../types/project";
 import { projectsData } from "../data/projectsData";
 
 interface ProjectDetailPageProps {
   projectId: string;
   onBackToList: () => void;
   onSelectProject: (id: string) => void;
+}
+
+const flowToneClasses: Record<FlowStep["tone"], string> = {
+  blue: "border-blue-600 bg-blue-600 text-white",
+  green: "border-emerald-600 bg-emerald-600 text-white",
+  purple: "border-violet-600 bg-violet-600 text-white",
+  red: "border-red-600 bg-red-600 text-white",
+};
+
+function FlowSequence({
+  steps,
+  label,
+}: {
+  steps: FlowStep[];
+  label: string;
+}) {
+  return (
+    <ol
+      aria-label={label}
+      className="grid grid-cols-1 gap-y-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0"
+    >
+      {steps.map((step, index) => (
+        <li key={step.title} className="relative">
+          <div
+            className={`h-full rounded-2xl border p-4 sm:p-5 shadow-2xs ${flowToneClasses[step.tone]}`}
+          >
+            <p className="text-[11px] font-semibold opacity-80">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h4 className="mt-1.5 text-sm sm:text-base font-bold text-white leading-snug">
+              {step.title}
+            </h4>
+            <p className="mt-2 text-xs leading-relaxed opacity-90">
+              {step.detail}
+            </p>
+          </div>
+          {index < steps.length - 1 && (
+            <>
+              <span
+                className="hidden lg:block absolute -right-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg pointer-events-none z-10"
+                aria-hidden="true"
+              >
+                →
+              </span>
+              <span
+                className="block text-center text-slate-400 font-bold text-lg lg:hidden my-0.5"
+                aria-hidden="true"
+              >
+                ↓
+              </span>
+            </>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function CardGrid({
+  cards,
+  className = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+  tone = "blue",
+}: {
+  cards: ArchitectureCard[];
+  className?: string;
+  tone?: "blue" | "slate" | "indigo" | "emerald";
+}) {
+  const cardTone =
+    tone === "blue"
+      ? "border-blue-200/80 bg-blue-50/70"
+      : tone === "indigo"
+      ? "border-indigo-200/80 bg-indigo-50/60"
+      : tone === "emerald"
+      ? "border-emerald-200/80 bg-emerald-50/60"
+      : "border-slate-200 bg-slate-100/80";
+
+  return (
+    <ul className={`grid gap-3 ${className}`}>
+      {cards.map((card) => (
+        <li key={card.title} className={`rounded-xl border p-3.5 sm:p-4 ${cardTone}`}>
+          <h5 className="font-bold text-slate-900 text-xs sm:text-sm">{card.title}</h5>
+          <p className="mt-1 text-xs leading-relaxed text-slate-600">
+            {card.detail}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default function ProjectDetailPage({
@@ -82,7 +174,10 @@ export default function ProjectDetailPage({
       {/* ページ上部ナビゲーションバー（パンくずリスト ＆ 戻るボタン） */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
-          <nav aria-label="パンくずリスト" className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 overflow-x-auto whitespace-nowrap py-1">
+          <nav
+            aria-label="パンくずリスト"
+            className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 overflow-x-auto whitespace-nowrap py-1"
+          >
             <button
               onClick={onBackToList}
               className="hover:text-indigo-600 transition-colors font-medium flex items-center gap-1 cursor-pointer"
@@ -518,6 +613,173 @@ export default function ProjectDetailPage({
           )}
         </section>
 
+        {/* システム構成・アーキテクチャ（各作品固有の構成図・インフラ） */}
+        {project.architecture && (
+          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+            <div className="mb-8">
+              <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200/80">
+                  SYSTEM ARCHITECTURE
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  {project.architecture.title}
+                </h2>
+              </div>
+              {project.architecture.subtitle && (
+                <p className="text-indigo-600 font-semibold text-sm mb-2">
+                  {project.architecture.subtitle}
+                </p>
+              )}
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-4xl">
+                {project.architecture.description}
+              </p>
+            </div>
+
+            {/* A. 移行前後比較（variants）がある場合（例: chemical） */}
+            {project.architecture.variants &&
+              project.architecture.variants.length > 0 && (
+                <div className="space-y-8 mb-8">
+                  {project.architecture.variants.map((variant, vIdx) => (
+                    <div
+                      key={vIdx}
+                      className={`rounded-2xl border p-5 sm:p-7 ${
+                        vIdx === 0
+                          ? "border-slate-200 bg-slate-50/70"
+                          : "border-blue-200 bg-blue-50/30"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            vIdx === 0
+                              ? "bg-slate-200 text-slate-800"
+                              : "bg-blue-600 text-white"
+                          }`}
+                        >
+                          {variant.label}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
+                        {variant.description}
+                      </p>
+
+                      {/* シーケンスフロー */}
+                      <div className="mb-6">
+                        <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                          アプリケーション処理フロー
+                        </h4>
+                        <FlowSequence
+                          steps={variant.steps}
+                          label={`${variant.label} 処理の流れ`}
+                        />
+                      </div>
+
+                      {/* グループカード */}
+                      {variant.groups && (
+                        <div className="space-y-5">
+                          {variant.groups.map((group, gIdx) => (
+                            <div key={gIdx}>
+                              <h4 className="text-xs font-bold text-slate-700 mb-1.5">
+                                {group.title}
+                              </h4>
+                              {group.description && (
+                                <p className="text-xs text-slate-500 mb-2.5">
+                                  {group.description}
+                                </p>
+                              )}
+                              <CardGrid cards={group.cards} tone={group.tone} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {variant.note && (
+                        <p className="mt-5 border-l-2 border-blue-500 pl-3.5 text-xs text-slate-600">
+                          {variant.note}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            {/* B. 単一のシーケンスフロー（steps）がある場合 */}
+            {project.architecture.steps &&
+              project.architecture.steps.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                    {project.architecture.flowLabel || "処理・データフロー"}
+                  </h3>
+                  <FlowSequence
+                    steps={project.architecture.steps}
+                    label={project.architecture.flowLabel || "処理フロー"}
+                  />
+                </div>
+              )}
+
+            {/* C. グループカード群（groups）がある場合 */}
+            {project.architecture.groups &&
+              project.architecture.groups.length > 0 && (
+                <div className="space-y-6 mb-8">
+                  {project.architecture.groups.map((group, gIdx) => (
+                    <div
+                      key={gIdx}
+                      className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80"
+                    >
+                      <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                        {group.title}
+                      </h4>
+                      {group.description && (
+                        <p className="text-xs text-slate-500 mb-3">
+                          {group.description}
+                        </p>
+                      )}
+                      <CardGrid cards={group.cards} tone={group.tone} />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            {/* D. ハイライト項目（highlights） */}
+            {project.architecture.highlights &&
+              project.architecture.highlights.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                  {project.architecture.highlights.map((hl, hlIdx) => (
+                    <div
+                      key={hlIdx}
+                      className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200"
+                    >
+                      <h4 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                        <span>{hl.title}</span>
+                      </h4>
+                      <ul className="space-y-2">
+                        {hl.items.map((item, itemIdx) => (
+                          <li
+                            key={itemIdx}
+                            className="text-xs text-slate-700 flex items-start leading-relaxed"
+                          >
+                            <span className="text-blue-600 font-bold mr-2 shrink-0">
+                              ・
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            {/* E. 補足ノート（note） */}
+            {project.architecture.note && (
+              <p className="border-l-2 border-blue-500 pl-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {project.architecture.note}
+              </p>
+            )}
+          </section>
+        )}
+
         {/* 工夫した点・主な特徴（Key Features） */}
         <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
           <div className="flex items-center gap-2.5 mb-6">
@@ -941,61 +1203,6 @@ export default function ProjectDetailPage({
                 </li>
               ))}
             </ol>
-          </section>
-        )}
-
-        {/* システム構成・公開フロー */}
-        {project.flowSteps && project.flowSteps.length > 0 && (
-          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold">
-                  CI/CD & ARCHITECTURE
-                </span>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  システム構成・公開フロー
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-500">
-                TypeScriptによる型チェックからViteによる本番ビルド、GitHub ActionsによるGitHub Pages自動公開までのアーキテクチャです。
-              </p>
-            </div>
-
-            <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {project.flowSteps.map((step, index) => {
-                const toneBg =
-                  step.tone === "blue"
-                    ? "border-blue-600 bg-blue-600 text-white"
-                    : step.tone === "green"
-                      ? "border-emerald-600 bg-emerald-600 text-white"
-                      : step.tone === "purple"
-                        ? "border-violet-600 bg-violet-600 text-white"
-                        : "border-red-600 bg-red-600 text-white";
-                return (
-                  <li key={step.title} className="relative">
-                    <div
-                      className={`h-full rounded-2xl border p-5 shadow-2xs ${toneBg}`}
-                    >
-                      <p className="text-xs font-semibold opacity-80">
-                        {String(index + 1).padStart(2, "0")}
-                      </p>
-                      <h3 className="mt-1.5 text-base font-bold text-white">
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 text-xs sm:text-sm leading-relaxed opacity-90">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-
-            {project.flowNote && (
-              <p className="mt-5 border-l-2 border-emerald-500 pl-4 text-xs sm:text-sm leading-relaxed text-slate-600">
-                {project.flowNote}
-              </p>
-            )}
           </section>
         )}
 
