@@ -59,6 +59,17 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
     });
   }, [activeFilter, searchQuery]);
 
+  const counts = useMemo(() => {
+    const web = projectsData.filter(
+      (p) => p.category === "portfolio" || p.category === "client_web"
+    ).length;
+    const graphic = projectsData.filter((p) => p.category === "graphic").length;
+    const client = projectsData.filter(
+      (p) => p.category === "client_web" || p.category === "client_enterprise"
+    ).length;
+    return { all: projectsData.length, web, graphic, client };
+  }, []);
+
   const handleResetFilters = () => {
     setActiveFilter("all");
     setSearchQuery("");
@@ -97,7 +108,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                すべて ({projectsData.length})
+                すべて ({counts.all})
               </button>
               <button
                 onClick={() => setActiveFilter("web")}
@@ -107,7 +118,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                Webサイト制作 (5)
+                Webサイト制作 ({counts.web})
               </button>
               <button
                 onClick={() => setActiveFilter("graphic")}
@@ -117,7 +128,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                グラフィック/DTP (1)
+                グラフィック/DTP ({counts.graphic})
               </button>
               <button
                 onClick={() => setActiveFilter("client")}
@@ -127,7 +138,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                参画・実務案件 (3)
+                参画・実務案件 ({counts.client})
               </button>
             </div>
 

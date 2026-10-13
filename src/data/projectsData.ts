@@ -1,4 +1,13 @@
 import type { Project } from "../types/project";
+import nurseCaptureImg from "../assets/nurse-capture.png";
+import nurseCapturePcImg from "../assets/nurse-capture-pc.png";
+import nurseCaptureMobileImg from "../assets/nurse-capture-mobile.png";
+import nurseHeroImg from "../assets/nurse/hero-nurse.jpg";
+import nurseBabyCareImg from "../assets/nurse/nurse-baby-care.jpg";
+import nursePreceptorImg from "../assets/nurse/attraction-preceptor.jpg";
+import nurseOutpatientImg from "../assets/nurse/work-outpatient.jpg";
+import nurseTeamImg from "../assets/nurse/nurse-team.jpg";
+import nurseDoctorKeikoImg from "../assets/nurse/doctor-keiko.jpg";
 import olorosoCaptureImg from "../assets/oloroso-capture.png";
 import olorosoCapturePcImg from "../assets/oloroso-capture-pc.png";
 import olorosoCaptureMobileImg from "../assets/oloroso-capture-mobile.png";
@@ -37,6 +46,376 @@ import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide
 import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
 
 export const projectsData: Project[] = [
+  {
+    id: "nurse",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "医療法人社団 桜愛会「さくらレディース＆マタニティクリニック」看護師採用特設LP",
+    subtitle: "HTML5 + Tailwind CSS・清潔感と温もりのサクラピンクUI・見学予約カレンダー連動モーダル＆GitHub Actions CI/CD",
+    description:
+      "医療法人社団 桜愛会が運営する産婦人科・不妊治療・小児科クリニック「さくらレディース＆マタニティクリニック」の看護師・助産師採用特設LP。20〜40代の女性看護師・助産師が抱える「夜勤の負担」「人間関係」「ブランクからの復職」「子育てとの両立」といった不安を払拭するため、清潔感と温もりを届けるサクラピンク×ウォームベージュのデザインシステムを構築。数字で知るクリニック（平均残業4.2h/月、有休消化率96%、産休育休復帰率100%）、日勤・夜勤のタイムスケジュール、教育研修3ステップ、3名の先輩スタッフインタビュー、院長メッセージ、福利厚生・募集要項、FAQ、Webエントリーまで全18セクションを包括設計。さらに「履歴書不要・私服OK・30分」の職場見学予約を後押しするインタラクティブな月別見学予約カレンダーモーダル（2026年10月・11月切替、ワンタップ日時選択連動）、プライバシーポリシー（privacy.html）、サイトマップ（sitemap.html）まで完全網羅。GitHub Issues（全9件クローズ）を活用したチケット駆動開発とGitHub Actionsによる自動デプロイ・進捗自動同期ワークフローを実現しました。",
+    overview:
+      "「生命の誕生に寄り添い、あなたらしい看護を咲かせる場所。」をキーメッセージに掲げた医療従事者特化型の採用Webサイト。医療現場のリアルな安心感を伝えるため、現場写真とテキストを100%整合させ、モバイル・タブレット（1024px未満）での閲覧性を担保する1カラム自動スタック設計を導入。見学予約カレンダーモーダルによる予約CVR最大化、ヘッダー・フッターのSVGロゴ統合、架空クリニック告知バー（PORTFOLIO DEMO）のヘッダー連動オフセット計算など、細部まで徹底的に作り込みました。",
+    purpose:
+      "産婦人科・小児科クリニックにおける看護師・助産師の採用エントリー獲得および職場見学会への動員。「産婦人科未経験でも大丈夫か」「夜勤や子育てと両立できるか」という応募者の心理的ハードルを、客観的なデータ（残業4.2h・有休96%）、リアルな先輩インタビュー、段階的研修カリキュラムの可視化によって解消し、「履歴書不要・私服OK・30分の見学会」から気軽に接点を持てる導線を確立すること。",
+    role: [
+      "企画・ターゲットインサイト分析",
+      "情報アーキテクチャ (IA設計・全18セクション)",
+      "UI/UXデザイン (サクラピンク×ウォームベージュ)",
+      "フロントエンド実装 (HTML5 / Tailwind CSS / ES6+ JS)",
+      "見学予約カレンダー連動モーダル設計・実装",
+      "チケット駆動開発 (GitHub Issues 全9件)",
+      "CI/CD自動化 (GitHub Actions デプロイ＆Changelog同期Bot)",
+    ],
+    image: nurseCaptureImg,
+    imageCaption: "さくらレディース＆マタニティクリニック 看護師採用特設LP トップ画面キャッチ（ファーストビュー）",
+    imagePc: nurseCapturePcImg,
+    imageMobile: nurseCaptureMobileImg,
+    imagePcCaption: "さくらレディース＆マタニティクリニック 看護師採用特設LP PC版ファーストビュー（温もりのサクラピンク×清潔感ある医療UI）",
+    imageMobileCaption: "さくらレディース＆マタニティクリニック 看護師採用特設LP スマホ版トップ画面（固定ヘッダー＆見学会予約CTAバー連動）",
+    technologies: [
+      "HTML5 (セマンティックマークアップ)",
+      "Tailwind CSS (JITコンパイル / カスタムカラーパレット)",
+      "JavaScript (ES6+ / モーダル・カレンダー制御)",
+      "GitHub Actions (デプロイCI/CD & Issues同期Bot)",
+      "GitHub Pages (完全相対パス / .nojekyll運用)",
+      "チケット駆動開発 (GitHub Issues 全9件クローズ)",
+      "見学予約カレンダーモーダル (動的月切り替え・空き状況○△表示)",
+      "マルチデバイス最適化 (1024px未満 1カラム自動スタック化)",
+      "ポートフォリオ実績用デモ告知バー＆ヘッダー動的オフセット連動",
+      "SVGアイコンシステム & ブランドロゴ一元化",
+      "Webアクセシビリティ (コントラスト比 / ARIA属性 / モーダルESC閉じ)",
+      "レスポンシブWebデザイン (Mobile / Tablet / Desktop)",
+    ],
+    features: [
+      "全18セクションにわたる緻密な採用情報設計（Issue #1）: 20〜40代の看護師・助産師が抱える不安（夜勤・人間関係・ブランク）を払拭するため、数字で知る当院（残業4.2h/有休96%）、4つの魅力、日勤夜勤タイムライン、先輩インタビュー3名、研修3ステップ、福利厚生、FAQ、応募フォームなど全18セクションを包括設計",
+      "リアルな医療現場写真と掲載情報の100%整合（Issue #2）: 新生児ケア、外来看護、マタニティクラス、先輩看護師（病棟リーダー佐藤・外来看護田中・助産師高橋）、院長メッセージに至るまで、現場のリアルな医療職ビジュアルを独自生成し、各テキストと1対1で完全整合配置",
+      "GitHub ActionsによるCI/CD自動デプロイと相対パス設計（Issue #3）: mainブランチプッシュ時にGitHub ActionsでGitHub Pagesへ自動デプロイするパイプラインを構築。サブディレクトリ（/nurse/）配信に対応するため、リソースパスを完全相対パス化し.nojekyllを配備",
+      "ポートフォリオ実績告知バーと固定ヘッダーのオフセット連動（Issue #4）: 架空クリニックであることを明示するデモ告知バー（PORTFOLIO DEMO）を最上部に設置しつつ、追従ヘッダー（top: 36px）やフローティングCTAボタンとの重なり・干渉をゼロにする動的オフセット計算を実装",
+      "タブレット・モバイルでの閲覧性極限最適化（1カラム自動スタック化）（Issue #5）: 1024px未満の中間ブレイクポイントで3カラムカード（インタビュー3名・研修3ステップ）の文字詰まり・レイアウト崩れを解消するため、最大幅540pxの中央揃え1カラム縦並びへ自動最適化",
+      "Changelog自動同期ワークフローによるチケット駆動開発の可視化（Issue #6）: コミットプッシュ時にGitHub Actionsがコミットログを抽出し、マスターIssue #6（Changelogトラッカー）へ自動追記・関連Issueへ通知するBotワークフロー（sync-issues.yml）を構築",
+      "プライバシーポリシー＆視覚的サイトマップの拡充（Issue #7）: 医療機関のWebサイトとしての信頼性とコンプライアンスを高めるため、個人情報保護方針（privacy.html）および全18セクション＋下層ページを俯瞰できるサイトマップ（sitemap.html）を新設し相互リンクを確立",
+      "見学予約カレンダーモーダルによるUI不整合解消と予約CVR最大化（Issue #8）: 「カレンダーを見る」ボタンに対して入力フォームのみが表示されていたUI課題を解決。2026年10月・11月の動的月切り替え、空き状況アイコン（○/△/-）、希望日時ワンタップ自動入力連動モーダルを実装し、応募ハードルを極限まで低減",
+      "ヘッダー・フッターのSVGロゴ＆ブランド表記の完全一元化（Issue #9）: 桜シンボルマークSVG＋医療法人社団 桜愛会＋さくらレディース＆マタニティクリニック＋採用特設サイトバッジの構成を共通コンポーネント化し、全ページで統一感のあるブランド体験を実現",
+    ],
+    demo: "https://ikeda-haruka.github.io/nurse/",
+    github: "https://github.com/ikeda-haruka/nurse",
+    issuesUrl: "https://github.com/ikeda-haruka/nurse/issues",
+    screenshotsBadge: "採用LP & UI/UX",
+    screenshotsTitle: "医療現場ビジュアル・研修制度＆見学予約カレンダーギャラリー",
+    screenshotsNote:
+      "清潔感と温もりを伝えるリアルな医療現場ビジュアル、教育研修カリキュラム、見学予約カレンダーモーダルなど、看護師・助産師の心理的ハードルを取り除くデザインハイライトです。クリックで拡大プレビューできます。",
+    screenshots: [
+      {
+        src: nurseHeroImg,
+        title: "メインビジュアル・キャッチコピー（ファーストビュー）",
+        caption:
+          "『生命の誕生に寄り添い、あなたらしい看護を咲かせる場所。』産婦人科・小児科の温かみとプロフェッショナリズムを伝えるサクラピンクのヒーローセクション。",
+      },
+      {
+        src: nurseBabyCareImg,
+        title: "助産・新生児ケア現場ビジュアル（仕事内容セクション）",
+        caption:
+          "病棟・新生児室での丁寧な沐浴・ケアの様子。現場写真と文言を100%整合させ、産婦人科看護のやりがいと安心感を訴求。",
+      },
+      {
+        src: nursePreceptorImg,
+        title: "安心のプリセプター制度（教育・研修体制セクション）",
+        caption:
+          "先輩ナースがマンツーマンで指導するプリセプター制度。ブランクのある復職者や産婦人科未経験者でも安心して成長できるステップを可視化。",
+      },
+      {
+        src: nurseOutpatientImg,
+        title: "外来看護・患者コミュニケーション（業務紹介セクション）",
+        caption:
+          "妊婦健診や小児科外来での丁寧な問診・案内風景。患者さまに寄り添う医療の現場感を鮮明に伝達。",
+      },
+      {
+        src: nurseTeamImg,
+        title: "チーム医療・カンファレンス風景（職場環境ギャラリー）",
+        caption:
+          "医師・助産師・看護師が職種の垣根を越えて意見交換を行うカンファレンス風景。風通しの良い人間関係を視覚化。",
+      },
+      {
+        src: nurseDoctorKeikoImg,
+        title: "院長メッセージ・クリニック理念（院長あいさつセクション）",
+        caption:
+          "医療法人社団 桜愛会 院長メッセージ。女性のライフステージに寄り添う医療方針と、スタッフ一人ひとりの働きやすさを大切にする姿勢を発信。",
+      },
+    ],
+    taskAutomationBanner: {
+      badge: "GitHub Issues 全9件クローズ",
+      subtitle: "チケット駆動開発によるアジャイルな品質向上と自動化",
+      title: "GitHub Issues（全9件）によるUI/UXブラッシュアップ＆CI/CD自動化プロセス",
+      description:
+        "要件定義・全体構築から、リアルな医療現場写真の100%整合配置、GitHub Actions自動デプロイ、告知バーとヘッダーのオフセット連動、1024px未満での1カラム自動スタック化、Changelog自動同期Bot、プライバシー・サイトマップ拡充、見学予約カレンダーモーダル実装、ロゴ統一まで、全9件の課題をチケット駆動で完遂しました。",
+      linkText: "GitHub Issues（全9件の改善タスク）を見る",
+      linkUrl: "https://github.com/ikeda-haruka/nurse/issues",
+    },
+    siteStructure: {
+      title: "WEBサイト構成図・採用情報アーキテクチャ（全18セクション＋下層ページ群）",
+      subtitle: "トップ採用LP（全18セクション） × 見学予約カレンダーモーダル × プライバシーポリシー × サイトマップ",
+      description:
+        "看護師・助産師の応募導線をスムーズにするため、メイン採用LP（全18セクション）から、ワンタップで希望日時を選択できる見学予約カレンダーモーダル、医療機関としての信頼性を担保するプライバシーポリシー、全容を俯瞰できるサイトマップを有機的に連携させています。各リンクから実際のページを確認可能です。",
+      categories: [
+        {
+          category: "1. メイン採用LP（index.html / 全18セクション）",
+          badge: "Main Landing Page",
+          badgeColor: "bg-pink-100 text-pink-800 border-pink-200",
+          pages: [
+            {
+              name: "ファーストビュー・キャッチコピー",
+              path: "#hero / FV",
+              desc: "温かみのあるサクラピンクUI・安心の医療ビジュアル・見学会応募CTA",
+              url: "https://ikeda-haruka.github.io/nurse/#hero",
+              isHighlight: true,
+            },
+            {
+              name: "院長メッセージ・理念",
+              path: "#message",
+              desc: "院長挨拶・女性医療に寄り添うクリニックの理念と想い",
+              url: "https://ikeda-haruka.github.io/nurse/#message",
+            },
+            {
+              name: "数字で知る当院の実績",
+              path: "#numbers",
+              desc: "平均残業4.2h/月・有休消化率96%・産休育休復帰率100%の客観データ",
+              url: "https://ikeda-haruka.github.io/nurse/#numbers",
+              isHighlight: true,
+            },
+            {
+              name: "当院で働く4つの魅力",
+              path: "#attractions",
+              desc: "プリセプター指導・あたたかな人間関係・最新医療設備・ワークライフバランス",
+              url: "https://ikeda-haruka.github.io/nurse/#attractions",
+            },
+            {
+              name: "仕事内容＆看護領域",
+              path: "#work",
+              desc: "産科病棟・外来看護・手術室・助産マタニティケアの業務紹介タブ",
+              url: "https://ikeda-haruka.github.io/nurse/#work",
+            },
+            {
+              name: "日勤・夜勤 1日のスケジュール",
+              path: "#schedule",
+              desc: "日勤（8:30〜17:30）と夜勤（16:30〜翌9:30）の具体的タイムライン",
+              url: "https://ikeda-haruka.github.io/nurse/#schedule",
+            },
+            {
+              name: "先輩スタッフインタビュー",
+              path: "#interview",
+              desc: "病棟リーダー・外来看護・助産師 3名のリアルな声と入職理由",
+              url: "https://ikeda-haruka.github.io/nurse/#interview",
+              isHighlight: true,
+            },
+            {
+              name: "職場環境・フォトギャラリー",
+              path: "#gallery",
+              desc: "ナースステーション・分べん室・新生児室・スタッフルーム写真",
+              url: "https://ikeda-haruka.github.io/nurse/#gallery",
+            },
+            {
+              name: "教育研修体制（3ステップ）",
+              path: "#training",
+              desc: "プリセプター指導・スキルアップ研修・専門助産師支援の成長ロードマップ",
+              url: "https://ikeda-haruka.github.io/nurse/#training",
+            },
+            {
+              name: "福利厚生・募集要項",
+              path: "#requirements",
+              desc: "給与体系・夜勤手当・賞与年2回・年間休日120日・院内保育所案内",
+              url: "https://ikeda-haruka.github.io/nurse/#requirements",
+            },
+            {
+              name: "よくある質問（FAQ）",
+              path: "#faq",
+              desc: "ブランク復職・未経験応募・夜勤回数などに関するアコーディオンFAQ",
+              url: "https://ikeda-haruka.github.io/nurse/#faq",
+            },
+            {
+              name: "見学予約＆応募エントリーフォーム",
+              path: "#entry",
+              desc: "私服OK・履歴書不要の30分見学予約および本応募Webフォーム",
+              url: "https://ikeda-haruka.github.io/nurse/#entry",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "2. 動的モーダル＆予約アクション層",
+          badge: "Interactive Modal",
+          badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
+          pages: [
+            {
+              name: "見学予約カレンダーモーダル",
+              path: "#tourCalendarModal",
+              desc: "2026年10月・11月動的切替、空き状況○△表示、希望日時ワンタップ自動入力",
+              isHighlight: true,
+            },
+            {
+              name: "公式LINE相談動線",
+              path: "LINE連携",
+              desc: "友だち追加で採用担当者へ質問・カジュアルチャット相談可能",
+            },
+          ],
+        },
+        {
+          category: "3. 下層・コンプライアンスページ群",
+          badge: "Compliance & Structure",
+          badgeColor: "bg-slate-100 text-slate-800 border-slate-200",
+          pages: [
+            {
+              name: "プライバシーポリシー",
+              path: "privacy.html",
+              desc: "個人情報保護方針・応募者データの利用目的・安全管理措置",
+              url: "https://ikeda-haruka.github.io/nurse/privacy.html",
+              isHighlight: true,
+            },
+            {
+              name: "視覚的サイトマップ",
+              path: "sitemap.html",
+              desc: "全18セクション＋下層ページの階層構造・ワンクリック遷移ナビ",
+              url: "https://ikeda-haruka.github.io/nurse/sitemap.html",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "4. 自動化パイプライン＆インフラ層",
+          badge: "CI/CD & Hosting",
+          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+          pages: [
+            {
+              name: "GitHub Actions デプロイパイプライン",
+              path: ".github/workflows/deploy.yml",
+              desc: "mainブランチプッシュ時のGitHub Pages自動配信・.nojekyll配備",
+            },
+            {
+              name: "Changelog自動同期ワークフロー",
+              path: ".github/workflows/sync-issues.yml",
+              desc: "コミットプッシュ時にマスターIssue #6へ更新履歴を自動記録するBot",
+            },
+          ],
+        },
+      ],
+    },
+    architecture: {
+      title: "看護師採用LPシステム構成・自動化アーキテクチャ",
+      subtitle: "HTML5 / Tailwind CSS × バニラJSモーダル × GitHub Actions CI/CD",
+      description:
+        "外部の重量ライブラリに依存しない高速バニラJavaScript＋Tailwind CSS設計により、PageSpeedモバイル表示速度を最大化。2026年10月・11月動的カレンダーモーダルや、GitHub ActionsによるGitHub Pages自動デプロイ、コミット連動型Changelog同期Botによって開発・運用の自動化を実現しました。",
+      steps: [
+        {
+          title: "Webブラウザ / スマホ",
+          detail: "メインLP・見学予約カレンダー・下層ページ",
+          tone: "blue",
+        },
+        {
+          title: "フロントエンド基盤",
+          detail: "HTML5 / Tailwind CSS / ES6+ JavaScript",
+          tone: "purple",
+        },
+        {
+          title: "動的UI・モーダル制御",
+          detail: "見学カレンダー日時自動代入 / FAQアコーディオン",
+          tone: "green",
+        },
+        {
+          title: "GitHub Actions CI/CD",
+          detail: "自動デプロイ(deploy.yml) & Issues同期Bot",
+          tone: "blue",
+        },
+        {
+          title: "GitHub Pages 配信",
+          detail: "完全相対パス / .nojekyll / HTTPS",
+          tone: "green",
+        },
+      ],
+      flowLabel: "リクエスト & 自動化パイプライン",
+      groups: [
+        {
+          title: "1. フロントエンド・UI層",
+          description: "セマンティックHTML5とTailwind CSSによる軽量・高速なデザイン基盤",
+          tone: "blue",
+          cards: [
+            {
+              title: "サクラピンク デザインシステム",
+              detail: "清潔感と温もりを両立するサクラピンク×ウォームベージュ配色、グラスモーフィズム",
+            },
+            {
+              title: "マルチデバイス自動スタック化",
+              detail: "1024px未満での3カラム文字詰まりを解消する中央揃え1カラム自動最適化",
+            },
+            {
+              title: "デモ告知バー連動オフセット",
+              detail: "最上部告知バーと追従ヘッダー（top: 36px）の重なり干渉をゼロにする動的オフセット",
+            },
+          ],
+        },
+        {
+          title: "2. インタラクティブ機能・コンポーネント層",
+          description: "外部ライブラリ非依存のバニラJavaScriptによる高速・軽量なユーザー体験",
+          tone: "indigo",
+          cards: [
+            {
+              title: "見学予約カレンダーモーダル",
+              detail: "2026年10月・11月の月切り替え、空き状況○△表示、希望日時ワンタップ自動代入",
+            },
+            {
+              title: "FAQアコーディオン＆スムーススクロール",
+              detail: "WAI-ARIA属性に準拠した開閉アニメーションとセクション間スムース遷移",
+            },
+            {
+              title: "ブランドロゴ＆SVGコンポーネント",
+              detail: "桜シンボルマークSVG＋法人名＋クリニック名＋採用バッジの全ページ完全統一",
+            },
+          ],
+        },
+        {
+          title: "3. CI/CD自動化＆ホスティング層",
+          description: "GitHub Actionsを活用した自動デプロイと進捗管理の完全自動化",
+          tone: "emerald",
+          cards: [
+            {
+              title: "GitHub Pages 自動デプロイ",
+              detail: "deploy.ymlによりmainプッシュ時に自動ビルド・デプロイ、.nojekyll配備",
+            },
+            {
+              title: "コミット連動 Changelog 同期Bot",
+              detail: "sync-issues.ymlによりコミット内容をマスターIssue #6へ自動記録・チケット同期",
+            },
+            {
+              title: "完全相対パス設計",
+              detail: "サブディレクトリ（/nurse/）配信でのアセット404を防止する相対URL運用",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "主な機能・実装の工夫",
+          items: [
+            "数字で知る当院（残業4.2h/有休96%/復帰100%）の客観的データ提示による心理的不安の払拭",
+            "現場医療職（病棟・外来・助産師・院長）の写真と文言を100%整合させたリアリティの確立",
+            "見学予約カレンダーモーダルによる予約ステップの簡略化と応募CVRの向上",
+            "1024px未満での3カラム自動1カラムスタック化によるスマホ・タブレット可読性の担保",
+            "個人情報保護方針（privacy.html）およびサイトマップ（sitemap.html）の配備による信頼性",
+          ],
+        },
+        {
+          title: "運用品質・アクセシビリティ",
+          items: [
+            "GitHub Issues全9件による完全チケット駆動開発とコミット連動Changelog同期Bot",
+            "ESCキーやオーバーレイクリックによる安全なモーダル閉鎖とフォーカス管理",
+            "WCAG 2.1 AA準拠の高コントラスト比テキストカラーとセマンティックタグ構造",
+            "軽量バニラJSによるゼロ依存・高速レンダリング（PageSpeedモバイル高速化）",
+          ],
+        },
+      ],
+      note: "医療法人社団 桜愛会「さくらレディース＆マタニティクリニック」はポートフォリオ実績用の架空クリニックです。Webサイト最上部にデモ用告知バーを常時表示し、閲覧者が混乱しないよう配慮しています。",
+    },
+  },
   {
     id: "nailsalon",
     category: "portfolio",
