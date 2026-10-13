@@ -271,15 +271,20 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                       </span>
                     </div>
 
-                    {/* LIVEマーク（右上） */}
-                    {project.demo && (
-                      <div className="absolute top-3 right-3 z-10 pointer-events-none">
+                    {/* LIVEマーク / Figmaマーク（右上） */}
+                    <div className="absolute top-3 right-3 z-10 pointer-events-none flex items-center gap-1">
+                      {project.figmaUrl && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0ACF83] text-white flex items-center gap-1 shadow-xs">
+                          <span>Figma</span>
+                        </span>
+                      )}
+                      {project.demo && (
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/95 text-white flex items-center gap-1 shadow-xs">
                           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
                           <span>LIVE</span>
                         </span>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
 
                   {/* カード本文 */}
@@ -385,6 +390,17 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                       </button>
 
                       <div className="flex items-center gap-1">
+                        {project.figmaUrl && (
+                          <a
+                            href={project.figmaUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-2.5 py-2 rounded-xl bg-[#0ACF83]/15 hover:bg-[#0ACF83]/25 text-[#058452] transition-colors text-xs font-bold"
+                            title="Figmaでデザインを見る"
+                          >
+                            Figma
+                          </a>
+                        )}
                         {project.demo && (
                           <a
                             href={project.demo}

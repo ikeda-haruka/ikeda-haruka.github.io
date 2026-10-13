@@ -273,6 +273,24 @@ export default function ProjectDetailPage({
                 <span>↗</span>
               </a>
             )}
+            {project.figmaUrl && (
+              <a
+                href={project.figmaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0ACF83]/15 hover:bg-[#0ACF83]/25 text-[#058452] border border-[#0ACF83]/40 font-bold rounded-xl transition-all text-sm shadow-xs hover:shadow-md hover:-translate-y-0.5"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 38 57" fill="none">
+                  <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                  <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                  <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                  <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                  <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+                </svg>
+                <span>Figmaでデザインを見る</span>
+                <span>↗</span>
+              </a>
+            )}
             {project.issuesUrl && (
               <a
                 href={project.issuesUrl}
@@ -612,6 +630,306 @@ export default function ProjectDetailPage({
             </div>
           )}
         </section>
+
+        {/* LP全体デザイン（縦長フルページ・ロングスクロール展示） */}
+        {project.fullPageImages && (
+          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+              <div>
+                <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200/80">
+                    FULL PAGE DESIGN
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                    LP全体デザイン（縦長フルページ展示）
+                  </h2>
+                </div>
+                <p className="text-emerald-700 font-semibold text-sm mb-1.5">
+                  ファーストビューから最終CTAまで全16セクションの完全デザイン
+                </p>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+                  {project.fullPageImages.note ||
+                    "LP全体が縦長であるため、ファーストビューのクローズアップとは別に、全体の構成・情報の視線誘導・リズム感を一覧できるようページ全体を掲載しています。各フレームはスクロールして閲覧でき、クリックで高解像度モーダル表示が可能です。"}
+                </p>
+              </div>
+
+              {project.figmaUrl && (
+                <a
+                  href={project.figmaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#0ACF83]/15 hover:bg-[#0ACF83]/25 text-[#058452] border border-[#0ACF83]/40 font-bold rounded-xl transition-all text-xs sm:text-sm shadow-2xs hover:shadow-sm"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 38 57" fill="none">
+                    <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                    <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                    <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                    <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                    <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+                  </svg>
+                  <span>Figmaでデザインを見る</span>
+                  <span>↗</span>
+                </a>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* PC全体像 */}
+              <div className="lg:col-span-8 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                    <span className="px-2 py-0.5 bg-slate-100 rounded text-[10px] text-indigo-700 font-mono border border-slate-200">
+                      DESKTOP FULL
+                    </span>
+                    <span>デスクトップ版 ページ全体（1440px）</span>
+                  </div>
+                  <span className="text-xs text-indigo-600 font-medium">
+                    枠内をスクロール または クリックで拡大 🔍
+                  </span>
+                </div>
+
+                <div
+                  className="group/fullpc relative h-[640px] rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-100 overflow-hidden cursor-pointer shadow-inner transition-colors"
+                  onClick={() =>
+                    setSelectedScreenshot({
+                      src: project.fullPageImages!.pc,
+                      title: `${project.title} - デスクトップ版 ページ全体デザイン`,
+                      caption:
+                        project.fullPageImages!.pcCaption ||
+                        "デスクトップ版 全16セクション（1440px × 11,086px）",
+                    })
+                  }
+                >
+                  <div className="w-full h-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300">
+                    <img
+                      src={project.fullPageImages.pc}
+                      alt={`${project.title} デスクトップ版全体`}
+                      className="w-full h-auto block"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover/fullpc:bg-slate-950/15 pointer-events-none transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover/fullpc:opacity-100 bg-white/95 text-slate-900 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-2xl transition-all">
+                      クリックで高解像度拡大表示 🔍
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-2.5 leading-relaxed">
+                  {project.fullPageImages.pcCaption}
+                </p>
+              </div>
+
+              {/* スマホ全体像 */}
+              <div className="lg:col-span-4 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                    <span className="px-2 py-0.5 bg-slate-100 rounded text-[10px] text-pink-700 font-mono border border-slate-200">
+                      MOBILE FULL
+                    </span>
+                    <span>スマホ版 ページ全体（390px）</span>
+                  </div>
+                  <span className="text-xs text-pink-600 font-medium">
+                    拡大 🔍
+                  </span>
+                </div>
+
+                <div
+                  className="group/fullmob relative h-[640px] rounded-2xl border-2 border-slate-200 hover:border-pink-400 bg-slate-100 overflow-hidden cursor-pointer shadow-inner transition-colors"
+                  onClick={() =>
+                    setSelectedScreenshot({
+                      src: project.fullPageImages!.mobile,
+                      title: `${project.title} - スマホ版 ページ全体デザイン`,
+                      caption:
+                        project.fullPageImages!.mobileCaption ||
+                        "スマートフォン版 縦長1カラム全体デザイン（390px × 18,647px）",
+                    })
+                  }
+                >
+                  <div className="w-full h-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300">
+                    <img
+                      src={project.fullPageImages.mobile}
+                      alt={`${project.title} スマホ版全体`}
+                      className="w-full h-auto block"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover/fullmob:bg-slate-950/15 pointer-events-none transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover/fullmob:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-2xl transition-all">
+                      クリックで拡大 🔍
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-2.5 leading-relaxed">
+                  {project.fullPageImages.mobileCaption}
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* デザインシステム設計規約（Design System & Tokens） */}
+        {project.designSystem && (
+          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+            <div className="mb-8">
+              <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-teal-700 text-xs font-bold border border-teal-200/80">
+                  DESIGN SYSTEM
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  {project.designSystem.title}
+                </h2>
+              </div>
+              <p className="text-teal-700 font-semibold text-sm mb-2">
+                {project.designSystem.subtitle}
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-4xl">
+                {project.designSystem.concept}
+              </p>
+            </div>
+
+            {/* 1. カラーパレット（Color Tokens） */}
+            <div className="mb-8">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span>🎨</span>
+                <span>カラーパレット＆トークン設計（Color Palette）</span>
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
+                {project.designSystem.colors.map((color, cIdx) => (
+                  <div
+                    key={cIdx}
+                    className="rounded-2xl border border-slate-200 overflow-hidden shadow-2xs bg-white flex flex-col justify-between"
+                  >
+                    <div
+                      className="h-16 w-full flex items-center justify-center p-2 font-mono text-xs font-bold shadow-inner"
+                      style={{
+                        backgroundColor: color.hex,
+                        color: color.textColor || "#000000",
+                        borderBottom: "1px solid rgba(0,0,0,0.06)",
+                      }}
+                    >
+                      {color.hex}
+                    </div>
+                    <div className="p-3">
+                      <div className="font-bold text-slate-900 text-xs">
+                        {color.name}
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                        {color.usage}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. タイポグラフィ（Typography） ＆ 3. デザイン基本原則 */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+              {/* タイポグラフィ */}
+              <div className="lg:col-span-6 bg-slate-50/80 rounded-2xl p-5 border border-slate-200">
+                <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3.5 flex items-center gap-2">
+                  <span>🔤</span>
+                  <span>タイポグラフィ規約（Typography）</span>
+                </h3>
+                <div className="space-y-3 text-xs">
+                  <div className="p-3 bg-white rounded-xl border border-slate-200/80">
+                    <span className="font-bold text-slate-800 block text-xs">
+                      指定フォントファミリー:
+                    </span>
+                    <span className="text-slate-600 font-mono text-[11px] mt-0.5 block">
+                      {project.designSystem.typography.fontFamily}
+                    </span>
+                  </div>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200/80">
+                    <span className="font-bold text-slate-800 block text-xs">
+                      見出し（Headings）:
+                    </span>
+                    <span className="text-slate-600 text-[11px] mt-0.5 block">
+                      {project.designSystem.typography.heading}
+                    </span>
+                  </div>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200/80">
+                    <span className="font-bold text-slate-800 block text-xs">
+                      本文（Body Text）:
+                    </span>
+                    <span className="text-slate-600 text-[11px] mt-0.5 block">
+                      {project.designSystem.typography.body}
+                    </span>
+                  </div>
+                  {project.designSystem.typography.accent && (
+                    <div className="p-3 bg-white rounded-xl border border-slate-200/80">
+                      <span className="font-bold text-slate-800 block text-xs">
+                        英字アクセント（Accents）:
+                      </span>
+                      <span className="text-slate-600 text-[11px] mt-0.5 block">
+                        {project.designSystem.typography.accent}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* デザイン基本原則 */}
+              <div className="lg:col-span-6 bg-slate-50/80 rounded-2xl p-5 border border-slate-200">
+                <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3.5 flex items-center gap-2">
+                  <span>📐</span>
+                  <span>レイアウト＆余白原則（Design Rules）</span>
+                </h3>
+                <ul className="space-y-2.5">
+                  {project.designSystem.rules.map((rule, rIdx) => (
+                    <li
+                      key={rIdx}
+                      className="text-xs text-slate-700 flex items-start leading-relaxed bg-white p-2.5 rounded-xl border border-slate-200/70"
+                    >
+                      <span className="text-teal-600 font-bold mr-2 shrink-0">
+                        ✓
+                      </span>
+                      <span>{rule}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* 4. コンポーネント規約（UI Components） */}
+            <div>
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span>🧩</span>
+                <span>共通コンポーネント設計規約（UI Components）</span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {project.designSystem.components.map((cmp, cmpIdx) => (
+                  <div
+                    key={cmpIdx}
+                    className="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+                        <h4 className="font-bold text-slate-900 text-sm">
+                          {cmp.name}
+                        </h4>
+                      </div>
+                      <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                        {cmp.description}
+                      </p>
+                      <ul className="space-y-1.5 border-t border-slate-200/80 pt-2.5">
+                        {cmp.rules.map((r, rIndex) => (
+                          <li
+                            key={rIndex}
+                            className="text-[11px] text-slate-600 flex items-start leading-relaxed"
+                          >
+                            <span className="text-teal-600 mr-1.5 font-bold">・</span>
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* システム構成・アーキテクチャ（各作品固有の構成図・インフラ） */}
         {project.architecture && (
@@ -1166,7 +1484,7 @@ export default function ProjectDetailPage({
           </section>
         )}
 
-        {/* 制作プロセス（3ステップ） */}
+        {/* 制作プロセス（ステップ） */}
         {project.creationSteps && project.creationSteps.length > 0 && (
           <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
             <div className="mb-6">
@@ -1175,11 +1493,15 @@ export default function ProjectDetailPage({
                   PROCESS
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  制作の進め方（3ステップ）
+                  {project.id === "dental"
+                    ? "AI×Figma 制作プロセス（3ステップ）"
+                    : `制作の進め方（${project.creationSteps.length}ステップ）`}
                 </h2>
               </div>
               <p className="text-xs sm:text-sm text-slate-500">
-                要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。
+                {project.id === "dental"
+                  ? "ChatGPTによる求人課題整理・ワイヤーフレーム指示書策定から、Figma AIによるたたき台生成、デザインシステム仕上げまでのハイブリッドな制作フローです。"
+                  : "要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。"}
               </p>
             </div>
 

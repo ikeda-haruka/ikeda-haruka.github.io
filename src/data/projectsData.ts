@@ -1,4 +1,13 @@
 import type { Project } from "../types/project";
+import dentalDesktopFvImg from "../assets/dental/dental-lp-desktop-fv.png";
+import dentalMobileFvImg from "../assets/dental/dental-lp-mobile-fv.png";
+import dentalDesktopFullImg from "../assets/dental/dental-lp-desktop-full.png";
+import dentalMobileFullImg from "../assets/dental/dental-lp-mobile-full.png";
+import dentalBenefitsImg from "../assets/dental/dental-lp-benefits.png";
+import dentalScheduleImg from "../assets/dental/dental-lp-schedule.png";
+import dentalStaffImg from "../assets/dental/dental-lp-staff.png";
+import dentalRequirementsImg from "../assets/dental/dental-lp-requirements.png";
+import dentalCtaImg from "../assets/dental/dental-lp-cta.png";
 import nurseCaptureImg from "../assets/nurse-capture.png";
 import nurseCapturePcImg from "../assets/nurse-capture-pc.png";
 import nurseCaptureMobileImg from "../assets/nurse-capture-mobile.png";
@@ -46,6 +55,463 @@ import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide
 import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
 
 export const projectsData: Project[] = [
+  {
+    id: "dental",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "歯科クリニック 歯科衛生士採用LP（Figma Webデザイン・プロトタイプ）",
+    subtitle: "ChatGPT要件定義・ワイヤーフレーム指示書策定 × Figma AIたたき台生成 × デザインシステム構築",
+    description:
+      "「AIを活用しながら、採用課題を解決するWebデザインを提案できる」ことを実証するWebデザイン制作実績。求職者（歯科衛生士）が抱える「職場の人間関係」「教育・サポート体制」「子育てやプライベートとの両立」「ブランク復職」といったリアルな不安を解決するため、ChatGPTを活用して要件定義・ワイヤーフレーム制作指示書を策定。これをプロンプトとしてFigma AIエージェントに読み込ませてたたき台を生成し、Figma上で配色・余白・タイポグラフィ・コンポーネントを精密に調整・仕上げました。清潔感・安心感・温かみを兼ね備えたセージグリーン×ベージュのデザインシステム（配色、フォント、ボタン、カード、見出し規約）を構築し、実際の歯科医院案件にも即時転用・カスタマイズ可能な高精度デザインデータとして制作しています。",
+    overview:
+      "「Natural & Clean — 自分らしく、安心して働ける歯科クリニック」をデザインコンセプトに掲げた採用ランディングページ。白をベースにセージグリーン（#8FA995）とベージュ（#EDE5D8）を組み合わせ、医療機関としての信頼感と親しみやすさを両立。ヘッダーからファーストビュー、求職者へのメッセージ、当院で働く3つの魅力、仕事内容、1日のタイムライン、スタッフ紹介・インタビュー、教育研修、福利厚生、募集要項、FAQ、見学CTAまで全16セクションを網羅。デスクトップ（1440px）およびスマートフォン（390px）の両デバイスに最適化しています。",
+    purpose:
+      "歯科クリニックにおける歯科衛生士の採用難・早期離職課題の解決、および「AIを活用したスピーディーかつ本質的なデザイン提案力」の実証。給与条件の提示だけでなく、スタッフの雰囲気、教育制度、働きやすさを視覚的・心理的に伝え、「ここなら安心して長く働けそう」「まずは見学してみたい」と感じる導線を構築すること。",
+    role: [
+      "企画・採用課題インサイト分析",
+      "ChatGPTプロンプトエンジニアリング",
+      "ワイヤーフレーム制作指示書策定 (全16セクション)",
+      "Figma AIデザイン生成・プロンプト修正指示",
+      "デザインシステム設計 (Color/Typography/Components)",
+      "Figma UIデザイン仕上げ (PC 1440px / Mobile 390px)",
+      "ポートフォリオ連携・公開共有設定",
+    ],
+    image: dentalDesktopFvImg,
+    imageCaption: "歯科クリニック 歯科衛生士採用LP デスクトップ版ファーストビュー（セージグリーン×ベージュの温もりあるデザイン）",
+    imagePc: dentalDesktopFvImg,
+    imageMobile: dentalMobileFvImg,
+    imagePcCaption: "歯科クリニック 歯科衛生士採用LP PC版ファーストビュー（1440px・キャッチコピー＆スタッフ写真2カラム構成）",
+    imageMobileCaption: "歯科クリニック 歯科衛生士採用LP スマホ版ファーストビュー（390px・1カラム最適化＆見学CTA）",
+    figmaUrl:
+      "https://www.figma.com/design/FZtc8rzKg6x4TyvIYBGs76/%E6%AD%AF%E7%A7%91%E8%A1%9B%E7%94%9F%E5%A3%AB%E6%8E%A1%E7%94%A8LP%EF%BC%88%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E5%AE%9F%E7%B8%BE%E7%94%A8%E3%81%AE%E6%9E%B6%E7%A9%BA%E3%82%B5%E3%82%A4%E3%83%88%EF%BC%89?node-id=0-1&t=x8WNB41FrFwsjqiE-1",
+    technologies: [
+      "Figma (Auto Layout / コンポーネント設計)",
+      "Figma AI (デザインたたき台生成・プロンプト修正)",
+      "ChatGPT (採用課題整理 / ワイヤーフレーム指示書策定)",
+      "デザインシステム設計 (Color Palette / Typography / Spacing)",
+      "UI/UXデザイン (PC 1440px / Mobile 390px レスポンシブ)",
+      "プロンプトエンジニアリング",
+      "医療・歯科採用情報アーキテクチャ (IA)",
+    ],
+    features: [
+      "AIを活用した採用課題解決Webデザイン提案: 「AIを活用しながら採用課題を解決するWebデザインを提案できる」スキルを実証。歯科衛生士の不安に寄り添う情報設計をAIで体系化",
+      "STEP 1（ChatGPT）での綿密な要件定義・ワイヤーフレーム指示書策定: ターゲット別の不安と訴求ポイント、全16セクション構成、配色・フォント・写真配置・CTA設計を網羅した指示書を作成（所要目安：30〜60分）",
+      "STEP 2（Figma AI）での高速たたき台生成＆文章指示による反復調整: 作成した指示書をプロンプトとしてFigmaエージェントに入力し、たたき台生成後に文章で修正指示や余白・タイポグラフィ調整を実施",
+      "再利用性と統一感を追求したデザインシステム構築: セージグリーン（#8FA995）とベージュ（#EDE5D8）を基調としたカラーパレット、Noto Sans JPタイポグラフィ、ボタン・カード規約を完全整備",
+      "ファーストビューとページ全体の分割掲載設計: 縦長の採用LPにおいて、一目で世界観が伝わるファーストビューと、全16セクションの構成が俯瞰できるページ全体像を分けて提示する親切なUI設計",
+      "閲覧用Figma公式リンクの設置: 権限「Anyone can view（閲覧のみ）」に設定したFigma公式リンクを設置し、レイヤー構成やAuto Layout設定を直接確認可能",
+      "実務案件への即時転用が可能な構造化コンポーネント: 実際の歯科クリニックの支給テキストや写真にワンクリックで差し替え可能な画像枠・テキストモジュール設計",
+    ],
+    fullPageImages: {
+      pc: dentalDesktopFullImg,
+      mobile: dentalMobileFullImg,
+      pcCaption:
+        "歯科衛生士採用LP デスクトップ版 ページ全体デザイン（1440px × 11,086px・全16セクションの完全デザイン）",
+      mobileCaption:
+        "歯科衛生士採用LP スマートフォン版 ページ全体デザイン（390px × 18,647px・縦長1カラム最適化）",
+      note: "LP全体が縦長であるため、ファーストビューのクローズアップとは別に、全体の構成・情報の視線誘導・リズム感を一覧できるようページ全体を掲載しています。各フレームはスクロールして閲覧でき、クリックで高解像度モーダル表示が可能です。",
+    },
+    designSystem: {
+      title: "歯科衛生士採用LP デザインシステム設計書",
+      subtitle:
+        "Natural & Clean — 清潔感・安心感・温かみを兼ね備えた再利用性の高いコンポーネント規約",
+      concept:
+        "白をベースにセージグリーン（#8FA995）とベージュ（#EDE5D8）を組み合わせ、医療機関としての高い信頼性を保ちつつ、堅苦しさを取り払った親しみやすいデザイン。見た目を整えるだけでなく、統一感と運用時の再利用性を徹底追求しています。",
+      colors: [
+        {
+          name: "メイン背景",
+          hex: "#FFFFFF",
+          usage: "ページ全体の基本背景。清潔感と可読性の基盤",
+          textColor: "#333B35",
+        },
+        {
+          name: "セクション背景",
+          hex: "#F5F7F2",
+          usage: "セクション区切り・交互背景。単調さを防ぐ淡いグリーンベージュ",
+          textColor: "#333B35",
+        },
+        {
+          name: "メインカラー",
+          hex: "#8FA995",
+          usage: "セージグリーン。安心感・自然・医療の温かみを表現するキーカラー",
+          textColor: "#FFFFFF",
+        },
+        {
+          name: "濃いグリーン（アクセント）",
+          hex: "#526B59",
+          usage: "メインCTAボタン・強調見出し・重要アイコン",
+          textColor: "#FFFFFF",
+        },
+        {
+          name: "ベージュ（サブカラー）",
+          hex: "#EDE5D8",
+          usage: "カード背景・装飾タグ・柔らかな親しみやすさを演出",
+          textColor: "#333B35",
+        },
+        {
+          name: "メインテキスト",
+          hex: "#333B35",
+          usage: "見出し・本文テキスト。純黒を避け、目に優しいダークオリーブグレー",
+          textColor: "#FFFFFF",
+        },
+        {
+          name: "サブテキスト",
+          hex: "#70776F",
+          usage: "補足文・注釈・キャプション・メタ情報",
+          textColor: "#FFFFFF",
+        },
+        {
+          name: "ボーダー・枠線",
+          hex: "#E4E9E2",
+          usage: "カード境界線・区切り線・テーブルボーダー",
+          textColor: "#333B35",
+        },
+      ],
+      typography: {
+        fontFamily: "Noto Sans JP（日本語） / 落ち着いたセリフ体（英字アクセント）",
+        heading: "太めのウェイト（Bold / Black）、サイズ 24〜36px（PC）、20〜28px（SP）",
+        body: "Regular（400）を基本に、行間 1.7〜1.9 で読みやすさを最優先、15〜16px（基準）",
+        accent: "英字の小見出し（SECTION 01、BENEFITS 等）にエレガントなセリフ体を配置",
+      },
+      components: [
+        {
+          name: "メインCTAボタン",
+          description: "濃いグリーン（#526B59）背景に白文字の最も目立つ重要アクションボタン",
+          rules: [
+            "高さ 48〜56px、角丸 8〜16pxを基準とし、十分な押しやすさを確保",
+            "「まずは職場見学へ」「職場見学に申し込む」など心理的ハードルの低い文言",
+            "SP表示時は横幅100%または最小240pxを確保し、タップミスを防止",
+          ],
+        },
+        {
+          name: "サブCTAボタン",
+          description: "白またはベージュ背景に濃いグリーン枠線・テキストの補助ボタン",
+          rules: [
+            "「募集要項を見る」「応募する」などメインと目的を明確に分離",
+            "メインボタンと横並びまたは縦並びに配置し、求職者に選択肢を提示",
+          ],
+        },
+        {
+          name: "情報カード（3カラム / 1カラム）",
+          description: "働く魅力・仕事内容・インタビュー等を整理する角丸カードモジュール",
+          rules: [
+            "背景は白（#FFFFFF）またはベージュ（#EDE5D8）を使用",
+            "角丸 12〜16px、境界線 #E4E9E2、影やグラデーションを多用せずフラットに設計",
+            "SP表示時は横スクロールさせず、縦1列に自動スタック化して可読性を担保",
+          ],
+        },
+        {
+          name: "タイムライン（1日の流れ）",
+          description: "出勤から診療準備、午前・午後診療、片付け、退勤までの業務フロー",
+          rules: [
+            "時刻を縦軸に配置し、各ステップのアイコンと説明を美しく整列",
+            "実際の医院の勤務時間に合わせて即時差し替え可能なプレースホルダー構造",
+          ],
+        },
+      ],
+      rules: [
+        "余白（Whitespace）を十分に確保し、医療従事者が落ち着いて読める息苦しさを感じさせないレイアウト",
+        "角丸は8〜16px程度を統一基準とし、医療機関としての誠実さと親しみやすさを両立",
+        "写真を大きく配置し、人物の表情や院内の清潔な雰囲気をダイレクトに伝達",
+        "セクションごとに背景色（白 / #F5F7F2）を交互に切り替え、長文でも飽きさせない視線誘導とリズムを生み出す",
+        "スタッフ写真は実際の医院支給素材をワンクリックで差し替えられる画像枠コンポーネントとして設計",
+      ],
+    },
+    creationSteps: [
+      {
+        number: "1",
+        title: "ChatGPTで情報を整理する（目安：30〜60分）",
+        description:
+          "歯科衛生士の求職インサイトを徹底分析し、求人LPの構成（全16セクション）、ターゲット別の不安と訴求ポイント、ファーストビューを含む3つのデザイン方向性、配色・フォント・写真配置・CTA設計を策定。高精度な『ワイヤーフレーム制作指示書（Markdown）』を完成させました。",
+      },
+      {
+        number: "2",
+        title: "Figma AIに指示書を入力し、デザインたたき台を生成",
+        description:
+          "完成した制作指示書をプロンプトとしてFigmaエージェント（Figma AI）に読み込ませ、デスクトップ（1440px）とスマートフォン（390px）の初期レイアウトを一括生成。AIの特性を活かし、短時間で全体の情報構造と骨格を可視化しました。",
+      },
+      {
+        number: "3",
+        title: "Figma上で文章修正・デザインシステム適用・仕上げ",
+        description:
+          "AI生成後、プロンプトでの追加修正指示に加え、手動で配色（セージグリーン×ベージュ）、余白（8pxグリッド）、タイポグラフィ、ボタン・カードコンポーネントの精緻な調整を実施。実際の歯科医院案件にも即時転用可能な高品質デザインに仕上げました。",
+      },
+    ],
+    screenshotsBadge: "Figma UI Gallery",
+    screenshotsTitle: "各セクション詳細デザイン＆UIモジュール展示",
+    screenshotsNote:
+      "求職者の不安を解消するために設計した各主要セクションのデザイン詳細です。クリックで拡大できます。",
+    screenshots: [
+      {
+        src: dentalBenefitsImg,
+        title: "当院で働く3つの魅力＆クリニック紹介",
+        caption:
+          "教育・チームワーク・働きやすさの3枚カード。不安を払拭するセージグリーンの清潔感あるUI設計。",
+      },
+      {
+        src: dentalScheduleImg,
+        title: "歯科衛生士の1日（タイムライン）＆仕事内容",
+        caption:
+          "出勤から退勤までの流れを時系列で可視化。実際の勤務イメージを具体的に伝え、入職後のギャップを防止。",
+      },
+      {
+        src: dentalStaffImg,
+        title: "スタッフ紹介＆スタッフインタビュー",
+        caption:
+          "先輩スタッフのリアルな声と院内の雰囲気を伝えるカードレイアウト。人物写真枠とコメントのバランスを最適化。",
+      },
+      {
+        src: dentalRequirementsImg,
+        title: "成長サポート・福利厚生＆募集要項",
+        caption:
+          "教育ステップ、アイコン付き福利厚生一覧、スマートフォンでも見やすい募集要項テーブル設計。",
+      },
+      {
+        src: dentalCtaImg,
+        title: "よくある質問（FAQ）＆最終見学CTA・フッター",
+        caption:
+          "アコーディオン形式のFAQと、見学の心理的ハードルを下げる温かみのあるセージグリーン背景の最終CTA。",
+      },
+    ],
+    siteStructure: {
+      title: "WEBサイト構成図・採用情報アーキテクチャ（全16セクション）",
+      subtitle: "ファーストビュー × 職場の魅力 × スタッフ・教育環境 × 募集要項・見学CTA",
+      description:
+        "歯科衛生士の応募・見学動線をスムーズにするため、求職者の検討フェーズに合わせて全16セクションを論理的に構成。各セクションはFigma上で独立した編集可能フレームとして設計されています。",
+      categories: [
+        {
+          category: "1. ファーストビュー＆導入層",
+          badge: "Hero & Introduction",
+          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+          pages: [
+            {
+              name: "SECTION 01: ヘッダー",
+              path: "Header",
+              desc: "クリニックロゴ、ナビゲーション、見学・応募ボタン（SP: ハンバーガー）",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 02: ファーストビュー",
+              path: "Hero",
+              desc: "キャッチコピー、説明文、メインCTA（まずは見学へ）＆サブCTA（募集要項）",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 03: 求職者へのメッセージ",
+              path: "Message",
+              desc: "「新しい職場を探すあなたへ」不安に寄り添い歓迎する姿勢を伝える",
+            },
+            {
+              name: "SECTION 04: クリニック紹介",
+              path: "Clinic",
+              desc: "院内写真と医院の特徴・診療方針を整理した2カラム構成",
+            },
+          ],
+        },
+        {
+          category: "2. 職場の魅力＆仕事内容層",
+          badge: "Benefits & Work",
+          badgeColor: "bg-teal-100 text-teal-800 border-teal-200",
+          pages: [
+            {
+              name: "SECTION 05: 当院で働く魅力",
+              path: "Benefits",
+              desc: "教育サポート・チームワーク・働きやすさの3枚横並びカード（SP: 縦並び）",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 06: 仕事内容",
+              path: "JobDescription",
+              desc: "歯科衛生士の主な業務をカード形式で視覚的に紹介",
+            },
+            {
+              name: "SECTION 07: 一日の仕事の流れ",
+              path: "DailySchedule",
+              desc: "出勤から退勤までを縦軸にしたタイムライン形式",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "3. スタッフ＆教育環境層",
+          badge: "Staff & Support",
+          badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+          pages: [
+            {
+              name: "SECTION 08: スタッフ紹介",
+              path: "Staff",
+              desc: "写真を大きく配置し院内の雰囲気を伝えるスタッフ紹介カード",
+            },
+            {
+              name: "SECTION 09: スタッフインタビュー",
+              path: "Interview",
+              desc: "入職理由、職場の魅力、仕事のやりがいを伝えるQ&A形式",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 10: 教育・研修体制",
+              path: "Education",
+              desc: "入職後の成長ステップを可視化（ステップ形式）",
+            },
+            {
+              name: "SECTION 11: 福利厚生・働きやすさ",
+              path: "Welfare",
+              desc: "勤務時間、休日、福利厚生をアイコン付きリストで整理",
+            },
+          ],
+        },
+        {
+          category: "4. 募集要項＆エントリー層",
+          badge: "Entry & Actions",
+          badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+          pages: [
+            {
+              name: "SECTION 12: 募集要項",
+              path: "Requirements",
+              desc: "雇用形態、給与、時間、休日、勤務地を表形式でシンプルに整理",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 13: よくある質問",
+              path: "FAQ",
+              desc: "ブランク復職、新卒応募、見学の流れに関するアコーディオンFAQ",
+            },
+            {
+              name: "SECTION 14: 院長メッセージ",
+              path: "DirectorMessage",
+              desc: "「これから一緒に働くあなたへ」温かみと信頼感のあるメッセージ",
+            },
+            {
+              name: "SECTION 15: 最終見学CTA",
+              path: "FinalCTA",
+              desc: "セージグリーン背景・「まずは見学してみませんか？」申込導線",
+              isHighlight: true,
+            },
+            {
+              name: "SECTION 16: フッター",
+              path: "Footer",
+              desc: "医院ロゴ、住所、電話番号、プライバシーポリシー、著作権",
+            },
+          ],
+        },
+      ],
+    },
+    architecture: {
+      title: "AI×Figma 連携デザイン制作プロセス＆システム構成",
+      subtitle:
+        "ChatGPT（要件整理・指示書策定） → Figma AI（生成・修正指示） → Figma（デザインシステム仕上げ）",
+      description:
+        "「AIを活用しながら、採用課題を解決するWebデザインを提案できる」ことを実証するハイブリッドなデザインワークフロー。ChatGPTでのインサイト分析・要件定義から、Figma AIによる高速たたき台作成、そしてFigma上での精緻なデザインシステム構築・仕上げまでを一気通貫で推進しました。",
+      steps: [
+        {
+          title: "1. 採用課題インサイト分析",
+          detail: "歯科衛生士の不安（人間関係・教育・両立）の洗い出し",
+          tone: "blue",
+        },
+        {
+          title: "2. ChatGPT要件定義",
+          detail: "ワイヤーフレーム制作指示書（全16セクション）策定",
+          tone: "purple",
+        },
+        {
+          title: "3. Figma AI 生成・修正",
+          detail: "指示書プロンプト入力・文章による反復指示調整",
+          tone: "green",
+        },
+        {
+          title: "4. デザインシステム仕上げ",
+          detail: "セージグリーン配色・Noto Sans JP・コンポーネント化",
+          tone: "blue",
+        },
+        {
+          title: "5. Figma公開・実務連携",
+          detail: "Anyone can view 共有設定・実案件への即時転用設計",
+          tone: "green",
+        },
+      ],
+      flowLabel: "デザイン制作＆AI活用ワークフロー",
+      groups: [
+        {
+          title: "1. AI活用・要件定義フェーズ（ChatGPT）",
+          description: "短時間（30〜60分）で採用課題を言語化し、高精度プロンプトを構築",
+          tone: "indigo",
+          cards: [
+            {
+              title: "求人LP構成の整理",
+              detail: "ファーストビューから最終CTAまで全16セクションの論理的な情報設計",
+            },
+            {
+              title: "ターゲット別の不安解消",
+              detail: "教育サポート、人間関係、ワークライフバランスの3大訴求ポイント抽出",
+            },
+            {
+              title: "ワイヤーフレーム指示書策定",
+              detail: "配色・フォント・写真配置・CTA規約を網羅したMarkdownプロンプト作成",
+            },
+          ],
+        },
+        {
+          title: "2. ビジュアル化・デザイン展開フェーズ（Figma AI）",
+          description: "AIの生成力と文章修正指示を活かしたスピーディーな骨格構築",
+          tone: "emerald",
+          cards: [
+            {
+              title: "初期たたき台の一括生成",
+              detail: "指示書プロンプトからデスクトップ（1440px）＆スマホ（390px）を迅速に生成",
+            },
+            {
+              title: "文章による追加修正指示",
+              detail: "生成後にプロンプトでレイアウトや文字情報のファインチューニングを実施",
+            },
+            {
+              title: "マルチデバイス最適化",
+              detail: "PC版2〜3カラムからスマホ版1カラム縦並びへの自然なレスポンシブ変換",
+            },
+          ],
+        },
+        {
+          title: "3. デザインシステム＆実務転用フェーズ（Figma）",
+          description: "統一感・再利用性・メンテナンス性を担保するプロレベルの仕上げ",
+          tone: "blue",
+          cards: [
+            {
+              title: "Natural & Clean デザインシステム",
+              detail: "セージグリーン×ベージュの8カラートークン、Noto Sans JP、角丸規約",
+            },
+            {
+              title: "差し替え可能な画像枠モジュール",
+              detail: "実際のクリニック支給写真や医院情報にワンクリックで差し替え可能な構造",
+            },
+            {
+              title: "閲覧用Figma公式リンク共有",
+              detail: "Anyone can view 権限でクライアントや開発チームが自由に確認・検査可能",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "主な成果・アピールポイント",
+          items: [
+            "「AIを活用しながら採用課題を解決するWebデザインを提案できる」スキルの確立",
+            "ChatGPTによる要件整理（30〜60分）で制作期間を大幅短縮しつつ情報密度を担保",
+            "Figma AIと手動調整のベストミックスによる高品質なデザインシステム構築",
+            "ファーストビューとページ全体の分割掲載による、ポートフォリオ上での優れた閲覧性",
+          ],
+        },
+        {
+          title: "実務適用・医院案件へのメリット",
+          items: [
+            "このデザインをベースに、実際の歯科医院ごとの診療方針・写真・条件へ即時カスタマイズ可能",
+            "「まずは見学から」というハードルの低いCTA設計により、応募CVRの向上に直結",
+            "Auto Layoutとコンポーネント設計により、エンジニアへの実装受け渡しもスムーズ",
+          ],
+        },
+      ],
+      note: "本制作物はポートフォリオ実績用の架空歯科クリニック採用LPデザインです。Figma上で全レイヤー・オートレイアウト・テキストが個別に編集可能な状態で制作されています。",
+    },
+  },
   {
     id: "nurse",
     category: "portfolio",

@@ -115,6 +115,42 @@ export interface SiteStructure {
   categories: SiteMapCategory[];
 }
 
+export interface ColorToken {
+  name: string;
+  hex: string;
+  usage: string;
+  textColor?: string;
+}
+
+export interface DesignComponentRule {
+  name: string;
+  description: string;
+  rules: string[];
+}
+
+export interface DesignSystem {
+  title: string;
+  subtitle: string;
+  concept: string;
+  colors: ColorToken[];
+  typography: {
+    fontFamily: string;
+    heading: string;
+    body: string;
+    accent?: string;
+  };
+  components: DesignComponentRule[];
+  rules: string[];
+}
+
+export interface FullPageImages {
+  pc: string;
+  mobile: string;
+  pcCaption?: string;
+  mobileCaption?: string;
+  note?: string;
+}
+
 export interface Project {
   id: string;
   category: ProjectCategory;
@@ -136,10 +172,13 @@ export interface Project {
   imageMobileCaption?: string;
   github?: string;
   demo?: string;
+  figmaUrl?: string; // Figmaデザインリンク
   issuesUrl?: string;
   referenceSite?: ReferenceSite;
   siteStructure?: SiteStructure;
   architecture?: SystemArchitecture; // システム構成・アーキテクチャ
+  designSystem?: DesignSystem; // デザインシステム（配色・タイポグラフィ・コンポーネント規約）
+  fullPageImages?: FullPageImages; // ページ全体デザイン（縦長ロングLP展示）
   screenshotsBadge?: string;
   screenshotsTitle?: string;
   screenshotsNote?: string;
