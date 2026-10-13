@@ -1,2185 +1,410 @@
-import { useEffect, useState } from "react";
-import olorosoCaptureImg from "../assets/oloroso-capture.png";
-import olorosoCapturePcImg from "../assets/oloroso-capture-pc.png";
-import olorosoCaptureMobileImg from "../assets/oloroso-capture-mobile.png";
-import nailsalonCaptureImg from "../assets/nailsalon-capture.png";
-import nailsalonCapturePcImg from "../assets/nailsalon-capture-pc.png";
-import nailsalonCaptureMobileImg from "../assets/nailsalon-capture-mobile.png";
-import nailsalonUiMensImg from "../assets/nailsalon-ui-mens.png";
-import nailsalonUiMypageImg from "../assets/nailsalon-ui-mypage.png";
-import nailsalonUiShopImg from "../assets/nailsalon-ui-shop.png";
-import biwakogymCaptureImg from "../assets/biwakogym-capture.png";
-import biwakogymCapturePcImg from "../assets/biwakogym-capture-pc.png";
-import biwakogymCaptureMobileImg from "../assets/biwakogym-capture-mobile.png";
-import portfolioCaptureImg from "../assets/portfolio-capture.png";
-import portfolioCapturePcImg from "../assets/portfolio-capture-pc.png";
-import portfolioCaptureMobileImg from "../assets/portfolio-capture-mobile.png";
-import proteinCaptureImg from "../assets/protein-capture.png";
-import proteinCapturePcImg from "../assets/protein-capture-pc.png";
-import proteinCaptureMobileImg from "../assets/protein-capture-mobile.png";
-import proteinUiDrawerImg from "../assets/protein-ui-drawer.png";
-import proteinUiMarqueeImg from "../assets/protein-ui-marquee.png";
-import proteinUiLineupImg from "../assets/protein-ui-lineup.png";
-import proteinUiDetailImg from "../assets/protein-ui-detail.png";
-import proteinUiPollImg from "../assets/protein-ui-poll.png";
-import adminNewsListImg from "../assets/oloroso-admin/admin-news-list.png";
-import adminNewsEditImg from "../assets/oloroso-admin/admin-news-edit.png";
-import adminBlogListImg from "../assets/oloroso-admin/admin-blog-list.png";
-import adminBlogEditImg from "../assets/oloroso-admin/admin-blog-edit.png";
-import adminSettingsImg from "../assets/oloroso-admin/admin-settings.png";
-import flyerFlamencoImg from "../assets/flyer-flamenco.jpg";
-import graphicFlyerWinterImg from "../assets/works_graphics/graphic_flyer_winter.jpg";
-import graphicSnsEarlysummerImg from "../assets/works_graphics/graphic_sns_earlysummer.webp";
-import graphicSnsAutumnImg from "../assets/works_graphics/graphic_sns_autumn.webp";
-import graphicSnsSpringImg from "../assets/works_graphics/graphic_sns_spring.webp";
-import graphicSnsSummerImg from "../assets/works_graphics/graphic_sns_summer.jpg";
-import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide_detail.webp";
-import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
-
-type ProjectCategory =
-  | "portfolio"
-  | "client_web"
-  | "client_enterprise"
-  | "graphic";
-
-interface Screenshot {
-  src: string;
-  title: string;
-  caption: string;
-}
-
-interface ProjectDocument {
-  title: string;
-  filename: string;
-  format: "PPTX" | "XLSX" | "CSV" | "PDF";
-  size: string;
-  statusBadge?: string;
-  creationMethod?: string;
-  description: string;
-  keyPoints: string[];
-  downloadUrl: string;
-  githubUrl: string;
-  githubButtonText?: string;
-  extraAction?: {
-    label: string;
-    url: string;
-  };
-}
-
-interface FlowStep {
-  title: string;
-  detail: string;
-  tone: "blue" | "green" | "purple" | "red";
-}
-
-interface CreationStep {
-  number: string;
-  title: string;
-  description: string;
-}
-
-interface TaskAutomationBanner {
-  badge: string;
-  subtitle: string;
-  title: string;
-  description: string;
-  linkText: string;
-  linkUrl: string;
-}
-
-interface ReferenceSite {
-  url: string;
-  badge?: string;
-  title: string;
-  description: string;
-}
-
-interface SitePageItem {
-  name: string;
-  path: string;
-  desc: string;
-  url?: string;
-  isHighlight?: boolean;
-}
-
-interface SiteMapCategory {
-  category: string;
-  badge?: string;
-  badgeColor?: string;
-  pages: SitePageItem[];
-}
-
-interface SiteStructure {
-  title: string;
-  subtitle: string;
-  description: string;
-  categories: SiteMapCategory[];
-}
-
-interface Project {
-  id: string;
-  category: ProjectCategory;
-  categoryLabel: string;
-  badgeType: "portfolio" | "client_web" | "client_enterprise" | "graphic";
-  title: string;
-  subtitle: string;
-  description: string;
-  overview: string;
-  technologies: string[];
-  features: string[];
-  image?: string;
-  imageCaption?: string;
-  imagePc?: string;
-  imageMobile?: string;
-  imagePcCaption?: string;
-  imageMobileCaption?: string;
-  github?: string;
-  demo?: string;
-  issuesUrl?: string;
-  referenceSite?: ReferenceSite;
-  siteStructure?: SiteStructure;
-  screenshotsBadge?: string;
-  screenshotsTitle?: string;
-  screenshotsNote?: string;
-  screenshots?: Screenshot[];
-  documents?: ProjectDocument[];
-  documentProcessNote?: string;
-  flowSteps?: FlowStep[];
-  creationSteps?: CreationStep[];
-  flowNote?: string;
-  taskAutomationBanner?: TaskAutomationBanner;
-}
-
-const projectsData: Project[] = [
-  {
-    id: "nailsalon",
-    category: "portfolio",
-    categoryLabel: "ポートフォリオ実績用制作物",
-    badgeType: "portfolio",
-    title: "表参道パラジェル＆水光マグネット専門サロン「Salon de Fraise」公式WEBサイト",
-    subtitle: "Next.js + Tailwind CSS・大人可愛いUI設計＆完全永久無料Spring Boot 3.3バックエンド・メンズサロン（HOMME）展開",
-    description:
-      "表参道駅徒歩4分の自爪を削らないパラジェル＆水光マグネットネイル専門店「Salon de Fraise（サロン・ド・フレーズ）」の公式ブランドWebサイト。20〜30代女性に愛される上質で洗練された『大人可愛い』世界観（白・ラベンダーモーブ・シャンパンゴールド）を軸に、50色以上の水光マグネット体験シミュレーターやネイルカラー＆スタイル診断、空席シミュレーターなど高度なインタラクティブUIを実装。さらに男性特有の爪の悩みに特化したメンズ専用サロン『Salon de Fraise HOMME（サロン・ド・フレーズ オム）』および自爪風マットネイルチップ等を扱うメンズ公式ECショップ（/mens/shop）、会員ランク（4段階）・誕生月50%OFFクーポン・ポイント還元機能付きマイページ（/mypage）まで包括的に開発。バックエンドにはRenderマネージドPostgreSQLの30日失効制約を回避する『組み込みH2ファイル永続化＋Render無料枠（Java 21 / Spring Boot 3.3 REST API）』の完全永久無料アーキテクチャを策定し、二重予約防止・空き枠計算・排他制御インデックスまで設計・実装しました。全20件の課題・改善をGitHub Issuesでチケット駆動管理しています。",
-    overview:
-      "「自爪を削らない、うるおい美爪。透き通る水光ラベンダーとシャンパンゴールドの煌めき」をテーマに、レディース専門サロンからメンズ専門サロン（HOMME）、会員マイページ、オンラインショップまで網羅したサロンDXプラットフォーム。HotPepper Beauty・公式LINE・電話のマルチ予約動線、明朗会計メニュー表、在籍ネイリスト（全8名）の顔写真ポートレート、未生成・404画像のブランドロゴ自動フォールバック表示、WCAG高コントラスト対応など、細部まで徹底して作り込みました。GitHub Issues（全20件クローズ）を活用し、Tailwind CSSバンドル最適化から大人可愛いデザインリニューアル、永久無料バックエンド仕様書の策定までを高速イテレーションで解決しています。",
-    image: nailsalonCaptureImg,
-    imageCaption: "Salon de Fraise 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: nailsalonCapturePcImg,
-    imageMobile: nailsalonCaptureMobileImg,
-    imagePcCaption: "Salon de Fraise 公式WEBサイト PC版トップ画面キャッチ（大人可愛い水光ラベンダー×シャンパンゴールド）",
-    imageMobileCaption: "Salon de Fraise 公式WEBサイト スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆予約CTA）",
-    technologies: [
-      "Next.js (App Router)",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS (グラスモーフィズム)",
-      "Java 21 / Spring Boot 3.3 (REST API)",
-      "H2 Database (PostgreSQL互換ファイル永続化)",
-      "完全永久無料バックエンド設計 (Render)",
-      "チケット駆動開発 (GitHub Issues 全20件)",
-      "二重予約防止・排他制御インデックス設計",
-      "会員ランク制度・ポイント還元・クーポンUI",
-      "水光マグネット体験シミュレーター (マウス追従)",
-      "ネイルカラー＆スタイル診断ウィジェット",
-      "メンズ専用サロン (HOMME) / メンズEC展開",
-      "レスポンシブWebデザイン (Mobile First)",
-      "404フォールバック・画像自動代替システム",
-      "Vercel (CI/CD自動デプロイ)",
-    ],
-    features: [
-      "GitHub Issues全20件によるチケット駆動改善: プロジェクト初期化からデザインフルリニューアル、画像差し替え、メンズサロン・EC新設、会員ランク制度、永久無料バックエンド仕様書策定まで、全20件の課題をチケット駆動で完遂",
-      "完全永久無料バックエンド設計（Issue #20, #15, #16）: RenderマネージドPostgreSQLの30日失効制約を解消するため、組み込みH2（PostgreSQL互換ファイル永続化モード）＋Render無料枠によるJava 21 / Spring Boot 3.3 REST APIアーキテクチャを策定。クレカ不要・無期限・完全無料で安定稼働",
-      "二重予約防止・排他制御インデックス設計（Issue #14）: データベース論理設計（ER図・DDL）において、空き枠計算・二重予約判定用の複合インデックス（idx_reservations_slot）や指名ネイリスト重複防止インデックス（idx_reservations_staff）を実装",
-      "20〜30代向け「大人可愛い」洗練デザインリニューアル（Issue #11, #13）: ユーザーフィードバックに基づき、甘すぎる配色から白・ラベンダーモーブ・シャンパンゴールドの上品な世界観へフル刷新。すりガラス（グラスモーフィズム）や水光エフェクトを融合",
-      "サロン実務に即した爪先・ネイルマクロ写真への完全刷新（Issue #12）: パラジェル専門店の価値を伝えるため、人物の顔写真から自爪を削らないパラジェル施術・爪先マクロ写真・50色水光マグネット写真へ徹底刷新",
-      "メンズ専用サロン「Salon de Fraise HOMME」＆公式ECショップ（Issue #17）: 「男なのにネイル？」の固定概念を覆すダークトーンのメンズ専用ページ（/mens）と、自爪風完全マットネイルチップや速乾オイルを扱うメンズEC（/mens/shop）を新設。男性ネイリスト5名体制",
-      "会員ランク制度・誕生月50%OFFクーポン・ポイント還元（Issue #18）: Regular/Silver/Gold/Platinumの4段階会員ランク、1%〜5%のポイント還元率計算、誕生月50%OFFクーポン、会員マイページ（/mypage）での進捗バー・保有クーポン一覧UIを実装",
-      "ネイリスト全員のプロ顔写真＆画像フォールバック機構（Issue #19）: 男女全8名のプロポートレート設定に加え、ProductImageコンポーネントによる未生成・404画像の公式ブランドロゴ（レディース／メンズ別）自動代替表示を一元化",
-      "水光マグネット体験シミュレーター＆スタイル診断（Issue #4, #9）: マウス追従で微粒子マグネットパウダーの光沢が変わるシミュレーターや、3問で自分に合うスタイルがわかるインタラクティブ診断、空席シミュレーターを実装",
-    ],
-    demo: "https://nailsalon-inky.vercel.app/",
-    github: "https://github.com/ikeda-haruka/nailsalon",
-    issuesUrl: "https://github.com/ikeda-haruka/nailsalon/issues",
-    screenshotsBadge: "UI & FullStack",
-    screenshotsTitle: "レディース・メンズ（HOMME）・会員マイページ＆ECギャラリー",
-    screenshotsNote:
-      "20〜30代女性向けの大人可愛い本館サロン、ダークトーンのメンズ専用サロン（HOMME）、会員ランク・クーポンを管理するマイページ、自爪風マットチップ等を直接注文できるメンズ公式ECまで、多角的なサロンDX設計のハイライトです。クリックで拡大プレビューできます。",
-    screenshots: [
-      {
-        src: nailsalonUiMensImg,
-        title: "メンズ専用サロン「Salon de Fraise HOMME」（/mens）",
-        caption:
-          "「男なのに、なんでネイル？その言葉に、もう息苦しさを感じなくていい。」を掲げたメンズ専用パラジェルサロン。ダークトーン×ゴールドの重厚な世界観、在籍男性ネイリスト5名、完全個室・半個室、ツヤ消し自爪風処方を訴求。",
-      },
-      {
-        src: nailsalonUiMypageImg,
-        title: "会員マイページ・ランク＆クーポン案内（/mypage）",
-        caption:
-          "Regular・Silver・Gold・Platinumの4段階会員ランク制度、誕生月50%OFFクーポン、1%〜5%ポイント還元に対応した会員専用マイページ。デモ会員ログイン機能も備え、ランク進捗バーや保有クーポン一覧を視覚的に提示。",
-      },
-      {
-        src: nailsalonUiShopImg,
-        title: "メンズ公式オンラインショップ（/mens/shop）",
-        caption:
-          "自爪風完全マットネイルチップや速乾ネイルオイルを販売する専用EC。新規登録1,000pt進呈、商品コードによるクイック注文フォーム、宅配便限定・出荷日明記など、信頼性の高いEC体験を構築。",
-      },
-    ],
-    taskAutomationBanner: {
-      badge: "GitHub Issues 全20件クローズ",
-      subtitle: "アジャイルな課題解決とフルスタックアーキテクチャの確立",
-      title: "GitHub Issues（全20件）による品質向上・フルスタック機能拡張プロセス",
-      description:
-        "プロジェクト初期化・デザインシステム策定から、Tailwind CSSバンドル修正、20〜30代女性向け『大人可愛い』世界観へのフル刷新、メンズ専用サロン・ECショップの新設、会員ランク制度・誕生月クーポン設計、そしてRenderでの完全永久無料（Java 21 / Spring Boot 3.3 + H2ファイル永続化）バックエンド仕様書策定まで、全20件の課題をチケット駆動で解決しました。",
-      linkText: "GitHub Issues（全20件の改善タスク）を見る",
-      linkUrl: "https://github.com/ikeda-haruka/nailsalon/issues",
-    },
-    siteStructure: {
-      title: "WEBサイト構成図・サロンDXアーキテクチャ（全8+ページ群）",
-      subtitle: "レディース本館 × メンズHOMME × 会員マイページ × 公式EC × Spring Boot API",
-      description:
-        "レディース向けパラジェル専門サロンにとどまらず、メンズ専用サロン（HOMME）、会員ランクマイページ、メンズ公式ECショップ、そしてJava 21 / Spring Boot 3.3による予約・会員バックエンドAPIまでを有機的に連携させた、総合的なサロンDXプラットフォームとして設計・開発されています。各リンクから実際のページを確認可能です。",
-      categories: [
-        {
-          category: "1. レディース本館（Salon de Fraise）",
-          badge: "Ladies Salon",
-          badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
-          pages: [
-            {
-              name: "サロン トップ画面",
-              path: "index.html / (top)",
-              desc: "大人可愛いHero・パラジェル＆フィルイン強み・実績数値",
-              url: "https://nailsalon-inky.vercel.app/",
-              isHighlight: true,
-            },
-            {
-              name: "最旬デザインカタログ",
-              path: "#gallery",
-              desc: "春夏秋冬・オフィス・水光マグネット50色フィルターギャラリー",
-              url: "https://nailsalon-inky.vercel.app/#gallery",
-            },
-            {
-              name: "水光マグネット体験シミュレーター",
-              path: "#magnet-lab",
-              desc: "マウス追従で微粒子マグネットパウダーの輝きが変わる動的UI",
-              url: "https://nailsalon-inky.vercel.app/#magnet-lab",
-            },
-            {
-              name: "明朗会計・メニュー料金表",
-              path: "#menu",
-              desc: "定額コース・オフ無料・回数券・LINE限定クーポン案内",
-              url: "https://nailsalon-inky.vercel.app/#menu",
-            },
-          ],
-        },
-        {
-          category: "2. メンズ専用サロン（Salon de Fraise HOMME）",
-          badge: "Mens Salon",
-          badgeColor: "bg-slate-800 text-amber-200 border-slate-700",
-          pages: [
-            {
-              name: "メンズサロン トップ画面",
-              path: "/mens",
-              desc: "男性向けダークトーンUI・深爪/爪割れケア・完全個室・男性ネイリスト5名",
-              url: "https://nailsalon-inky.vercel.app/mens",
-              isHighlight: true,
-            },
-            {
-              name: "メンズ公式オンラインショップ",
-              path: "/mens/shop",
-              desc: "自爪風マットネイルチップ・速乾オイル販売・クイック注文コード",
-              url: "https://nailsalon-inky.vercel.app/mens/shop",
-              isHighlight: true,
-            },
-          ],
-        },
-        {
-          category: "3. 会員プログラム＆予約システム層",
-          badge: "Member & Reservation",
-          badgeColor: "bg-amber-100 text-amber-900 border-amber-200",
-          pages: [
-            {
-              name: "会員マイページ",
-              path: "/mypage",
-              desc: "Regular〜Platinum 4段階ランク進捗・誕生月50%OFFクーポン・保有ポイント",
-              url: "https://nailsalon-inky.vercel.app/mypage",
-              isHighlight: true,
-            },
-            {
-              name: "HotPepper / LINE / 電話 予約",
-              path: "#reservation",
-              desc: "24h即時予約・公式LINE空席カレンダー・電話のマルチ予約動線",
-              url: "https://nailsalon-inky.vercel.app/#reservation",
-            },
-          ],
-        },
-        {
-          category: "4. バックエンドAPI＆インフラ層",
-          badge: "Backend & DB",
-          badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
-          pages: [
-            {
-              name: "Spring Boot 3.3 REST API",
-              path: "Java 21 / Spring Boot / Render",
-              desc: "二重予約防止・空き枠計算・排他制御インデックス・会員認証API",
-            },
-            {
-              name: "H2ファイル永続化DB（完全永久無料）",
-              path: "H2 Database / PostgreSQL Mode",
-              desc: "30日失効なし・¥0・無期限・クレジットカード不要の堅牢設計",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "oloroso",
-    category: "portfolio",
-    categoryLabel: "ポートフォリオ実績用制作物",
-    badgeType: "portfolio",
-    title: "フラメンコスタジオ「Estudio Oloroso」公式WEBサイト",
-    subtitle: "Next.js + Decap CMS によるモダンWeb制作・ヘッドレスCMS構築",
-    description:
-      "Web制作・フロントエンド開発実績用の架空フラメンコスタジオ「Estudio Oloroso（エストゥディオ・オロロソ）」のWebサイト。Next.js (App Router) と Decap CMS（旧 Netlify CMS）を採用し、GitベースのヘッドレスCMS構成により、非エンジニアでもMarkdown形式で手軽にお知らせやブログを更新できる運用設計を実現。",
-    overview:
-      "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。初期Excel要件定義からGitHub Issuesへ全タスクをチケット化し、進捗可視化・アジャイル管理を実践しています。",
-    image: olorosoCaptureImg,
-    imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: olorosoCapturePcImg,
-    imageMobile: olorosoCaptureMobileImg,
-    imagePcCaption: "Estudio Oloroso 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
-    imageMobileCaption: "Estudio Oloroso 公式WEBサイト スマホ版トップ画面キャッチ（iPhone最適化・追従CTA）",
-    technologies: [
-      "Next.js (App Router)",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Decap CMS",
-      "GitHub Issues (タスク管理)",
-      "GitHub (OAuth / API)",
-      "Vercel",
-      "Markdown / Frontmatter",
-      "Lucide React",
-      "JSON-LD (構造化データ)",
-      "SEO / OGP",
-    ],
-    features: [
-      "Next.js (App Router / Turbopack) による高速なページ遷移とSSG（静的サイト生成）/ SSRハイブリッド設計",
-      "Decap CMS（GitベースCMS）を導入し、GitHubリポジトリ（Markdown/Frontmatter）と直結したブログ・お知らせコンテンツ管理",
-      "初期Excel要件定義書からGitHub Issuesへ全タスクをチケット化し、ラベル・ステータスを活用した可視化タスク管理を実施",
-      "Next.js Route Handlerを活用したGitHub OAuth認証による、外部認証サーバー不要のセキュアなCMS管理画面連携（/admin/）",
-      "ブランドアイデンティティ（深みのあるワインレッド×シャンパンゴールド）に基づく上品で洗練されたUI/UXデザイン",
-      "スマートフォン追従型フローティングCTA（LINE予約・体験予約）、アコーディオンFAQ、Stickyヘッダーなどのモバイル最適化",
-      "DanceStudio / LocalBusiness の JSON-LD 構造化データマークアップ、OGP・Twitter Cards 設定による包括的なSEO対策",
-      "曜日タブ切り替え式のレッスンスケジュール表、レベル別受講フローチャート、体験レッスン予約・問い合わせフォームの実装",
-    ],
-    demo: "https://oloroso.vercel.app/",
-    github: "https://github.com/ikeda-haruka/oloroso",
-    issuesUrl: "https://github.com/ikeda-haruka/oloroso/issues",
-    documentProcessNote:
-      "本ドキュメント群は、GoogleスライドおよびGoogleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させたものを目視確認して詳細レビューを行ったものが成果物となっています。AIプロンプトによる迅速なドラフト作成と人間による入念な品質検証・精査を組み合わせたドキュメント作成プロセスを実践しています。",
-    documents: [
-      {
-        title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
-        filename: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案.pptx",
-        format: "PPTX",
-        size: "6.6 MB",
-        creationMethod: "Googleスライド × Geminiプロンプト作成 ＋ 目視レビュー",
-        description:
-          "Googleスライドを使用し、Geminiにプロンプトを投げかけて作成させた構成案・スライド内容を目視確認して詳細レビューを行った企画提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅した成果物です。",
-        keyPoints: [
-          "Googleスライドを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
-          "デザインコンセプト策定（洗練された情熱 / Sophisticated Passion）",
-          "情報アーキテクチャ（IA）およびサイトマップ設計",
-          "主要画面のUI改善案（ファーストビュー、スマホ最適化カレンダー、ブログ統合、予約フォーム等）",
-          "制作スケジュール・推進ロードマップ（全12スライド）",
-        ],
-        downloadUrl:
-          "/docs/oloroso/Estudio_Oloroso_Design_Preview_and_Renewal_Proposal.pptx",
-        githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%EF%BC%86%E3%83%AA%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%AB%E6%A7%8B%E6%88%90%E6%A1%88.pptx",
-      },
-      {
-        title: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧",
-        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧.xlsx",
-        format: "XLSX",
-        size: "29 KB",
-        statusBadge: "GitHub Issuesへタスク移行済（docs/old保管）",
-        creationMethod: "Googleスプレッドシート × Geminiプロンプト作成 ＋ 目視レビュー",
-        description:
-          "Googleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させた画面構成・要件定義項目を目視確認して詳細レビューを行った初期定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
-        keyPoints: [
-          "Googleスプレッドシートを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
-          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン初期要件定義",
-          "GitHub Issuesへのタスク移行（各画面・機能の実装課題をチケット化し、ラベル・マイルストーンで進捗管理）",
-          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
-          "外部サービス連携仕様（Instagram API、LINE・Googleフォーム連携等）および旧ブログ移行仕様",
-        ],
-        downloadUrl:
-          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.xlsx",
-        githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/old/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
-        githubButtonText: "GitHub (docs/old) で確認",
-        extraAction: {
-          label: "GitHub Issues（タスク管理）を見る",
-          url: "https://github.com/ikeda-haruka/oloroso/issues",
-        },
-      },
-    ],
-    screenshots: [
-      {
-        src: adminNewsListImg,
-        title: "お知らせ・休講情報一覧",
-        caption: "Decap CMSコレクション画面。休講・代講、発表会などの告知を一覧で視覚的に管理。",
-      },
-      {
-        src: adminNewsEditImg,
-        title: "お知らせ編集（リアルタイムプレビュー）",
-        caption: "左側で入力しながら右側で実画面のレンダリング結果をリアルタイム確認可能。",
-      },
-      {
-        src: adminBlogListImg,
-        title: "公式ブログ記事一覧",
-        caption: "Markdown / Frontmatter 形式でGitHubに自動保存・バージョン管理される記事一覧。",
-      },
-      {
-        src: adminBlogEditImg,
-        title: "ブログ記事編集・アイキャッチ設定",
-        caption: "画像アップロード、タグ・カテゴリー分類、Markdownエディタでの直感的な編集画面。",
-      },
-      {
-        src: adminSettingsImg,
-        title: "スタジオ基本設定",
-        caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
-      },
-    ],
-  },
-  {
-    id: "protein",
-    category: "portfolio",
-    categoryLabel: "ポートフォリオ実績用制作物",
-    badgeType: "portfolio",
-    title: "女性専用プロテイン＆インナーケア「BERRY MILK」公式ブランドサイト",
-    subtitle: "既存Web構成のリバースエンジニアリング・女性向けLPデザインシステム＆包括的サイト構築（一覧→個別詳細遷移・細部作り込み・LINE連携・会員・動的演出）",
-    description:
-      "女性専用あまおう苺ミルクプロテインおよび内臓脂肪ケアティーを展開する架空のD2Cインナービューティーブランド「BERRY MILK」の公式ブランドWebサイト。既存のWeb構成（SPプロテイン LP: lovely-muffin-d4cf61.netlify.app）をリファレンスとし、セクション構造・訴求シナリオを徹底分析（リバースエンジニアリング）。その骨格をベースに、ターゲット女性層（美容・腸活・引き締め関心層）に最適化した「イチゴミルク配色」の独自デザインシステムを構築。ライフスタイル別のカード型商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へシームレスに遷移し、主要栄養成分4連カード・★4.8レビュー・原材料表示・返金保証付き定期オファーボックスまで細部を徹底的に作り込んだリッチなEC体験を実現。ハンバーガー展開時のカード型ドロワーUI、上下2段で交差して流れる『デュアルトラック・プルーフストリーム』マーキーアニメーション、ユーザーが1日1回投票でき即時グラフに反映される『新作フレーバー総選挙』アンケート投票機能など、動きと遊び心に満ちたモダンなWebデザインを実装。さらに公式LINEコンシェルジュ連携（相談・スキップ窓口）、定期購入会員用ログインページ（login.html）、会社概要（company.html）、新卒・中途採用情報、開発秘話ストーリー、品質基準ページまで網羅した総合的な情報アーキテクチャ（IA）を設計・開発しました。",
-    overview:
-      "「整える、満たす、愛せるわたしへ。」をブランドメッセージに掲げ、ファーストビューからお悩み提起、選ばれる理由、専門家監修、カード型商品一覧（LINEUP）から各商品の個別詳細ページ（product-milk.html等）へのシームレスな遷移動線、他社比較表、愛用者の声、フレーバー人気投票（インタラクティブアンケート機能）、よくある質問（FAQアコーディオン）、初回特別オファーまでの高いコンバージョン率を生み出すストーリー設計。商品詳細ページでは栄養成分4連カードや★4.8レビュー、原材料表、レシピ、オファーボックスなど細部まで徹底して作り込み、カード型モバイルドロワーや動くマーキー演出など遊び心満載のギミックを実装。公式LINE連携や会員マイページ、コーポレート・採用情報まで実動する包括的なD2Cブランドサイトとして構築し、課題や改修タスクはGitHub Issuesでチケット駆動管理しています。",
-    image: proteinCaptureImg,
-    imageCaption: "BERRY MILK 公式ブランドサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: proteinCapturePcImg,
-    imageMobile: proteinCaptureMobileImg,
-    imagePcCaption: "BERRY MILK 公式ブランドサイト PC版トップ画面キャッチ（イチゴミルク配色のファーストビュー）",
-    imageMobileCaption: "BERRY MILK 公式ブランドサイト スマホ版トップ画面キャッチ（モバイル最適化・ヘッダー＆CTA）",
-    technologies: [
-      "HTML5",
-      "CSS3 (Flexbox / CSS Grid)",
-      "JavaScript (ES6+)",
-      "レスポンシブWebデザイン (Mobile First)",
-      "LPデザインシステム設計 (イチゴミルク配色)",
-      "情報アーキテクチャ (IA) / サイトマップ設計",
-      "EコマースUI設計 (商品一覧カード → 詳細個別ページ遷移)",
-      "チケット駆動開発 (GitHub Issues 全45件)",
-      "公式LINEアカウント連携 (コンシェルジュ/CRM)",
-      "会員認証・マイページ設計 (login.html)",
-      "コーポレート・採用ページ設計 (company / recruit)",
-      "コンプライアンス・個人情報保護配慮",
-      "Web構成リバースエンジニアリング",
-      "Google Fonts (Barlow Condensed / Noto Sans JP)",
-      "UI/UX設計 (アコーディオン / フレーバー投票 / ドロワーメニュー)",
-      "デュアルトラック・プルーフストリーム演出",
-      "Vercel (CI/CD自動デプロイ)",
-      "Edge Headless (画面キャプチャ自動同期)",
-    ],
-    features: [
-      "カード型商品一覧（LINEUP）から商品詳細ページへのシームレスな遷移動線: ライフスタイルや利用シーン（毎日の朝食・リフレッシュ・置き換えダイエット・睡眠前）に合わせて選べる4種の商品ラインナップをカード型UIで整理。「詳細を見る →」ボタンから各商品の個別詳細ページ（product-milk.html等）へとスムーズに誘導し、離脱を防ぐ回遊性の高いEC導線を構築",
-      "細部まで徹底的に作り込んだ個別商品詳細ページ（product-milk.html等）: 福岡県産あまおう苺果汁バッジや★4.8（1,280件）のレビュー表示、主要栄養成分4連カード（タンパク質20g/コラーゲン1,500mg/植物性乳酸菌1,000億個/98kcal）、3つのこだわり、詳細な原材料・栄養成分表、美味しい飲み方レシピ（3STEP）、30日間全額返金保証・定期縛りなしのコンバージョンボックスまで、実在のD2Cブランドと遜色ない密度で細部まで実装",
-      "ユーザー参加型の遊び心ギミック（新作フレーバー総選挙）: 4つのフレーバー候補から選んで投票すると、閲覧日時点の最新集計グラフへリアルタイム反映されるインタラクティブなアンケート機能を実装。訪問者の滞在時間を延ばしファン化を促すエンタメ体験を創出",
-      "動くWEBデザイン演出（デュアルトラック・プルーフストリーム）: ファーストビュー直下で実績数値と製品スペックの2系統が上下で逆方向に滑らかに流れる無限ループCSSマーキーアニメーションを構築。視覚的なリズム感と圧倒的な社会的証明を両立",
-      "洗練されたモバイルドロワーメニュー設計: ハンバーガー展開時に全画面で開くドロワー内に、WEB限定特典オファーや会員ログイン導線を最上部に配置。各メニューを丸みのあるカード型UI・可愛い絵文字・英語サブ表記で構造化し、迷わせない直感的なモバイル体験を提供",
-      "GitHub Issues全45件によるチケット駆動改善: 要件定義からモバイル実機バグ修正、CVR向上、ビジュアル整合性精査までを課題チケット化し、全45回の高速イテレーションを経て高品質に完成",
-      "実機検証に基づくモバイルUXの極限最適化（Issue #16, #24, #30, #33）: モバイルハンバーガーメニュー開閉不具合、Hero要素重複、LINEUPカード画像見切れなどを実機検証で発見し即座にチケット解消",
-      "プライバシー・個人情報保護に配慮したレビューUI（Issue #40）: 愛用者の声セクションにおいて実名を非表示とし、イニシャルアイコンおよび年代・職業（例: 28歳・会社員）へ統一して実在ブランド基準のコンプライアンスを徹底",
-      "ブランド表記・画像アセットの徹底整合（Issue #26, #27, #44, #45）: 表記ゆれ（『ストロベリーミルク』→『ベリーミルク プロテイン』）の完全統一、ブランド専用パッケージ画像の再生成、開発風景写真（story.html）から実製品と異なるパウチを除外する等、細部のディテールまで徹底精査",
-      "高度なインタラクティブUIと社会的証明（Issue #8, #35, #36, #41）: 閲覧日リアルタイム集計付きフレーバー投票ウィジェット、実績が2列交差する『デュアルトラック・プルーフストリーム』、TV・雑誌掲載＆芸能人愛用カードの追加による権威性向上",
-      "公式LINEコンシェルジュ連携: 専任女性コンシェルジュ・管理栄養士への24時間相談窓口および次回お届け周期のスキップ・変更をLINEから行えるCRM動線を設計・実装",
-      "会員用ログインページ・定期マイページ設計（login.html）: 会員ログイン認証UI、パスワード再設定、定期購入ステータス管理への導線を完備",
-      "コーポレート・採用情報ページの展開（company.html / recruit）: 会社概要、SANDYグループ系列企業情報、新卒採用・中途採用の各募集ページを完備し、ブランドとしての社会的信用を確立",
-      "ブランドストーリー＆品質基準サブページ: 女性開発チームの秘話（story.html）や国内GMP認定工場の安心安全基準（quality.html）を設け、購入前の不安を払拭する信頼設計",
-      "リファレンス構成分析（リバースエンジニアリング）: 既存LPの優れた訴求動線を構造化分析し、女性向けインナーケアブランドに最適化した情報アーキテクチャへ再構築",
-      "独自デザインシステム構築: いちごミルクを象徴するパステルピンク（#FF7597）、ベリーレッド、ミルクホワイトの洗練された配色パレットとフォントタイポグラフィを策定",
-      "社会的証明・CVR最適化: 管理栄養士監修、他社製品との詳細比較マトリクス表、安心の30日間返金保証・縛りなし明記",
-    ],
-    demo: "https://protein-sandy.vercel.app/",
-    github: "https://github.com/ikeda-haruka/protein",
-    issuesUrl: "https://github.com/ikeda-haruka/protein/issues",
-    screenshotsBadge: "UI & Interactive",
-    screenshotsTitle: "動的Webデザイン・モバイルUI＆遊び心ギミックギャラリー",
-    screenshotsNote:
-      "ユーザー参加型のアンケート機能「新作フレーバー総選挙」、カード型商品一覧からの詳細個別ページ遷移、動くマーキー演出「デュアルトラック・プルーフストリーム」、カード型モバイルドロワーまで、遊び心と実務品質を兼ね備えたWeb UIハイライトです。クリックで拡大プレビューできます。",
-    screenshots: [
-      {
-        src: proteinUiPollImg,
-        title: "アンケート投票機能「新作フレーバー総選挙」",
-        caption:
-          "「次回の新作フレーバーはどれがいい？」をテーマにしたユーザー参加型の遊び心ギミック。キャラメルラテ・マスカットジャスミン・ショコラベリー・アップルシナモンの4候補から1日1回投票可能。閲覧日時点の最新集計データとパーセンテージグラフが即時更新されるリアルタイム同期UIを構築。",
-      },
-      {
-        src: proteinUiLineupImg,
-        title: "カード型商品一覧（LINEUP）",
-        caption:
-          "4種（プロテイン・内臓脂肪ケアティー・スムージー・睡眠ケア）の利用シーン、スペック、税込価格をカード型UIで整理。「詳細を見る →」から各商品の詳細個別ページへシームレスに遷移する購買動線を設計。",
-      },
-      {
-        src: proteinUiDetailImg,
-        title: "商品紹介の詳細ページ（BERRY MILK PROTEIN）",
-        caption:
-          "一覧から遷移した先の個別詳細ページ。あまおう苺果汁バッジや楽天3冠・GMP認証、★4.8（1,280件）レビュー、主要栄養成分4連カード（タンパク質20g/コラーゲン1,500mg等）、定期初回20%OFFオファーや返金保証まで細部を徹底的に作り込み。",
-      },
-      {
-        src: proteinUiDrawerImg,
-        title: "モバイルドロワーメニュー（カード型ナビゲーション）",
-        caption:
-          "ハンバーガーメニューをタップすると展開されるフルスクリーン・ドロワー。特典オファー・マイページ導線を最上部に配置し、12個のメニューを可愛いアイコン付きカード型UIで整理。片手操作でも迷わない直感的なモバイル体験を実現。",
-      },
-      {
-        src: proteinUiMarqueeImg,
-        title: "動くWEBデザイン「デュアルトラック・プルーフストリーム」",
-        caption:
-          "ファーストビュー直下で実績データ（リピート率92.4%・満足度96.8%等）と商品スペック（飲む美容液・あまおう苺果汁等）の2列が上下で交差しながら無限ループで滑らかに流れるCSSマーキー演出。訪問者の視線を自然に引き込み、高い社会的証明を演出。",
-      },
-    ],
-    taskAutomationBanner: {
-      badge: "GitHub Issues 全45件クローズ",
-      subtitle: "チケット駆動開発によるアジャイルなUI/UX高速イテレーション",
-      title: "GitHub Issues（全45件）を活用した品質改善・機能拡充プロセス",
-      description:
-        "要件定義・デザインシステム策定から、スマホ実機検証で発見したレイアウト崩れ・メニュー動作不具合の修正、レビュー欄の個人情報保護（イニシャル・年代統一）、デュアルトラック・プルーフストリームやフレーバーリアルタイム投票の実装、開発秘話での画像整合性精査（実物と異なるパウチの除外）、会社概要・採用情報・会員マイページ・LINE連携に至るまで、全45件の課題をチケット駆動で可視化・解決しました。",
-      linkText: "GitHub Issues（全45件の改善タスク）を見る",
-      linkUrl: "https://github.com/ikeda-haruka/protein/issues",
-    },
-    referenceSite: {
-      url: "https://lovely-muffin-d4cf61.netlify.app/",
-      badge: "構成リファレンス元",
-      title: "既存Web構成（SPプロテイン LP）のリバースエンジニアリングと再構築",
-      description:
-        "本制作では、上記参考サイト（lovely-muffin-d4cf61.netlify.app）の優れたWeb構成・訴求動線をベースに、女性専用インナーケア向けに「イチゴミルク配色」の独自デザインシステムと画面構造を設計・再構築しました。既存資産を分析して新たなターゲット層向けに昇華させるデザイン＆エンジニアリング力を体現しています。",
-    },
-    siteStructure: {
-      title: "WEBサイト構成図・情報アーキテクチャ（全14+ページ群）",
-      subtitle: "メインLP × 個別商品詳細 × 公式LINE × 会員機能 × 会社・採用",
-      description:
-        "単一のランディングページにとどまらず、D2Cブランドとしての信頼性と顧客体験（LTV）を最大化するため、カード型商品一覧からの個別商品詳細ページ群（各商品ごとの成分・オファー・レシピ作り込み）、公式LINEコンシェルジュ連携、定期会員マイページ、ブランドストーリー、品質基準、会社概要、採用情報（新卒・中途）までを包括的に網羅した画面構成・動線設計を構築しています。各リンクから実際のページを確認可能です。",
-      categories: [
-        {
-          category: "1. メインLP（集客・訴求層）",
-          badge: "Main LP",
-          badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
-          pages: [
-            {
-              name: "公式LP トップ画面",
-              path: "index.html#top",
-              desc: "ファーストビュー・動的マーキー・お悩み提起・専門家監修",
-              url: "https://protein-sandy.vercel.app/",
-              isHighlight: true,
-            },
-            {
-              name: "カード型商品一覧（LINEUP）",
-              path: "index.html#lineup",
-              desc: "4商品展開（プロテイン/お茶/スムージー/睡眠）・個別詳細への動線",
-              url: "https://protein-sandy.vercel.app/#lineup",
-              isHighlight: true,
-            },
-            {
-              name: "愛用者の声＆フレーバー投票",
-              path: "index.html#vote",
-              desc: "リアルクチコミ・次期フレーバー投票（1日1回・動的集計UI）",
-              url: "https://protein-sandy.vercel.app/#vote",
-            },
-            {
-              name: "よくある質問（FAQ）",
-              path: "index.html#faq",
-              desc: "アコーディオン開閉FAQ・30日間全額返金保証案内",
-              url: "https://protein-sandy.vercel.app/#faq",
-            },
-          ],
-        },
-        {
-          category: "2. 個別商品詳細ページ群（PDP・商品深掘り層）",
-          badge: "Product Detail",
-          badgeColor: "bg-pink-100 text-pink-800 border-pink-200",
-          pages: [
-            {
-              name: "美ボディ苺ミルクプロテイン 詳細",
-              path: "product-milk.html",
-              desc: "★4.8レビュー・成分4大カード・3大こだわり・原材料表・レシピ3選・定期初回オファー",
-              url: "https://protein-sandy.vercel.app/product-milk.html",
-              isHighlight: true,
-            },
-            {
-              name: "内臓脂肪ケアスリムティー 詳細",
-              path: "product-tea.html",
-              desc: "機能性表示食品届出・難消化性デキストリン・3フレーバー仕様",
-              url: "https://protein-sandy.vercel.app/product-tea.html",
-            },
-            {
-              name: "生酵素ベリースムージー 詳細",
-              path: "product-smoothie.html",
-              desc: "チアシード・生酵素120種・置き換えダイエット仕様詳細",
-              url: "https://protein-sandy.vercel.app/product-smoothie.html",
-            },
-            {
-              name: "睡眠ケア プロテイン 詳細",
-              path: "product-night.html",
-              desc: "カゼイン・GABA 100mg・ラベンダーベリー味・夜間リカバリー仕様",
-              url: "https://protein-sandy.vercel.app/product-night.html",
-            },
-          ],
-        },
-        {
-          category: "3. 購入・会員＆LINE連携層",
-          badge: "CV & CRM",
-          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
-          pages: [
-            {
-              name: "初回特別オファー・購入",
-              path: "offer.html",
-              desc: "定期割引・30日間返金保証付きの専用購入フォーム",
-              url: "https://protein-sandy.vercel.app/offer.html",
-              isHighlight: true,
-            },
-            {
-              name: "公式LINEコンシェルジュ",
-              path: "line.me/@460hfpvz",
-              desc: "LINE友だち連携・24時間チャット相談・スキップ窓口",
-              url: "https://line.me/R/ti/p/@460hfpvz",
-              isHighlight: true,
-            },
-            {
-              name: "会員ログイン・マイページ",
-              path: "login.html",
-              desc: "定期購入コースの配送日変更・スキップ・会員認証",
-              url: "https://protein-sandy.vercel.app/login.html",
-              isHighlight: true,
-            },
-          ],
-        },
-        {
-          category: "4. ブランド・品質ストーリー層",
-          badge: "Brand & Quality",
-          badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
-          pages: [
-            {
-              name: "女性開発チームの秘話",
-              path: "story.html",
-              desc: "ブランド誕生の背景・女性向け開発エピソード",
-              url: "https://protein-sandy.vercel.app/story.html",
-            },
-            {
-              name: "品質基準・安心へのこだわり",
-              path: "quality.html",
-              desc: "国内GMP認定工場・厳選原料・安全性検査の公開",
-              url: "https://protein-sandy.vercel.app/quality.html",
-            },
-          ],
-        },
-        {
-          category: "5. 会社情報・採用情報層",
-          badge: "Corporate & Recruit",
-          badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
-          pages: [
-            {
-              name: "会社概要・企業情報",
-              path: "company.html",
-              desc: "運営企業情報（SANDYグループ系列）・理念・沿革",
-              url: "https://protein-sandy.vercel.app/company.html",
-              isHighlight: true,
-            },
-            {
-              name: "新卒採用情報",
-              path: "recruit-newgrad.html",
-              desc: "新卒募集要項・求める人物像・選考フロー",
-              url: "https://protein-sandy.vercel.app/recruit-newgrad.html",
-              isHighlight: true,
-            },
-            {
-              name: "中途採用情報",
-              path: "recruit-midcareer.html",
-              desc: "キャリア募集・各職種案内",
-              url: "https://protein-sandy.vercel.app/recruit-midcareer.html",
-              isHighlight: true,
-            },
-            {
-              name: "特定商取引法 / プライバシー",
-              path: "tokushoho.html / privacy.html",
-              desc: "EC運営に必要な法定表記および個人情報保護方針",
-              url: "https://protein-sandy.vercel.app/tokushoho.html",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "portfolio",
-    category: "portfolio",
-    categoryLabel: "ポートフォリオ実績用制作物",
-    badgeType: "portfolio",
-    title: "エンジニアポートフォリオ「ikeda-haruka.github.io」",
-    subtitle: "React 19 + TypeScript + GitHub Issues自動タスク起票・CI/CDによるアジャイル制作",
-    description:
-      "WEBデザイナー＆フルスタックエンジニアとしての制作実績、Adobe公認認定資格、フロントエンドからバックエンド・インフラ連携まで網羅するシステムアーキテクチャ設計力を直感的に伝えるポートフォリオWebサイト。React 19とTailwind CSSを採用し、大画面ワイドモニターからモバイルまでの完全レスポンシブ対応を実現。さらに、開発要件や改修依頼をGitHub REST API経由で自動チケット化する「自動タスク追加ワークフロー」を独自構築し、チケット駆動開発を実践。GitHub ActionsによるCI/CD自動デプロイパイプラインを整備。",
-    overview:
-      "情報を探しやすい1ページ完結型の洗練されたモダンUI/UX。企画設計・自動タスク起票ツールによるアジャイル管理・実装・CI/CD公開までワンストップで制作。要件発生からGitHub Issues起票・コミット連携（Closes #XX）・本番デプロイまでを完全自動化し、エンジニアとしての自動化推進力と品質管理力を体現しています。",
-    image: portfolioCaptureImg,
-    imageCaption: "当ポートフォリオWEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: portfolioCapturePcImg,
-    imageMobile: portfolioCaptureMobileImg,
-    imagePcCaption: "当ポートフォリオWEBサイト PC版トップ画面キャッチ（最新の美しい大見出しレイアウト）",
-    imageMobileCaption: "当ポートフォリオWEBサイト スマホ版トップ画面キャッチ（iPhone最適化・レスポンシブ表示）",
-    technologies: [
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Vite",
-      "Edge Headless (画面キャプチャ自動同期)",
-      "GitHub Issues (自動タスク起票)",
-      "GitHub REST API",
-      "Git Credential Manager",
-      "GitHub Pages",
-      "GitHub Actions (CI/CD)",
-      "チケット駆動開発 / 自動化",
-      "レスポンシブWebデザイン",
-      "アクセシビリティ",
-    ],
-    features: [
-      "GitHub Issues自動タスク起票ワークフロー: 開発要件や機能改修依頼をGitHub REST API経由で自動的にチケット化（Issue起票・ラベル分類・コミット連携自動クローズ）する仕組みを自作・導入し、チケット駆動開発を完全自動化",
-      "画面キャプチャ自動同期ツール（PC版・スマホ版マルチデバイス自動撮影）: 最新のビルド成果物からEdgeヘッドレス経由でPC版（1280px）およびスマホ版（iPhone 390px）のスクリーンショットを自動生成・アセットへ同期するワークフローを自作・導入し、表示内容の常時同期を実現",
-      "React 19 と TypeScript による型安全かつ拡張性の高いコンポーネント指向UI設計",
-      "Tailwind CSS v4 を用いた最新のユーティリティファーストスタイリングとグラスモーフィズム演出",
-      "大画面ワイドモニター（2560px〜）からスマートフォンまで左右均等に配置されるレスポンシブ中央揃え設計",
-      "日本語タイポグラフィ最適化: 禁則処理とブロック分割による助詞落ち・不自然な改行防止",
-      "Vite による高速ビルドと GitHub Actions による GitHub Pages への完全自動デプロイ（CI/CD）",
-      "ブラウザ完結の高速静的SPA構成により、表示パフォーマンスとセキュアな配信を両立",
-    ],
-    demo: "https://ikeda-haruka.github.io/",
-    github: "https://github.com/ikeda-haruka/ikeda-haruka.github.io",
-    issuesUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
-    taskAutomationBanner: {
-      badge: "Task Automation & Issue Bot",
-      subtitle: "自作スクリプトによる完全自動タスク起票 ＆ 画面キャプチャ常時同期",
-      title: "GitHub Issues 自動タスク追加・チケット駆動開発 ＆ 画面キャプチャ自動同期",
-      description:
-        "Git Credential ManagerとGitHub REST APIを連携させた自動起票ツールを自作導入。開発要件や機能改修依頼を受け取った際に自動でIssueを新規起票し、ラベル分類・進捗管理・コミット連携（Closes #XX）による自動クローズまでを一貫して自動化。さらに、Edgeヘッドレスブラウザ連携により、本番ビルドからPC版・スマホ版両方の画面キャッチを常に最新状態へと自動同期するツールを整備。実務に即したチケット駆動開発と継続的自動化を体現しています。",
-      linkText: "実際のGitHub Issues一覧を見る（全14件）",
-      linkUrl: "https://github.com/ikeda-haruka/ikeda-haruka.github.io/issues?q=is%3Aissue",
-    },
-    creationSteps: [
-      {
-        number: "01",
-        title: "情報設計・GitHub Issues自動タスク起票",
-        description:
-          "構成案や画面要件を整理し、自作スクリプトとGitHub API連携により依頼内容をGitHub Issuesへ自動チケット化。タスク着手から完了クローズまで完全可視化されたチケット駆動開発を推進します。",
-      },
-      {
-        number: "02",
-        title: "実装・マルチデバイス最適化",
-        description:
-          "ReactとTypeScriptでコンポーネントを分割し、Tailwind CSSで大画面からモバイル（iPhone等）まで美しい改行・レイアウトを組み立てます。",
-      },
-      {
-        number: "03",
-        title: "ビルド・CI/CD自動公開・Issueクローズ",
-        description:
-          "本番ビルド後、GitHub ActionsからGitHub Pagesへ自動デプロイ。コミットメッセージ連携により関連Issueを自動完了（Closed）にします。",
-      },
-    ],
-    flowSteps: [
-      {
-        title: "React 19 / TypeScript",
-        detail: "画面をコンポーネント単位で型安全に実装",
-        tone: "blue",
-      },
-      {
-        title: "Vite",
-        detail: "型チェック後に高速かつ軽量に本番向けビルド",
-        tone: "purple",
-      },
-      {
-        title: "HTML / CSS / JS",
-        detail: "ブラウザで直接動作する静的ファイル生成",
-        tone: "green",
-      },
-      {
-        title: "GitHub Pages",
-        detail: "GitHub Actionsを通じて自動デプロイ・公開",
-        tone: "red",
-      },
-    ],
-    flowNote:
-      "閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。",
-  },
-  {
-    id: "biwakogym",
-    category: "client_web",
-    categoryLabel: "参画案件（Webサイト共同開発）",
-    badgeType: "client_web",
-    title: "トレーニングジム「BIWAKO GYM」公式WEBサイト",
-    subtitle: "滋賀県草津市のトレーニング＆コンディショニングジム 公式WEBサイト（2名共同開発）",
-    description:
-      "滋賀県草津市に構えるトレーニング＆ストレッチ＆コンディショニングジム「BIWAKO GYM（ビワコジム）」の公式WEBサイト。エンジニア2名体制での共同開発案件として参画し、企画設計からフロントエンド実装、レスポンシブ対応、UI/UX最適化、SEO構造化データマークアップまでを担当。",
-    overview:
-      "「もう、ジムで迷わない。」をキーコンセプトに、鍛錬マシン全29台と3ステップサポートを強みとするジムの魅力を伝えるWebサイト。無料体験（Trial）、料金体系表、店舗アクセス、お問い合わせまでのユーザー動線を徹底追求。視覚的な引き込みを図るファーストビューやスクロール連動アニメーション、スマートフォンからの操作性を考慮したモバイルファースト設計を採用。",
-    image: biwakogymCaptureImg,
-    imageCaption: "BIWAKO GYM 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: biwakogymCapturePcImg,
-    imageMobile: biwakogymCaptureMobileImg,
-    imagePcCaption: "BIWAKO GYM 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
-    imageMobileCaption: "BIWAKO GYM 公式WEBサイト スマホ版トップ画面キャッチ（モバイルファースト・ナビゲーション）",
-    technologies: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "レスポンシブWebデザイン",
-      "Google Fonts (Outfit / Zen Kaku Gothic New)",
-      "JSON-LD (HealthClub 構造化データ)",
-      "SEO / OGP",
-      "UI/UX設計",
-      "2名共同開発",
-    ],
-    features: [
-      "2名体制での役割分担・コードレビューを通じた効率的な共同開発推進",
-      "「BIWAKO GYM」の力強さと清潔感を両立させたダークトーン×アクセントブルーのモダンデザイン",
-      "鍛錬マシンフロアの臨場感を伝えるフルスクリーン・ファーストビューとマーキー（流れるテキスト）演出",
-      "無料体験（Trial）へのコンバージョンを最大化する導線設計（ヘッダー常設CTA・お問い合わせフォーム連動）",
-      "スマートフォン閲覧に最適化したハンバーガーメニュー・開閉ナビゲーションおよびタッチ操作対応",
-      "Schema.org（HealthClub / LocalBusiness）準拠のJSON-LD構造化マークアップによる地域SEO（MEO）強化",
-      "店舗情報（営業時間・定休日・電話・マップ・料金表）を迷わず確認できるアクセシビリティ設計",
-    ],
-    demo: "https://biwakogym.com/",
-  },
-  {
-    id: "flamenco-flyer",
-    category: "graphic",
-    categoryLabel: "グラフィックデザイン / DTP・SNS制作",
-    badgeType: "graphic",
-    title: "フラメンコ＆音楽イベント公式フライヤー・SNSプロモーションデザイン",
-    subtitle: "Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
-    description:
-      "フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式フライヤーおよびSNSプロモーション用デザイン群。Adobe PhotoshopおよびIllustratorを使用し、A4印刷用フライヤー（ダークトーン／ライトトーンの2パターンデザイン提案）からInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウトまでを一貫して担当。",
-    overview:
-      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマ、打楽器ワークショップのリズム感に合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメント、幾何学リズムパターンなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築しました。",
-    image: flyerFlamencoImg,
-    imageCaption: "A4完成フライヤー 2パターン提案（左: ダークトーン / 右: ライトトーン）",
-    technologies: [
-      "Adobe Photoshop",
-      "Adobe Illustrator",
-      "DTP / 印刷入稿データ作成",
-      "グラフィックデザイン",
-      "SNSバナー・カルーセル制作",
-      "人物写真切り抜き・レタッチ",
-      "色調補正・エフェクト合成",
-      "タイポグラフィ",
-      "情報アーキテクチャ（IA）",
-      "季節別コンセプトカラー設計",
-      "QRコード導線設計",
-    ],
-    features: [
-      "四季（春・初夏・夏・初秋・冬）の開催時期やイベント特性に応じた色彩心理・モチーフの巧みな使い分けと世界観構築",
-      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや楽器テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
-      "クラス詳細（テクニカ・振付・コムニカシオン、初心者向け打楽器講座）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
-      "Instagram/Facebookのタイムラインで視線を引きつけるスクエア比率（1:1）のバナーおよびカルーセル解説スライドの展開",
-      "印刷入稿用（高解像度CMYK/塗り足し・トンボ設定）およびWeb・SNS配信（RGB）のマルチフォーマット制作",
-      "メールおよびSNS申込みへ直結するQRコード配置による高いコンバージョン導線設計",
-    ],
-    screenshots: [
-      {
-        src: flyerFlamencoImg,
-        title: "A4完成フライヤー 2パターン提案（初夏・第4弾）",
-        caption:
-          "左: フラメンコの格式と情熱を表現したブラックver / 右: 爽やかで可読性を重視したホワイトver。クライアントへのデザイン提案として制作した2パターンの印刷用フライヤーデータ",
-      },
-      {
-        src: graphicFlyerWinterImg,
-        title: "冬開催 公式フライヤー（12月・1月開催）",
-        caption:
-          "ホリデーシーズンを演出するバーガンディ×雪の結晶×オーナメント。ダンサー写真の立体的な光彩エフェクトとシックなA4フライヤーレイアウト",
-      },
-      {
-        src: graphicSnsEarlysummerImg,
-        title: "初夏開催 SNS告知バナー（6月開催）",
-        caption:
-          "水彩アルコールインクアート調のパープルグラデーションとゴールドフレーム。躍動感あふれる写真を活かしたInstagram用スクエアバナー（1:1）",
-      },
-      {
-        src: graphicSnsAutumnImg,
-        title: "初秋開催 SNS告知バナー（第7弾 9月開催）",
-        caption:
-          "フォレストグリーンと紅葉あしらいを取り入れた初秋の告知デザイン。ページめくり風の視覚演出でタイムライン上の視認性を高めたフィード画像",
-      },
-      {
-        src: graphicSnsSlideDetailImg,
-        title: "初秋開催 クラス解説カルーセルスライド",
-        caption:
-          "Instagramカルーセル投稿用に制作したクラス詳細解説スライド。各クラスの指導ポイントや対象レベル、受講条件を読みやすく構造化",
-      },
-      {
-        src: graphicSnsSpringImg,
-        title: "春開催 SNS告知スライド（5月開催）",
-        caption:
-          "爽やかなミントブルーとネイビーの配色。大判ショール（マントン）を羽織った人物写真の背景を精緻に切り抜いたモダンデザイン",
-      },
-      {
-        src: graphicSnsSummerImg,
-        title: "夏開催 SNS告知スライド（第5弾 7月開催）",
-        caption:
-          "シルバー×ブラックの星の煌めき・ボケ光彩エフェクト。夏の夜のワークショップを盛り上げるラグジュアリーな告知スライド",
-      },
-      {
-        src: graphicCajonWorkshopImg,
-        title: "打楽器ワークショップ SNS告知バナー（カホンクルシージョ）",
-        caption:
-          "イエロー×ボルドーの幾何学パターンと演奏者写真の切り抜き。初心者向けワークショップの親しみやすさとリズム感を表現したSNS告知バナー（秋葉原会場・QRコード導線設計）",
-      },
-    ],
-  },
-  {
-    id: "chemical",
-    category: "client_enterprise",
-    categoryLabel: "参画案件（業務システム）",
-    badgeType: "client_enterprise",
-    title: "化学物質管理システム（PoC・バージョンアップ）",
-    subtitle: "アプリ開発から外部連携・サーバー移行・運用まで",
-    description:
-      "レガシーな Struts + JSP アプリケーション（JDK8）を SpringBoot 3 + Vue.js へリプレイス。SpecKit を用いた仕様駆動開発の PoC に加え、外部サービス連携、インフラ・リポジトリ移行、日々の保守運用を担当。",
-    overview:
-      "化学物質の使用・管理を一元化するシステム。JAMP（chemSHERPA）から CMP への移行に伴う要件定義に参画し、企業の法令遵守と効率的な化学物質管理を支援。業務主管部門からの依頼対応や共通管理の要件書レビューも実施。",
-    technologies: [
-      "Java 21",
-      "SpringBoot",
-      "Vue.js",
-      "Figma",
-      "TypeScript",
-      "Tomcat 11",
-      "SpecKit",
-      "Oracle DB",
-      "IMDS",
-      "SMTP",
-      "リバースプロキシ",
-      "電子証明書",
-      "GitLab",
-      "GitHub",
-      "JP1",
-      "ITSM",
-      "Windows タスク スケジューラ",
-    ],
-    features: [
-      "Figmaのアプリデザインガイドラインを基に、システム向けにカスタマイズしたUI部品を設計・作成",
-      "Figmaの設計に沿ったVue.js部品をプロジェクト内に実装",
-      "マイグレーション: Struts/JSP から SpringBoot/Vue.js への段階的リプレイス",
-      "SpecKit による仕様駆動開発のPoC実施と検証",
-      "JAMP から CMP への法令対応",
-      "IaaS クラウドリフト前提の設計",
-      "マルチテナント対応の検討",
-      "電子証明書が必要なリバースプロキシ経由でのベンダーパッケージ連携、および IMDS（International Material Data System）との外部連携",
-      "複数部署共用サーバーからアプリ専用サーバーへの移行、GitLab から GitHub への移行",
-      "SMTP サーバーを利用したメール送信",
-      "ITSMによるインシデント・変更・問題・ナレッジ管理。エスカレーションされたインシデントへの対応と、同部署内の変更管理アセスメント",
-      "月初の手動ログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などで実行",
-      "業務主管部門からのデータ抽出・改修依頼への随時対応、共通管理の要件書レビュー",
-    ],
-  },
-  {
-    id: "bank",
-    category: "client_enterprise",
-    categoryLabel: "参画案件（業務システム）",
-    badgeType: "client_enterprise",
-    title: "銀行系決済システム",
-    subtitle: "大量明細処理・即日振込機能の実装",
-    description:
-      "大手銀行向けの決済インフラシステム。大量の振込明細の取得と即日振込処理を実装。ミッションクリティカルなシステムのため高い信頼性・可用性を確保。",
-    overview:
-      "企業向けの法人決済サービス。SVN による厳格なバージョン管理、Hulft による定期ジョブ実行、複雑なプロキシ設定を含むオンプレミス基盤上での運用。銀行の厳しい要件を満たす堅牢なシステム。",
-    technologies: [
-      "Java 8",
-      "Hulft",
-      "SVN",
-      "Tomcat",
-      "Oracle Database",
-      "Bash",
-      "NAS",
-    ],
-    features: [
-      "大量明細の高速取得・処理機能",
-      "即日振込実行エンジン",
-      "Hulft カスタマーセンター連携",
-      "プロキシを含む複雑なネットワーク設定の管理",
-      "NAS導入時のセットアップ・動作検証",
-      "24/7 監視・対応体制による高可用性",
-    ],
-  },
-];
+import { useMemo, useState } from "react";
+import { projectsData } from "../data/projectsData";
 
 type FilterType = "all" | "web" | "graphic" | "client";
 
-export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
-  const [selectedScreenshot, setSelectedScreenshot] =
-    useState<Screenshot | null>(null);
+interface ProjectsProps {
+  onSelectProject: (projectId: string) => void;
+}
 
-  const resolveDocUrl = (url: string) => {
-    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-    return `${base}${url}`;
+export default function Projects({ onSelectProject }: ProjectsProps) {
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleProjectClick = (projectId: string) => {
+    onSelectProject(projectId);
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedScreenshot(null);
+  // フィルタリング ＆ キーワード検索（リアルタイムAND検索）
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      // 1. カテゴリフィルター
+      let matchesCategory = true;
+      if (activeFilter === "web") {
+        matchesCategory =
+          project.category === "portfolio" || project.category === "client_web";
+      } else if (activeFilter === "graphic") {
+        matchesCategory = project.category === "graphic";
+      } else if (activeFilter === "client") {
+        matchesCategory =
+          project.category === "client_web" ||
+          project.category === "client_enterprise";
       }
-    };
-    if (selectedScreenshot) {
-      window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    }
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto";
-    };
-  }, [selectedScreenshot]);
 
-  // カテゴリ別フィルタリング
-  const webProjects = projectsData.filter(
-    (p) => p.category === "portfolio" || p.category === "client_web",
-  );
-  const graphicProjects = projectsData.filter(
-    (p) => p.category === "graphic",
-  );
-  const clientWebProjects = projectsData.filter(
-    (p) => p.category === "client_web",
-  );
-  const enterpriseProjects = projectsData.filter(
-    (p) => p.category === "client_enterprise",
-  );
-  const allClientProjects = projectsData.filter(
-    (p) => p.category === "client_web" || p.category === "client_enterprise",
-  );
+      if (!matchesCategory) return false;
 
-  const renderProjectCard = (project: Project) => (
-    <div
-      key={project.id}
-      className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl group"
-    >
-      {/* A. グラフィック・フライヤー展示フレーム */}
-      {project.category === "graphic" && project.image && (
-        <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
-          {/* 上部ヘッダー */}
-          <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold text-amber-300 bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-700/50 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                <span>DTP・グラフィックデザイン展示</span>
-              </span>
-              <span className="text-xs text-slate-400 hidden sm:inline">
-                Adobe Photoshop & Illustrator 制作実績
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-slate-300 bg-slate-800/90 px-3 py-0.5 rounded-full border border-slate-700">
-                A4イベントフライヤー（2パターンデザイン提案）
-              </span>
-            </div>
-          </div>
+      // 2. キーワード検索（スペース区切りの全ワードを含むAND検索）
+      if (!searchQuery.trim()) return true;
 
-          {/* フライヤー展示ステージ */}
-          <div
-            className="p-4 sm:p-8 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 flex flex-col items-center justify-center cursor-pointer group/flyer"
-            onClick={() =>
-              setSelectedScreenshot({
-                src: project.image!,
-                title: `${project.title} - 完成フライヤー`,
-                caption:
-                  project.imageCaption ||
-                  "A4フライヤー 2パターン提案（Photoshop / Illustrator制作）",
-              })
-            }
-          >
-            <div className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 group-hover/flyer:border-amber-400/80 transition-all duration-300 bg-slate-900">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-auto object-contain group-hover/flyer:scale-[1.01] transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-slate-950/0 group-hover/flyer:bg-slate-950/25 transition-colors flex items-center justify-center">
-                <span className="opacity-0 group-hover/flyer:opacity-100 bg-white/95 text-slate-900 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-2xl transition-all duration-200 flex items-center gap-1.5">
-                  <span>🔍</span>
-                  <span>クリックして高解像度で拡大表示</span>
-                </span>
-              </div>
-            </div>
-            <p className="text-xs text-slate-400 mt-3 text-center flex items-center gap-1.5">
-              <span>💡</span>
-              <span>{project.imageCaption || "クリックで拡大表示できます"}</span>
-            </p>
-          </div>
+      const keywords = searchQuery
+        .toLowerCase()
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
 
-          {/* 制作物デザインギャラリー（全8作品） */}
-          {project.screenshots && project.screenshots.length > 0 && (
-            <div className="bg-slate-900/90 p-4 sm:p-6 border-t border-slate-800">
-              <div className="flex items-center justify-between mb-3.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-amber-400 font-bold text-xs sm:text-sm flex items-center gap-1.5">
-                    <span>✨</span>
-                    <span>制作物デザインギャラリー（全{project.screenshots.length}作品）</span>
-                  </span>
-                  <span className="text-[11px] text-slate-400 hidden sm:inline">
-                    クリックで高解像度拡大プレビュー
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-500 font-mono">
-                  Photoshop & Illustrator
-                </span>
-              </div>
+      const searchableText = [
+        project.title,
+        project.subtitle,
+        project.description,
+        project.overview,
+        project.purpose || "",
+        ...(project.role || []),
+        ...project.technologies,
+        ...project.features,
+      ]
+        .join(" ")
+        .toLowerCase();
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                {project.screenshots.map((item, sIndex) => (
-                  <div
-                    key={sIndex}
-                    onClick={() => setSelectedScreenshot(item)}
-                    className="group/thumb bg-slate-950/80 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-400/80 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-xs hover:shadow-lg"
-                  >
-                    <div className="relative aspect-square overflow-hidden bg-slate-900 flex items-center justify-center p-2">
-                      <img
-                        src={item.src}
-                        alt={item.title}
-                        className="max-h-full max-w-full object-contain group-hover/thumb:scale-105 transition-transform duration-300 rounded"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/0 group-hover/thumb:bg-slate-950/30 transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover/thumb:opacity-100 bg-white/95 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full shadow transition-all">
-                          拡大 🔍
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-2.5 bg-slate-900/90 border-t border-slate-800/80">
-                      <h5 className="text-[11px] font-bold text-slate-200 truncate group-hover/thumb:text-amber-300 transition-colors">
-                        {item.title}
-                      </h5>
-                      <p className="text-[10px] text-slate-400 line-clamp-2 mt-0.5 leading-tight">
-                        {item.caption}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+      return keywords.every((kw) => searchableText.includes(kw));
+    });
+  }, [activeFilter, searchQuery]);
 
-      {/* B. 画面キャッチ（PC版・スマホ版 それぞれ独立したデバイスフレームで掲示） */}
-      {project.category !== "graphic" && (project.imagePc || project.image) && (
-        <div className="border-b border-slate-200 bg-slate-950 overflow-hidden">
-          {/* 上部プレビュー・ステージヘッダー（ブラウザ枠ではなく、マルチデバイス展示ヘッダー） */}
-          <div className="bg-slate-900/95 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold text-indigo-300 bg-indigo-950/80 px-2.5 py-0.5 rounded-full border border-indigo-700/50 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                <span>マルチデバイス実機プレビュー</span>
-              </span>
-              <span className="text-xs text-slate-400 hidden sm:inline">
-                PC（1280px）＆ スマホ（iPhone）両対応
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-950/70 hover:bg-emerald-900/70 px-2.5 py-0.5 rounded-full border border-emerald-800/60 transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>LIVEサイトを開く ↗</span>
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* PC版 ＆ スマホ版 ディスプレイ領域 */}
-          <div className="p-4 sm:p-6 lg:p-7 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              {/* ① PC版: 独立したデスクトップブラウザウィンドウ */}
-              <div
-                className={`${project.imageMobile ? "lg:col-span-8" : "lg:col-span-12"} group/pc cursor-pointer`}
-                onClick={() =>
-                  setSelectedScreenshot({
-                    src: project.imagePc || project.image!,
-                    title: `${project.title} - PC版デスクトップ画面`,
-                    caption: project.imagePcCaption || project.imageCaption || "PC版ファーストビュー",
-                  })
-                }
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
-                    <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-indigo-400 font-mono border border-slate-700">PC</span>
-                    <span>デスクトップ表示 (1280px)</span>
-                  </div>
-                  <span className="text-[11px] text-slate-400 group-hover/pc:text-indigo-300 transition-colors flex items-center gap-1">
-                    <span>🔍</span>
-                    <span>拡大</span>
-                  </span>
-                </div>
-
-                {/* PC専用ブラウザウィンドウフレーム */}
-                <div className="rounded-xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group-hover/pc:border-indigo-500/70 transition-all duration-300">
-                  {/* PC専用ブラウザ上部バー（赤黄緑ドット ＋ URLバー） */}
-                  <div className="bg-slate-800/95 px-3.5 py-2 flex items-center justify-between border-b border-slate-700/80">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-400/90 inline-block"></span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90 inline-block"></span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/90 inline-block"></span>
-                    </div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono px-3 py-0.5 bg-slate-950/80 rounded-full border border-slate-700/60 truncate max-w-[180px] sm:max-w-xs">
-                      {project.demo || "https://..."}
-                    </div>
-                    <div className="w-6"></div>
-                  </div>
-
-                  {/* PC画面スクリーンショット */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-                    <img
-                      src={project.imagePc || project.image}
-                      alt={`${project.title} PC版`}
-                      className="w-full h-full object-cover object-top group-hover/pc:scale-[1.02] transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-slate-950/0 group-hover/pc:bg-slate-950/20 transition-colors flex items-center justify-center">
-                      <span className="opacity-0 group-hover/pc:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl transition-all duration-200">
-                        PC版を拡大
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* ② スマホ版: 独立したスマートフォン（iPhone端末モックアップ） */}
-              {project.imageMobile && (
-                <div
-                  className="lg:col-span-4 flex flex-col items-center group/mobile cursor-pointer"
-                  onClick={() =>
-                    setSelectedScreenshot({
-                      src: project.imageMobile!,
-                      title: `${project.title} - スマホ版画面`,
-                      caption: project.imageMobileCaption || "スマートフォン最適化表示",
-                    })
-                  }
-                >
-                  <div className="w-full flex items-center justify-between mb-2 max-w-[230px] sm:max-w-[250px]">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
-                      <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-pink-400 font-mono border border-slate-700">MOBILE</span>
-                      <span>スマホ表示 (iPhone)</span>
-                    </div>
-                    <span className="text-[11px] text-slate-400 group-hover/mobile:text-pink-300 transition-colors flex items-center gap-1">
-                      <span>🔍</span>
-                      <span>拡大</span>
-                    </span>
-                  </div>
-
-                  {/* スマホフレームモックアップ本体 */}
-                  <div className="w-full max-w-[220px] sm:max-w-[240px] rounded-[38px] p-2.5 bg-slate-800 border-2 border-slate-700/90 shadow-2xl relative group-hover/mobile:border-pink-500/70 transition-all duration-300">
-                    {/* ダイナミックアイランド・スピーカー */}
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-20 border border-slate-800/80 flex items-center justify-end pr-2 pointer-events-none">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-900/80"></div>
-                    </div>
-                    {/* ホームインジケーター（下部バー） */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-slate-400/50 rounded-full z-20 pointer-events-none"></div>
-
-                    {/* 画面コンテンツ（iPhone 390x844アスペクト比） */}
-                    <div className="w-full aspect-[390/844] rounded-[28px] overflow-hidden bg-slate-950 relative">
-                      <img
-                        src={project.imageMobile}
-                        alt={`${project.title} スマホ版`}
-                        className="w-full h-full object-cover object-top group-hover/mobile:scale-[1.02] transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/0 group-hover/mobile:bg-slate-950/20 transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover/mobile:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-xl transition-all duration-200">
-                          スマホ版を拡大
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="p-6 sm:p-9">
-        <div className="mb-4">
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span
-              className={`text-xs font-bold px-3 py-1 rounded-full ${
-                project.badgeType === "graphic"
-                  ? "bg-amber-100 text-amber-800 border border-amber-200"
-                  : project.badgeType === "portfolio"
-                  ? "bg-purple-100 text-purple-700 border border-purple-200"
-                  : project.badgeType === "client_web"
-                  ? "bg-blue-100 text-blue-700 border border-blue-200"
-                  : "bg-slate-100 text-slate-700 border border-slate-200"
-              }`}
-            >
-              {project.categoryLabel}
-            </span>
-            {project.demo && (
-              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span>公開中Webサイト</span>
-              </span>
-            )}
-          </div>
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
-            {project.title}
-          </h3>
-          <p className="text-indigo-600 font-semibold mt-1.5 text-base sm:text-lg">
-            {project.subtitle}
-          </p>
-        </div>
-
-        <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
-          {project.description}
-        </p>
-
-        <div className="mt-6 p-4 sm:p-5 bg-slate-50/80 rounded-xl border border-slate-200/80">
-          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-            Overview / 概要
-          </h4>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            {project.overview}
-          </p>
-        </div>
-
-        <div className="mt-6">
-          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-            {project.category === "graphic"
-              ? "Design Highlights / 制作ポイント・デザイン設計"
-              : "Key Features / 主な機能・実装"}
-          </h4>
-          <ul className="grid grid-cols-1 gap-2">
-            {project.features.map((feature, featIndex) => (
-              <li
-                key={featIndex}
-                className="text-slate-700 text-sm flex items-start bg-slate-50/50 p-2.5 rounded-lg border border-slate-100"
-              >
-                <span className="text-indigo-600 font-bold mr-2.5 shrink-0">
-                  ✦
-                </span>
-                <span className="leading-snug">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mt-6">
-          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
-            Technologies / 使用技術スタック
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, techIndex) => (
-              <span
-                key={techIndex}
-                className="px-3 py-1 bg-slate-50 text-slate-700 rounded-lg text-xs font-medium border border-slate-200 group-hover:border-indigo-200 transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* スクリーンショット・UI機能ギャラリー（Web案件） */}
-        {project.category !== "graphic" &&
-          project.screenshots &&
-          project.screenshots.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-slate-200">
-            <div className="mb-4">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold">
-                  {project.screenshotsBadge || "CMS"}
-                </span>
-                <h4 className="text-base font-bold text-slate-900">
-                  {project.screenshotsTitle ||
-                    "管理画面スクリーンショット（Decap CMS）"}
-                </h4>
-              </div>
-              <p className="text-xs text-slate-500 mt-1">
-                {project.screenshotsNote ||
-                  "※管理画面（/admin/）はGitHubアカウント認証による管理者限定アクセスのため、実際の更新画面を掲載しています。クリックで拡大できます。"}
-              </p>
-            </div>
-
-            <div
-              className={`grid grid-cols-1 sm:grid-cols-2 ${
-                project.screenshots.length % 4 === 0
-                  ? "lg:grid-cols-4"
-                  : "lg:grid-cols-3"
-              } gap-4`}
-            >
-              {project.screenshots.map((shot, shotIndex) => (
-                <div
-                  key={shotIndex}
-                  onClick={() => setSelectedScreenshot(shot)}
-                  className="group/shot cursor-pointer bg-white border border-slate-200 hover:border-indigo-400 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-md flex flex-col"
-                >
-                  <div className="relative aspect-video bg-slate-100 overflow-hidden">
-                    <img
-                      src={shot.src}
-                      alt={shot.title}
-                      className="w-full h-full object-cover object-top group-hover/shot:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-indigo-950/0 group-hover/shot:bg-indigo-950/20 transition-colors flex items-center justify-center">
-                      <span className="opacity-0 group-hover/shot:opacity-100 bg-white/95 text-slate-800 text-xs font-bold px-3 py-1 rounded-full shadow-md transition-opacity">
-                        🔍 拡大表示
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3.5 flex-1 flex flex-col justify-between bg-slate-50/60">
-                    <div className="text-xs font-bold text-slate-800 group-hover/shot:text-indigo-600 transition-colors">
-                      {shot.title}
-                    </div>
-                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed line-clamp-2">
-                      {shot.caption}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 設計・提案資料（企画提案書・要件定義一覧） */}
-        {project.documents && project.documents.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-slate-200">
-            <div className="mb-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-xs font-bold">
-                  DOCS
-                </span>
-                <h4 className="text-base font-bold text-slate-900">
-                  設計・提案ドキュメント（企画提案書・画面要件定義）
-                </h4>
-                <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold border border-indigo-200/80">
-                  🤖 Geminiプロンプト作成 × 目視レビュー成果物
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 mt-1">
-                リニューアル推進にあたり作成したデザイン企画提案書（PPTX）および全画面レイアウト・コンテンツ要件定義書（XLSX）です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
-              </p>
-            </div>
-
-            {/* 作成プロセスの説明バナー */}
-            {project.documentProcessNote && (
-              <div className="mb-4 p-4 bg-gradient-to-r from-purple-50/90 via-indigo-50/70 to-purple-50/90 border border-purple-200 rounded-2xl text-xs leading-relaxed shadow-2xs">
-                <div className="flex items-start gap-2.5">
-                  <span className="text-base leading-none mt-0.5">💡</span>
-                  <div>
-                    <span className="font-bold text-purple-950 text-xs sm:text-sm">
-                      ドキュメント作成プロセス（Google Workspace × 生成AI活用・目視レビュー）:
-                    </span>
-                    <p className="mt-1 text-slate-700 leading-relaxed text-xs">
-                      {project.documentProcessNote}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.documents.map((doc, docIndex) => (
-                <div
-                  key={docIndex}
-                  className="bg-slate-50/90 border border-slate-200 rounded-2xl p-5 hover:border-purple-300 transition-all flex flex-col justify-between shadow-2xs hover:shadow-sm"
-                >
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <span
-                        className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide ${
-                          doc.format === "PPTX"
-                            ? "bg-orange-100 text-orange-700 border border-orange-200"
-                            : "bg-emerald-100 text-emerald-700 border border-emerald-200"
-                        }`}
-                      >
-                        {doc.format} • {doc.size}
-                      </span>
-                      {doc.statusBadge && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-                          {doc.statusBadge}
-                        </span>
-                      )}
-                    </div>
-
-                    <h5 className="font-bold text-slate-900 text-sm leading-snug">
-                      {doc.title}
-                    </h5>
-
-                    {doc.creationMethod && (
-                      <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-100/70 text-purple-900 border border-purple-200/90 text-[11px] font-semibold">
-                        <span>✨</span>
-                        <span>{doc.creationMethod}</span>
-                      </div>
-                    )}
-
-                    <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                      {doc.description}
-                    </p>
-
-                    <div className="mt-3 pt-3 border-t border-slate-200/80">
-                      <div className="text-[11px] font-semibold text-slate-700 mb-1.5">
-                        主な記載項目:
-                      </div>
-                      <ul className="space-y-1">
-                        {doc.keyPoints.map((point, pIndex) => (
-                          <li
-                            key={pIndex}
-                            className="text-[11px] text-slate-600 flex items-start"
-                          >
-                            <span className="text-purple-600 mr-1.5 shrink-0">
-                              ✓
-                            </span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center gap-2">
-                    <a
-                      href={doc.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors shadow-2xs"
-                    >
-                      <span>{doc.githubButtonText || "GitHubで確認"}</span>
-                      <span className="text-[10px]">↗</span>
-                    </a>
-                    <a
-                      href={resolveDocUrl(doc.downloadUrl)}
-                      download={doc.filename}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
-                    >
-                      <span>ダウンロード</span>
-                      <span className="text-[10px]">↓</span>
-                    </a>
-                    {doc.extraAction && (
-                      <a
-                        href={doc.extraAction.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-bold transition-colors shadow-2xs"
-                      >
-                        <span>{doc.extraAction.label}</span>
-                        <span className="text-[10px]">↗</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* GitHub Issues タスク管理ハイライトバナー */}
-            {project.issuesUrl && (
-              <div className="mt-5 p-5 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-2xl border border-indigo-500/30 text-white shadow-md">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0 text-xl">
-                      📋
-                    </div>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                          Task & Issue Management
-                        </span>
-                        <span className="text-xs text-indigo-300 font-medium">
-                          Excel要件定義からチケット駆動開発へ移行
-                        </span>
-                      </div>
-                      <h5 className="text-base font-bold text-white tracking-tight">
-                        GitHub Issues によるアジャイル・チケット駆動のタスク管理
-                      </h5>
-                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed max-w-2xl">
-                        初期Excel定義書（レイアウト構成・コンテンツ一覧）の記載内容はすべてGitHub Issuesへタスク（チケット）として落とし込み、ラベル（UI, CMS, SEO, Docs等）やマイルストーンで進捗・ステータスを可視化管理しています。仕様策定から実際の開発チケット運用までを一貫して推進できるスキルを実践しています。
-                      </p>
-                    </div>
-                  </div>
-                  <a
-                    href={project.issuesUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer self-start md:self-auto"
-                  >
-                    <span>GitHub Issues（タスク一覧）</span>
-                    <span className="text-[10px]">↗</span>
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* 制作プロセス・進め方（3ステップ） */}
-        {project.creationSteps && project.creationSteps.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-slate-200">
-            <div className="mb-4">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-bold">
-                  PROCESS
-                </span>
-                <h4 className="text-base font-bold text-slate-900">
-                  制作の進め方（3ステップ）
-                </h4>
-              </div>
-              <p className="text-xs text-slate-500 mt-1">
-                要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。
-              </p>
-            </div>
-
-            <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {project.creationSteps.map((step) => (
-                <li
-                  key={step.number}
-                  className="bg-slate-50/80 border border-slate-200/90 rounded-xl p-4 flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-[11px] font-bold text-blue-600 bg-blue-100/70 px-2 py-0.5 rounded-md">
-                      STEP {step.number}
-                    </span>
-                    <h5 className="mt-2 text-sm font-bold text-slate-900">
-                      {step.title}
-                    </h5>
-                    <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        )}
-
-        {/* システム構成・公開フロー */}
-        {project.flowSteps && project.flowSteps.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-slate-200">
-            <div className="mb-4">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold">
-                  CI/CD & ARCHITECTURE
-                </span>
-                <h4 className="text-base font-bold text-slate-900">
-                  システム構成・公開フロー
-                </h4>
-              </div>
-              <p className="text-xs text-slate-500 mt-1">
-                TypeScriptによる型チェックからViteによる本番ビルド、GitHub ActionsによるGitHub Pages自動公開までのアーキテクチャです。
-              </p>
-            </div>
-
-            <ol
-              aria-label="ポートフォリオの制作・公開フロー"
-              className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
-            >
-              {project.flowSteps.map((step, index) => {
-                const toneBg =
-                  step.tone === "blue"
-                    ? "border-blue-600 bg-blue-600 text-white"
-                    : step.tone === "green"
-                      ? "border-emerald-600 bg-emerald-600 text-white"
-                      : step.tone === "purple"
-                        ? "border-violet-600 bg-violet-600 text-white"
-                        : "border-red-600 bg-red-600 text-white";
-                return (
-                  <li key={step.title} className="relative">
-                    <div
-                      className={`h-full rounded-xl border p-4 shadow-2xs ${toneBg}`}
-                    >
-                      <p className="text-[11px] font-semibold opacity-80">
-                        {String(index + 1).padStart(2, "0")}
-                      </p>
-                      <h5 className="mt-1 text-sm font-bold text-white">
-                        {step.title}
-                      </h5>
-                      <p className="mt-1.5 text-xs leading-relaxed opacity-90">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-
-            {project.flowNote && (
-              <p className="mt-4 border-l-2 border-emerald-500 pl-3.5 text-xs leading-relaxed text-slate-600">
-                {project.flowNote}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* GitHub Issues 自動タスク追加・チケット駆動開発ハイライトバナー */}
-        {project.taskAutomationBanner && (
-          <div className="mt-8 p-5 sm:p-6 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-2xl border border-indigo-500/40 text-white shadow-lg">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0 text-2xl shadow-inner">
-                  ⚡
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      {project.taskAutomationBanner.badge}
-                    </span>
-                    <span className="text-xs text-indigo-300 font-medium">
-                      {project.taskAutomationBanner.subtitle}
-                    </span>
-                  </div>
-                  <h5 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                    {project.taskAutomationBanner.title}
-                  </h5>
-                  <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed max-w-2xl">
-                    {project.taskAutomationBanner.description}
-                  </p>
-                </div>
-              </div>
-              <a
-                href={project.taskAutomationBanner.linkUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer self-start md:self-auto"
-              >
-                <span>{project.taskAutomationBanner.linkText}</span>
-                <span className="text-xs">↗</span>
-              </a>
-            </div>
-          </div>
-        )}
-
-        {/* WEBサイト構成図・サイトマップ（情報アーキテクチャ） */}
-        {project.siteStructure && (
-          <div className="mt-8 pt-6 border-t border-slate-200">
-            <div className="mb-5">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200/80">
-                  SITE ARCHITECTURE
-                </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900">
-                  {project.siteStructure.title}
-                </h4>
-                <span className="text-xs text-rose-600 font-semibold">
-                  {project.siteStructure.subtitle}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                {project.siteStructure.description}
-              </p>
-            </div>
-
-            {/* サイト構成グリッド（4層カテゴリ別） */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {project.siteStructure.categories.map((cat, catIdx) => (
-                <div
-                  key={catIdx}
-                  className="bg-slate-50/90 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-2xs hover:border-rose-300 transition-all"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-200">
-                      <span className="text-xs font-bold text-slate-800">
-                        {cat.category}
-                      </span>
-                      {cat.badge && (
-                        <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                            cat.badgeColor ||
-                            "bg-slate-100 text-slate-700 border-slate-200"
-                          }`}
-                        >
-                          {cat.badge}
-                        </span>
-                      )}
-                    </div>
-
-                    <ul className="space-y-2.5">
-                      {cat.pages.map((page, pageIdx) => (
-                        <li
-                          key={pageIdx}
-                          className={`p-2.5 rounded-xl border transition-all text-xs ${
-                            page.isHighlight
-                              ? "bg-white border-rose-200 shadow-2xs"
-                              : "bg-white/60 border-slate-200/80"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-1.5">
-                            <span className="font-bold text-slate-800 flex items-center gap-1.5">
-                              {page.isHighlight && (
-                                <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                              )}
-                              <span>{page.name}</span>
-                            </span>
-                            {page.url && (
-                              <a
-                                href={page.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[10px] font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-0.5 px-1.5 py-0.5 rounded hover:bg-rose-50 transition-colors shrink-0"
-                                title="実際のページを開く"
-                              >
-                                <span>開く</span>
-                                <span>↗</span>
-                              </a>
-                            )}
-                          </div>
-                          <span className="text-[10px] font-mono text-slate-400 block mt-0.5">
-                            {page.path}
-                          </span>
-                          <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                            {page.desc}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-3 pt-2 text-[10px] text-slate-400 border-t border-slate-200/60 text-right">
-                    全 {cat.pages.length} 画面・導線
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 参考Web構成リファレンス・デザインシステム設計バナー */}
-        {project.referenceSite && (
-          <div className="mt-8 p-5 sm:p-6 bg-gradient-to-br from-rose-50/80 via-pink-50/40 to-slate-50/80 rounded-2xl border border-rose-200 text-slate-900 shadow-xs">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-300 flex items-center justify-center shrink-0 text-2xl shadow-inner">
-                  🍓
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 border border-rose-200">
-                      {project.referenceSite.badge || "構成リファレンス元"}
-                    </span>
-                    <span className="text-xs text-rose-600 font-semibold">
-                      既存LP構成のリバースエンジニアリング＆再設計
-                    </span>
-                  </div>
-                  <h5 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
-                    {project.referenceSite.title}
-                  </h5>
-                  <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed max-w-2xl">
-                    {project.referenceSite.description}
-                  </p>
-                </div>
-              </div>
-              <a
-                href={project.referenceSite.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer self-start md:self-auto"
-              >
-                <span>参考サイトを見る</span>
-                <span className="text-xs">↗</span>
-              </a>
-            </div>
-          </div>
-        )}
-
-        {(project.demo ||
-          project.github ||
-          project.issuesUrl ||
-          project.referenceSite) && (
-          <div className="mt-8 flex flex-wrap gap-3 pt-4 border-t border-slate-100">
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl transition-all text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              >
-                <span>公開Webサイトを見る</span>
-                <span className="ml-1.5">↗</span>
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-all text-sm shadow-xs hover:shadow-md"
-              >
-                <span>GitHub で確認</span>
-                <span className="ml-1.5">↗</span>
-              </a>
-            )}
-            {project.issuesUrl && (
-              <a
-                href={project.issuesUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold rounded-xl transition-all text-sm shadow-2xs hover:shadow-xs"
-              >
-                <span>📋 GitHub Issues（タスク管理）</span>
-                <span className="ml-1.5">↗</span>
-              </a>
-            )}
-            {project.referenceSite && (
-              <a
-                href={project.referenceSite.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold rounded-xl transition-all text-sm shadow-2xs hover:shadow-xs"
-              >
-                <span>🔍 参考サイト（構成ベース元）</span>
-                <span className="ml-1.5">↗</span>
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  const handleResetFilters = () => {
+    setActiveFilter("all");
+    setSearchQuery("");
+  };
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200 w-full">
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-3">
+    <section
+      id="projects"
+      className="py-16 sm:py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-900 border-t border-slate-200/80"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* セクション見出し */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold mb-4 shadow-2xs">
             <span>✨</span>
-            <span>WORKS & PORTFOLIO</span>
+            <span>PORTFOLIO & WORKS</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-            <span className="inline-block">制作実績・</span>
-            <span className="inline-block">参画プロジェクト</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            制作実績・開発プロジェクト
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
-          <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            企画・UIデザイン・モダンフロントエンド・ヘッドレスCMS導入まで一貫して手掛けたWeb制作物、Photoshop/Illustratorによるイベントフライヤーデザイン、Java/SpringBootによるバックエンド・大規模業務システムの参画実績までご紹介します。
+          <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+            Webデザインシステム策定からReact/Next.jsフロントエンド、Java/Spring Bootバックエンド、Adobe DTP、チケット駆動開発まで。各作品カードの「詳細を見る」から、制作目的・担当範囲・使用技術・工夫点・実機画面を詳しくご覧いただけます。
           </p>
-
-          {/* カテゴリ切り替えタブ */}
-          <div className="mt-8 inline-flex flex-wrap justify-center p-1.5 bg-slate-200/80 rounded-2xl shadow-inner gap-1">
-            <button
-              type="button"
-              onClick={() => setActiveFilter("all")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
-                activeFilter === "all"
-                  ? "bg-white text-slate-900 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              すべて ({projectsData.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter("web")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
-                activeFilter === "web"
-                  ? "bg-white text-indigo-600 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              🌐 Webサイト制作 ({webProjects.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter("graphic")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
-                activeFilter === "graphic"
-                  ? "bg-white text-amber-700 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              🎨 フライヤー・DTP ({graphicProjects.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter("client")}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer ${
-                activeFilter === "client"
-                  ? "bg-white text-blue-600 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              🏢 参画案件 ({allClientProjects.length})
-            </button>
-          </div>
         </div>
 
-        {/* コンテンツ表示エリア */}
-        <div className="space-y-16">
-          {/* 1. Webサイト制作実績グループ（Oloroso & BIWAKO GYM & ポートフォリオ） */}
-          {(activeFilter === "all" || activeFilter === "web") && (
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-indigo-200 gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      Webサイト制作実績（公開中）
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    デザイン・モダンフロントエンド・ヘッドレスCMS・SEO構造化データを統合したWebサイト実績です。
-                  </p>
-                </div>
-                <span className="text-xs font-semibold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200 self-start sm:self-auto">
-                  {webProjects.length}件
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-8">
-                {webProjects.map(renderProjectCard)}
-              </div>
-            </div>
-          )}
-
-          {/* 2. グラフィックデザイン・フライヤー実績グループ */}
-          {(activeFilter === "all" || activeFilter === "graphic") && (
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-amber-300 gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      グラフィックデザイン・フライヤー制作実績
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    Adobe Photoshop & Illustratorを活用した、イベントフライヤー・印刷物（DTP）・画像レタッチ制作実績です。
-                  </p>
-                </div>
-                <span className="text-xs font-semibold text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 self-start sm:self-auto">
-                  {graphicProjects.length}件
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-8">
-                {graphicProjects.map(renderProjectCard)}
-              </div>
-            </div>
-          )}
-
-          {/* 3. 参画案件（Webサイト共同開発 BIWAKO GYM）※clientタブ選択時のみWeb案件として表示 */}
-          {activeFilter === "client" && (
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-blue-200 gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      Webサイト共同開発 参画案件
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    実在の店舗・クライアントに向けたWebサイトの共同開発案件です。
-                  </p>
-                </div>
-                <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
-                  {clientWebProjects.length}件
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-8">
-                {clientWebProjects.map(renderProjectCard)}
-              </div>
-            </div>
-          )}
-
-          {/* 3. 参画案件（業務システム・基盤開発）グループ */}
-          {(activeFilter === "all" || activeFilter === "client") && (
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-slate-300 gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      参画案件（エンタープライズ・業務システム開発）
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    金融系決済基盤や企業向け化学物質管理システムの要件定義・設計・開発・運用保守の参画実績です。
-                  </p>
-                </div>
-                <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 self-start sm:self-auto">
-                  {enterpriseProjects.length}件
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-8">
-                {enterpriseProjects.map(renderProjectCard)}
-              </div>
-
-              {/* 守秘義務に関する注記 */}
-              <div className="mt-8 p-5 bg-amber-50/70 rounded-2xl border border-amber-200/80">
-                <div className="flex items-start gap-3">
-                  <span className="text-amber-600 font-bold text-lg leading-none mt-0.5">
-                    ℹ️
-                  </span>
-                  <div>
-                    <h5 className="text-xs sm:text-sm font-bold text-amber-900">
-                      参画案件に関する留意事項
-                    </h5>
-                    <p className="text-xs text-amber-900/90 mt-1 leading-relaxed">
-                      参画案件のうち、社内ネットワークアプリケーション等の業務系システムは守秘義務およびセキュリティの観点からソースコードや非公開情報は掲載しておりません（BIWAKO GYM等の公開Webサイトはリンクより実際の画面をご確認いただけます）。システムの技術的アプローチや担当領域の詳細はお気軽にお問い合わせください。
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* スクリーンショット拡大モーダル */}
-      {selectedScreenshot && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setSelectedScreenshot(null)}
-        >
-          <div
-            className="bg-white rounded-xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-150"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
-              <div>
-                <h3 className="font-bold text-slate-800 text-base">
-                  {selectedScreenshot.title}
-                </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  {selectedScreenshot.caption}
-                </p>
-              </div>
+        {/* 検索・絞り込みコントロールバー */}
+        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-sm mb-10 max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* カテゴリ切り替えタブ */}
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 w-full md:w-auto">
               <button
-                type="button"
-                onClick={() => setSelectedScreenshot(null)}
-                className="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-sm transition-colors ml-4 shrink-0"
-                aria-label="閉じる"
+                onClick={() => setActiveFilter("all")}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeFilter === "all"
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
+                }`}
               >
-                ✕
+                すべて ({projectsData.length})
+              </button>
+              <button
+                onClick={() => setActiveFilter("web")}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeFilter === "web"
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
+                }`}
+              >
+                Webサイト制作 (5)
+              </button>
+              <button
+                onClick={() => setActiveFilter("graphic")}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeFilter === "graphic"
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
+                }`}
+              >
+                グラフィック/DTP (1)
+              </button>
+              <button
+                onClick={() => setActiveFilter("client")}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeFilter === "client"
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
+                }`}
+              >
+                参画・実務案件 (3)
               </button>
             </div>
 
-            <div className="p-2 sm:p-4 bg-slate-900/5 overflow-auto flex items-center justify-center max-h-[calc(92vh-80px)]">
-              <img
-                src={selectedScreenshot.src}
-                alt={selectedScreenshot.title}
-                className="max-h-[76vh] w-auto max-w-full object-contain rounded border border-slate-200 shadow-sm"
+            {/* キーワード検索入力欄 */}
+            <div className="relative w-full md:w-80">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <span className="text-sm">🔍</span>
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="作品名・技術・キーワードで検索..."
+                className="w-full pl-9 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer"
+                  title="検索条件をクリア"
+                  aria-label="検索クリア"
+                >
+                  <span className="w-4 h-4 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center text-[10px] font-bold">
+                    ✕
+                  </span>
+                </button>
+              )}
             </div>
           </div>
+
+          {/* 検索ステータスバッジ */}
+          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+            <div>
+              {searchQuery ? (
+                <span>
+                  「<strong className="text-slate-800">{searchQuery}</strong>」の検索結果:{" "}
+                  <strong className="text-indigo-600 font-bold">{filteredProjects.length}</strong> 件
+                </span>
+              ) : (
+                <span>
+                  表示中:{" "}
+                  <strong className="text-slate-800 font-bold">{filteredProjects.length}</strong> 件 / 全{" "}
+                  {projectsData.length} 件
+                </span>
+              )}
+            </div>
+            {(searchQuery || activeFilter !== "all") && (
+              <button
+                onClick={handleResetFilters}
+                className="text-xs text-indigo-600 hover:text-indigo-800 font-bold hover:underline cursor-pointer"
+              >
+                フィルターをリセット
+              </button>
+            )}
+          </div>
         </div>
-      )}
+
+        {/* 検索結果ゼロ時のEmpty State */}
+        {filteredProjects.length === 0 ? (
+          <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 max-w-lg mx-auto shadow-sm">
+            <div className="w-16 h-16 mx-auto mb-4 bg-slate-100 rounded-full flex items-center justify-center text-2xl text-slate-400">
+              🔍
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">
+              条件に一致する作品が見つかりませんでした
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 mb-6 leading-relaxed">
+              検索キーワードを変更するか、フィルター条件をリセットしてお試しください。
+            </p>
+            <button
+              onClick={handleResetFilters}
+              className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-md cursor-pointer"
+            >
+              検索条件をリセット
+            </button>
+          </div>
+        ) : (
+          /* 作品一覧グリッド（カード型レイアウト・コンパクト化） */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {filteredProjects.map((project) => {
+              const displayImage =
+                project.imagePc || project.image || project.screenshots?.[0]?.src;
+
+              return (
+                <article
+                  key={project.id}
+                  className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col group"
+                >
+                  {/* カード上部: サムネイル画像プレビュー */}
+                  <div
+                    onClick={() => handleProjectClick(project.id)}
+                    className="relative aspect-[16/10] bg-slate-950 overflow-hidden cursor-pointer group/thumb"
+                  >
+                    {displayImage ? (
+                      <img
+                        src={displayImage}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top group-hover/thumb:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center p-6 text-slate-400 bg-gradient-to-br from-slate-900 to-slate-950">
+                        <span className="text-3xl mb-2">💻</span>
+                        <span className="text-xs font-mono">{project.title}</span>
+                      </div>
+                    )}
+
+                    {/* ホバー時オーバーレイ */}
+                    <div className="absolute inset-0 bg-slate-950/0 group-hover/thumb:bg-slate-950/40 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover/thumb:opacity-100 bg-white/95 text-slate-900 text-xs font-bold px-4 py-2 rounded-full shadow-xl transition-all duration-200 flex items-center gap-1.5">
+                        <span>専用詳細ページを見る</span>
+                        <span>→</span>
+                      </span>
+                    </div>
+
+                    {/* バッジ（左上） */}
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+                      <span
+                        className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md shadow-xs ${
+                          project.badgeType === "graphic"
+                            ? "bg-amber-500/90 text-white"
+                            : project.badgeType === "portfolio"
+                            ? "bg-purple-600/90 text-white"
+                            : project.badgeType === "client_web"
+                            ? "bg-blue-600/90 text-white"
+                            : "bg-slate-700/90 text-white"
+                        }`}
+                      >
+                        {project.categoryLabel}
+                      </span>
+                    </div>
+
+                    {/* LIVEマーク（右上） */}
+                    {project.demo && (
+                      <div className="absolute top-3 right-3 z-10 pointer-events-none">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/95 text-white flex items-center gap-1 shadow-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                          <span>LIVE</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* カード本文 */}
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      {/* タイトル ＆ サブタイトル */}
+                      <h3
+                        onClick={() => handleProjectClick(project.id)}
+                        className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors cursor-pointer leading-snug line-clamp-2"
+                        title={project.title}
+                      >
+                        {project.title}
+                      </h3>
+                      <p className="text-xs text-indigo-600 font-semibold mt-1 line-clamp-1">
+                        {project.subtitle}
+                      </p>
+
+                      {/* 制作目的（Why）要約 */}
+                      {project.purpose && (
+                        <div className="mt-3.5 p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 leading-relaxed">
+                          <span className="font-bold text-slate-800 text-[11px] block mb-0.5 flex items-center gap-1">
+                            <span>🎯</span>
+                            <span>制作目的:</span>
+                          </span>
+                          <p className="line-clamp-2">{project.purpose}</p>
+                        </div>
+                      )}
+
+                      {/* 担当範囲タグ */}
+                      {project.role && project.role.length > 0 && (
+                        <div className="mt-3.5">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                            担当範囲:
+                          </span>
+                          <div className="flex flex-wrap gap-1">
+                            {project.role.slice(0, 3).map((r, rIdx) => (
+                              <span
+                                key={rIdx}
+                                className="px-2 py-0.5 bg-indigo-50/80 text-indigo-700 rounded-md text-[11px] font-medium border border-indigo-100"
+                              >
+                                {r}
+                              </span>
+                            ))}
+                            {project.role.length > 3 && (
+                              <span className="px-1.5 py-0.5 text-slate-400 text-[10px]">
+                                +{project.role.length - 3}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* 工夫点（抜粋1〜2点） */}
+                      {project.features && project.features.length > 0 && (
+                        <div className="mt-3.5">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                            工夫した点:
+                          </span>
+                          <ul className="space-y-1">
+                            {project.features.slice(0, 2).map((feat, fIdx) => (
+                              <li
+                                key={fIdx}
+                                className="text-xs text-slate-700 flex items-start line-clamp-1"
+                              >
+                                <span className="text-indigo-500 font-bold mr-1.5 shrink-0 text-[11px]">
+                                  ✦
+                                </span>
+                                <span className="truncate">{feat}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* 主要技術タグ */}
+                      <div className="mt-4 pt-3 border-t border-slate-100">
+                        <div className="flex flex-wrap gap-1">
+                          {project.technologies.slice(0, 4).map((tech, tIdx) => (
+                            <span
+                              key={tIdx}
+                              className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.technologies.length > 4 && (
+                            <span className="px-1.5 py-0.5 text-slate-400 text-[10px]">
+                              +{project.technologies.length - 4}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* カードフッター: 詳細ページへの遷移 ＆ クイックアクション */}
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <button
+                        onClick={() => handleProjectClick(project.id)}
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs hover:shadow-md cursor-pointer"
+                      >
+                        <span>専用詳細ページを見る</span>
+                        <span>→</span>
+                      </button>
+
+                      <div className="flex items-center gap-1">
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors text-xs font-bold"
+                            title="LIVEサイトを開く"
+                          >
+                            ↗
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors text-xs font-bold"
+                            title="GitHubリポジトリを開く"
+                          >
+                            Git
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
