@@ -43,7 +43,7 @@ export interface ArchitectureGroup {
   title: string;
   description?: string;
   cards: ArchitectureCard[];
-  tone?: "blue" | "slate" | "indigo" | "emerald";
+  tone?: "blue" | "slate" | "indigo" | "emerald" | "amber";
 }
 
 export interface ArchitectureVariant {
@@ -151,6 +151,24 @@ export interface FullPageImages {
   note?: string;
 }
 
+export interface InfrastructureCostPolicy {
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  currentPlanNote: string;
+  commercialVercel: {
+    heading: string;
+    description: string;
+    pauseDeployments: string;
+  };
+  cloudflareAlternative: {
+    heading: string;
+    description: string;
+    benefit: string;
+  };
+  referenceUrl?: string;
+}
+
 export interface Project {
   id: string;
   category: ProjectCategory;
@@ -177,6 +195,7 @@ export interface Project {
   referenceSite?: ReferenceSite;
   siteStructure?: SiteStructure;
   architecture?: SystemArchitecture; // システム構成・アーキテクチャ
+  costPolicy?: InfrastructureCostPolicy; // インフラ選定・運用コスト防衛ポリシー（FinOps）
   designSystem?: DesignSystem; // デザインシステム（配色・タイポグラフィ・コンポーネント規約）
   fullPageImages?: FullPageImages; // ページ全体デザイン（縦長ロングLP展示）
   screenshotsBadge?: string;

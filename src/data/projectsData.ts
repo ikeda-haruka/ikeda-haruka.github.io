@@ -1,4 +1,4 @@
-import type { Project } from "../types/project";
+import type { Project, InfrastructureCostPolicy } from "../types/project";
 import dentalDesktopFvImg from "../assets/dental/dental-lp-desktop-fv.png";
 import dentalMobileFvImg from "../assets/dental/dental-lp-mobile-fv.png";
 import dentalDesktopFullImg from "../assets/dental/dental-lp-desktop-full.png";
@@ -53,6 +53,38 @@ import graphicSnsSpringImg from "../assets/works_graphics/graphic_sns_spring.web
 import graphicSnsSummerImg from "../assets/works_graphics/graphic_sns_summer.jpg";
 import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide_detail.webp";
 import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
+
+/**
+ * Vercelホスティングにおけるインフラ選定・運用コスト管理ポリシー（FinOps）
+ * 試作・デモ用途でのHobbyプラン採用理由と、商用案件での青天井課金防止策・Cloudflare選定基準を一元定義
+ */
+const createVercelCostPolicy = (
+  projectName: string,
+  contextNote?: string
+): InfrastructureCostPolicy => ({
+  badge: "FINOPS & COST DEFENSE",
+  title: `${projectName} のインフラ選定・運用コスト管理ポリシー`,
+  subtitle:
+    "試作・デモでの無料枠（Hobby）安全運用と、実務商用案件における予期せぬ青天井課金を物理的に防ぐ設計思想",
+  currentPlanNote:
+    `本サイト（${projectName}）はポートフォリオ実績用の試作・検証・遊びのデモサイトであるため、すべてVercelの「Hobbyプラン（無料枠）」を利用してデプロイしています。Hobbyプランは非商用利用限定ですが、データ転送量（100GB/月）などの上限枠を使い切ってもサイト配信が一時停止するのみで、予期せぬ超過課金や青天井の高額請求が一切発生しない安全な設計となっています。` +
+    (contextNote ? ` ${contextNote}` : ""),
+  commercialVercel: {
+    heading: "実務・商用案件でVercelを採用する場合の必須防衛策（Pro / Enterprise）",
+    description:
+      "実際のクライアントワークや商用Web案件でVercelを使用する場合は、商用利用規約に準拠するためProプラン（月額$20〜）やEnterpriseプランを検討・採用します。ただしProプランは従量課金制となるため、悪質なBot・DDoS攻撃や予期せぬSNSバズ等による急激なトラフィック集中で、費用が青天井に膨れ上がる重大な請求事故リスクを孕んでいます。",
+    pauseDeployments:
+      "そのため実務運用の現場では、VercelのSpend Management設定にて「Pause Production Deployments（本番デプロイ一時停止）」を必ずオン（有効化）にして運用します。設定予算上限への到達時に自動で本番配信を停止させることで、運用費が知らない間に膨れ上がる事態を物理的・確実に防ぎます。",
+  },
+  cloudflareAlternative: {
+    heading: "運用費を最小化し、転送量を気にせず配信する場合の「Cloudflare」選定",
+    description:
+      "仕事のサイトで、月のランニング費用をできる限り小さく抑え、アクセス集中やリッチな画像配信に伴う転送量を一切気にせず運用したい場合は、Vercelではなく「Cloudflare（Cloudflare Pages / Workers）」へのデプロイを選択・提案します。",
+    benefit:
+      "Cloudflareはデータ転送量（Egress）の課金が原則発生しない（完全無料）という圧倒的な強みを持っています。急激なアクセス急増時でも従量課金の恐怖がなく、コストを予測可能な最小限に抑えた堅牢なインフラ運用を実現できます。",
+  },
+  referenceUrl: "https://barco-re.com/blog/vercel-pricing",
+});
 
 export const projectsData: Project[] = [
   {
@@ -1123,6 +1155,24 @@ export const projectsData: Project[] = [
           ],
         },
         {
+          title: "インフラ選定・運用コスト防衛（FinOps）",
+          tone: "amber",
+          cards: [
+            {
+              title: "Vercel Hobby（試作・デモ用）",
+              detail: "無料枠上限到達時は配信停止する仕様のため、追加請求・青天井リスクが完全ゼロ",
+            },
+            {
+              title: "Vercel Pro（商用防衛策）",
+              detail: "「Pause Production Deployments」をオンにし、設定予算到達時に自動停止させて請求事故を防止",
+            },
+            {
+              title: "Cloudflare選定（低コスト・転送量フリー）",
+              detail: "月額費用最小化・転送量を気にせず運用したい商用案件ではCloudflare Pagesを採用",
+            },
+          ],
+        },
+        {
           title: "マルチ予約・外部サービス連携",
           tone: "blue",
           cards: [
@@ -1142,9 +1192,21 @@ export const projectsData: Project[] = [
             "JPA/Hibernateによるトランザクション分離レベル設定と排他制御の担保",
           ],
         },
+        {
+          title: "インフラ選定・運用コスト管理ポリシー（FinOps）",
+          items: [
+            "ポートフォリオ試作環境としてVercel Hobbyプラン（無料枠）を採用し、追加請求リスクを完全遮断",
+            "実務・商用案件でのVercel Pro運用時は「Pause Production Deployments」を有効化し、予期せぬ青天井課金を防止",
+            "データ転送量フリー＆ランニングコスト最小化が求められる商用サイトでは「Cloudflare」を選択肢として提案",
+          ],
+        },
       ],
-      note: "RenderマネージドPostgreSQLの30日失効制約を回避するため、組み込みH2ファイル永続化を採用し完全永久無料（クレカ不要・無期限・¥0）稼働を実現",
+      note: "RenderマネージドPostgreSQLの30日失効制約を回避するため組み込みH2ファイル永続化を採用しバックエンド完全無料化を実現。フロントエンドも試作用途としてVercel Hobby（無料枠・超過時停止）を採用し安全稼働。商用案件ではPro+Pause Deployments設定やCloudflare（転送量フリー）への切り替えなど、運用費膨張を防止するFinOpsを実践。",
     },
+    costPolicy: createVercelCostPolicy(
+      "Salon de Fraise 公式WEBサイト",
+      "バックエンド側もRenderの30日失効制約をH2ファイル永続化で回避して完全永久無料化しており、フロント（Vercel Hobby）・バックエンド共に運用費ゼロで安全に長期稼働させています。"
+    ),
   },
   {
     id: "oloroso",
@@ -1326,6 +1388,24 @@ export const projectsData: Project[] = [
           ],
         },
         {
+          title: "インフラ選定・運用コスト防衛（FinOps）",
+          tone: "amber",
+          cards: [
+            {
+              title: "Vercel Hobby（試作・デモ用）",
+              detail: "無料枠上限到達時は配信停止する仕様のため、追加請求・青天井リスクが完全ゼロ",
+            },
+            {
+              title: "Vercel Pro（商用防衛策）",
+              detail: "「Pause Production Deployments」をオンにし、設定予算到達時に自動停止させて請求事故を防止",
+            },
+            {
+              title: "Cloudflare選定（低コスト・転送量フリー）",
+              detail: "月額費用最小化・画像等の転送量を気にせず運用したい商用案件ではCloudflare Pagesを採用",
+            },
+          ],
+        },
+        {
           title: "開発・SEO・外部連携",
           tone: "slate",
           cards: [
@@ -1353,8 +1433,21 @@ export const projectsData: Project[] = [
             "Next.js App Routerの静的生成（SSG）による高速表示パフォーマンス",
           ],
         },
+        {
+          title: "インフラ選定・運用コスト管理ポリシー（FinOps）",
+          items: [
+            "ポートフォリオ試作環境としてVercel Hobbyプラン（無料枠）を採用し、突発的な請求リスクを完全遮断",
+            "商用・実務案件ではProプラン選定＋「Pause Production Deployments」有効化により、青天井の費用膨張を防止",
+            "転送量を気にせず月額費用を最小限に抑えたいWebサイト案件では「Cloudflare」を採用し、転送量無料の配信基盤を提案",
+          ],
+        },
       ],
+      note: "Vercelホスティングはポートフォリオ試作のためHobbyプラン（無料枠・超過時配信停止で安全）を採用。実際の商用案件ではProプラン＋Pause Production Deploymentsによる請求事故防止、またはデータ転送量無料のCloudflare Pages選定など、運用費が知らない間に膨れ上がらない設計を徹底しています。",
     },
+    costPolicy: createVercelCostPolicy(
+      "Estudio Oloroso 公式WEBサイト",
+      "スタジオ案内やブログ写真・動画の配信においても、試作環境ではHobbyプランの安全停止仕様を活用しています。"
+    ),
   },
   {
     id: "protein",
@@ -1680,6 +1773,24 @@ export const projectsData: Project[] = [
           ],
         },
         {
+          title: "インフラ選定・運用コスト防衛（FinOps）",
+          tone: "amber",
+          cards: [
+            {
+              title: "Vercel Hobby（試作・デモ用）",
+              detail: "無料枠上限到達時は配信停止する仕様のため、追加請求・青天井リスクが完全ゼロ",
+            },
+            {
+              title: "Vercel Pro（商用防衛策）",
+              detail: "「Pause Production Deployments」をオンにし、設定予算到達時に自動停止させて請求事故を防止",
+            },
+            {
+              title: "Cloudflare選定（低コスト・転送量フリー）",
+              detail: "月額費用最小化・画像等の転送量を気にせず運用したい商用D2C案件ではCloudflare Pagesを採用",
+            },
+          ],
+        },
+        {
           title: "インフラ・品質管理・開発基盤",
           tone: "slate",
           cards: [
@@ -1707,8 +1818,21 @@ export const projectsData: Project[] = [
             "新卒・中途採用情報、会社概要、開発秘話ストーリー、GMP品質基準を完備し社会的信頼を獲得",
           ],
         },
+        {
+          title: "インフラ選定・運用コスト管理ポリシー（FinOps）",
+          items: [
+            "試作・デモ用途としてVercel Hobbyプラン（無料枠）を採用し、超過時の自動配信停止により予期せぬ請求をゼロ遮断",
+            "商用D2C案件ではProプラン選定＋「Pause Production Deployments」を必ず有効化し、キャンペーン時のアクセス急増でも費用爆発を防止",
+            "画像転送量が多くランニングコストを極小化したいEC案件では「Cloudflare Pages」を選定し、転送量完全無料で安定稼働",
+          ],
+        },
       ],
+      note: "高解像度商品画像や動的UIを備えたD2Cサイトですが、試作・デモ用途としてVercel Hobbyプラン（無料枠）を採用。実務・商用案件ではProプランでのPause Production Deployments設定や、転送量無料のCloudflare選定など、運用費の青天井膨張を未然に防ぐコスト管理設計を適用します。",
     },
+    costPolicy: createVercelCostPolicy(
+      "BERRY MILK 公式ブランドサイト",
+      "高解像度な商品パッケージ画像や動的ギミックを多数含むD2Cサイトですが、試作環境としてHobbyプランで安全にホスティングしています。"
+    ),
   },
   {
     id: "portfolio",

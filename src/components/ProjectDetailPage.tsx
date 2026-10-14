@@ -75,7 +75,7 @@ function CardGrid({
 }: {
   cards: ArchitectureCard[];
   className?: string;
-  tone?: "blue" | "slate" | "indigo" | "emerald";
+  tone?: "blue" | "slate" | "indigo" | "emerald" | "amber";
 }) {
   const cardTone =
     tone === "blue"
@@ -84,6 +84,8 @@ function CardGrid({
       ? "border-indigo-200/80 bg-indigo-50/60"
       : tone === "emerald"
       ? "border-emerald-200/80 bg-emerald-50/60"
+      : tone === "amber"
+      ? "border-amber-200/80 bg-amber-50/70"
       : "border-slate-200 bg-slate-100/80";
 
   return (
@@ -1095,6 +1097,108 @@ export default function ProjectDetailPage({
                 {project.architecture.note}
               </p>
             )}
+          </section>
+        )}
+
+        {/* インフラ選定・運用コスト管理ポリシー（FinOps & コスト防衛） */}
+        {project.costPolicy && (
+          <section className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 border border-indigo-500/40 text-white shadow-xl mb-8">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    {project.costPolicy.badge || "FINOPS & COST DEFENSE"}
+                  </span>
+                  <span className="text-xs text-indigo-300 font-semibold">
+                    クラウド運用費用の予期せぬ肥大化を防ぐ設計思想
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  {project.costPolicy.title}
+                </h2>
+                {project.costPolicy.subtitle && (
+                  <p className="text-sm text-indigo-200 mt-1">
+                    {project.costPolicy.subtitle}
+                  </p>
+                )}
+              </div>
+
+              {project.costPolicy.referenceUrl && (
+                <a
+                  href={project.costPolicy.referenceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600/60 hover:bg-indigo-600 text-indigo-100 text-xs font-semibold rounded-xl border border-indigo-400/30 transition-all self-start md:self-auto"
+                >
+                  <span>参考知見: Vercel料金体系と課金対策</span>
+                  <span>↗</span>
+                </a>
+              )}
+            </div>
+
+            {/* 現在のプラン方針（Hobby） */}
+            <div className="p-4 sm:p-5 bg-white/5 border border-white/10 rounded-2xl mb-6 backdrop-blur-xs">
+              <div className="flex items-start gap-3">
+                <span className="text-xl">🛡️</span>
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-300">
+                    現在のデプロイ方針（ポートフォリオ・試作検証用環境）
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">
+                    {project.costPolicy.currentPlanNote}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 実務・商用案件での対策 2カラム */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Vercel Pro運用時の課金防衛 */}
+              <div className="p-5 bg-slate-950/70 border border-indigo-500/30 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+                    <h3 className="text-sm sm:text-base font-bold text-white">
+                      {project.costPolicy.commercialVercel.heading}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                    {project.costPolicy.commercialVercel.description}
+                  </p>
+                </div>
+                <div className="p-3 bg-indigo-950/80 border border-indigo-500/40 rounded-xl">
+                  <div className="text-[11px] font-bold text-indigo-200 mb-0.5">
+                    ⚙️ 必須の課金停止設定:
+                  </div>
+                  <p className="text-xs text-indigo-100 font-medium leading-relaxed">
+                    {project.costPolicy.commercialVercel.pauseDeployments}
+                  </p>
+                </div>
+              </div>
+
+              {/* Cloudflare代替選定 */}
+              <div className="p-5 bg-slate-950/70 border border-amber-500/30 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <h3 className="text-sm sm:text-base font-bold text-white">
+                      {project.costPolicy.cloudflareAlternative.heading}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                    {project.costPolicy.cloudflareAlternative.description}
+                  </p>
+                </div>
+                <div className="p-3 bg-amber-950/80 border border-amber-500/40 rounded-xl">
+                  <div className="text-[11px] font-bold text-amber-200 mb-0.5">
+                    💡 転送量フリー＆低コストメリット:
+                  </div>
+                  <p className="text-xs text-amber-100 font-medium leading-relaxed">
+                    {project.costPolicy.cloudflareAlternative.benefit}
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
         )}
 
