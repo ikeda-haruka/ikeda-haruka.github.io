@@ -187,6 +187,10 @@ async function main() {
     const proteinMobile = path.join(assetsDir, 'protein-capture-mobile.png');
     const proteinLegacy = path.join(assetsDir, 'protein-capture.png');
 
+    const spProteinPc = path.join(assetsDir, 'sp-protein-capture-pc.png');
+    const spProteinMobile = path.join(assetsDir, 'sp-protein-capture-mobile.png');
+    const spProteinLegacy = path.join(assetsDir, 'sp-protein-capture.png');
+
     const nailsalonPc = path.join(assetsDir, 'nailsalon-capture-pc.png');
     const nailsalonMobile = path.join(assetsDir, 'nailsalon-capture-mobile.png');
     const nailsalonLegacy = path.join(assetsDir, 'nailsalon-capture.png');
@@ -214,6 +218,9 @@ async function main() {
       // BERRY MILK (protein-sandy)
       { url: 'https://protein-sandy.vercel.app/', outputPath: proteinPc, width: 1280, height: 800, isMobile: false, waitMs: 3000 },
       { url: 'https://protein-sandy.vercel.app/', outputPath: proteinMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
+      // SP Protein (lovely-muffin)
+      { url: 'https://lovely-muffin-d4cf61.netlify.app/', outputPath: spProteinPc, width: 1280, height: 800, isMobile: false, waitMs: 3000 },
+      { url: 'https://lovely-muffin-d4cf61.netlify.app/', outputPath: spProteinMobile, width: 390, height: 844, isMobile: true, waitMs: 3000 },
     ];
 
     await captureWithCDP(edgePath, tasks);
@@ -225,6 +232,7 @@ async function main() {
     fs.copyFileSync(olorosoPc, olorosoLegacy);
     fs.copyFileSync(biwakoPc, biwakoLegacy);
     fs.copyFileSync(proteinPc, proteinLegacy);
+    fs.copyFileSync(spProteinPc, spProteinLegacy);
 
     console.log('\n🎉 All screen captures successfully synchronized with true mobile emulation!');
   } finally {
