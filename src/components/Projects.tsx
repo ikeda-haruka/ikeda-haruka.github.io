@@ -24,11 +24,13 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
         matchesCategory =
           project.category === "portfolio" || project.category === "client_web";
       } else if (activeFilter === "graphic") {
-        matchesCategory = project.category === "graphic";
+        matchesCategory =
+          project.category === "graphic" || project.category === "client_graphic";
       } else if (activeFilter === "client") {
         matchesCategory =
           project.category === "client_web" ||
-          project.category === "client_enterprise";
+          project.category === "client_enterprise" ||
+          project.category === "client_graphic";
       }
 
       if (!matchesCategory) return false;
@@ -63,9 +65,14 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
     const web = projectsData.filter(
       (p) => p.category === "portfolio" || p.category === "client_web"
     ).length;
-    const graphic = projectsData.filter((p) => p.category === "graphic").length;
+    const graphic = projectsData.filter(
+      (p) => p.category === "graphic" || p.category === "client_graphic"
+    ).length;
     const client = projectsData.filter(
-      (p) => p.category === "client_web" || p.category === "client_enterprise"
+      (p) =>
+        p.category === "client_web" ||
+        p.category === "client_enterprise" ||
+        p.category === "client_graphic"
     ).length;
     return { all: projectsData.length, web, graphic, client };
   }, []);
@@ -258,7 +265,9 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
                       <span
                         className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md shadow-xs ${
-                          project.badgeType === "graphic"
+                          project.badgeType === "client_graphic"
+                            ? "bg-amber-600/90 text-white"
+                            : project.badgeType === "graphic"
                             ? "bg-amber-500/90 text-white"
                             : project.badgeType === "portfolio"
                             ? "bg-purple-600/90 text-white"

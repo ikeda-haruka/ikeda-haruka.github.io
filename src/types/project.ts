@@ -2,7 +2,8 @@ export type ProjectCategory =
   | "portfolio"
   | "client_web"
   | "client_enterprise"
-  | "graphic";
+  | "graphic"
+  | "client_graphic";
 
 export interface Screenshot {
   src: string;
@@ -173,7 +174,7 @@ export interface Project {
   id: string;
   category: ProjectCategory;
   categoryLabel: string;
-  badgeType: "portfolio" | "client_web" | "client_enterprise" | "graphic";
+  badgeType: "portfolio" | "client_web" | "client_enterprise" | "graphic" | "client_graphic";
   title: string;
   subtitle: string;
   description: string;

@@ -216,7 +216,9 @@ export default function ProjectDetailPage({
           <div className="flex flex-wrap items-center gap-2.5 mb-4">
             <span
               className={`text-xs font-bold px-3 py-1 rounded-full ${
-                project.badgeType === "graphic"
+                project.badgeType === "client_graphic"
+                  ? "bg-amber-100 text-amber-900 border border-amber-300 font-bold"
+                  : project.badgeType === "graphic"
                   ? "bg-amber-100 text-amber-800 border border-amber-200"
                   : project.badgeType === "portfolio"
                   ? "bg-purple-100 text-purple-700 border border-purple-200"
