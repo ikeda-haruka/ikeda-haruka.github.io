@@ -26,41 +26,41 @@ export default function Hero({
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
               <span className="text-xs font-semibold text-slate-700 tracking-wide">
-                Available for Web Design & Development
+                Available for Web Design, FDE & AI Engineering
               </span>
             </div>
 
             {/* 大見出し */}
             <div>
               <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2">
-                WEB Designer & Full-stack Engineer
+                WEB Designer / Full-stack & AI Engineer (FDE)
               </p>
               <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
-                <span className="block">洗練された<span className="gradient-text">Web体験</span>を、</span>
-                <span className="block mt-1 sm:mt-1.5">デザインと技術で形に。</span>
+                <span className="block">洗練された<span className="gradient-text">Web & AI体験</span>を、</span>
+                <span className="block mt-1 sm:mt-1.5">デザインと仕様駆動技術で形に。</span>
               </h1>
             </div>
 
             {/* リード文 */}
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Next.jsやDecap CMS、WordPressによるモダンWeb制作から、Photoshop/IllustratorによるUIデザイン、Java/SpringBootやAPI連携といったバックエンド開発まで。
+              Next.jsやDecap CMSによるモダンWeb制作、Photoshop/Illustrator公認資格を活かしたUIデザインから、AIエンジニア・機械エンジニア視点でのSpecKit仕様駆動開発PoC主導、エンタープライズFDE案件、Java/SpringBootバックエンド開発まで。
               <br className="hidden sm:inline" />
-              デザインからシステム構築まで一貫して手掛け、美しさと堅牢性を兼ね備えたWeb体験をワンストップで実現します。
+              現場の課題ヒアリングから仕様定義、UI設計、システム構築・保守運用まで一貫して手掛け、美しさと堅牢性を兼ね備えたソリューションをワンストップで実現します。
             </p>
 
             {/* 技術ハイライトピル */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
               {[
+                "SpecKit / 仕様駆動開発",
+                "AI Engineer / FDE",
                 "Next.js / React",
                 "TypeScript",
-                "Tailwind CSS",
-                "Java / SpringBoot",
-                "REST API / Backend",
+                "Java / SpringBoot 3",
+                "Vue.js",
                 "Decap CMS",
-                "WordPress",
-                "UI/UX Design",
+                "UI/UX & Figma",
                 "Adobe Photoshop & Illustrator",
-                "GitHub Issues / CI/CD",
+                "IMDS / エンタープライズ",
               ].map((tech) => (
                 <span
                   key={tech}
@@ -122,22 +122,22 @@ export default function Hero({
                       Haruka Ikeda
                     </p>
                     <p className="text-xs text-slate-500 mt-1">
-                      WEB Designer & Full-stack Engineer
+                      WEB Designer & AI Engineer (FDE)
                     </p>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-2 border-t border-slate-100 text-xs text-slate-600">
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
-                    <span className="font-medium text-slate-500">制作領域</span>
+                    <span className="font-medium text-slate-500">専門領域</span>
                     <span className="font-bold text-slate-800">
-                      WEBデザイン & フルスタック開発
+                      Webデザイン & AI / FDE
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">得意スタック</span>
                     <span className="font-bold text-slate-800">
-                      Next.js / Java・SpringBoot / Headless CMS
+                      SpecKit / Next.js / Java 21 / Vue
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
@@ -190,6 +190,26 @@ export default function Hero({
                         </div>
                       </div>
                       <span className="text-xs text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform">
+                        →
+                      </span>
+                    </div>
+
+                    <div
+                      onClick={onExploreWorks}
+                      className="p-2.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl flex items-center justify-between hover:border-emerald-300 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">🧪</span>
+                        <div>
+                          <div className="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                            化学物質管理システム
+                          </div>
+                          <div className="text-[10px] text-slate-500">
+                            SpecKit仕様駆動開発PoC / FDE
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-xs text-emerald-600 font-bold group-hover:translate-x-0.5 transition-transform">
                         →
                       </span>
                     </div>

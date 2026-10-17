@@ -56,21 +56,24 @@ const skillsData: SkillCategory[] = [
     ],
   },
   {
-    category: "開発基盤 & AI推進・自動化",
-    icon: "🚀",
-    description: "GitHub Issues自動タスク起票・CI/CD自動化と最新のAI活用環境",
+    category: "AIエンジニアリング & FDE・仕様駆動開発",
+    icon: "🤖",
+    badge: "FDE & PoC Lead",
+    description: "SpecKitによる仕様駆動開発PoC主導、AI活用、機械・製造業ドメイン知見と現場伴走型FDE開発基盤",
     skills: [
+      "SpecKit（仕様駆動開発 / SDD PoC主導）",
+      "FDE（Forward Deployed Engineer / 顧客現場課題解決）",
+      "AIエンジニアリング / プロンプト設計 (Claude・Gemini・Copilot)",
+      "機械エンジニア・製造ドメイン知見（化学・素材・IMDS）",
       "GitHub Issues（自動タスク起票・チケット管理）",
       "GitHub REST API / 自動化スクリプト (Node.js)",
       "GitHub Actions (CI/CD自動デプロイ)",
       "Git / GitHub / GitLab / SVN",
-      "Gemini / Copilot (AI活用プロンプト設計)",
-      "SpecKit（仕様駆動開発）",
       "Vercel / Cloudflare（コスト防衛・Pause Deployments）",
       "FinOps（クラウド運用費最適化・青天井課金防止）",
       "GitHub Pages",
-      "JP1 / タスクスケジューラ (自動化)",
-      "ITSM（運用保守）",
+      "JP1 / タスクスケジューラ (運用自動化)",
+      "ITSM（変更管理・運用保守）",
     ],
   },
 ];
@@ -90,8 +93,8 @@ export default function Skills() {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            デザインからモダンフロントエンド、ヘッドレスCMS、そしてバックエンド・インフラ連携まで。
-            企画から公開・運用保守までワンストップで高品質に形にします。
+            デザインからモダンフロントエンド、ヘッドレスCMS、Javaバックエンド、そしてAIエンジニア・機械エンジニア視点を活かしたSpecKit仕様駆動開発PoCやFDE支援まで。
+            企画・現場課題の解決から公開・運用保守までワンストップで高品質に形にします。
           </p>
         </div>
 

@@ -8,34 +8,36 @@ interface Experience {
 
 const experienceData: Experience[] = [
   {
-    title: "エンジニア",
+    title: "AIエンジニア・FDE / フルスタックエンジニア",
     company: "化学物質管理システム開発",
     description:
-      "Java 21 + SpringBoot + Vue.js を使用した化学物質管理システムの技術検証・保守開発を担当。アプリ改修に加え、外部連携、サーバー・リポジトリ移行、ジョブ運用、ITSMを通じた保守業務に携わる。SpecKit による仕様駆動開発の PoC や、レガシーシステム（JDK8 + Struts + iBatis）のリプレイスに伴う検証・改修も実施。",
+      "大手化学メーカーのエンタープライズ案件において、AIエンジニア・機械エンジニア視点を活かし、SpecKitを使用した仕様駆動開発（Spec-Driven Development）のPoCを主導。現場の課題解決を直接推進するFDE（Forward Deployed Engineer）として、レガシーStruts環境からJava 21・SpringBoot 3・Vue.jsへのモダナイゼーション検証、Figma UI設計、JAMPからCMPへの法令要件定義、IMDS外部連携、インフラ・リポジトリ移行からITSM保守運用まで一気通貫で担当。",
     technologies: [
+      "SpecKit (仕様駆動開発)",
+      "AI/LLM活用",
       "Java 21",
-      "SpringBoot",
+      "SpringBoot 3",
       "Vue.js",
+      "TypeScript",
       "Figma",
       "Tomcat 11",
-      "SpecKit",
-      "TypeScript",
+      "Oracle DB",
+      "IMDS",
       "JP1",
       "ITSM",
-      "GitLab",
       "GitHub",
+      "GitLab",
       "Task Scheduler",
       "SMTP",
-      "IMDS",
     ],
     achievements: [
+      "【SpecKit仕様駆動開発PoCを主導】AIエンジニアとしてSpecKitを用いた仕様駆動開発（SDD）のPoCをエンタープライズ現場で主導。自然言語仕様から設計・コード生成の整合性を高め、開発生産性向上を実証",
+      "【機械エンジニア・FDE視点での現場推進】化学・製造業のドメイン知識を基に、JAMP（chemSHERPA）からCMPへの移行要件定義、IMDS（自動車業界材料DB）外部連携、業務主管部門からの依頼対応をフロントラインでリード",
       "Figmaのアプリデザインガイドラインをライブラリとして活用し、化学物質管理システム向けにカスタマイズしたUI部品を作成。設計に沿ったVue.js部品をプロジェクト内に実装",
       "社内公開されているアプリデザインガイドラインの公開方法に着想を得て、本ポートフォリオもGitHub Pagesで公開",
-      "レガシーシステムのバージョンアップに伴う検証・改修を実施",
-      "仕様駆動開発の PoC を実施し、開発プロセスの効率化を検証",
-      "IaaS へのクラウドリフトの事前検証を実施",
-      "JAMP（chemSHERPA）から CMP への移行に伴う要件定義に参画",
-      "電子証明書を必要とするリバースプロキシ経由のベンダーパッケージ連携、および IMDS（自動車業界共通の材料データベース）との外部連携を実施。メール送信には SMTP サーバーを利用",
+      "レガシーシステム（JDK8 + Struts + iBatis）から Java 21 + SpringBoot 3 + Vue.js へのバージョンアップに伴う検証・改修を実施",
+      "IaaS へのクラウドリフトおよびマルチテナント対応の事前検証を実施",
+      "電子証明書を必要とするリバースプロキシ経由のベンダーパッケージ連携、およびメール送信（SMTP）を実装",
       "複数部署共用サーバーからアプリ専用サーバーへの移行、および GitLab から GitHub へのリポジトリ移行を対応",
       "ITSMでインシデント・変更・問題・ナレッジを管理。エスカレーションされたインシデントへの対応や、同部署内の変更管理アセスメントを実施",
       "月初に手動で行っていたログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などのスケジュール実行を運用",
@@ -73,8 +75,7 @@ export default function Experience() {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            ミッションクリティカルな金融決済や化学物質管理システムの開発・保守運用を通じて培った、
-            高い信頼性・保守性・セキュリティ設計力。Webサイト制作においてもこの確かな技術力が基盤となっています。
+            金融決済や大手化学メーカーのエンタープライズ案件で培った堅牢なシステム設計力と、AIエンジニア・機械エンジニアとしての現場ドメイン理解。最新のAI技術やSpecKitによる仕様駆動開発PoCを現場で主導するFDE（Forward Deployed Engineer）としての突破力を活かし、Web制作から高度なシステム構築まで高品質に実現します。
           </p>
         </div>
 
