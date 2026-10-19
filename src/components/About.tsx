@@ -21,8 +21,9 @@ export default function About({ onContactClick }: AboutProps) {
             <span>🌱</span>
             <span>ABOUT ME</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            自己紹介・歩んできた道
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <span className="inline-block">自己紹介・</span>
+            <span className="inline-block">歩んできた道</span>
           </h2>
           <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
             理系物理専攻からスペイン語専攻、デザイン、そしてエンジニアへ。好奇心と行動力を行動の原動力に、未知の領域に挑み続けてきた背景と大切にしている想いをご紹介します。

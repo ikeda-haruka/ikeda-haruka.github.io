@@ -97,8 +97,9 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
             <span>✨</span>
             <span>PORTFOLIO & WORKS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            制作実績・開発プロジェクト
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <span className="inline-block">制作実績・</span>
+            <span className="inline-block">開発プロジェクト</span>
           </h2>
           <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
             大手化学メーカーでのSpecKit仕様駆動開発PoC（AI/FDE）や金融決済システム、商用ブランドLP共同開発、クライアント直接依頼のイベントDTPなど、<strong className="text-slate-900 font-bold underline decoration-amber-400 decoration-2 underline-offset-4">実際に参画・受託した実務案件を最優先で掲載</strong>しています。各作品カードの「詳細を見る」から、制作目的・担当範囲・使用技術・工夫点・アーキテクチャ・実機画面を詳しくご覧いただけます。

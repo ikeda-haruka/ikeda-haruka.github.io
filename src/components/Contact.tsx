@@ -19,7 +19,8 @@ export default function Contact() {
             <span>GET IN TOUCH</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-            お問い合わせ・連絡先
+            <span className="inline-block">お問い合わせ・</span>
+            <span className="inline-block">連絡先</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
