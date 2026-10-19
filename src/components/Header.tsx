@@ -15,7 +15,6 @@ export default function Header({ onNavClick }: HeaderProps) {
     { name: "制作実績", id: "projects" },
     { name: "自己紹介", id: "about" },
     { name: "スキル・領域", id: "skills" },
-    { name: "お問い合わせ", id: "contact" },
   ];
 
   const handleClick = (id: SectionId) => {
@@ -57,16 +56,18 @@ export default function Header({ onNavClick }: HeaderProps) {
             ))}
             <button
               onClick={() => handleClick("contact")}
-              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition-all shadow-xs"
+              className="px-4 py-2 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
             >
-              Contact
+              <span>お問い合わせ</span>
+              <span className="text-[10px]">✉</span>
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-slate-600 hover:text-slate-900"
+            className="md:hidden text-slate-600 hover:text-slate-900 cursor-pointer p-1.5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="メニュー開閉"
           >
             <svg
               className="w-6 h-6"
@@ -90,16 +91,25 @@ export default function Header({ onNavClick }: HeaderProps) {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-slate-200 mt-2 pt-2 bg-white">
+          <div className="md:hidden pb-4 border-t border-slate-200 mt-2 pt-2 bg-white space-y-1">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleClick(section.id)}
-                className="block w-full text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors rounded"
+                className="block w-full text-left px-4 py-2.5 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-colors rounded-lg font-medium text-sm cursor-pointer"
               >
                 {section.name}
               </button>
             ))}
+            <div className="pt-2 px-4">
+              <button
+                onClick={() => handleClick("contact")}
+                className="w-full py-2.5 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-xs text-center flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>お問い合わせ</span>
+                <span className="text-[10px]">✉</span>
+              </button>
+            </div>
           </div>
         )}
       </nav>
