@@ -67,6 +67,11 @@ import okayamaCafeCustomizerSiteInfoImg from "../assets/okayamacafe/wp-customize
 import okayamaCafeCustomizerMenuImg from "../assets/okayamacafe/wp-customizer-menu.png";
 import okayamaCafeCptMenuListImg from "../assets/okayamacafe/wp-cpt-menu-list.png";
 import okayamaCafeTaxonomyCategoryImg from "../assets/okayamacafe/wp-taxonomy-category.png";
+import okayamaCafeEditorCustomFieldsImg from "../assets/okayamacafe/wp-editor-custom-fields.png";
+import okayamaCafeMailpitTestImg from "../assets/okayamacafe/wp-mailpit-test.png";
+import okayamaCafeAdminColumnsSettingImg from "../assets/okayamacafe/wp-admin-columns-setting.png";
+import okayamaCafeCustomShopSettingsImg from "../assets/okayamacafe/wp-custom-shop-settings.png";
+import okayamaCafeThemeDetailModalImg from "../assets/okayamacafe/wp-theme-detail-modal.png";
 
 /**
  * Vercelホスティングにおけるインフラ選定・運用コスト管理ポリシー（FinOps）
@@ -885,7 +890,11 @@ export const projectsData: Project[] = [
     role: [
       "企画・要件定義・サイトマップ設計（全7ページ構成・日英予約フロー）",
       "WordPressオリジナルテーマ（CAFE HAREKA Theme）フルスクラッチ開発",
-      "カスタム投稿タイプ（カフェメニュー / 果物図鑑 / 店舗設定）＆カスタムタクソノミー設計",
+      "カスタム投稿タイプ（カフェメニュー / 果物図鑑）＆カスタムタクソノミー（メニューカテゴリ）設計",
+      "独自サイドバー『メニュー詳細設定』カスタムフィールド（価格/産地/糖度/特徴ハッシュタグ）開発",
+      "add_menu_page() による『店舗情報・営業時間設定』一元管理パネル開発（予約定休日自動ロック連動）",
+      "Admin Columns プラグインによる管理一覧テーブルUX最適化（サムネイル・カテゴリ視認性向上）",
+      "Mailpit（Local）を用いた予約受付番号自動発行・お問い合わせ自動返信メール送受信テスト検証",
       "WordPressカスタマイザー連携（サイト基本情報、動的ナビゲーションメニュー）",
       "Local（旧 Local by Flywheel）によるローカル開発環境構築",
       "FileZilla（FTP通信）による本番サーバーファイル転送・パーミッション設定",
@@ -896,9 +905,13 @@ export const projectsData: Project[] = [
       "WordPress 6.x",
       "PHP 8.x",
       "Local (Flywheel)",
+      "Mailpit (メール検証)",
       "FileZilla (FTP)",
       "All-in-One WP Migration",
       "カスタム投稿タイプ / タクソノミー",
+      "カスタムフィールド / メタボックス",
+      "Options API (独自設定画面)",
+      "Admin Columns",
       "WordPress Customizer API",
       "React 19",
       "TypeScript",
@@ -908,9 +921,12 @@ export const projectsData: Project[] = [
       "REST API",
     ],
     features: [
-      "自作オリジナルテーマによるフルスクラッチCMS化: 既存テーマを流用せず、header.php, footer.php, front-page.php, functions.php から完全自作したオリジナルテーマ「CAFE HAREKA Theme [晴果]」を開発。",
-      "カスタム投稿タイプ『カフェメニュー』による柔軟なメニュー管理: メニュー名、価格、産直果物名、糖度（Brix）、テイクアウト可否、おすすめバッジなどを管理画面から直感的に登録・即時反映。",
-      "カスタムタクソノミー『メニューカテゴリ』による直感的分類: 「旬果スイーツ」「ランチ・軽食」「ドリンク」「テイクアウト・ギフト」のカテゴリを自由に追加・管理し、サイト側のタブフィルタと自動連動。",
+      "自作オリジナルテーマによるフルスクラッチCMS化: 既存テーマを流用せず、header.php, footer.php, front-page.php, functions.php から完全自作したオリジナルテーマ「CAFE HAREKA Theme [晴果]」を開発。style.cssにてテーマ規約メタ情報を完全準拠。",
+      "独自サイドバー『メニュー詳細設定』カスタムフィールド: ブロックエディタ内に専用メタボックスを実装し、税込価格・契約農家産地・糖度Brix・特徴ハッシュタグ（#数量限定 #看板メニュー等）を管理画面から直感的に入力・即時反映。",
+      "独自店舗設定画面『CAFE HAREKA 店舗情報・営業時間設定』: add_menu_page() で専用設定メニューを開発。営業時間、定休日、予約フォーム連動の水曜自動ロック設定などをサイト全体に一元的に即時反映。",
+      "カスタム投稿タイプ＆タクソノミーによる直感的分類: 「カフェメニュー」投稿タイプと「メニューカテゴリ（旬果スイーツ/ランチ/ドリンク/テイクアウト）」タクソノミーを設計し、フロントエンドのタブフィルターと自動連動。",
+      "Admin Columns による管理画面UXの徹底最適化: メニュー一覧テーブルにサムネイル画像、メニューカテゴリ、価格、日付の列をスマート配置し、店舗スタッフが更新しやすい優れた操作性を実現。",
+      "Mailpit による仮予約番号自動発行＆自動返信メール実証: Local内蔵のMailpitを活用し、予約リクエスト時の受付番号（HRK-20261025-xxxx）自動採番・店舗宛て通知・顧客宛て自動返信メールの送受信テストを完遂。",
       "WordPressカスタマイザーによる動的サイト設定: 「外観 > カスタマイズ」からサイト名、キャッチフレーズ、サイトアイコン（ファビコン）、ヘッダー＆フッターのカスタムメニューをGUI上でリアルタイムプレビューしながら設定可能。",
       "Local × FileZilla × All-in-One WP Migration の完全移行フロー: ローカル環境（Local）で安全に開発・動作検証を行い、FileZillaによるFTPファイル転送とAll-in-One WP MigrationによるDB・メディアのエクスポート/インポートにより本番環境へシームレスに移行。",
       "React SPA × WordPress REST API のハイブリッド拡張性: WordPress単体での運用はもちろん、ヘッドレスCMSとしてWordPress REST APIを叩いて最新投稿を取得するReact 19モダンSPAフロントエンドも両立。",
@@ -1045,9 +1061,24 @@ export const projectsData: Project[] = [
                 "register_post_type() により通常のお知らせと分離した専用メニュー管理画面を構築。パフェ・タルト・ドリンク等のサムネイル付き一覧・編集を実現。",
             },
             {
+              title: "カスタムフィールド（メタボックス）",
+              detail:
+                "ブロックエディタ内に「メニュー詳細設定」を独自実装。税込価格、契約農家産地、糖度Brix、ハッシュタグ（#数量限定 #看板メニュー等）を安全に入力・保存。",
+            },
+            {
               title: "カスタムタクソノミー「メニューカテゴリ」",
               detail:
                 "register_taxonomy() により「旬果スイーツ」「ランチ・軽食」「ドリンク」「テイクアウト」等の分類をノンプログラミングで追加・階層化可能。",
+            },
+            {
+              title: "独自店舗設定画面（Options API）",
+              detail:
+                "add_menu_page() で専用設定メニューを開発。営業時間、定休日、Web予約フォーム連動の水曜自動ロック設定をサイト全体へ一元的に即時反映。",
+            },
+            {
+              title: "Admin Columns 一覧UX最適化",
+              detail:
+                "管理画面のメニュー一覧テーブルにサムネイル画像、カテゴリ、価格、日付を最適配置。店舗スタッフが迷わず運用できる導線を追求。",
             },
             {
               title: "Customizer API（サイト基本情報・メニュー）",
@@ -1058,13 +1089,18 @@ export const projectsData: Project[] = [
         },
         {
           title: "インフラ・開発移行パイプライン",
-          description: "ローカル開発から本番サーバーへの安全・確実なデプロイメント",
+          description: "ローカル開発からメール検証、本番サーバーへの安全・確実なデプロイメント",
           tone: "indigo",
           cards: [
             {
               title: "Local (旧 Local by Flywheel)",
               detail:
                 "軽量かつモダンなWordPress専用ローカル開発環境。PHP 8.x環境下での構文チェックやデバッグを安全・迅速に実施。",
+            },
+            {
+              title: "Mailpit（メール送受信・自動返信検証）",
+              detail:
+                "Local内蔵のメールキャッチャーを活用。仮予約受付番号（HRK-20261025-xxxx）発行、お問い合わせ、取材相談の店舗通知・顧客自動返信を完全検証。",
             },
             {
               title: "FileZilla (FTP / FTPS)",
@@ -1105,11 +1141,13 @@ export const projectsData: Project[] = [
         {
           title: "主なCMS機能・実装ポイント",
           items: [
-            "【自作テーマ】既存テーマの改変ではなく、1からfunctions.phpをコーディングしたオリジナルテーマ制作",
-            "【メニュー管理】カスタム投稿タイプとカスタムフィールドによる糖度（Brix）・産地・価格のスマート管理",
+            "【自作テーマ】既存テーマの改変ではなく、1からfunctions.phpをコーディングしたオリジナルテーマ制作（公式規約準拠）",
+            "【メタボックス】ブロックエディタ内の独自サイドバーによる税込価格・産地・糖度Brix・特徴ハッシュタグの安全管理",
+            "【独自設定画面】add_menu_page()による営業時間・定休日一元設定と、予約フォーム連動の水曜自動ロック機能",
+            "【管理画面UX】Admin Columnsによるサムネイル付きメニュー一覧テーブルのカスタマイズと運用最適化",
+            "【メール検証】Mailpitを用いた仮予約受付番号自動発行・店舗通知・顧客向け自動返信メールの完全稼働検証",
             "【カテゴリ分類】カスタムタクソノミーとフロント側タブフィルターの完全自動連動",
             "【GUIカスタマイザー】サイト基本情報（タイトル・キャッチフレーズ・ファビコン）とナビゲーションの動的変更",
-            "【REST API対応】WordPressをヘッドレスCMSとして活用し、Reactフロントエンドへのデータ供給も可能な設計",
           ],
         },
         {
@@ -1123,30 +1161,54 @@ export const projectsData: Project[] = [
           ],
         },
       ],
-      note: "WordPressオリジナルテーマ開発から、Local環境、FileZilla FTP通信、All-in-One WP Migrationによる本番公開までを完全にワンストップで実証した案件です。",
+      note: "WordPressオリジナルテーマ開発から、カスタムフィールド・独自設定画面、Mailpitメール検証、Local・FileZilla・All-in-One WP Migrationによる本番公開までを完全にワンストップで実証した案件です。",
     },
-    screenshotsBadge: "WORDPRESS ADMIN & CUSTOMIZER",
-    screenshotsTitle: "WordPress 管理画面・自作テーマ＆カスタマイザー展示",
+    screenshotsBadge: "WORDPRESS ADMIN & CUSTOMIZER GALLERY",
+    screenshotsTitle: "WordPress 管理画面・自作テーマ＆カスタマイザー完全展示",
     screenshotsNote:
-      "ローカル環境（Local）および本番環境で実際に稼働しているWordPress管理画面のキャプチャです。自作オリジナルテーマ「CAFE HAREKA Theme [晴果]」の有効化、カスタム投稿タイプ「カフェメニュー」、カスタムタクソノミー「メニューカテゴリ」、カスタマイザーによる動的設定の様子をご確認いただけます。",
+      "ローカル環境（Local）および本番環境で実際に稼働しているWordPress管理画面のキャプチャです。自作オリジナルテーマ「CAFE HAREKA Theme [晴果]」の詳細モーダル、ブロックエディタ独自カスタムフィールド、店舗情報独自設定画面、Admin Columnsによる一覧最適化、Mailpitによる自動返信メール検証、カスタマイザー設定の様子をご確認いただけます。",
     screenshots: [
       {
-        src: okayamaCafeThemeAdminImg,
-        title: "自作オリジナルテーマ「CAFE HAREKA Theme [晴果]」有効化画面（外観 > テーマ）",
+        src: okayamaCafeThemeDetailModalImg,
+        title: "自作テーマ『CAFE HAREKA Theme [晴果]』テーマ詳細（外観 > テーマの詳細）",
         caption:
-          "WordPressのテーマ規約（style.cssのメタヘッダー定義、screenshot.png）に完全準拠して自作したオリジナルテーマ。ワンクリックで有効化・切り替えが可能です。",
+          "WordPress公式テーマ規約に完全準拠し、style.css のメタヘッダー定義（バージョン1.0.0、作者、説明文、機能タグ）を反映。カスタムメニュー、アイキャッチ、レスポンシブ、テーマ設定に対応した完成度の高い自作テーマです。",
+      },
+      {
+        src: okayamaCafeThemeAdminImg,
+        title: "WordPress テーマ管理画面（自作テーマ有効化）",
+        caption:
+          "Local環境および本番環境のテーマ一覧画面。自作テーマ「CAFE HAREKA Theme [晴果]」が有効化されており、他デフォルトテーマとワンクリックで切り替え可能な独立設計です。",
+      },
+      {
+        src: okayamaCafeEditorCustomFieldsImg,
+        title: "ブロックエディタ独自サイドバー『メニュー詳細設定』カスタムフィールド",
+        caption:
+          "メニュー登録画面に専用メタボックスを実装。カテゴリ選択、税込価格、契約農家産地、糖度（Brix）、特徴タグ（#数量限定 #看板メニュー #朝採れ果実 等）を管理画面から安全かつ直感的に入力できます。",
+      },
+      {
+        src: okayamaCafeCustomShopSettingsImg,
+        title: "独自管理画面『CAFE HAREKA 店舗情報・営業時間設定』一元管理パネル",
+        caption:
+          "add_menu_page() で専用設定メニューを開発。営業時間、ラストオーダー、定休日（水曜）、予約フォーム連動の水曜自動ロック、店舗名、代表パティシエ名をサイト全体へ一元的に即時反映します。",
       },
       {
         src: okayamaCafeCptMenuListImg,
-        title: "カスタム投稿タイプ『カフェメニュー』一覧管理画面",
+        title: "カスタム投稿タイプ『カフェメニュー』一覧テーブル",
         caption:
-          "「岡山県産 清水白桃の極上パフェ」「晴王（シャインマスカット）のエメラルドタルト」など、旬の果物スイーツをサムネイル画像付きで直感的に管理できる専用投稿画面。",
+          "「岡山県産 清水白桃の極上パフェ」「晴王（シャインマスカット）のエメラルドタルト」など、旬の果物スイーツをサムネイル付きで一覧管理。メニューカテゴリや公開日が一目で把握できます。",
       },
       {
         src: okayamaCafeTaxonomyCategoryImg,
         title: "カスタムタクソノミー『メニューカテゴリ』設定画面",
         caption:
-          "「テイクアウト・ギフト」「ドリンク」「ランチ・軽食」「旬果スイーツ」の各カテゴリをGUIで自由に追加・スラッグ設定でき、サイト側のタブ絞り込みと自動連動します。",
+          "「旬果スイーツ」「ランチ・軽食」「ドリンク」「テイクアウト・ギフト」の4大カテゴリをGUIで自由に追加・管理。スラッグ設定によりフロントエンドのタブ絞り込みと完全連動します。",
+      },
+      {
+        src: okayamaCafeAdminColumnsSettingImg,
+        title: "Admin Columns による管理一覧テーブルUX最適化",
+        caption:
+          "Admin Columnsを活用し、メニュー管理一覧に「サムネイル」「メニューカテゴリ」「タイトル」「日付」の列を最適配置。店舗スタッフが迷わず日々の更新業務を行える運用設計を追求しています。",
       },
       {
         src: okayamaCafeCustomizerSiteInfoImg,
@@ -1159,6 +1221,12 @@ export const projectsData: Project[] = [
         title: "WordPress カスタマイザー（メニュー構造・ナビゲーション設定）",
         caption:
           "グローバルメインメニューおよびフッターメニューのリンク構造・表示位置をノーコードで設定。header.php / footer.php に組み込んだ wp_nav_menu() と完全連動しています。",
+      },
+      {
+        src: okayamaCafeMailpitTestImg,
+        title: "Mailpit（Local）による予約・お問い合わせ自動返信メール送受信テスト",
+        caption:
+          "Local内蔵のメールキャッチャー「Mailpit」にて、仮予約受付番号（HRK-20261025-xxxx）自動発行、お問い合わせ、取材相談など、店舗宛て通知と顧客宛て自動返信メールの送受信が正常に動作することを実証。",
       },
       {
         src: okayamaCafeThemeScreenshotImg,
