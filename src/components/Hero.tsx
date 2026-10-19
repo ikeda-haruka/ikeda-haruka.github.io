@@ -47,8 +47,8 @@ export default function Hero({
               </p>
               <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
                 <span className="block">
-                  洗練された
-                  <span className="gradient-text inline-block min-w-[200px] sm:min-w-[280px]">
+                  洗練された{" "}
+                  <span className="inline-block text-left">
                     <TextRotator
                       words={[
                         "Web & AI体験",
@@ -57,8 +57,9 @@ export default function Hero({
                         "エンタープライズFDE基盤",
                       ]}
                       interval={3200}
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold"
                     />
-                  </span>
+                  </span>{" "}
                   を、
                 </span>
                 <span className="block mt-1 sm:mt-1.5">デザインと仕様駆動技術で形に。</span>
