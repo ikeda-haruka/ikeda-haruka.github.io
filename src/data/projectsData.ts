@@ -102,26 +102,33 @@ export const projectsData: Project[] = [
     title: "化学物質管理システム（PoC・バージョンアップ）",
     subtitle: "AIエンジニア・機械エンジニア視点でSpecKit仕様駆動開発PoCを主導｜FDE・エンタープライズ移行・運用",
     description:
-      "AIエンジニア・機械エンジニアとしてのドメイン理解力を活かし、大手化学メーカーのエンタープライズ案件でSpecKitを用いた『仕様駆動開発（Spec-Driven Development）』のPoCを主導。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、レガシーStruts+JSPからSpringBoot 3+Vue.jsへのマイグレーション検証、Figma UI設計、JAMPからCMPへの法令要件定義、IMDS連携、インフラ・リポジトリ移行からITSM保守運用まで一気通貫で担当。",
+      "大手化学メーカーのエンタープライズ案件において、AIエンジニア・機械エンジニア視点を活かし、SpecKitを使用した『仕様駆動開発（Spec-Driven Development）』のPoCを主導。複数人開発を前提に機能単位でspec.md/plan.md/task.mdを分割策定し、speckit.orchestratorへの自然言語指示から適切なSKILL.mdを自律選定・実行する高度なAIエージェントワークフローを構築。さらにSourceTree手動運用から、プロンプト指示によるコミットの自動グルーピング・機密情報チェック・コミット自動化を実現。UI設計では当初検討のFigma MCP連携を見直し、社内既存のReact 19デザインガイドラインをVue.js+TypeScript+Viteへカスタマイズ移植する現実的かつ迅速な方針転換を断行。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、StrutsからJava 21+SpringBoot 3へのモダナイゼーションからITSM保守運用まで一気通貫で推進しました。",
     overview:
-      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを推進。JAMP（chemSHERPA）からCMPへの法改正対応、IMDS連携、業務主管部門との折衝・要件定義までFDEとして伴走しました。",
+      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを主導。複数人での並行開発を可能にする機能単位のspec/plan/taskドキュメント設計、speckit.orchestratorとSKILL.mdによるAIスキル自動実行、SourceTree手動コミットからの脱却（自動グルーピング・機密チェック）、そして社内React 19デザインガイドラインのVue.js+Viteへの移植など、現場のリアルな課題に即した実務適用をFDEとして完遂しました。",
     purpose:
       "大手化学メーカーにおける化学物質管理の一元化および法改正（JAMPからCMPへの移行）への適合。レガシーなStruts/JSPからモダンなSpringBoot 3/Vue.jsへの段階的移行において、AIエンジニア・機械エンジニア視点でSpecKitを用いた仕様駆動開発（SDD）のPoCを主導。要件定義の曖昧さを排除し、保守性と開発生産性を抜本的に向上させること。",
     role: [
-      "AIエンジニア / FDE（仕様駆動開発PoC主導）",
+      "AIエンジニア / FDE（SpecKit仕様駆動開発PoC・オーケストレーター設計）",
       "要件定義・業務主管部門折衝（JAMP→CMP・法令対応）",
-      "Figma UI部品設計 & Vue.jsフロントエンド実装",
+      "UI設計・社内デザインシステム移植（React 19 → Vue.js/Vite）",
+      "フロントエンド実装 (Vue.js + TypeScript + Vite)",
       "バックエンド開発 (Java 21 / SpringBoot 3)",
+      "Gitコミット自動化 & 機密情報漏洩チェックパイプライン導入",
       "外部システム連携 (IMDS・リバースプロキシ・電子証明書)",
       "インフラ移行 & ITSM保守運用・ジョブ自動化",
     ],
     technologies: [
       "SpecKit (仕様駆動開発/SDD)",
-      "AI/LLM活用 (仕様定義・PoC)",
-      "Java 21",
-      "SpringBoot 3",
+      "speckit.orchestrator",
+      "SKILL.md (スキル自律選定)",
+      "spec.md / plan.md / task.md",
+      "Git自動コミット・機密チェック",
       "Vue.js",
       "TypeScript",
+      "Vite",
+      "React 19 (社内ガイドライン移植元)",
+      "Java 21",
+      "SpringBoot 3",
       "Figma",
       "Tomcat 11",
       "Oracle DB",
@@ -136,10 +143,11 @@ export const projectsData: Project[] = [
       "Windows タスク スケジューラ",
     ],
     features: [
-      "【AIエンジニア・FDE主導】SpecKitを用いた仕様駆動開発（Spec-Driven Development）のPoC検証をリード。自然言語仕様から設計・コード生成の整合性を高め、エンタープライズにおける開発生産性向上を実証",
-      "【機械エンジニア・ドメイン知見】化学・製造業の専門的要件（JAMP/chemSHERPAからCMPへの法改正移行、自動車業界材料DB・IMDS連携）をエンジニアリングに直結",
-      "Figmaのアプリデザインガイドラインを基に、システム向けにカスタマイズしたUI部品を設計・作成",
-      "Figmaの設計に沿ったVue.js部品をプロジェクト内に実装",
+      "【複数人対応の仕様駆動開発（SDD）】一枚岩の仕様書を排し、チーム開発でコンフリクトせず並行開発を進められるよう、機能単位ごとに spec.md（要件仕様）、plan.md（実装計画）、task.md（具体的作業タスク）を分割管理する実践的ワークフローを確立",
+      "【speckit.orchestrator による自律スキル選定】プロンプトを speckit.orchestrator へ投入することで、文脈やタスク内容に応じた最適な SKILL.md をオーケストレーターが自動的に選択・実行してくれる自律的エージェント構造を導入し、開発効率を飛躍的に向上",
+      "【Gitコミット自動化 & 機密情報漏洩チェック】従来 SourceTree から手動で行っていたコミット運用から脱却。「コミットしてください」とプロンプトを投げるだけで、変更差分の論理グルーピング、適切なコミットメッセージの自動生成、さらに社内機密・クレデンシャルの誤混入を検知する機密チェックを自動実行した上でコミットを完結する安全なパイプラインを構築",
+      "【デザインシステム導入の迅速な方針転換】当初予定していた Figma MCP（Model Context Protocol）連携は現場の運用コスト・依存関係を考慮して見直し方針転換。社内で先行実績のあった公式アプリデザインガイドライン（React 19製）リポジトリをクローンし、本システムの Vue.js + TypeScript + Vite 向けにカスタマイズ・移植する現実的なアプローチを採用してUI統一を迅速に達成",
+      "【AIエンジニア・機械エンジニア視点】化学・製造業の専門的要件（JAMP/chemSHERPAからCMPへの法改正移行、自動車業界材料DB・IMDS連携）をエンジニアリングに直結",
       "マイグレーション: Struts/JSP から Java 21・SpringBoot 3・Vue.js への段階的リプレイス設計",
       "JAMP から CMP への法令対応および業務主管部門との要件定義・折衝",
       "IaaS クラウドリフト前提の設計およびマルチテナント対応の検討",
@@ -154,7 +162,7 @@ export const projectsData: Project[] = [
       title: "化学物質管理システム構成図・アーキテクチャ",
       subtitle: "AIエンジニア・FDE主導によるSpecKit仕様駆動開発PoC & レガシーからJava 21・SpringBoot 3・Vue.js移行構成",
       description:
-        "AIエンジニア・機械エンジニアとしての視点を活かし、SpecKitを用いた仕様駆動開発（SDD）のPoCを主導。レガシー環境からJava 21・SpringBoot 3・Vue.jsを用いた構成への移行、外部サービス連携・サーバー／リポジトリ移行・ジョブ運用の改善をFDEとして一貫して推進しました。以下に論理構成と成果を示します。",
+        "AIエンジニア・機械エンジニアとしての視点を活かし、SpecKitを用いた仕様駆動開発（SDD）のPoCを主導。機能別spec/plan/task設計やspeckit.orchestratorによるスキル自動実行、Gitコミット自動化、社内React 19ガイドラインのVue+Vite移植を断行。レガシー環境からJava 21・SpringBoot 3・Vue.jsを用いた構成への移行、外部サービス連携・サーバー／リポジトリ移行・ジョブ運用の改善をFDEとして一貫して推進しました。以下に論理構成と成果を示します。",
       variants: [
         {
           label: "レガシー版（移行前）",
@@ -193,10 +201,10 @@ export const projectsData: Project[] = [
         {
           label: "モダナイゼーション後版（移行後・PoC検証）",
           description:
-            "Java 21・SpringBoot 3・Vue.js・TypeScriptを用いた最新スタック構成。SpecKitによる仕様駆動開発PoCを組み込み、専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。",
+            "Java 21・SpringBoot 3・Vue.js・TypeScript・Viteを用いた最新スタック構成。SpecKitによる仕様駆動開発PoC（機能別spec/plan/task、speckit.orchestrator、コミット自動化＆機密チェック、社内React 19ガイドライン移植）を組み込み、専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。",
           steps: [
             { title: "利用者", detail: "Webブラウザ", tone: "blue" },
-            { title: "Web画面", detail: "Vue.js / TypeScript", tone: "green" },
+            { title: "Web画面", detail: "Vue.js / TypeScript / Vite", tone: "green" },
             {
               title: "API・アプリケーション",
               detail: "Java 21 / SpringBoot 3",
@@ -217,29 +225,31 @@ export const projectsData: Project[] = [
               ],
             },
             {
-              title: "運用・開発基盤",
+              title: "運用・開発基盤（SDD & CI/CD）",
               tone: "slate",
               cards: [
-                { title: "仕様駆動開発", detail: "SpecKit PoC検証を主導" },
-                { title: "サーバー", detail: "アプリ専用環境へ移行" },
-                { title: "リポジトリ", detail: "GitHubへ移行" },
-                { title: "ジョブ運用", detail: "JP1 / タスクスケジューラ" },
-                { title: "保守運用", detail: "ITSMで管理" },
+                { title: "仕様駆動開発", detail: "機能別 spec / plan / task" },
+                { title: "AIエージェント", detail: "speckit.orchestrator / SKILL.md" },
+                { title: "Git運用自動化", detail: "自動グルーピング・機密チェック" },
+                { title: "UI基盤移植", detail: "React 19ガイドライン→Vue+Vite" },
+                { title: "サーバー/リポジトリ", detail: "アプリ専用環境 & GitHubへ移行" },
+                { title: "ジョブ/保守運用", detail: "JP1 / タスクスケジューラ / ITSM" },
               ],
             },
           ],
-          note: "【PoC成果】AIエンジニア・機械エンジニア視点でSpecKitによる仕様駆動開発を導入・検証",
+          note: "【PoC成果】AIエンジニア・機械エンジニア視点でSpecKit仕様駆動開発・オーケストレーター・自動コミット・デザインシステム移植を主導検証",
         },
       ],
       highlights: [
         {
           title: "SpecKit仕様駆動開発PoC & FDE推進の成果",
           items: [
-            "AIエンジニア・機械エンジニアとして、SpecKitを用いた仕様駆動開発（SDD）のPoCをエンタープライズ現場で主導。要件・仕様の形式化と開発サイクルの迅速化を実証",
-            "顧客現場（業務主管部門・インフラ・開発）の最前線に入り込み、課題発見から要件定義・設計・実装・インフラ移行までを牽引するFDE（Forward Deployed Engineer）スタイルを確立",
-            "機械・化学分野のドメイン知見を活かし、JAMP（chemSHERPA）からCMPへの移行要件やIMDS外部連携など複雑な業務要件を的確に咀嚼・具現化",
-            "JDK 8・Struts・iBatisレガシーシステムから、Java 21・SpringBoot 3・Vue.jsへの段階的モダナイゼーション構成を検証",
-            "手動の月初ログ削除をタスクスケジューラで自動化し、JP1バッチ運用やITSMによる変更管理アセスメント・インシデント対応を整備",
+            "【機能別仕様駆動開発】複数人での並行開発を可能にするため、機能単位ごとに spec.md、plan.md、task.md を分割策定する運用を主導",
+            "【speckit.orchestrator】プロンプト投入から最適な SKILL.md を自律選定・実行するオーケストレーター構造を導入し、AI活用開発プロセスを最適化",
+            "【コミット自動化 & 機密チェック】SourceTreeによる手動コミットから脱却し、プロンプト指示による自動グルーピング・メッセージ生成・機密情報漏洩チェックパイプラインを確立",
+            "【デザインシステム移植の断行】当初検討したFigma MCP連携を見直し、社内既存のReact 19ガイドラインリポジトリをクローンしてVue.js+TypeScript+Viteへ移植・カスタマイズする迅速な方針転換を実現",
+            "【ドメイン知見の融合】機械・化学分野のドメイン知識を活かし、JAMPからCMPへの移行要件やIMDS外部連携など複雑な業務要件を的確に咀嚼・具現化",
+            "【レガシー刷新】JDK 8・Struts・iBatisレガシー環境から、Java 21・SpringBoot 3・Vue.jsへの段階的モダナイゼーション基盤を検証",
           ],
         },
         {

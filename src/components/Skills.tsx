@@ -62,6 +62,10 @@ const skillsData: SkillCategory[] = [
     description: "SpecKitによる仕様駆動開発PoC主導、AI活用、機械・製造業ドメイン知見と現場伴走型FDE開発基盤",
     skills: [
       "SpecKit（仕様駆動開発 / SDD PoC主導）",
+      "speckit.orchestrator / SKILL.md (スキル自律選定・実行)",
+      "機能別仕様駆動 (spec.md / plan.md / task.md 複数人開発)",
+      "Git自動コミット & 機密情報漏洩チェックパイプライン",
+      "デザインシステム移植・カスタマイズ (React 19 → Vue.js/Vite)",
       "FDE（Forward Deployed Engineer / 顧客現場課題解決）",
       "AIエンジニアリング / プロンプト設計 (Claude・Gemini・Copilot)",
       "機械エンジニア・製造ドメイン知見（化学・素材・IMDS）",
