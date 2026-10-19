@@ -57,6 +57,7 @@ export default function Hero({
                     <TextRotator
                       words={[
                         "Web & AI体験",
+                        "WordPress / 自作CMS",
                         "仕様駆動開発 (SpecKit)",
                         "モダンWebデザイン",
                         "エンタープライズFDE基盤",
@@ -86,6 +87,7 @@ export default function Hero({
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
               {[
                 "実務・参画案件 多数",
+                "WordPress / 自作CMS化",
                 "SpecKit / 仕様駆動開発",
                 "AI Engineer / FDE",
                 "Next.js / React",

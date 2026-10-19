@@ -59,6 +59,14 @@ import graphicSnsSpringImg from "../assets/works_graphics/graphic_sns_spring.web
 import graphicSnsSummerImg from "../assets/works_graphics/graphic_sns_summer.jpg";
 import graphicSnsSlideDetailImg from "../assets/works_graphics/graphic_sns_slide_detail.webp";
 import graphicCajonWorkshopImg from "../assets/works_graphics/graphic_cajon_workshop.jpg";
+import okayamaCafePcImg from "../assets/okayamacafe/okayamacafe-capture-pc.png";
+import okayamaCafeMobileImg from "../assets/okayamacafe/okayamacafe-capture-mobile.png";
+import okayamaCafeThemeScreenshotImg from "../assets/okayamacafe/wp-theme-screenshot.png";
+import okayamaCafeThemeAdminImg from "../assets/okayamacafe/wp-theme-admin.png";
+import okayamaCafeCustomizerSiteInfoImg from "../assets/okayamacafe/wp-customizer-site-info.png";
+import okayamaCafeCustomizerMenuImg from "../assets/okayamacafe/wp-customizer-menu.png";
+import okayamaCafeCptMenuListImg from "../assets/okayamacafe/wp-cpt-menu-list.png";
+import okayamaCafeTaxonomyCategoryImg from "../assets/okayamacafe/wp-taxonomy-category.png";
 
 /**
  * Vercelホスティングにおけるインフラ選定・運用コスト管理ポリシー（FinOps）
@@ -858,6 +866,327 @@ export const projectsData: Project[] = [
       ],
       note: "担当機能：大量明細の取得・処理 ／ 即日振込機能の実装",
     },
+  },
+  {
+    id: "okayamacafe",
+    category: "portfolio",
+    categoryLabel: "自主制作 / フルスクラッチWordPress CMS",
+    badgeType: "portfolio",
+    isClientWork: false,
+    title: "岡山フルーツカフェ「CAFE HAREKA（晴果）」",
+    subtitle:
+      "WordPress 6.x 自作オリジナルテーマ・フルスクラッチCMS化 ＆ ReactハイブリッドWebサイト",
+    description:
+      "「晴れの国の太陽と、樹上のめぐみをそのままに。」をコンセプトに、岡山県産フルーツ（清水白桃・シャインマスカット等）の魅力を届けるカフェWebサイト。Localでの環境構築から自作オリジナルテーマによるフルスクラッチCMS化、カスタム投稿タイプ・タクソノミー設計、FileZillaによるFTP通信、All-in-One WP MigrationによるDB・メディア本番インポートまで一貫して構築。",
+    overview:
+      "岡山県に新オープンする架空の地産地消カフェ「CAFE HAREKA（晴果喫茶）」のWebサイトおよびWordPressオリジナルテーマです。HTML/CSSコーディングにとどまらず、「クライアントが自ら旬の果物メニューや入荷情報、お知らせを簡単・安全に更新できる本格的なCMS基盤」を要件定義・設計。Localでローカル開発環境を立ち上げ、WordPress 6.x＋PHP 8.x仕様のオリジナルテーマ「CAFE HAREKA Theme [晴果]」をフルスクラッチ開発。カスタム投稿タイプ「カフェメニュー」「新着情報」「果物図鑑」、カスタムタクソノミー「メニューカテゴリ」、カスタマイザーによる動的ロゴ・ヘッダー・フッターメニュー連動を実装しました。さらにFileZillaを用いたFTP通信とAll-in-One WP Migrationによるエクスポート・インポートを経て本番ホスティング環境へ安全にデプロイ・移行を完遂しています。",
+    purpose:
+      "Webデザイナー・コーダーからステップアップし、「WordPressオリジナルテーマの構築」「カスタム投稿タイプやタクソノミーを駆使した実務的CMS化」「ローカル開発から本番サーバーへの確実なデプロイ・データ移行」までをワンストップで完遂できるエンジニアリングスキルを実証すること。特に、飲食・観光系ビジネスで最もニーズの高い「旬の季節限定メニューの随時更新」「入荷糖度や産地情報の入力」「日英バイリンガル対応の席予約」をノーコードで運用できる管理画面設計を追求しました。",
+    role: [
+      "企画・要件定義・サイトマップ設計（全7ページ構成・日英予約フロー）",
+      "WordPressオリジナルテーマ（CAFE HAREKA Theme）フルスクラッチ開発",
+      "カスタム投稿タイプ（カフェメニュー / 果物図鑑 / 店舗設定）＆カスタムタクソノミー設計",
+      "WordPressカスタマイザー連携（サイト基本情報、動的ナビゲーションメニュー）",
+      "Local（旧 Local by Flywheel）によるローカル開発環境構築",
+      "FileZilla（FTP通信）による本番サーバーファイル転送・パーミッション設定",
+      "All-in-One WP Migration によるDB・投稿・メディア本番エクスポート＆インポート",
+      "React 19 / TypeScript / Vite / Tailwind CSS v4 によるモダンSPAフロントエンド開発",
+    ],
+    technologies: [
+      "WordPress 6.x",
+      "PHP 8.x",
+      "Local (Flywheel)",
+      "FileZilla (FTP)",
+      "All-in-One WP Migration",
+      "カスタム投稿タイプ / タクソノミー",
+      "WordPress Customizer API",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Vite 8.3",
+      "Framer Motion",
+      "REST API",
+    ],
+    features: [
+      "自作オリジナルテーマによるフルスクラッチCMS化: 既存テーマを流用せず、header.php, footer.php, front-page.php, functions.php から完全自作したオリジナルテーマ「CAFE HAREKA Theme [晴果]」を開発。",
+      "カスタム投稿タイプ『カフェメニュー』による柔軟なメニュー管理: メニュー名、価格、産直果物名、糖度（Brix）、テイクアウト可否、おすすめバッジなどを管理画面から直感的に登録・即時反映。",
+      "カスタムタクソノミー『メニューカテゴリ』による直感的分類: 「旬果スイーツ」「ランチ・軽食」「ドリンク」「テイクアウト・ギフト」のカテゴリを自由に追加・管理し、サイト側のタブフィルタと自動連動。",
+      "WordPressカスタマイザーによる動的サイト設定: 「外観 > カスタマイズ」からサイト名、キャッチフレーズ、サイトアイコン（ファビコン）、ヘッダー＆フッターのカスタムメニューをGUI上でリアルタイムプレビューしながら設定可能。",
+      "Local × FileZilla × All-in-One WP Migration の完全移行フロー: ローカル環境（Local）で安全に開発・動作検証を行い、FileZillaによるFTPファイル転送とAll-in-One WP MigrationによるDB・メディアのエクスポート/インポートにより本番環境へシームレスに移行。",
+      "React SPA × WordPress REST API のハイブリッド拡張性: WordPress単体での運用はもちろん、ヘッドレスCMSとしてWordPress REST APIを叩いて最新投稿を取得するReact 19モダンSPAフロントエンドも両立。",
+      "日英バイリンガル対応のスマート予約フォーム: 訪日観光客の利便性に配慮し、日本語/英語のワンクリック切り替え、水曜定休日の自動ロック、時間帯別空き枠（◎/△/✕）のリアルタイム選択UIを実装。",
+    ],
+    image: okayamaCafeThemeScreenshotImg,
+    imageCaption:
+      "自作WordPressテーマ「CAFE HAREKA Theme [晴果]」ファーストビュー（清水白桃の極上パフェ）",
+    imagePc: okayamaCafePcImg,
+    imageMobile: okayamaCafeMobileImg,
+    imagePcCaption:
+      "PCデスクトップ表示（清水白桃の極上パフェ＆シャインマスカットカード）",
+    imageMobileCaption:
+      "モバイルスマートフォン表示（レスポンシブファーストビュー）",
+    github: "https://github.com/ikeda-haruka/okayamaCafe",
+    demo: "https://okayama-cafe.infinityfreeapp.com/",
+    referenceSite: {
+      title: "CAFE HAREKA (晴果) 公開本番Webサイト",
+      url: "https://okayama-cafe.infinityfreeapp.com/",
+      badge: "本番公開中",
+      description:
+        "InfinityFreeホスティング上にデプロイされたWordPress本番環境。Localで構築した自作テーマをFileZillaでFTP転送し、All-in-One WP MigrationでDBとメディアをインポートして稼働。",
+    },
+    siteStructure: {
+      title: "全7ページ サイトマップ＆CMS連携構造",
+      subtitle: "WordPress テンプレート階層と連動した明快なページ設計",
+      description:
+        "トップから商品一覧、果物ストーリー、お知らせ、アクセス、日英予約フォームまで、実店舗の集客・ブランディングに必要な動線を網羅しています。",
+      categories: [
+        {
+          category: "メインページ",
+          badge: "コア",
+          badgeColor: "blue",
+          pages: [
+            {
+              name: "ホーム (front-page.php)",
+              path: "/",
+              desc: "白桃パフェKV、産直入荷ティッカー、おすすめメニュー、果物ストーリー誘導、お知らせ最新一覧",
+              isHighlight: true,
+            },
+            {
+              name: "お店について (page-about.php)",
+              path: "/about",
+              desc: "創業ストーリー、3つのこだわり（産直・空間美・アップサイクル）、施設ガイド（テラス席ペット可/バリアフリー）",
+            },
+            {
+              name: "メニュー (page-menu.php)",
+              path: "/menu",
+              desc: "カスタム投稿タイプ『カフェメニュー』連動。旬果リレーカレンダー、糖度（Brix）表示、カテゴリ別フィルタ",
+              isHighlight: true,
+            },
+            {
+              name: "岡山の果物 (page-fruits.php)",
+              path: "/fruits",
+              desc: "カスタム投稿タイプ『果物図鑑』。日照時間全国トップの理由、清水白桃・晴王・ピオーネ等5大フルーツ解説",
+            },
+          ],
+        },
+        {
+          category: "情報発信・コンバージョン",
+          badge: "CMS・予約",
+          badgeColor: "green",
+          pages: [
+            {
+              name: "お知らせ・果実便り (home.php / archive.php)",
+              path: "/news",
+              desc: "WordPress標準投稿タイプ。カテゴリ絞り込み（入荷/イベント/お知らせ）、詳細モーダル表示",
+              isHighlight: true,
+            },
+            {
+              name: "アクセス・店舗情報 (page-access.php)",
+              path: "/access",
+              desc: "吉備津神社近くの所在地、Google Maps連携、山陽道/JR桃太郎線アクセス、観光モデルコース案内",
+            },
+            {
+              name: "ご予約・お問い合わせ (page-contact.php)",
+              path: "/contact",
+              desc: "日英バイリンガルUI、リアルタイム時間帯空き枠（◎/△/✕）、水曜定休日自動ロック、仮予約番号自動発行",
+              isHighlight: true,
+            },
+          ],
+        },
+      ],
+    },
+    architecture: {
+      title: "WordPress 自作オリジナルテーマ開発 ＆ 本番移行アーキテクチャ",
+      subtitle:
+        "Local（ローカル）から FileZilla（FTP通信）と All-in-One WP Migration による本番デプロイフロー",
+      description:
+        "Local環境でのPHP 8.x/WordPress 6.x開発、カスタム投稿タイプ・タクソノミー設計、FileZillaによる確実なFTPファイル転送、そしてAll-in-One WP Migrationを活用した本番環境への安全なデータ移行パイプラインです。",
+      steps: [
+        {
+          title: "1. Local (Flywheel) 環境構築",
+          detail:
+            "Localを用いてローカルPC上にPHP 8.x + MySQL + Nginx/Apacheの安全なWordPress 6.x開発環境を即座に構築。SSL自己署名証明書によるHTTPS環境で検証。",
+          tone: "blue",
+        },
+        {
+          title: "2. オリジナルテーマ開発",
+          detail:
+            "header.php, footer.php, front-page.php, functions.php をフルスクラッチ作成。カスタム投稿タイプ「カフェメニュー」「果物図鑑」とカスタムタクソノミーを実装。",
+          tone: "purple",
+        },
+        {
+          title: "3. FileZilla によるFTP転送",
+          detail:
+            "FileZillaクライアントを用いてInfinityFreeサーバーとFTP接続。wp-content/themes/hareka-theme 配下へテーマファイル群を一括安全アップロード。",
+          tone: "blue",
+        },
+        {
+          title: "4. All-in-One WP Migration 移行",
+          detail:
+            "ローカルで入力した旬果メニュー、メディア画像、固定ページ設定を All-in-One WP Migration でエクスポートし、本番環境へワンクリックでインポート・整合性確認。",
+          tone: "green",
+        },
+        {
+          title: "5. カスタマイザー設定＆本番公開",
+          detail:
+            "「外観 > カスタマイズ」からサイト名、キャッチフレーズ、ファビコン、ヘッダー/フッターメニューの表示位置をGUIで設定し、本番稼働を開始。",
+          tone: "blue",
+        },
+      ],
+      groups: [
+        {
+          title: "CMS コア設計・カスタマイズ",
+          description: "クライアントが直感的に更新できる管理画面のフルスクラッチ実装",
+          tone: "blue",
+          cards: [
+            {
+              title: "カスタム投稿タイプ「カフェメニュー」",
+              detail:
+                "register_post_type() により通常のお知らせと分離した専用メニュー管理画面を構築。パフェ・タルト・ドリンク等のサムネイル付き一覧・編集を実現。",
+            },
+            {
+              title: "カスタムタクソノミー「メニューカテゴリ」",
+              detail:
+                "register_taxonomy() により「旬果スイーツ」「ランチ・軽食」「ドリンク」「テイクアウト」等の分類をノンプログラミングで追加・階層化可能。",
+            },
+            {
+              title: "Customizer API（サイト基本情報・メニュー）",
+              detail:
+                "add_theme_support('custom-logo') や register_nav_menus() を活用し、ロゴ・ファビコン・メニュー位置を管理画面からリアルタイムプレビュー編集。",
+            },
+          ],
+        },
+        {
+          title: "インフラ・開発移行パイプライン",
+          description: "ローカル開発から本番サーバーへの安全・確実なデプロイメント",
+          tone: "indigo",
+          cards: [
+            {
+              title: "Local (旧 Local by Flywheel)",
+              detail:
+                "軽量かつモダンなWordPress専用ローカル開発環境。PHP 8.x環境下での構文チェックやデバッグを安全・迅速に実施。",
+            },
+            {
+              title: "FileZilla (FTP / FTPS)",
+              detail:
+                "FTPクライアントによる本番ホスティング環境（InfinityFree）とのファイル転送。パーミッション設定とテーマアセットの確実な同期を管理。",
+            },
+            {
+              title: "All-in-One WP Migration",
+              detail:
+                "データベースのURL置換（okayamacafe.local → okayama-cafe.infinityfreeapp.com）やメディアライブラリの整合性を保ちながら本番インポート。",
+            },
+          ],
+        },
+        {
+          title: "ハイブリッド・フロントエンド技術",
+          description: "PHPテンプレートとReact 19 SPAの柔軟な共存",
+          tone: "emerald",
+          cards: [
+            {
+              title: "PHP 8.x + Tailwind CSS",
+              detail:
+                "WordPressテーマ内でTailwind CSSを効率的にビルド・適用。ナチュラルで洗練された岡山フルーツカラーパレットを実現。",
+            },
+            {
+              title: "WordPress REST API 連携",
+              detail:
+                "/wp-json/wp/v2/posts およびカスタムエンドポイントにより、React SPA側からヘッドレスCMSとしてもデータ取得可能なハイブリッド構造。",
+            },
+            {
+              title: "Framer Motion & 多言語予約UI",
+              detail:
+                "洗練されたスクロールアニメーションと、外国人観光客に対応した日英バイリンガル予約フォーム（定休日・空き枠自動制御）を完備。",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "主なCMS機能・実装ポイント",
+          items: [
+            "【自作テーマ】既存テーマの改変ではなく、1からfunctions.phpをコーディングしたオリジナルテーマ制作",
+            "【メニュー管理】カスタム投稿タイプとカスタムフィールドによる糖度（Brix）・産地・価格のスマート管理",
+            "【カテゴリ分類】カスタムタクソノミーとフロント側タブフィルターの完全自動連動",
+            "【GUIカスタマイザー】サイト基本情報（タイトル・キャッチフレーズ・ファビコン）とナビゲーションの動的変更",
+            "【REST API対応】WordPressをヘッドレスCMSとして活用し、Reactフロントエンドへのデータ供給も可能な設計",
+          ],
+        },
+        {
+          title: "開発・デプロイメント成果",
+          items: [
+            "【Local環境】ローカルPC上での完全再現環境構築とPHP 8.x最新仕様での堅牢なコーディング",
+            "【FileZilla】FTP通信による本番サーバー（InfinityFree）への確実なファイル転送・階層同期",
+            "【All-in-One WP Migration】データベースURLの一括置換とメディア・投稿データの本番インポート完遂",
+            "【日英バイリンガルUI】インバウンド需要を見据えた日本語・英語ワンクリック切り替え予約システムの実現",
+            "【レスポンシブ最適化】スマホ・タブレット・PC全端末で崩れない洗練されたフルーツカフェ世界観の表現",
+          ],
+        },
+      ],
+      note: "WordPressオリジナルテーマ開発から、Local環境、FileZilla FTP通信、All-in-One WP Migrationによる本番公開までを完全にワンストップで実証した案件です。",
+    },
+    screenshotsBadge: "WORDPRESS ADMIN & CUSTOMIZER",
+    screenshotsTitle: "WordPress 管理画面・自作テーマ＆カスタマイザー展示",
+    screenshotsNote:
+      "ローカル環境（Local）および本番環境で実際に稼働しているWordPress管理画面のキャプチャです。自作オリジナルテーマ「CAFE HAREKA Theme [晴果]」の有効化、カスタム投稿タイプ「カフェメニュー」、カスタムタクソノミー「メニューカテゴリ」、カスタマイザーによる動的設定の様子をご確認いただけます。",
+    screenshots: [
+      {
+        src: okayamaCafeThemeAdminImg,
+        title: "自作オリジナルテーマ「CAFE HAREKA Theme [晴果]」有効化画面（外観 > テーマ）",
+        caption:
+          "WordPressのテーマ規約（style.cssのメタヘッダー定義、screenshot.png）に完全準拠して自作したオリジナルテーマ。ワンクリックで有効化・切り替えが可能です。",
+      },
+      {
+        src: okayamaCafeCptMenuListImg,
+        title: "カスタム投稿タイプ『カフェメニュー』一覧管理画面",
+        caption:
+          "「岡山県産 清水白桃の極上パフェ」「晴王（シャインマスカット）のエメラルドタルト」など、旬の果物スイーツをサムネイル画像付きで直感的に管理できる専用投稿画面。",
+      },
+      {
+        src: okayamaCafeTaxonomyCategoryImg,
+        title: "カスタムタクソノミー『メニューカテゴリ』設定画面",
+        caption:
+          "「テイクアウト・ギフト」「ドリンク」「ランチ・軽食」「旬果スイーツ」の各カテゴリをGUIで自由に追加・スラッグ設定でき、サイト側のタブ絞り込みと自動連動します。",
+      },
+      {
+        src: okayamaCafeCustomizerSiteInfoImg,
+        title: "WordPress カスタマイザー（サイト基本情報・リアルタイムプレビュー）",
+        caption:
+          "「外観 > カスタマイズ」からサイト名（okayamaCafe）、キャッチフレーズ、ファビコン（サイトアイコン）をGUIで即時編集。右側ペインで実際の表示を確認しながら安全に変更を適用できます。",
+      },
+      {
+        src: okayamaCafeCustomizerMenuImg,
+        title: "WordPress カスタマイザー（メニュー構造・ナビゲーション設定）",
+        caption:
+          "グローバルメインメニューおよびフッターメニューのリンク構造・表示位置をノーコードで設定。header.php / footer.php に組み込んだ wp_nav_menu() と完全連動しています。",
+      },
+      {
+        src: okayamaCafeThemeScreenshotImg,
+        title: "自作テーマ公式スクリーンショット＆PCファーストビュー",
+        caption:
+          "清水白桃の極上パフェ、晴王（シャインマスカット）、ガーデンテラス案内など、岡山の果物とカフェの心地よい木漏れ日空間を美しく伝えるトップビジュアルです。",
+      },
+    ],
+    creationSteps: [
+      {
+        number: "1",
+        title: "企画・要件定義・サイト設計（全7ページ・日英予約）",
+        description:
+          "岡山・地産地消カフェのブランドコンセプト「晴れの国の太陽と、樹上のめぐみをそのままに。」を策定。ホーム、店舗紹介、旬果メニュー、果物図鑑、お知らせ、アクセス、日英スマート予約の全7ページ構成を設計。",
+      },
+      {
+        number: "2",
+        title: "Local環境構築 ＆ WordPress自作テーマフルスクラッチ開発",
+        description:
+          "Localを用いてPHP 8.x/WordPress 6.x開発環境を構築。header.php, footer.php, front-page.php, functions.php を完全自作し、カスタム投稿タイプ（カフェメニュー/果物図鑑）とカスタムタクソノミーを実装。",
+      },
+      {
+        number: "3",
+        title: "FileZilla FTP転送 ＆ All-in-One WP Migration 本番移行・公開",
+        description:
+          "FileZillaを用いて本番サーバー（InfinityFree）へテーマファイル群をFTPアップロード。All-in-One WP MigrationによりDB・投稿データ・メディアを安全にエクスポート/インポートし、カスタマイザーで初期設定を行って本番公開を完了。",
+      },
+    ],
   },
   {
     id: "oloroso",
