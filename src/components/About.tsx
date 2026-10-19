@@ -189,6 +189,29 @@ export default function About({ onContactClick }: AboutProps) {
                     将来子どもができたり、自身の親や結婚相手の親の介護が必要になったりしたときにも、<strong className="text-indigo-900 font-bold underline decoration-indigo-400 decoration-2 underline-offset-2">大切な人との時間を何よりも大切にしながら、場所や時間に縛られずに自由に働ける環境</strong>をつくっていきたいと思っています。
                   </p>
                 </div>
+
+                {/* なぜエンジニアがLP制作やデザインにも取り組むのか（今後のキャリア・制作方針） */}
+                <div className="mt-4 p-5 sm:p-6 bg-gradient-to-br from-violet-50/80 via-purple-50/40 to-white rounded-2xl border border-violet-200/90 shadow-2xs space-y-3">
+                  <div className="flex items-center gap-2 text-violet-950 font-bold text-sm">
+                    <span>💡</span>
+                    <span>なぜエンジニアでありながら、今またLP制作やデザインにも取り組むのか？</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    「なぜエンジニアなのに、またLP制作やデザインもしようとしているのか？」と訊かれることがあります。
+                    実はAdobe認定資格を保持しており、ソフトの利用料の兼ね合いから有料プランを一時的に解除していましたが、資格勉強や実践で得た知識・スキルを眠らせておくのは非常にもったいないと感じていました。
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    現在はPhotoshopやIllustratorなどのAdobeソフトに加え、CanvaやFigmaもフル活用しながら、バナーデザインやWebサイト・LP制作の実績と経験を積み、将来に向けて<strong className="text-slate-900 font-bold bg-white/80 px-1.5 py-0.5 rounded border border-violet-200">「収入の柱と働き方の選択肢」</strong>を増やしておきたいと考えています。
+                  </p>
+                  <div className="p-3.5 bg-white/95 rounded-xl border border-violet-100 flex items-start gap-3">
+                    <span className="text-base sm:text-lg">🤖</span>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      <strong className="text-violet-900 font-bold">AIを活用したWebデザインの積極的インプット＆実践：</strong>
+                      <br className="hidden sm:inline" />
+                      私がデザインの勉強をしていた当時は無かった「AI活用によるWebデザイン」を積極的に知識吸収・実践しています。AIの即応性とデザインの基礎知識、そしてエンジニアとしての確かな実装力を融合させ、効率良く高品質な成果物を生成・修正できる体制を整えています。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </RevealOnScroll>
