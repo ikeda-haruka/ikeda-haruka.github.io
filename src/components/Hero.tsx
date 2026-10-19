@@ -42,12 +42,17 @@ export default function Hero({
 
             {/* 大見出し */}
             <div>
-              <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2">
+              <p className="text-sm sm:text-base font-bold text-indigo-600 tracking-widest uppercase mb-2 sm:mb-2.5">
                 WEB Designer / Full-stack & AI Engineer (FDE)
               </p>
-              <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
-                <span className="block">
-                  洗練された{" "}
+              <h1 className="text-[21px] xs:text-[23px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[42px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.28]">
+                {/* 1行目: 洗練された */}
+                <span className="block text-slate-900">
+                  洗練された
+                </span>
+
+                {/* 2行目: [回転キーワード] を、 */}
+                <span className="block mt-1 sm:mt-1.5 whitespace-nowrap">
                   <span className="inline-block text-left">
                     <TextRotator
                       words={[
@@ -57,12 +62,18 @@ export default function Hero({
                         "エンタープライズFDE基盤",
                       ]}
                       interval={3200}
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold pb-0.5"
                     />
-                  </span>{" "}
-                  を、
+                  </span>
+                  <span className="inline-block text-slate-900 ml-1.5 sm:ml-2">
+                    を、
+                  </span>
                 </span>
-                <span className="block mt-1 sm:mt-1.5">デザインと仕様駆動技術で形に。</span>
+
+                {/* 3行目: デザインと仕様駆動技術で形に。 */}
+                <span className="block mt-1 sm:mt-1.5 text-slate-900 whitespace-nowrap">
+                  デザインと仕様駆動技術で形に。
+                </span>
               </h1>
             </div>
 
