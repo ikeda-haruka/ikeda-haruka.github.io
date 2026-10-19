@@ -1402,11 +1402,11 @@ export default function ProjectDetailPage({
             {/* D. ハイライト項目（highlights） */}
             {project.architecture.highlights &&
               project.architecture.highlights.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 items-start">
                   {project.architecture.highlights.map((hl, hlIdx) => (
                     <div
                       key={hlIdx}
-                      className="bg-slate-50/80 rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between"
+                      className="bg-slate-50/80 rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col"
                     >
                       <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-4 flex items-center justify-between pb-2.5 border-b border-slate-200/80">
                         <span className="flex items-center gap-2">
