@@ -8,6 +8,8 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import profileImage from "./assets/profile.jpg";
+import ScrollProgressBar from "./components/motion/ScrollProgressBar";
+import BackToTop from "./components/motion/BackToTop";
 
 function parseProjectHash(hash: string): string | null {
   // 支持: #/project/:id, #/projects/:id, #project/:id
@@ -98,19 +100,22 @@ function App() {
   if (activeProjectId) {
     return (
       <div className="bg-slate-50 text-slate-900 min-h-screen selection:bg-indigo-500 selection:text-white flex flex-col">
+        <ScrollProgressBar />
         <ProjectDetailPage
           projectId={activeProjectId}
           onBackToList={handleBackToList}
           onSelectProject={handleSelectProject}
         />
         <Footer />
+        <BackToTop />
       </div>
     );
   }
 
   // 通常のポートフォリオ一覧・トップページ表示モード
   return (
-    <div className="bg-slate-50 text-slate-900 min-h-screen selection:bg-indigo-500 selection:text-white">
+    <div className="bg-slate-50 text-slate-900 min-h-screen selection:bg-indigo-500 selection:text-white relative">
+      <ScrollProgressBar />
       <Header onNavClick={handleNavClick} />
 
       {/* ファーストビュー / ヒーロー */}
@@ -144,6 +149,7 @@ function App() {
       </div>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }

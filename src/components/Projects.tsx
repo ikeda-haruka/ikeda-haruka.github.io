@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 import { projectsData } from "../data/projectsData";
+import RevealOnScroll from "./motion/RevealOnScroll";
+import CountUp from "./motion/CountUp";
+import TiltCard from "./motion/TiltCard";
 
 type FilterType = "all" | "web" | "graphic" | "client";
 
@@ -89,7 +92,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* セクション見出し */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <RevealOnScroll direction="up" delay={50} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold mb-4 shadow-2xs">
             <span>✨</span>
             <span>PORTFOLIO & WORKS</span>
@@ -100,10 +103,10 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
           <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
             大手化学メーカーでのSpecKit仕様駆動開発PoC（AI/FDE）や金融決済システム、商用ブランドLP共同開発、クライアント直接依頼のイベントDTPなど、<strong className="text-slate-900 font-bold underline decoration-amber-400 decoration-2 underline-offset-4">実際に参画・受託した実務案件を最優先で掲載</strong>しています。各作品カードの「詳細を見る」から、制作目的・担当範囲・使用技術・工夫点・アーキテクチャ・実機画面を詳しくご覧いただけます。
           </p>
-        </div>
+        </RevealOnScroll>
 
         {/* 検索・絞り込みコントロールバー */}
-        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-sm mb-10 max-w-5xl mx-auto">
+        <RevealOnScroll direction="up" delay={150} className="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-sm mb-10 max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* カテゴリ切り替えタブ */}
             <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 w-full md:w-auto">
@@ -115,7 +118,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                すべて ({counts.all})
+                すべて (<CountUp end={counts.all} duration={1000} />)
               </button>
               <button
                 onClick={() => setActiveFilter("client")}
@@ -126,7 +129,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                 }`}
               >
                 <span>★</span>
-                <span>参画・実務案件 ({counts.client})</span>
+                <span>参画・実務案件 (<CountUp end={counts.client} duration={1000} />)</span>
               </button>
               <button
                 onClick={() => setActiveFilter("web")}
@@ -136,7 +139,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                Webサイト制作 ({counts.web})
+                Webサイト制作 (<CountUp end={counts.web} duration={1000} />)
               </button>
               <button
                 onClick={() => setActiveFilter("graphic")}
@@ -146,7 +149,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
                 }`}
               >
-                グラフィック/DTP ({counts.graphic})
+                グラフィック/DTP (<CountUp end={counts.graphic} duration={1000} />)
               </button>
             </div>
 
@@ -202,7 +205,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
               </button>
             )}
           </div>
-        </div>
+        </RevealOnScroll>
 
         {/* 検索結果ゼロ時のEmpty State */}
         {filteredProjects.length === 0 ? (
@@ -226,19 +229,25 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
         ) : (
           /* 作品一覧グリッド（カード型レイアウト・コンパクト化） */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredProjects.map((project) => {
+            {filteredProjects.map((project, index) => {
               const displayImage =
                 project.imagePc || project.image || project.screenshots?.[0]?.src;
 
               return (
-                <article
+                <RevealOnScroll
                   key={project.id}
-                  className={`bg-white rounded-3xl overflow-hidden border transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col group ${
-                    project.isClientWork
-                      ? "border-amber-300/80 hover:border-amber-500 ring-1 ring-amber-200/60"
-                      : "border-slate-200/90 hover:border-indigo-400"
-                  }`}
+                  direction="up"
+                  delay={(index % 6) * 75}
+                  className="h-full"
                 >
+                  <TiltCard maxTilt={3.5} className="h-full">
+                    <article
+                      className={`h-full bg-white rounded-3xl overflow-hidden border transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col group ${
+                        project.isClientWork
+                          ? "border-amber-300/80 hover:border-amber-500 ring-1 ring-amber-200/60"
+                          : "border-slate-200/90 hover:border-indigo-400"
+                      }`}
+                    >
                   {/* カード上部: サムネイル画像プレビュー */}
                   <div
                     onClick={() => handleProjectClick(project.id)}
@@ -449,8 +458,10 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     </div>
                   </div>
                 </article>
-              );
-            })}
+              </TiltCard>
+            </RevealOnScroll>
+          );
+        })}
           </div>
         )}
       </div>

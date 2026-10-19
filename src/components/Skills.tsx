@@ -1,3 +1,6 @@
+import RevealOnScroll from "./motion/RevealOnScroll";
+import TiltCard from "./motion/TiltCard";
+
 interface SkillCategory {
   category: string;
   skills: string[];
@@ -87,7 +90,7 @@ export default function Skills() {
   return (
     <section className="py-20 bg-slate-50 border-t border-slate-200 w-full">
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <RevealOnScroll direction="up" delay={50} className="text-center mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
             <span>🛠️</span>
             <span>SKILLS & CAPABILITIES</span>
@@ -101,57 +104,63 @@ export default function Skills() {
             デザインからモダンフロントエンド、ヘッドレスCMS、Javaバックエンド、そしてAIエンジニア・機械エンジニア視点を活かしたSpecKit仕様駆動開発PoCやFDE支援まで。
             企画・現場課題の解決から公開・運用保守までワンストップで高品質に形にします。
           </p>
-        </div>
+        </RevealOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {skillsData.map((category, index) => (
-            <div
+            <RevealOnScroll
               key={index}
-              className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between group"
+              direction="up"
+              delay={(index % 4) * 80}
+              className="h-full"
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl p-2.5 bg-slate-50 border border-slate-100 rounded-xl group-hover:scale-110 transition-transform">
-                      {category.icon}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                      {category.category}
-                    </h3>
+              <TiltCard maxTilt={4} className="h-full">
+                <div className="h-full bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl p-2.5 bg-slate-50 border border-slate-100 rounded-xl group-hover:scale-110 transition-transform">
+                          {category.icon}
+                        </span>
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                          {category.category}
+                        </h3>
+                      </div>
+                      {category.badge && (
+                        <span className="text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                          ★ {category.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    {category.description && (
+                      <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                        {category.description}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {category.skills.map((skill, skillIndex) => {
+                        const isCert = skill.includes("公認資格");
+                        return (
+                          <span
+                            key={skillIndex}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                              isCert
+                                ? "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-900 border border-amber-200 font-bold shadow-2xs"
+                                : "bg-slate-50 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-200 hover:border-indigo-200"
+                            }`}
+                          >
+                            {isCert && <span className="mr-1">🏅</span>}
+                            {skill}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
-                  {category.badge && (
-                    <span className="text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
-                      ★ {category.badge}
-                    </span>
-                  )}
                 </div>
-
-                {category.description && (
-                  <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-                    {category.description}
-                  </p>
-                )}
-
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {category.skills.map((skill, skillIndex) => {
-                    const isCert = skill.includes("公認資格");
-                    return (
-                      <span
-                        key={skillIndex}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                          isCert
-                            ? "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-900 border border-amber-200 font-bold shadow-2xs"
-                            : "bg-slate-50 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-200 hover:border-indigo-200"
-                        }`}
-                      >
-                        {isCert && <span className="mr-1">🏅</span>}
-                        {skill}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+              </TiltCard>
+            </RevealOnScroll>
           ))}
         </div>
       </div>

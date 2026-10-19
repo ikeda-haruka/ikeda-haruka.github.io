@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RevealOnScroll from "./motion/RevealOnScroll";
 
 export default function Contact() {
   const [copiedField, setCopiedField] = useState<"email" | "discord" | "crowdworks" | null>(null);
@@ -12,7 +13,7 @@ export default function Contact() {
   return (
     <section className="py-20 bg-slate-50 border-t border-slate-200 w-full">
       <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <RevealOnScroll direction="up" delay={50} className="text-center mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-3">
             <span>📫</span>
             <span>GET IN TOUCH</span>
@@ -24,9 +25,9 @@ export default function Contact() {
           <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
             Webサイト制作・UIデザインやバックエンド・API開発のご相談、技術的なご質問、コミュニティ交流など、どうぞお気軽にご連絡ください。
           </p>
-        </div>
+        </RevealOnScroll>
 
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm">
+        <RevealOnScroll direction="up" delay={150} className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm">
           <div className="grid grid-cols-1 gap-4 sm:gap-5">
             {/* 1. Email */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/80 hover:bg-slate-50 border border-slate-200/80 transition-colors">
@@ -235,7 +236,7 @@ export default function Contact() {
               ※ メールでの直接ご相談・お取引のほか、クラウドワークスを通じた仮払い・契約にも柔軟に対応いたします。
             </p>
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

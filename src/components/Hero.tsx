@@ -1,3 +1,8 @@
+import ParticleBackground from "./motion/ParticleBackground";
+import TiltCard from "./motion/TiltCard";
+import TextRotator from "./motion/TextRotator";
+import RevealOnScroll from "./motion/RevealOnScroll";
+
 interface HeroProps {
   profileImage: string;
   onExploreWorks?: () => void;
@@ -13,6 +18,9 @@ export default function Hero({
 }: HeroProps) {
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
+      {/* インタラクティブ・アンビエントパーティクルCanvas */}
+      <ParticleBackground />
+
       {/* 背景の装飾光グラデーション */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-blue-400/20 via-indigo-400/20 to-purple-400/20 blur-3xl pointer-events-none rounded-full -z-10"></div>
       <div className="absolute top-20 right-10 w-72 h-72 bg-blue-300/15 rounded-full blur-2xl pointer-events-none -z-10"></div>
@@ -20,7 +28,7 @@ export default function Hero({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* 左カラム: コピー & 説明 & CTA */}
-          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+          <RevealOnScroll direction="up" delay={100} className="lg:col-span-7 text-center lg:text-left space-y-6">
             {/* ステータスバッジ */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-slate-200/80 shadow-xs backdrop-blur-md">
               <span className="relative flex h-2.5 w-2.5">
@@ -38,7 +46,21 @@ export default function Hero({
                 WEB Designer / Full-stack & AI Engineer (FDE)
               </p>
               <h1 className="text-[25px] sm:text-[34px] lg:text-[40px] xl:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.3] sm:leading-[1.25]">
-                <span className="block">洗練された<span className="gradient-text">Web & AI体験</span>を、</span>
+                <span className="block">
+                  洗練された
+                  <span className="gradient-text inline-block min-w-[200px] sm:min-w-[280px]">
+                    <TextRotator
+                      words={[
+                        "Web & AI体験",
+                        "仕様駆動開発 (SpecKit)",
+                        "モダンWebデザイン",
+                        "エンタープライズFDE基盤",
+                      ]}
+                      interval={3200}
+                    />
+                  </span>
+                  を、
+                </span>
                 <span className="block mt-1 sm:mt-1.5">デザインと仕様駆動技術で形に。</span>
               </h1>
             </div>
@@ -109,15 +131,16 @@ export default function Hero({
                 <span className="text-xs">↗</span>
               </a>
             </div>
-          </div>
+          </RevealOnScroll>
 
           {/* 右カラム: クリエイティブビジュアルカード */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm sm:max-w-md">
-              {/* カード本体 */}
-              <div className="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl relative overflow-hidden">
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <div className="flex items-center gap-4">
+          <RevealOnScroll direction="left" delay={250} className="lg:col-span-5 flex justify-center">
+            <TiltCard maxTilt={5} className="w-full max-w-sm sm:max-w-md">
+              <div className="relative w-full">
+                {/* カード本体 */}
+                <div className="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-4">
                     <div className="relative">
                       <img
                         src={profileImage}
@@ -262,12 +285,13 @@ export default function Hero({
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
 
-              {/* 背景の装飾アクセント */}
-              <div className="absolute -bottom-3 -right-3 -z-10 w-full h-full rounded-3xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-sm"></div>
-            </div>
-          </div>
+                {/* 背景の装飾アクセント */}
+                <div className="absolute -bottom-3 -right-3 -z-10 w-full h-full rounded-3xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-sm"></div>
+              </div>
+            </TiltCard>
+          </RevealOnScroll>
         </div>
       </div>
     </section>
