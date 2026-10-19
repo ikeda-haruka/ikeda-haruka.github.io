@@ -5,6 +5,8 @@ import type {
   Screenshot,
 } from "../types/project";
 import { projectsData } from "../data/projectsData";
+import RevealOnScroll from "./motion/RevealOnScroll";
+import TiltCard from "./motion/TiltCard";
 
 interface ProjectDetailPageProps {
   projectId: string;
@@ -33,19 +35,21 @@ function FlowSequence({
     >
       {steps.map((step, index) => (
         <li key={step.title} className="relative">
-          <div
-            className={`h-full rounded-2xl border p-4 sm:p-5 shadow-2xs ${flowToneClasses[step.tone]}`}
-          >
-            <p className="text-[11px] font-semibold opacity-80">
-              {String(index + 1).padStart(2, "0")}
-            </p>
-            <h4 className="mt-1.5 text-sm sm:text-base font-bold text-white leading-snug">
-              {step.title}
-            </h4>
-            <p className="mt-2 text-xs leading-relaxed opacity-90">
-              {step.detail}
-            </p>
-          </div>
+          <TiltCard maxTilt={4} className="h-full">
+            <div
+              className={`h-full rounded-2xl border p-4 sm:p-5 shadow-2xs ${flowToneClasses[step.tone]}`}
+            >
+              <p className="text-[11px] font-semibold opacity-80">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h4 className="mt-1.5 text-sm sm:text-base font-bold text-white leading-snug">
+                {step.title}
+              </h4>
+              <p className="mt-2 text-xs leading-relaxed opacity-90">
+                {step.detail}
+              </p>
+            </div>
+          </TiltCard>
           {index < steps.length - 1 && (
             <>
               <span
@@ -91,11 +95,15 @@ function CardGrid({
   return (
     <ul className={`grid gap-3 ${className}`}>
       {cards.map((card) => (
-        <li key={card.title} className={`rounded-xl border p-3.5 sm:p-4 ${cardTone}`}>
-          <h5 className="font-bold text-slate-900 text-xs sm:text-sm">{card.title}</h5>
-          <p className="mt-1 text-xs leading-relaxed text-slate-600">
-            {card.detail}
-          </p>
+        <li key={card.title} className="h-full">
+          <TiltCard maxTilt={4} className="h-full">
+            <div className={`h-full rounded-xl border p-3.5 sm:p-4 ${cardTone}`}>
+              <h5 className="font-bold text-slate-900 text-xs sm:text-sm">{card.title}</h5>
+              <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                {card.detail}
+              </p>
+            </div>
+          </TiltCard>
         </li>
       ))}
     </ul>
@@ -319,115 +327,125 @@ function FeaturesSection({
       : parsedItems.filter((item) => item.categoryGroup === activeFilter);
 
   return (
-    <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
-      {/* セクションヘッダー */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-100">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2.5 h-6 rounded-full bg-indigo-600 inline-block"></span>
-            <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-200/80">
-              KEY HIGHLIGHTS & FEATURES
-            </span>
-            <span className="text-xs font-semibold text-slate-500">
-              全 {parsedItems.length} 項目
-            </span>
+    <RevealOnScroll direction="up" delay={50}>
+      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+        {/* セクションヘッダー */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2.5 h-6 rounded-full bg-indigo-600 inline-block"></span>
+              <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-200/80">
+                KEY HIGHLIGHTS & FEATURES
+              </span>
+              <span className="text-xs font-semibold text-slate-500">
+                全 {parsedItems.length} 項目
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+              {isGraphic
+                ? "工夫した点・デザイン設計のポイント"
+                : "工夫した点・主な機能＆実装ポイント"}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              課題解決に向けた設計思想、AI・仕様駆動開発、モダナイゼーション、現場での実践工夫を構造化してまとめています。
+            </p>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            {isGraphic
-              ? "工夫した点・デザイン設計のポイント"
-              : "工夫した点・主な機能＆実装ポイント"}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-            課題解決に向けた設計思想、AI・仕様駆動開発、モダナイゼーション、現場での実践工夫を構造化してまとめています。
-          </p>
-        </div>
 
-        {/* フィルタータブ（3カテゴリ以上ある場合） */}
-        {categories.length > 2 && (
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/80 self-start md:self-auto max-w-full overflow-x-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveFilter(cat.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
-                  activeFilter === cat.id
-                    ? "bg-white text-indigo-700 shadow-xs border border-indigo-200/80 scale-[1.02]"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
-                }`}
-              >
-                <span>{cat.icon}</span>
-                <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+          {/* フィルタータブ（3カテゴリ以上ある場合） */}
+          {categories.length > 2 && (
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/80 self-start md:self-auto max-w-full overflow-x-auto">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveFilter(cat.id)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                     activeFilter === cat.id
-                      ? "bg-indigo-100 text-indigo-800 font-extrabold"
-                      : "bg-slate-200 text-slate-600"
+                      ? "bg-white text-indigo-700 shadow-xs border border-indigo-200/80 scale-[1.02]"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                   }`}
                 >
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* カードグリッド */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-        {filteredItems.map((item, idx) => (
-          <div
-            key={idx}
-            className="bg-slate-50/60 hover:bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 hover:border-indigo-400/90 hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
-          >
-            {/* 上部アクセントグラデーションバー */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent group-hover:from-indigo-500 group-hover:via-blue-500 group-hover:to-indigo-500 transition-all duration-500"></div>
-
-            <div>
-              {/* カードメタ（番号 ＋ カテゴリバッジ ＋ アイコン） */}
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
-                    #{item.number}
-                  </span>
+                  <span>{cat.icon}</span>
+                  <span>{cat.label}</span>
                   <span
-                    className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs ${item.badge.badgeStyle}`}
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                      activeFilter === cat.id
+                        ? "bg-indigo-100 text-indigo-800 font-extrabold"
+                        : "bg-slate-200 text-slate-600"
+                    }`}
                   >
-                    <span>{item.badge.icon}</span>
-                    <span>{item.badge.label}</span>
+                    {cat.count}
                   </span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* カードグリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          {filteredItems.map((item, idx) => (
+            <RevealOnScroll
+              key={idx}
+              direction="up"
+              delay={(idx % 6) * 60}
+              className="h-full"
+            >
+              <TiltCard maxTilt={3.5} className="h-full">
+                <div
+                  className="h-full bg-slate-50/60 hover:bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 hover:border-indigo-400/90 hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                >
+                  {/* 上部アクセントグラデーションバー */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent group-hover:from-indigo-500 group-hover:via-blue-500 group-hover:to-indigo-500 transition-all duration-500"></div>
+
+                  <div>
+                    {/* カードメタ（番号 ＋ カテゴリバッジ ＋ アイコン） */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
+                          #{item.number}
+                        </span>
+                        <span
+                          className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs ${item.badge.badgeStyle}`}
+                        >
+                          <span>{item.badge.icon}</span>
+                          <span>{item.badge.label}</span>
+                        </span>
+                      </div>
+                      <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                        {item.badge.icon}
+                      </span>
+                    </div>
+
+                    {/* 見出し */}
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+
+                    {/* 本文 */}
+                    {item.detail && (
+                      <p className="mt-2 text-xs sm:text-sm text-slate-600 group-hover:text-slate-700 leading-relaxed">
+                        {item.detail}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 下部ステータス */}
+                  <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                      <span className="text-slate-500 font-medium">実装・検証済</span>
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-medium group-hover:text-indigo-600 transition-colors">
+                      Key Point →
+                    </span>
+                  </div>
                 </div>
-                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all">
-                  {item.badge.icon}
-                </span>
-              </div>
-
-              {/* 見出し */}
-              <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition-colors leading-snug">
-                {item.title}
-              </h3>
-
-              {/* 本文 */}
-              {item.detail && (
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 group-hover:text-slate-700 leading-relaxed">
-                  {item.detail}
-                </p>
-              )}
-            </div>
-
-            {/* 下部ステータス */}
-            <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
-              <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
-                <span className="text-slate-500 font-medium">実装・検証済</span>
-              </span>
-              <span className="text-[10px] text-slate-400 font-medium group-hover:text-indigo-600 transition-colors">
-                Key Point →
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+              </TiltCard>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </section>
+    </RevealOnScroll>
   );
 }
 
@@ -541,7 +559,8 @@ export default function ProjectDetailPage({
       {/* メインコンテンツ */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* 作品ヘッダー */}
-        <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+        <RevealOnScroll direction="up" delay={50}>
+          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
           <div className="flex flex-wrap items-center gap-2.5 mb-4">
             {project.isClientWork && (
               <span className="text-xs font-extrabold px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-xs flex items-center gap-1.5 border border-amber-300">
@@ -656,82 +675,92 @@ export default function ProjectDetailPage({
             )}
           </div>
         </section>
+      </RevealOnScroll>
 
         {/* 制作目的 ＆ 担当範囲 ＆ 使用技術 スタックカード（2列グリッド） */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
           {/* 左列: 制作目的・背景・課題（Why） ＆ 概要 */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <RevealOnScroll direction="up" delay={100} className="lg:col-span-7 flex flex-col gap-6">
             {project.purpose && (
-              <div className="bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-indigo-700/40">
-                <div className="flex items-center gap-2.5 mb-3 text-indigo-300">
-                  <span className="text-xl">🎯</span>
-                  <h2 className="text-xs font-bold uppercase tracking-widest">
-                    Purpose & Background / 制作目的・背景・課題
-                  </h2>
+              <TiltCard maxTilt={3}>
+                <div className="bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 rounded-3xl p-6 sm:p-8 text-white shadow-md border border-indigo-700/40">
+                  <div className="flex items-center gap-2.5 mb-3 text-indigo-300">
+                    <span className="text-xl">🎯</span>
+                    <h2 className="text-xs font-bold uppercase tracking-widest">
+                      Purpose & Background / 制作目的・背景・課題
+                    </h2>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 text-white leading-snug">
+                    プロジェクトの目的と狙い
+                  </h3>
+                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                    {project.purpose}
+                  </p>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-white leading-snug">
-                  プロジェクトの目的と狙い
-                </h3>
-                <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                  {project.purpose}
-                </p>
-              </div>
+              </TiltCard>
             )}
 
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex-1">
-              <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <span>📑</span>
-                <span>Overview / 概要</span>
-              </h2>
-              <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-                {project.overview}
-              </p>
-            </div>
-          </div>
+            <TiltCard maxTilt={3} className="flex-1">
+              <div className="h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col justify-start">
+                <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span>📑</span>
+                  <span>Overview / 概要</span>
+                </h2>
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+                  {project.overview}
+                </p>
+              </div>
+            </TiltCard>
+          </RevealOnScroll>
 
           {/* 右列: 担当範囲（Role） ＆ 使用技術（Technologies） */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <RevealOnScroll direction="up" delay={180} className="lg:col-span-5 flex flex-col gap-6">
             {project.role && project.role.length > 0 && (
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+              <TiltCard maxTilt={3}>
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+                  <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span>👤</span>
+                    <span>Scope of Work / 担当範囲・役割</span>
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {project.role.map((roleItem, rIdx) => (
+                      <span
+                        key={rIdx}
+                        className="px-3.5 py-1.5 bg-indigo-50 text-indigo-800 rounded-xl text-xs sm:text-sm font-bold border border-indigo-200/80 shadow-2xs flex items-center gap-1.5"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span>{roleItem}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </TiltCard>
+            )}
+
+            <TiltCard maxTilt={3} className="flex-1">
+              <div className="h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col justify-start">
                 <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <span>👤</span>
-                  <span>Scope of Work / 担当範囲・役割</span>
+                  <span>⚡</span>
+                  <span>Technologies / 使用技術・ツール</span>
                 </h2>
                 <div className="flex flex-wrap gap-2">
-                  {project.role.map((roleItem, rIdx) => (
+                  {project.technologies.map((tech, techIndex) => (
                     <span
-                      key={rIdx}
-                      className="px-3.5 py-1.5 bg-indigo-50 text-indigo-800 rounded-xl text-xs sm:text-sm font-bold border border-indigo-200/80 shadow-2xs flex items-center gap-1.5"
+                      key={techIndex}
+                      className="px-3 py-1 bg-slate-50 text-slate-700 rounded-lg text-xs font-medium border border-slate-200 hover:border-indigo-300 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                      <span>{roleItem}</span>
+                      {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            )}
-
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex-1">
-              <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <span>⚡</span>
-                <span>Technologies / 使用技術・ツール</span>
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="px-3 py-1 bg-slate-50 text-slate-700 rounded-lg text-xs font-medium border border-slate-200 hover:border-indigo-300 transition-colors"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+            </TiltCard>
+          </RevealOnScroll>
         </section>
 
         {/* 画面イメージ・マルチデバイス実機プレビュー（Graphic または Web） */}
-        <section className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm mb-8">
+        <RevealOnScroll direction="up" delay={80}>
+          <section className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm mb-8">
           {/* A. グラフィック案件展示 */}
           {project.category === "graphic" && project.image && (
             <div className="bg-slate-950 overflow-hidden">
@@ -971,6 +1000,7 @@ export default function ProjectDetailPage({
             </div>
           )}
         </section>
+      </RevealOnScroll>
 
         {/* LP全体デザイン（縦長フルページ・ロングスクロール展示） */}
         {project.fullPageImages && (
@@ -1802,227 +1832,249 @@ export default function ProjectDetailPage({
 
         {/* 設計・提案ドキュメント一覧 */}
         {project.documents && project.documents.length > 0 && (
-          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
-            <div className="mb-6">
-              <div className="flex flex-wrap items-center gap-2.5 mb-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-xs font-bold">
-                  DOCS
-                </span>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  設計・提案ドキュメント（企画提案書・画面要件定義）
-                </h2>
-                <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold border border-indigo-200/80">
-                  🤖 Geminiプロンプト作成 × 目視レビュー成果物
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-500">
-                リニューアル推進にあたり作成したデザイン企画提案書（PPTX）および全画面レイアウト・コンテンツ要件定義書（XLSX）です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
-              </p>
-            </div>
-
-            {project.documentProcessNote && (
-              <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-purple-50/90 via-indigo-50/70 to-purple-50/90 border border-purple-200 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-2xs">
-                <div className="flex items-start gap-3">
-                  <span className="text-lg leading-none mt-0.5">💡</span>
-                  <div>
-                    <span className="font-bold text-purple-950">
-                      ドキュメント作成プロセス（Google Workspace × 生成AI活用・目視レビュー）:
-                    </span>
-                    <p className="mt-1 text-slate-700 leading-relaxed text-xs">
-                      {project.documentProcessNote}
-                    </p>
-                  </div>
+          <RevealOnScroll direction="up">
+            <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+              <div className="mb-6">
+                <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                  <span className="px-2.5 py-0.5 rounded-md bg-purple-50 text-purple-700 text-xs font-bold">
+                    DOCS
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                    設計・提案ドキュメント（企画提案書・画面要件定義）
+                  </h2>
+                  <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-[11px] font-bold border border-indigo-200/80">
+                    🤖 Geminiプロンプト作成 × 目視レビュー成果物
+                  </span>
                 </div>
+                <p className="text-xs sm:text-sm text-slate-500">
+                  リニューアル推進にあたり作成したデザイン企画提案書（PPTX）および全画面レイアウト・コンテンツ要件定義書（XLSX）です。GitHubでオンライン閲覧、または直接ダウンロードしてご確認いただけます。
+                </p>
               </div>
-            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {project.documents.map((doc, docIndex) => (
-                <div
-                  key={docIndex}
-                  className="bg-slate-50/90 border border-slate-200 rounded-2xl p-5 sm:p-6 hover:border-purple-300 transition-all flex flex-col justify-between shadow-2xs hover:shadow-sm"
-                >
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span
-                        className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide ${
-                          doc.format === "PPTX"
-                            ? "bg-orange-100 text-orange-700 border border-orange-200"
-                            : "bg-emerald-100 text-emerald-700 border border-emerald-200"
-                        }`}
-                      >
-                        {doc.format} • {doc.size}
+              {project.documentProcessNote && (
+                <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-purple-50/90 via-indigo-50/70 to-purple-50/90 border border-purple-200 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-2xs">
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg leading-none mt-0.5">💡</span>
+                    <div>
+                      <span className="font-bold text-purple-950">
+                        ドキュメント作成プロセス（Google Workspace × 生成AI活用・目視レビュー）:
                       </span>
-                      {doc.statusBadge && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-                          {doc.statusBadge}
-                        </span>
-                      )}
+                      <p className="mt-1 text-slate-700 leading-relaxed text-xs">
+                        {project.documentProcessNote}
+                      </p>
                     </div>
-
-                    <h3 className="font-bold text-slate-900 text-base leading-snug">
-                      {doc.title}
-                    </h3>
-
-                    {doc.creationMethod && (
-                      <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-100/70 text-purple-900 border border-purple-200/90 text-[11px] font-semibold">
-                        <span>✨</span>
-                        <span>{doc.creationMethod}</span>
-                      </div>
-                    )}
-
-                    <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                      {doc.description}
-                    </p>
-
-                    <div className="mt-4 pt-3.5 border-t border-slate-200/80">
-                      <div className="text-[11px] font-bold text-slate-700 mb-2 flex items-center justify-between">
-                        <span>主な記載項目 ({doc.keyPoints.length})</span>
-                        <span className="text-[10px] text-purple-700 font-medium">レビュー済</span>
-                      </div>
-                      <div className="space-y-1.5">
-                        {doc.keyPoints.map((point, pIndex) => (
-                          <div
-                            key={pIndex}
-                            className="text-[11px] text-slate-700 flex items-start bg-white p-2 sm:p-2.5 rounded-xl border border-purple-100 shadow-2xs leading-snug"
-                          >
-                            <span className="text-purple-600 font-bold mr-2 shrink-0">
-                              ✓
-                            </span>
-                            <span>{point}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 pt-4 border-t border-slate-200 flex flex-wrap items-center gap-2">
-                    <a
-                      href={doc.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors shadow-2xs"
-                    >
-                      <span>{doc.githubButtonText || "GitHubで確認"}</span>
-                      <span className="text-[10px]">↗</span>
-                    </a>
-                    <a
-                      href={resolveDocUrl(doc.downloadUrl)}
-                      download={doc.filename}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
-                    >
-                      <span>ダウンロード</span>
-                      <span className="text-[10px]">↓</span>
-                    </a>
-                    {doc.extraAction && (
-                      <a
-                        href={doc.extraAction.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-bold transition-colors shadow-2xs"
-                      >
-                        <span>{doc.extraAction.label}</span>
-                        <span className="text-[10px]">↗</span>
-                      </a>
-                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {project.documents.map((doc, docIndex) => (
+                  <RevealOnScroll
+                    key={docIndex}
+                    direction="zoom"
+                    delay={docIndex * 80}
+                  >
+                    <TiltCard maxTilt={4} glare={true} className="h-full">
+                      <div className="h-full bg-slate-50/90 border border-slate-200 rounded-2xl p-5 sm:p-6 hover:border-purple-300 transition-all flex flex-col justify-between shadow-2xs hover:shadow-sm">
+                        <div>
+                          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span
+                              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide ${
+                                doc.format === "PPTX"
+                                  ? "bg-orange-100 text-orange-700 border border-orange-200"
+                                  : "bg-emerald-100 text-emerald-700 border border-emerald-200"
+                              }`}
+                            >
+                              {doc.format} • {doc.size}
+                            </span>
+                            {doc.statusBadge && (
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                {doc.statusBadge}
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="font-bold text-slate-900 text-base leading-snug">
+                            {doc.title}
+                          </h3>
+
+                          {doc.creationMethod && (
+                            <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-100/70 text-purple-900 border border-purple-200/90 text-[11px] font-semibold">
+                              <span>✨</span>
+                              <span>{doc.creationMethod}</span>
+                            </div>
+                          )}
+
+                          <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                            {doc.description}
+                          </p>
+
+                          <div className="mt-4 pt-3.5 border-t border-slate-200/80">
+                            <div className="text-[11px] font-bold text-slate-700 mb-2 flex items-center justify-between">
+                              <span>主な記載項目 ({doc.keyPoints.length})</span>
+                              <span className="text-[10px] text-purple-700 font-medium">
+                                レビュー済
+                              </span>
+                            </div>
+                            <div className="space-y-1.5">
+                              {doc.keyPoints.map((point, pIndex) => (
+                                <div
+                                  key={pIndex}
+                                  className="text-[11px] text-slate-700 flex items-start bg-white p-2 sm:p-2.5 rounded-xl border border-purple-100 shadow-2xs leading-snug"
+                                >
+                                  <span className="text-purple-600 font-bold mr-2 shrink-0">
+                                    ✓
+                                  </span>
+                                  <span>{point}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-5 pt-4 border-t border-slate-200 flex flex-wrap items-center gap-2">
+                          <a
+                            href={doc.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors shadow-2xs"
+                          >
+                            <span>{doc.githubButtonText || "GitHubで確認"}</span>
+                            <span className="text-[10px]">↗</span>
+                          </a>
+                          <a
+                            href={resolveDocUrl(doc.downloadUrl)}
+                            download={doc.filename}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
+                          >
+                            <span>ダウンロード</span>
+                            <span className="text-[10px]">↓</span>
+                          </a>
+                          {doc.extraAction && (
+                            <a
+                              href={doc.extraAction.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-bold transition-colors shadow-2xs"
+                            >
+                              <span>{doc.extraAction.label}</span>
+                              <span className="text-[10px]">↗</span>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </TiltCard>
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </section>
+          </RevealOnScroll>
         )}
 
         {/* 制作プロセス（ステップ） */}
         {project.creationSteps && project.creationSteps.length > 0 && (
-          <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-bold">
-                  PROCESS
-                </span>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+          <RevealOnScroll direction="up">
+            <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 text-xs font-bold">
+                    PROCESS
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                    {project.id === "dental"
+                      ? "AI×Figma 制作プロセス（3ステップ）"
+                      : `制作の進め方（${project.creationSteps.length}ステップ）`}
+                  </h2>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-500">
                   {project.id === "dental"
-                    ? "AI×Figma 制作プロセス（3ステップ）"
-                    : `制作の進め方（${project.creationSteps.length}ステップ）`}
-                </h2>
+                    ? "ChatGPTによる求人課題整理・ワイヤーフレーム指示書策定から、Figma AIによるたたき台生成、デザインシステム仕上げまでのハイブリッドな制作フローです。"
+                    : "要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。"}
+                </p>
               </div>
-              <p className="text-xs sm:text-sm text-slate-500">
-                {project.id === "dental"
-                  ? "ChatGPTによる求人課題整理・ワイヤーフレーム指示書策定から、Figma AIによるたたき台生成、デザインシステム仕上げまでのハイブリッドな制作フローです。"
-                  : "要件整理からGitHub Issuesを活用したタスク管理、レスポンシブ実装、CI/CD自動デプロイまでのワークフローです。"}
-              </p>
-            </div>
 
-            <ol className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {project.creationSteps.map((step) => (
-                <li
-                  key={step.number}
-                  className="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-5 flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-xs font-bold text-blue-600 bg-blue-100/70 px-2.5 py-1 rounded-md">
-                      STEP {step.number}
-                    </span>
-                    <h3 className="mt-3 text-base font-bold text-slate-900">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
+              <ol className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {project.creationSteps.map((step, sIndex) => (
+                  <RevealOnScroll
+                    key={step.number}
+                    direction="zoom"
+                    delay={(sIndex + 1) * 80}
+                  >
+                    <TiltCard maxTilt={4} glare={true} className="h-full">
+                      <li className="h-full bg-slate-50/80 border border-slate-200/90 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                          <span className="text-xs font-bold text-blue-600 bg-blue-100/70 px-2.5 py-1 rounded-md">
+                            STEP {step.number}
+                          </span>
+                          <h3 className="mt-3 text-base font-bold text-slate-900">
+                            {step.title}
+                          </h3>
+                          <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      </li>
+                    </TiltCard>
+                  </RevealOnScroll>
+                ))}
+              </ol>
+            </section>
+          </RevealOnScroll>
         )}
 
         {/* ページ下部: 前後ナビゲーション ＆ 一覧へ戻るボタン */}
-        <section className="mt-12 pt-8 border-t border-slate-200">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            {prevProject ? (
-              <button
-                onClick={() => onSelectProject(prevProject.id)}
-                className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-left transition-all hover:shadow-md cursor-pointer group"
-              >
-                <span className="text-xs text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center gap-1 font-semibold">
-                  <span>←</span>
-                  <span>前の作品</span>
-                </span>
-                <h4 className="mt-1 font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate text-sm sm:text-base">
-                  {prevProject.title}
-                </h4>
-              </button>
-            ) : (
-              <div></div>
-            )}
+        <RevealOnScroll direction="up">
+          <section className="mt-12 pt-8 border-t border-slate-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              {prevProject ? (
+                <TiltCard maxTilt={5} glare={true}>
+                  <button
+                    onClick={() => onSelectProject(prevProject.id)}
+                    className="w-full h-full p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-left transition-all hover:shadow-md cursor-pointer group"
+                  >
+                    <span className="text-xs text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center gap-1 font-semibold">
+                      <span>←</span>
+                      <span>前の作品</span>
+                    </span>
+                    <h4 className="mt-1 font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate text-sm sm:text-base">
+                      {prevProject.title}
+                    </h4>
+                  </button>
+                </TiltCard>
+              ) : (
+                <div></div>
+              )}
 
-            {nextProject ? (
-              <button
-                onClick={() => onSelectProject(nextProject.id)}
-                className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-right transition-all hover:shadow-md cursor-pointer group sm:ml-auto w-full"
-              >
-                <span className="text-xs text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center justify-end gap-1 font-semibold">
-                  <span>次の作品</span>
-                  <span>→</span>
-                </span>
-                <h4 className="mt-1 font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate text-sm sm:text-base">
-                  {nextProject.title}
-                </h4>
-              </button>
-            ) : (
-              <div></div>
-            )}
-          </div>
+              {nextProject ? (
+                <TiltCard maxTilt={5} glare={true}>
+                  <button
+                    onClick={() => onSelectProject(nextProject.id)}
+                    className="w-full h-full p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-right transition-all hover:shadow-md cursor-pointer group sm:ml-auto"
+                  >
+                    <span className="text-xs text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center justify-end gap-1 font-semibold">
+                      <span>次の作品</span>
+                      <span>→</span>
+                    </span>
+                    <h4 className="mt-1 font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate text-sm sm:text-base">
+                      {nextProject.title}
+                    </h4>
+                  </button>
+                </TiltCard>
+              ) : (
+                <div></div>
+              )}
+            </div>
 
-          <div className="text-center pt-4">
-            <button
-              onClick={onBackToList}
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl transition-all shadow-md hover:shadow-lg cursor-pointer"
-            >
-              <span>← 制作実績一覧へ戻る</span>
-            </button>
-          </div>
-        </section>
+            <div className="text-center pt-4">
+              <button
+                onClick={onBackToList}
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl transition-all shadow-md hover:shadow-lg cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>← 制作実績一覧へ戻る</span>
+              </button>
+            </div>
+          </section>
+        </RevealOnScroll>
       </div>
 
       {/* スクリーンショット拡大モーダル */}
