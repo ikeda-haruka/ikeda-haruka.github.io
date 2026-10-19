@@ -102,6 +102,335 @@ function CardGrid({
   );
 }
 
+interface ParsedFeature {
+  number: string;
+  badge: {
+    label: string;
+    icon: string;
+    color: string;
+    badgeStyle: string;
+  };
+  title: string;
+  detail: string;
+  categoryGroup: string;
+}
+
+function getCategoryInfo(title: string, detail: string): {
+  label: string;
+  icon: string;
+  color: string;
+  badgeStyle: string;
+  group: string;
+} {
+  const combined = `${title} ${detail}`.toLowerCase();
+
+  if (
+    combined.includes("ai") ||
+    combined.includes("speckit") ||
+    combined.includes("chatgpt") ||
+    combined.includes("figma ai") ||
+    combined.includes("プロンプト") ||
+    combined.includes("fde") ||
+    combined.includes("機械エンジニア")
+  ) {
+    return {
+      label: "AI & 仕様駆動",
+      icon: "🤖",
+      color: "border-indigo-200 bg-indigo-50/70 text-indigo-700",
+      badgeStyle: "bg-indigo-100/90 text-indigo-800 border-indigo-200",
+      group: "ai_sdd",
+    };
+  }
+
+  if (
+    combined.includes("vue") ||
+    combined.includes("spring") ||
+    combined.includes("junit") ||
+    combined.includes("next.js") ||
+    combined.includes("react") ||
+    combined.includes("typescript") ||
+    combined.includes("モダナイゼーション") ||
+    combined.includes("リプレイス") ||
+    combined.includes("api") ||
+    combined.includes("java") ||
+    combined.includes("h2")
+  ) {
+    return {
+      label: "モダン開発 & テスト",
+      icon: "⚡",
+      color: "border-blue-200 bg-blue-50/70 text-blue-700",
+      badgeStyle: "bg-blue-100/90 text-blue-800 border-blue-200",
+      group: "tech_stack",
+    };
+  }
+
+  if (
+    combined.includes("デザイン") ||
+    combined.includes("figma") ||
+    combined.includes("photoshop") ||
+    combined.includes("illustrator") ||
+    combined.includes("ui/ux") ||
+    combined.includes("タイポグラフィ") ||
+    combined.includes("配色") ||
+    combined.includes("余白") ||
+    combined.includes("dtp") ||
+    combined.includes("フライヤー") ||
+    combined.includes("レタッチ")
+  ) {
+    return {
+      label: "デザイン & UI/UX",
+      icon: "🎨",
+      color: "border-rose-200 bg-rose-50/70 text-rose-700",
+      badgeStyle: "bg-rose-100/90 text-rose-800 border-rose-200",
+      group: "design_ui",
+    };
+  }
+
+  if (
+    combined.includes("2名") ||
+    combined.includes("共同") ||
+    combined.includes("レビュー") ||
+    combined.includes("チーム") ||
+    combined.includes("複数人")
+  ) {
+    return {
+      label: "チーム開発 & 協調",
+      icon: "👥",
+      color: "border-emerald-200 bg-emerald-50/70 text-emerald-700",
+      badgeStyle: "bg-emerald-100/90 text-emerald-800 border-emerald-200",
+      group: "team",
+    };
+  }
+
+  if (
+    combined.includes("seo") ||
+    combined.includes("meo") ||
+    combined.includes("json-ld") ||
+    combined.includes("マーケティング") ||
+    combined.includes("utm") ||
+    combined.includes("コンバージョン") ||
+    combined.includes("cv") ||
+    combined.includes("qrコード") ||
+    combined.includes("cta") ||
+    combined.includes("動線")
+  ) {
+    return {
+      label: "マーケティング & CV",
+      icon: "📈",
+      color: "border-amber-200 bg-amber-50/70 text-amber-800",
+      badgeStyle: "bg-amber-100/90 text-amber-900 border-amber-200",
+      group: "marketing",
+    };
+  }
+
+  if (
+    combined.includes("インフラ") ||
+    combined.includes("github actions") ||
+    combined.includes("ci/cd") ||
+    combined.includes("デプロイ") ||
+    combined.includes("git") ||
+    combined.includes("svn") ||
+    combined.includes("hulft") ||
+    combined.includes("jp1") ||
+    combined.includes("itsm") ||
+    combined.includes("ジョブ") ||
+    combined.includes("バッチ") ||
+    combined.includes("タスク スケジューラ") ||
+    combined.includes("保守") ||
+    combined.includes("運用") ||
+    combined.includes("サーバー")
+  ) {
+    return {
+      label: "インフラ & 運用保守",
+      icon: "⚙️",
+      color: "border-slate-300 bg-slate-50 text-slate-700",
+      badgeStyle: "bg-slate-200/90 text-slate-800 border-slate-300",
+      group: "infra_ops",
+    };
+  }
+
+  return {
+    label: "重要機能 & 工夫点",
+    icon: "✦",
+    color: "border-teal-200 bg-teal-50/70 text-teal-800",
+    badgeStyle: "bg-teal-100/90 text-teal-900 border-teal-200",
+    group: "feature",
+  };
+}
+
+function parseFeature(text: string, index: number): ParsedFeature {
+  let title: string;
+  let detail: string;
+
+  const bracketMatch = text.match(/^【([^】]+)】\s*(.*)$/);
+  if (bracketMatch) {
+    title = bracketMatch[1].trim();
+    detail = bracketMatch[2].trim();
+  } else {
+    const colonMatch = text.match(/^([^:：]{2,40})[:：]\s*(.*)$/);
+    if (colonMatch) {
+      title = colonMatch[1].trim();
+      detail = colonMatch[2].trim();
+    } else {
+      title = text;
+      detail = "";
+    }
+  }
+
+  const badge = getCategoryInfo(title, detail);
+  return {
+    number: String(index + 1).padStart(2, "0"),
+    badge,
+    title,
+    detail,
+    categoryGroup: badge.group,
+  };
+}
+
+function FeaturesSection({
+  features,
+  isGraphic = false,
+}: {
+  features: string[];
+  isGraphic?: boolean;
+}) {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const parsedItems = features.map((f, i) => parseFeature(f, i));
+
+  // カテゴリ一覧（該当するもののみ抽出）
+  const uniqueGroups = Array.from(new Set(parsedItems.map((p) => p.categoryGroup)));
+  const categories = [
+    { id: "all", label: "すべて", count: parsedItems.length, icon: "📋" },
+    ...uniqueGroups.map((group) => {
+      const item = parsedItems.find((p) => p.categoryGroup === group)!;
+      const count = parsedItems.filter((p) => p.categoryGroup === group).length;
+      return {
+        id: group,
+        label: item.badge.label,
+        count,
+        icon: item.badge.icon,
+      };
+    }),
+  ];
+
+  const filteredItems =
+    activeFilter === "all"
+      ? parsedItems
+      : parsedItems.filter((item) => item.categoryGroup === activeFilter);
+
+  return (
+    <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
+      {/* セクションヘッダー */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-100">
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-2.5 h-6 rounded-full bg-indigo-600 inline-block"></span>
+            <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-200/80">
+              KEY HIGHLIGHTS & FEATURES
+            </span>
+            <span className="text-xs font-semibold text-slate-500">
+              全 {parsedItems.length} 項目
+            </span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            {isGraphic
+              ? "工夫した点・デザイン設計のポイント"
+              : "工夫した点・主な機能＆実装ポイント"}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+            課題解決に向けた設計思想、AI・仕様駆動開発、モダナイゼーション、現場での実践工夫を構造化してまとめています。
+          </p>
+        </div>
+
+        {/* フィルタータブ（3カテゴリ以上ある場合） */}
+        {categories.length > 2 && (
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/80 self-start md:self-auto max-w-full overflow-x-auto">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveFilter(cat.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                  activeFilter === cat.id
+                    ? "bg-white text-indigo-700 shadow-xs border border-indigo-200/80 scale-[1.02]"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    activeFilter === cat.id
+                      ? "bg-indigo-100 text-indigo-800 font-extrabold"
+                      : "bg-slate-200 text-slate-600"
+                  }`}
+                >
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* カードグリッド */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        {filteredItems.map((item, idx) => (
+          <div
+            key={idx}
+            className="bg-slate-50/60 hover:bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 hover:border-indigo-400/90 hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+          >
+            {/* 上部アクセントグラデーションバー */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent group-hover:from-indigo-500 group-hover:via-blue-500 group-hover:to-indigo-500 transition-all duration-500"></div>
+
+            <div>
+              {/* カードメタ（番号 ＋ カテゴリバッジ ＋ アイコン） */}
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
+                    #{item.number}
+                  </span>
+                  <span
+                    className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs ${item.badge.badgeStyle}`}
+                  >
+                    <span>{item.badge.icon}</span>
+                    <span>{item.badge.label}</span>
+                  </span>
+                </div>
+                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                  {item.badge.icon}
+                </span>
+              </div>
+
+              {/* 見出し */}
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition-colors leading-snug">
+                {item.title}
+              </h3>
+
+              {/* 本文 */}
+              {item.detail && (
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 group-hover:text-slate-700 leading-relaxed">
+                  {item.detail}
+                </p>
+              )}
+            </div>
+
+            {/* 下部ステータス */}
+            <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                <span className="text-slate-500 font-medium">実装・検証済</span>
+              </span>
+              <span className="text-[10px] text-slate-400 font-medium group-hover:text-indigo-600 transition-colors">
+                Key Point →
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function ProjectDetailPage({
   projectId,
   onBackToList,
@@ -886,19 +1215,19 @@ export default function ProjectDetailPage({
                   <span>📐</span>
                   <span>レイアウト＆余白原則（Design Rules）</span>
                 </h3>
-                <ul className="space-y-2.5">
+                <div className="space-y-2">
                   {project.designSystem.rules.map((rule, rIdx) => (
-                    <li
+                    <div
                       key={rIdx}
-                      className="text-xs text-slate-700 flex items-start leading-relaxed bg-white p-2.5 rounded-xl border border-slate-200/70"
+                      className="text-xs text-slate-700 flex items-start leading-relaxed bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs hover:border-teal-300 transition-colors"
                     >
-                      <span className="text-teal-600 font-bold mr-2 shrink-0">
-                        ✓
+                      <span className="text-[10px] font-bold text-teal-700 bg-teal-50 border border-teal-200 px-1.5 py-0.5 rounded-md mr-2.5 shrink-0 mt-0.5">
+                        Rule {rIdx + 1}
                       </span>
                       <span>{rule}</span>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
 
@@ -924,17 +1253,17 @@ export default function ProjectDetailPage({
                       <p className="text-xs text-slate-600 mb-3 leading-relaxed">
                         {cmp.description}
                       </p>
-                      <ul className="space-y-1.5 border-t border-slate-200/80 pt-2.5">
+                      <div className="space-y-1.5 border-t border-slate-200/80 pt-2.5">
                         {cmp.rules.map((r, rIndex) => (
-                          <li
+                          <div
                             key={rIndex}
-                            className="text-[11px] text-slate-600 flex items-start leading-relaxed"
+                            className="text-[11px] text-slate-700 flex items-start leading-relaxed bg-white/70 p-1.5 rounded-lg border border-slate-200/60"
                           >
-                            <span className="text-teal-600 mr-1.5 font-bold">・</span>
+                            <span className="text-teal-600 mr-1.5 font-bold shrink-0">✓</span>
                             <span>{r}</span>
-                          </li>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -1077,25 +1406,49 @@ export default function ProjectDetailPage({
                   {project.architecture.highlights.map((hl, hlIdx) => (
                     <div
                       key={hlIdx}
-                      className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200"
+                      className="bg-slate-50/80 rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between"
                     >
-                      <h4 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                        <span>{hl.title}</span>
+                      <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-4 flex items-center justify-between pb-2.5 border-b border-slate-200/80">
+                        <span className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                          <span>{hl.title}</span>
+                        </span>
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                          {hl.items.length} 項目
+                        </span>
                       </h4>
-                      <ul className="space-y-2">
-                        {hl.items.map((item, itemIdx) => (
-                          <li
-                            key={itemIdx}
-                            className="text-xs text-slate-700 flex items-start leading-relaxed"
-                          >
-                            <span className="text-blue-600 font-bold mr-2 shrink-0">
-                              ・
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="space-y-2.5">
+                        {hl.items.map((item, itemIdx) => {
+                          const bracket = item.match(/^【([^】]+)】\s*(.*)$/);
+                          const colon = !bracket && item.match(/^([^:：]{2,35})[:：]\s*(.*)$/);
+                          const title = bracket ? bracket[1] : colon ? colon[1] : null;
+                          const detail = bracket ? bracket[2] : colon ? colon[2] : item;
+
+                          return (
+                            <div
+                              key={itemIdx}
+                              className="bg-white rounded-xl p-3 sm:p-3.5 border border-slate-200/80 shadow-2xs hover:border-blue-300 transition-colors"
+                            >
+                              {title ? (
+                                <>
+                                  <div className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-1.5 mb-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                    <span>{title}</span>
+                                  </div>
+                                  <p className="text-xs text-slate-600 leading-relaxed pl-3 border-l-2 border-blue-200/80 ml-0.5 mt-1">
+                                    {detail}
+                                  </p>
+                                </>
+                              ) : (
+                                <div className="text-xs text-slate-700 flex items-start leading-relaxed">
+                                  <span className="text-blue-600 font-bold mr-2 shrink-0">✓</span>
+                                  <span>{item}</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1212,31 +1565,11 @@ export default function ProjectDetailPage({
           </section>
         )}
 
-        {/* 工夫した点・主な特徴（Key Features） */}
-        <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
-          <div className="flex items-center gap-2.5 mb-6">
-            <span className="w-2.5 h-6 rounded-full bg-indigo-600 inline-block"></span>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-              {project.category === "graphic"
-                ? "工夫した点・デザイン設計のポイント"
-                : "工夫した点・主な機能＆実装ポイント"}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.features.map((feature, featIndex) => (
-              <div
-                key={featIndex}
-                className="text-slate-800 text-sm flex items-start bg-slate-50/70 hover:bg-indigo-50/40 p-4 rounded-2xl border border-slate-200/80 transition-colors"
-              >
-                <span className="text-indigo-600 font-bold mr-3 mt-0.5 text-base shrink-0">
-                  ✦
-                </span>
-                <span className="leading-relaxed">{feature}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* 工夫した点・主な特徴（Key Features） - カード型・カテゴリフィルター対応 */}
+        <FeaturesSection
+          features={project.features}
+          isGraphic={project.category === "graphic"}
+        />
 
         {/* UI機能ギャラリー（Web案件） */}
         {project.category !== "graphic" &&
@@ -1542,23 +1875,24 @@ export default function ProjectDetailPage({
                       {doc.description}
                     </p>
 
-                    <div className="mt-3.5 pt-3.5 border-t border-slate-200/80">
-                      <div className="text-[11px] font-semibold text-slate-700 mb-1.5">
-                        主な記載項目:
+                    <div className="mt-4 pt-3.5 border-t border-slate-200/80">
+                      <div className="text-[11px] font-bold text-slate-700 mb-2 flex items-center justify-between">
+                        <span>主な記載項目 ({doc.keyPoints.length})</span>
+                        <span className="text-[10px] text-purple-700 font-medium">レビュー済</span>
                       </div>
-                      <ul className="space-y-1">
+                      <div className="space-y-1.5">
                         {doc.keyPoints.map((point, pIndex) => (
-                          <li
+                          <div
                             key={pIndex}
-                            className="text-[11px] text-slate-600 flex items-start"
+                            className="text-[11px] text-slate-700 flex items-start bg-white p-2 sm:p-2.5 rounded-xl border border-purple-100 shadow-2xs leading-snug"
                           >
-                            <span className="text-purple-600 mr-1.5 shrink-0">
+                            <span className="text-purple-600 font-bold mr-2 shrink-0">
                               ✓
                             </span>
                             <span>{point}</span>
-                          </li>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
 
