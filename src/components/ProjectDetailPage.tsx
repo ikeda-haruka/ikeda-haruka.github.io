@@ -214,9 +214,17 @@ export default function ProjectDetailPage({
         {/* 作品ヘッダー */}
         <section className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-8">
           <div className="flex flex-wrap items-center gap-2.5 mb-4">
+            {project.isClientWork && (
+              <span className="text-xs font-extrabold px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-xs flex items-center gap-1.5 border border-amber-300">
+                <span>★</span>
+                <span>実務・参画案件（クライアントワーク）</span>
+              </span>
+            )}
             <span
               className={`text-xs font-bold px-3 py-1 rounded-full ${
-                project.badgeType === "client_graphic"
+                project.badgeType === "client_enterprise"
+                  ? "bg-slate-900 text-white border border-slate-700 font-bold"
+                  : project.badgeType === "client_graphic"
                   ? "bg-amber-100 text-amber-900 border border-amber-300 font-bold"
                   : project.badgeType === "graphic"
                   ? "bg-amber-100 text-amber-800 border border-amber-200"

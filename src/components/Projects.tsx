@@ -98,7 +98,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
             制作実績・開発プロジェクト
           </h2>
           <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
-            Webデザインシステム策定からReact/Next.jsフロントエンド、Java/Spring Bootバックエンド、Adobe DTP、チケット駆動開発まで。各作品カードの「詳細を見る」から、制作目的・担当範囲・使用技術・工夫点・実機画面を詳しくご覧いただけます。
+            大手化学メーカーでのSpecKit仕様駆動開発PoC（AI/FDE）や金融決済システム、商用ブランドLP共同開発、クライアント直接依頼のイベントDTPなど、<strong className="text-slate-900 font-bold underline decoration-amber-400 decoration-2 underline-offset-4">実際に参画・受託した実務案件を最優先で掲載</strong>しています。各作品カードの「詳細を見る」から、制作目的・担当範囲・使用技術・工夫点・アーキテクチャ・実機画面を詳しくご覧いただけます。
           </p>
         </div>
 
@@ -116,6 +116,17 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                 }`}
               >
                 すべて ({counts.all})
+              </button>
+              <button
+                onClick={() => setActiveFilter("client")}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  activeFilter === "client"
+                    ? "bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-sm"
+                    : "bg-amber-50 text-amber-900 border border-amber-200/90 hover:bg-amber-100/80"
+                }`}
+              >
+                <span>★</span>
+                <span>参画・実務案件 ({counts.client})</span>
               </button>
               <button
                 onClick={() => setActiveFilter("web")}
@@ -136,16 +147,6 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                 }`}
               >
                 グラフィック/DTP ({counts.graphic})
-              </button>
-              <button
-                onClick={() => setActiveFilter("client")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  activeFilter === "client"
-                    ? "bg-indigo-600 text-white shadow-sm"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
-                }`}
-              >
-                参画・実務案件 ({counts.client})
               </button>
             </div>
 
@@ -232,7 +233,11 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
               return (
                 <article
                   key={project.id}
-                  className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col group"
+                  className={`bg-white rounded-3xl overflow-hidden border transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col group ${
+                    project.isClientWork
+                      ? "border-amber-300/80 hover:border-amber-500 ring-1 ring-amber-200/60"
+                      : "border-slate-200/90 hover:border-indigo-400"
+                  }`}
                 >
                   {/* カード上部: サムネイル画像プレビュー */}
                   <div
@@ -263,9 +268,17 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
 
                     {/* バッジ（左上） */}
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+                      {project.isClientWork && (
+                        <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md flex items-center gap-1 border border-amber-300/40">
+                          <span>★</span>
+                          <span>実務・参画案件</span>
+                        </span>
+                      )}
                       <span
                         className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md shadow-xs ${
-                          project.badgeType === "client_graphic"
+                          project.badgeType === "client_enterprise"
+                            ? "bg-slate-900/90 text-white border border-slate-700/80"
+                            : project.badgeType === "client_graphic"
                             ? "bg-amber-600/90 text-white"
                             : project.badgeType === "graphic"
                             ? "bg-amber-500/90 text-white"

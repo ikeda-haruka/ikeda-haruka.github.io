@@ -175,6 +175,7 @@ export interface Project {
   category: ProjectCategory;
   categoryLabel: string;
   badgeType: "portfolio" | "client_web" | "client_enterprise" | "graphic" | "client_graphic";
+  isClientWork?: boolean; // 実際に参画・受託した実務案件フラグ
   title: string;
   subtitle: string;
   description: string;

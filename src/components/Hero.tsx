@@ -43,21 +43,19 @@ export default function Hero({
 
             {/* リード文 */}
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Next.jsやDecap CMSによるモダンWeb制作、Photoshop/Illustrator公認資格を活かしたUIデザインから、AIエンジニア・機械エンジニア視点でのSpecKit仕様駆動開発PoC主導、エンタープライズFDE案件、Java/SpringBootバックエンド開発まで。
-              <br className="hidden sm:inline" />
-              現場の課題ヒアリングから仕様定義、UI設計、システム構築・保守運用まで一貫して手掛け、美しさと堅牢性を兼ね備えたソリューションをワンストップで実現します。
+              大手化学メーカーでのSpecKit仕様駆動開発PoC主導（AI/FDE）や金融決済システム、2名体制での商用ブランドLP・Webサイト共同開発、クライアント直接依頼のイベントDTPなど、<strong className="text-slate-900 font-semibold">実際の開発現場に深く参画した豊富な実務実績</strong>を基盤に、洗練されたWeb体験からエンタープライズシステムまでワンストップで形にします。
             </p>
 
             {/* 技術ハイライトピル */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
               {[
+                "実務・参画案件 多数",
                 "SpecKit / 仕様駆動開発",
                 "AI Engineer / FDE",
                 "Next.js / React",
                 "TypeScript",
                 "Java / SpringBoot 3",
                 "Vue.js",
-                "Decap CMS",
                 "UI/UX & Figma",
                 "Adobe Photoshop & Illustrator",
                 "IMDS / エンタープライズ",
@@ -78,7 +76,7 @@ export default function Hero({
                 onClick={onExploreWorks}
                 className="px-7 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm tracking-wide rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
-                <span>制作実績を見る</span>
+                <span>実務参画実績を見る</span>
                 <span className="text-xs">↓</span>
               </button>
 
@@ -131,13 +129,13 @@ export default function Hero({
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">専門領域</span>
                     <span className="font-bold text-slate-800">
-                      Webデザイン & AI / FDE
+                      実務参画・Webデザイン & AI/FDE
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">得意スタック</span>
                     <span className="font-bold text-slate-800">
-                      SpecKit / Next.js / Java 21 / Vue
+                      SpecKit / Java 21 / Next.js / Vue
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
@@ -148,44 +146,70 @@ export default function Hero({
                   </div>
                 </div>
 
-                {/* 代表実績のクイックバッジ */}
+                {/* 代表実績のクイックバッジ（実務参画案件優先） */}
                 <div className="mt-5 pt-4 border-t border-slate-100">
-                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                    Featured Works
+                  <div className="text-[11px] font-bold text-amber-600 uppercase tracking-wider mb-2 flex items-center justify-between">
+                    <span>Featured Client Works</span>
+                    <span className="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full border border-amber-200 font-extrabold">
+                      実務参画
+                    </span>
                   </div>
                   <div className="flex flex-col gap-2">
+                    {/* 1. 化学物質管理システム */}
                     <div
                       onClick={onExploreWorks}
-                      className="p-2.5 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 rounded-xl flex items-center justify-between hover:border-purple-300 transition-all cursor-pointer group"
+                      className="p-2.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/90 rounded-xl flex items-center justify-between hover:border-emerald-400 transition-all cursor-pointer group shadow-2xs"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">🌹</span>
+                        <span className="text-sm">🧪</span>
                         <div>
-                          <div className="text-xs font-bold text-slate-800 group-hover:text-purple-700 transition-colors">
-                            Estudio Oloroso
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                            化学物質管理システム
                           </div>
                           <div className="text-[10px] text-slate-500">
-                            Next.js + Decap CMS
+                            SpecKit仕様駆動開発PoC / FDE実務
                           </div>
                         </div>
                       </div>
-                      <span className="text-xs text-purple-600 font-bold group-hover:translate-x-0.5 transition-transform">
+                      <span className="text-xs text-emerald-600 font-bold group-hover:translate-x-0.5 transition-transform">
                         →
                       </span>
                     </div>
 
+                    {/* 2. SPプロテイン */}
                     <div
                       onClick={onExploreWorks}
-                      className="p-2.5 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 rounded-xl flex items-center justify-between hover:border-blue-300 transition-all cursor-pointer group"
+                      className="p-2.5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/90 rounded-xl flex items-center justify-between hover:border-amber-400 transition-all cursor-pointer group shadow-2xs"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">🥛</span>
+                        <div>
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                            SPURT PROTEIN 公式LP
+                          </div>
+                          <div className="text-[10px] text-slate-500">
+                            2名共同開発 / D2CブランドLP実務
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-xs text-amber-600 font-bold group-hover:translate-x-0.5 transition-transform">
+                        →
+                      </span>
+                    </div>
+
+                    {/* 3. BIWAKO GYM */}
+                    <div
+                      onClick={onExploreWorks}
+                      className="p-2.5 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200/90 rounded-xl flex items-center justify-between hover:border-blue-400 transition-all cursor-pointer group shadow-2xs"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-sm">🏋️</span>
                         <div>
-                          <div className="text-xs font-bold text-slate-800 group-hover:text-blue-700 transition-colors">
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
                             BIWAKO GYM
                           </div>
                           <div className="text-[10px] text-slate-500">
-                            2名共同開発 / ジム公式WEB
+                            2名共同開発 / ジム公式WEB実務
                           </div>
                         </div>
                       </div>
@@ -194,22 +218,23 @@ export default function Hero({
                       </span>
                     </div>
 
+                    {/* 4. フラメンコ＆音楽イベントフライヤー */}
                     <div
                       onClick={onExploreWorks}
-                      className="p-2.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl flex items-center justify-between hover:border-emerald-300 transition-all cursor-pointer group"
+                      className="p-2.5 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/90 rounded-xl flex items-center justify-between hover:border-rose-400 transition-all cursor-pointer group shadow-2xs"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">🧪</span>
+                        <span className="text-sm">💃</span>
                         <div>
-                          <div className="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">
-                            化学物質管理システム
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-rose-700 transition-colors">
+                            フラメンコ公式フライヤー＆SNS
                           </div>
                           <div className="text-[10px] text-slate-500">
-                            SpecKit仕様駆動開発PoC / FDE
+                            クライアントワーク / A4印刷＆SNS広報
                           </div>
                         </div>
                       </div>
-                      <span className="text-xs text-emerald-600 font-bold group-hover:translate-x-0.5 transition-transform">
+                      <span className="text-xs text-rose-600 font-bold group-hover:translate-x-0.5 transition-transform">
                         →
                       </span>
                     </div>

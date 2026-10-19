@@ -94,6 +94,998 @@ const createVercelCostPolicy = (
 
 export const projectsData: Project[] = [
   {
+    id: "chemical",
+    category: "client_enterprise",
+    categoryLabel: "参画案件（業務システム）",
+    badgeType: "client_enterprise",
+    isClientWork: true,
+    title: "化学物質管理システム（PoC・バージョンアップ）",
+    subtitle: "AIエンジニア・機械エンジニア視点でSpecKit仕様駆動開発PoCを主導｜FDE・エンタープライズ移行・運用",
+    description:
+      "AIエンジニア・機械エンジニアとしてのドメイン理解力を活かし、大手化学メーカーのエンタープライズ案件でSpecKitを用いた『仕様駆動開発（Spec-Driven Development）』のPoCを主導。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、レガシーStruts+JSPからSpringBoot 3+Vue.jsへのマイグレーション検証、Figma UI設計、JAMPからCMPへの法令要件定義、IMDS連携、インフラ・リポジトリ移行からITSM保守運用まで一気通貫で担当。",
+    overview:
+      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを推進。JAMP（chemSHERPA）からCMPへの法改正対応、IMDS連携、業務主管部門との折衝・要件定義までFDEとして伴走しました。",
+    purpose:
+      "大手化学メーカーにおける化学物質管理の一元化および法改正（JAMPからCMPへの移行）への適合。レガシーなStruts/JSPからモダンなSpringBoot 3/Vue.jsへの段階的移行において、AIエンジニア・機械エンジニア視点でSpecKitを用いた仕様駆動開発（SDD）のPoCを主導。要件定義の曖昧さを排除し、保守性と開発生産性を抜本的に向上させること。",
+    role: [
+      "AIエンジニア / FDE（仕様駆動開発PoC主導）",
+      "要件定義・業務主管部門折衝（JAMP→CMP・法令対応）",
+      "Figma UI部品設計 & Vue.jsフロントエンド実装",
+      "バックエンド開発 (Java 21 / SpringBoot 3)",
+      "外部システム連携 (IMDS・リバースプロキシ・電子証明書)",
+      "インフラ移行 & ITSM保守運用・ジョブ自動化",
+    ],
+    technologies: [
+      "SpecKit (仕様駆動開発/SDD)",
+      "AI/LLM活用 (仕様定義・PoC)",
+      "Java 21",
+      "SpringBoot 3",
+      "Vue.js",
+      "TypeScript",
+      "Figma",
+      "Tomcat 11",
+      "Oracle DB",
+      "IMDS",
+      "SMTP",
+      "リバースプロキシ",
+      "電子証明書",
+      "GitLab",
+      "GitHub",
+      "JP1",
+      "ITSM",
+      "Windows タスク スケジューラ",
+    ],
+    features: [
+      "【AIエンジニア・FDE主導】SpecKitを用いた仕様駆動開発（Spec-Driven Development）のPoC検証をリード。自然言語仕様から設計・コード生成の整合性を高め、エンタープライズにおける開発生産性向上を実証",
+      "【機械エンジニア・ドメイン知見】化学・製造業の専門的要件（JAMP/chemSHERPAからCMPへの法改正移行、自動車業界材料DB・IMDS連携）をエンジニアリングに直結",
+      "Figmaのアプリデザインガイドラインを基に、システム向けにカスタマイズしたUI部品を設計・作成",
+      "Figmaの設計に沿ったVue.js部品をプロジェクト内に実装",
+      "マイグレーション: Struts/JSP から Java 21・SpringBoot 3・Vue.js への段階的リプレイス設計",
+      "JAMP から CMP への法令対応および業務主管部門との要件定義・折衝",
+      "IaaS クラウドリフト前提の設計およびマルチテナント対応の検討",
+      "電子証明書が必要なリバースプロキシ経由でのベンダーパッケージ連携、および IMDS（International Material Data System）との外部連携",
+      "複数部署共用サーバーからアプリ専用サーバーへの移行、GitLab から GitHub への移行",
+      "SMTP サーバーを利用したメール送信",
+      "ITSMによるインシデント・変更・問題・ナレッジ管理。エスカレーションされたインシデントへの対応と同部署内の変更管理アセスメント",
+      "月初の手動ログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などで実行",
+      "業務主管部門からのデータ抽出・改修依頼への随時対応、共通管理の要件書レビュー",
+    ],
+    architecture: {
+      title: "化学物質管理システム構成図・アーキテクチャ",
+      subtitle: "AIエンジニア・FDE主導によるSpecKit仕様駆動開発PoC & レガシーからJava 21・SpringBoot 3・Vue.js移行構成",
+      description:
+        "AIエンジニア・機械エンジニアとしての視点を活かし、SpecKitを用いた仕様駆動開発（SDD）のPoCを主導。レガシー環境からJava 21・SpringBoot 3・Vue.jsを用いた構成への移行、外部サービス連携・サーバー／リポジトリ移行・ジョブ運用の改善をFDEとして一貫して推進しました。以下に論理構成と成果を示します。",
+      variants: [
+        {
+          label: "レガシー版（移行前）",
+          description:
+            "JDK 8・Struts・JSP・iBatisを中心とした従来構成です。複数部署共用サーバー上で稼働し、外部連携や手動作業を含む運用を行っていました。",
+          steps: [
+            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+            { title: "画面", detail: "Struts / JSP", tone: "purple" },
+            { title: "アプリケーション", detail: "JDK 8 / iBatis", tone: "purple" },
+            { title: "データベース", detail: "Oracle Database", tone: "red" },
+          ],
+          groups: [
+            {
+              title: "外部サービス連携",
+              description: "アプリケーションから接続する外部サービス・連携先",
+              tone: "blue",
+              cards: [
+                { title: "業界標準", detail: "JAMP (chemSHERPA)" },
+                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
+                { title: "外部データ連携", detail: "IMDS" },
+                { title: "メール送信", detail: "SMTPサーバー" },
+              ],
+            },
+            {
+              title: "運用・開発基盤",
+              tone: "slate",
+              cards: [
+                { title: "サーバー", detail: "複数部署で共用" },
+                { title: "リポジトリ", detail: "GitLab" },
+                { title: "ログ削除", detail: "月初に手動実施" },
+                { title: "バッチ運用", detail: "JP1で定期実行" },
+              ],
+            },
+          ],
+        },
+        {
+          label: "モダナイゼーション後版（移行後・PoC検証）",
+          description:
+            "Java 21・SpringBoot 3・Vue.js・TypeScriptを用いた最新スタック構成。SpecKitによる仕様駆動開発PoCを組み込み、専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。",
+          steps: [
+            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
+            { title: "Web画面", detail: "Vue.js / TypeScript", tone: "green" },
+            {
+              title: "API・アプリケーション",
+              detail: "Java 21 / SpringBoot 3",
+              tone: "purple",
+            },
+            { title: "データベース", detail: "Oracle Database", tone: "red" },
+          ],
+          groups: [
+            {
+              title: "外部サービス連携",
+              description: "アプリケーションから接続する外部サービス・連携先",
+              tone: "blue",
+              cards: [
+                { title: "業界標準", detail: "JAMP (chemSHERPA) → CMP" },
+                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
+                { title: "外部データ連携", detail: "IMDS" },
+                { title: "メール送信", detail: "SMTPサーバー" },
+              ],
+            },
+            {
+              title: "運用・開発基盤",
+              tone: "slate",
+              cards: [
+                { title: "仕様駆動開発", detail: "SpecKit PoC検証を主導" },
+                { title: "サーバー", detail: "アプリ専用環境へ移行" },
+                { title: "リポジトリ", detail: "GitHubへ移行" },
+                { title: "ジョブ運用", detail: "JP1 / タスクスケジューラ" },
+                { title: "保守運用", detail: "ITSMで管理" },
+              ],
+            },
+          ],
+          note: "【PoC成果】AIエンジニア・機械エンジニア視点でSpecKitによる仕様駆動開発を導入・検証",
+        },
+      ],
+      highlights: [
+        {
+          title: "SpecKit仕様駆動開発PoC & FDE推進の成果",
+          items: [
+            "AIエンジニア・機械エンジニアとして、SpecKitを用いた仕様駆動開発（SDD）のPoCをエンタープライズ現場で主導。要件・仕様の形式化と開発サイクルの迅速化を実証",
+            "顧客現場（業務主管部門・インフラ・開発）の最前線に入り込み、課題発見から要件定義・設計・実装・インフラ移行までを牽引するFDE（Forward Deployed Engineer）スタイルを確立",
+            "機械・化学分野のドメイン知見を活かし、JAMP（chemSHERPA）からCMPへの移行要件やIMDS外部連携など複雑な業務要件を的確に咀嚼・具現化",
+            "JDK 8・Struts・iBatisレガシーシステムから、Java 21・SpringBoot 3・Vue.jsへの段階的モダナイゼーション構成を検証",
+            "手動の月初ログ削除をタスクスケジューラで自動化し、JP1バッチ運用やITSMによる変更管理アセスメント・インシデント対応を整備",
+          ],
+        },
+        {
+          title: "主な機能・外部連携",
+          items: [
+            "化学物質情報の管理と、JAMP（chemSHERPA）からCMPへの法改正適応に伴う要件整理",
+            "電子証明書を用いたリバースプロキシ経由のベンダーパッケージ連携",
+            "IMDSとの外部連携およびSMTPサーバーを利用したメール送信",
+            "JP1による日次・定期バッチ運用と、Windowsタスクスケジューラによるログ削除の自動化",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: "sp-protein",
+    category: "client_web",
+    categoryLabel: "参画案件（Webサイト共同開発）",
+    badgeType: "client_web",
+    isClientWork: true,
+    title: "野球専門サプリメント「SPプロテイン」公式ブランドLP",
+    subtitle: "2名体制での共同参画案件・リッチタイポグラフィ × スクロール連動ハイライト × 超高速Vanillaスタック",
+    description:
+      "アダプトゲン製薬（ARA）が展開する野球専門サプリメントブランド『SPECIALIST』のフラッグシップ商品「SPプロテイン」の公式ランディングページ。エンジニア2名体制での共同参画案件として制作し、フロントエンド実装、UI/UX設計、レスポンシブ最適化、スクロール連動アニメーション、EC計測連携（UTMパラメータ動的付与）を担当。『まだ、“ただ身体を大きくするだけ”のプロテインを飲んでるのか？』をキーメッセージに、サイズ（体づくり）・ケア（消耗対策）・リカバリー（翌日への回復）という独自の3本柱ストーリーを、強烈なタイポグラフィとエネルギッシュなオレンジ×ペーパーテクスチャの世界観で表現。スクロール位置に応じて1文字ずつハイライト点灯する見出し演出や、スマホ用スマート追従CTAなど、直感的で離脱を防ぐUIを外部ライブラリゼロの純粋なVanilla HTML/CSS/JSで極限まで軽量・高速に実装しました。本LPの優れた訴求骨格は、女性専用プロテインブランド「BERRY MILK」のリファレンス基盤としても発展・昇華されています。",
+    overview:
+      "「野球に必要なのは、デカさだけじゃない。」をコンセプトに、野球選手の体づくり（タンパク質20g/BCAA 4,000mg）、激しい投球・打撃での消耗ケア（コラーゲン/ヒアルロン酸）、ハードな練習からのリカバリー（乳酸菌1,000億個/コンブチャ）という3大価値を訴求する縦長ランディングページ。2名体制での密なコミュニケーションとコードレビューを通じ、ファーストビューからステートメント、3本柱の比較、製品スペック、製造元の信頼性、FAQ、公式ECショップへの購入導線までをシームレスに設計。Netlify Edgeからの高速配信により、モバイル環境でも表示遅延のない快適な閲覧体験を実現しています。",
+    purpose:
+      "野球選手・指導者・保護者層へ向けた「野球専門プロテイン」の認知拡大および公式ECショップへの購買誘導。単なる筋肥大プロテインとの明確な差別化（サイズ×ケア×リカバリー）を視覚的かつ直感的に伝え、2名体制による高品質・高パフォーマンスなLPをスピーディーに市場へ投入すること。",
+    role: [
+      "2名体制での共同フロントエンド開発",
+      "UI/UXデザイン・レスポンシブ設計",
+      "スクロール連動タイポグラフィ実装",
+      "追従スマートCTA＆ヘッダー透過制御",
+      "UTM計測パラメータ自動付与設計",
+      "Netlify Edgeホスティング環境整備",
+      "アクセシビリティ（prefers-reduced-motion）対応",
+    ],
+    image: spProteinCaptureImg,
+    imageCaption: "SPプロテイン 公式ブランドLP トップ画面キャッチ（ファーストビュー）",
+    imagePc: spProteinCapturePcImg,
+    imageMobile: spProteinCaptureMobileImg,
+    imagePcCaption: "SPプロテイン 公式ブランドLP PC版トップ画面キャッチ（エネルギッシュなオレンジ×迫力のパッケージ）",
+    imageMobileCaption: "SPプロテイン 公式ブランドLP スマホ版トップ画面キャッチ（モバイルファースト・追従CTA）",
+    technologies: [
+      "HTML5 (セマンティックマークアップ)",
+      "CSS3 (CSSカスタムプロパティ / clamp() / CSS Grid)",
+      "JavaScript (ES6+ / Intersection Observer)",
+      "Vanilla JS (外部ライブラリゼロ設計)",
+      "Netlify Edge (CDN超高速静的配信)",
+      "Google Fonts (Barlow Condensed / Barlow / Noto Sans JP)",
+      "レスポンシブWebデザイン (Mobile First)",
+      "アクセシビリティ (prefers-reduced-motion 対応)",
+      "マーケティング計測 (UTMクエリパラメータ自動付与)",
+      "2名共同開発・コードレビュー",
+    ],
+    features: [
+      "2名体制でのアジャイルな共同参画: 2名のエンジニアで役割分担とコードレビューを密に行い、デザインクオリティとパフォーマンスを両立させたWeb制作を推進",
+      "スクロール連動型テキスト点灯エフェクト（Text Highlight on Scroll）: 「まだ、“ただ身体を大きくするだけ”のプロテインを飲んでるのか？」のステートメント見出しにおいて、スクロール進捗に合わせて1文字ずつ鮮やかなオレンジ（#ee6b1f）へ点灯・ハイライトされる先進的なタイポグラフィ演出を軽量なVanilla JSで構築",
+      "サイズ × ケア × リカバリーの3本柱ストーリー設計: 野球選手の体づくり（サイズ）、激しいプレーでの消耗ケア（ケア）、翌日に備える回復（リカバリー）という3大ベネフィットを、巨大な背景ウォーターマークと数字・スペックで視覚的に整理",
+      "スマート追従CTAと固定ヘッダーの連動制御: ファーストビュー通過後に表示され、最終購入セクションでは邪魔にならないよう自動フェードアウトするスマホ追従CTAボタンや、スクロール時にすりガラス（backdrop-filter）のソリッド背景へ滑らかに切り替わるヘッダーを実装",
+      "EC連携を支えるUTMパラメータ自動付与機構: 公式ECショップへの離脱リンクに対し、キャンペーン・参照元（utm_source=specialist_lp, utm_medium=referral, utm_campaign=sp_protein）を動的に付与し、マーケティングROIやコンバージョン分析を正確に行える設計",
+      "外部ライブラリゼロによる極限の軽量・高速パフォーマンス: 重厚なJSライブラリやフレームワークに依存せず、素のHTML/CSS/JSのみで構成。Netlify Edge CDNからの配信と相まって、モバイル回線でも瞬時に表示される圧倒的なロード速度を達成",
+      "アクセシビリティ＆視覚負荷への配慮: OSの「動きを減らす（prefers-reduced-motion: reduce）」設定を検知し、アニメーションや文字点灯を自動で抑制するユーザー配慮設計",
+      "エネルギッシュなスポーツブランドデザイン: 熱量を感じさせるオレンジ（#ee6b1f）と黒（#141414）、ペーパーテクスチャ（SVGフラクタルノイズ）、力強いコンデンスドフォントを組み合わせた洗練のビジュアル設計",
+    ],
+    demo: "https://lovely-muffin-d4cf61.netlify.app/",
+    screenshotsBadge: "LP & Dynamic UI",
+    screenshotsTitle: "野球専門SPプロテイン LP 画面ギャラリー",
+    screenshotsNote:
+      "2名体制での共同開発により実現した、強烈なタイポグラフィとスクロール連動エフェクト、3本柱のストーリーテリング設計です。クリックで拡大プレビューできます。",
+    screenshots: [
+      {
+        src: spProteinUiPillarsImg,
+        title: "サイズ × ケア × リカバリーの3カラムストーリー",
+        caption:
+          "野球選手に特化した3大ベネフィット（サイズ：タンパク質20g/BCAA 4,000mg、ケア：コラーゲン/ヒアルロン酸、リカバリー：乳酸菌1,000億個/コンブチャ）を巨大な背景欧文ウォーターマークと数値で訴求。",
+      },
+      {
+        src: spProteinUiDetailImg,
+        title: "製品スペック・配合成分・オファー詳細セクション",
+        caption:
+          "カフェオレ味の飲みやすさ、低カロリー・低脂質、内容量1kg、付属スプーンすり切り3杯の美味しい飲み方、公式ECショップへの購入動線を整理したコンバージョンセクション。",
+      },
+      {
+        src: spProteinUiStatementImg,
+        title: "スクロール連動型テキスト点灯エフェクト「ここが違う。」",
+        caption:
+          "画面をスクロールするにつれて1文字ずつ文字色がオレンジへと点灯するインタラクティブタイポグラフィ演出。訪問者の視線を自然に引き込み、メッセージの精読率を向上。",
+      },
+    ],
+    siteStructure: {
+      title: "ランディングページ構成図・コンバージョン導線",
+      subtitle: "ファーストビュー × 3本柱ストーリー × 製品詳細 × 公式ECショップ連携",
+      description:
+        "1ページ完結の縦長ランディングページとして、訪問者が上から下へスクロールするにつれて興味・納得・購入意欲が高まるよう緻密に設計されています。",
+      categories: [
+        {
+          category: "1. ファーストビュー＆ステートメント層",
+          badge: "Hero & Statement",
+          badgeColor: "bg-orange-100 text-orange-800 border-orange-200",
+          pages: [
+            {
+              name: "Heroファーストビュー",
+              path: "#hero",
+              desc: "エネルギッシュなオレンジ背景・立体パッケージ写真・キャッチコピー",
+              url: "https://lovely-muffin-d4cf61.netlify.app/",
+              isHighlight: true,
+            },
+            {
+              name: "ロゴマーキー（流れるテキスト）",
+              path: "#band",
+              desc: "無限ループアニメーションによるブランドロゴ・タグライン提示",
+            },
+            {
+              name: "ステートメント＆文字スクロール点灯",
+              path: "#state",
+              desc: "「身体を大きくするだけ」への疑問提起・スクロール進捗ハイライト",
+              isHighlight: true,
+            },
+          ],
+        },
+        {
+          category: "2. ベネフィット訴求層（3 Pillars）",
+          badge: "3 Pillars",
+          badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+          pages: [
+            {
+              name: "01. サイズ（身体を大きくする）",
+              path: "#size",
+              desc: "タンパク質20g・BCAA 4,000mg・ビタミンミネラル14種",
+            },
+            {
+              name: "02. ケア（消耗に向き合う）",
+              path: "#care",
+              desc: "コラーゲン配合・ヒアルロン酸配合・関節や疲労への配慮",
+            },
+            {
+              name: "03. リカバリー（次に備える）",
+              path: "#recovery",
+              desc: "乳酸菌1,000億個・コンブチャ（紅茶キノコエキス）配合",
+            },
+          ],
+        },
+        {
+          category: "3. プロダクト詳細＆スペック層",
+          badge: "Product Detail",
+          badgeColor: "bg-stone-100 text-stone-800 border-stone-200",
+          pages: [
+            {
+              name: "製品スペック・美味しい飲み方",
+              path: "#prod",
+              desc: "リッチカフェオレ味・1kg（約1ヶ月分）・付属スプーン3杯（200ml水/牛乳）",
+              isHighlight: true,
+            },
+            {
+              name: "圧倒的なリカバリー実感",
+              path: "#voice",
+              desc: "野球プレイヤーのリアルな体感・翌日のコンディショニング変化",
+            },
+            {
+              name: "つくる人、届ける人（製造元紹介）",
+              path: "#maker",
+              desc: "アダプトゲン製薬の安心安全な国内製造基準・開発ストーリー",
+            },
+            {
+              name: "よくある質問（FAQ）",
+              path: "#faq",
+              desc: "飲むタイミング・ドーピング検査対応・保管方法など",
+            },
+          ],
+        },
+        {
+          category: "4. コンバージョン＆EC連携層",
+          badge: "Conversion & EC",
+          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+          pages: [
+            {
+              name: "スマート追従CTAボタン",
+              path: "#stick",
+              desc: "ファーストビュー通過後に表示・購入セクションで自動フェードアウト",
+            },
+            {
+              name: "公式ECショップ遷移（UTM連携）",
+              path: "EC遷移",
+              desc: "utm_source=specialist_lp 動的クエリ付与による流入効果測定",
+              isHighlight: true,
+            },
+          ],
+        },
+      ],
+    },
+    architecture: {
+      title: "SPプロテイン LP システム構成・制作アーキテクチャ",
+      subtitle: "2名共同フロントエンド開発 × Vanilla JS × Netlify Edge高速CDN",
+      description:
+        "2名体制での役割分担とコードレビューを通じ、外部ライブラリに一切依存しないVanilla HTML/CSS/JSによる極限の軽量・高速ランディングページを構築。Netlify Edge CDNからの配信と、公式ECショップへのUTM計測連携を実装しました。",
+      steps: [
+        {
+          title: "閲覧者（PC / スマホ）",
+          detail: "レスポンシブWebデザイン（Mobile First）",
+          tone: "blue",
+        },
+        {
+          title: "フロントエンド基盤",
+          detail: "Vanilla HTML5 / CSS3 / ES6+（外部ライブラリ非依存）",
+          tone: "purple",
+        },
+        {
+          title: "動的演出・UI制御",
+          detail: "スクロール進捗ハイライト点灯 / 追従CTA / UTM付与",
+          tone: "green",
+        },
+        {
+          title: "ホスティング・CDN",
+          detail: "Netlify Edge CDN（世界規模の超高速配信）",
+          tone: "red",
+        },
+      ],
+      flowLabel: "ユーザーアクセスから動的UI制御・EC購入遷移までの処理フロー",
+      groups: [
+        {
+          title: "共同開発・品質管理",
+          tone: "indigo",
+          cards: [
+            {
+              title: "2名体制の共同開発",
+              detail: "役割分担とコードレビューを密に行い、高品質なUIと高速性を両立",
+            },
+            {
+              title: "アクセシビリティ配慮",
+              detail: "prefers-reduced-motionを検知し、アニメーションや文字点灯を自動抑制",
+            },
+            {
+              title: "セマンティックHTML",
+              detail: "SEOとアクセシビリティを考慮した綺麗なマークアップ設計",
+            },
+          ],
+        },
+        {
+          title: "動的演出・UI実装",
+          tone: "amber",
+          cards: [
+            {
+              title: "スクロール連動文字点灯",
+              detail: "DOMパースとスクロール進捗計算による滑らかなハイライト演出",
+            },
+            {
+              title: "スマート追従CTA",
+              detail: "ファーストビュー通過後に出現し、最終購入枠で隠れるスマート制御",
+            },
+            {
+              title: "Intersection Observer",
+              detail: "要素の画面内検知による軽量・低負荷なスクロールインアニメーション",
+            },
+          ],
+        },
+        {
+          title: "マーケティング・ホスティング",
+          tone: "blue",
+          cards: [
+            {
+              title: "Netlify Edgeホスティング",
+              detail: "グローバルCDNエッジ配信による圧倒的なページロード速度の実現",
+            },
+            {
+              title: "UTM動的パラメータ付与",
+              detail: "公式ECリンクへ自動で流入元パラメータを付与し効果測定を担保",
+            },
+            {
+              title: "リバースエンジニアリング基盤",
+              detail: "本実案件の優れた骨格は、D2Cブランド「BERRY MILK」の基盤へ昇華",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "2名共同参画における制作推進",
+          items: [
+            "エンジニア2名体制での密なコミュニケーションとコードレビューを通じたアジャイル開発",
+            "デザインニュアンスの再現とパフォーマンスの最適化を短納期で両立",
+          ],
+        },
+        {
+          title: "Vanilla JSによる極限のパフォーマンス追求",
+          items: [
+            "外部JSライブラリ（jQuery・GSAP等）を一切使わず、ネイティブAPIのみで軽量実装",
+            "Netlify Edge CDNと相まってモバイル回線でも瞬時に表示される圧倒的なロード速度",
+          ],
+        },
+        {
+          title: "データドリブンなECマーケティング連携",
+          items: [
+            "公式ECへの遷移リンクにキャンペーン計測用UTMクエリを自動付与し、流入ROIを可視化",
+            "離脱を防ぐスマート追従CTA設計によるコンバージョン最大化",
+          ],
+        },
+      ],
+      note: "本案件はエンジニア2名体制で実際に参画・共同制作したクライアントワークです。本LPの優れた訴求動線・セクション骨格は、女性専用プロテインブランド「BERRY MILK」のリファレンス基盤としても発展・昇華されています。",
+    },
+  },
+  {
+    id: "biwakogym",
+    category: "client_web",
+    categoryLabel: "参画案件（Webサイト共同開発）",
+    badgeType: "client_web",
+    isClientWork: true,
+    title: "トレーニングジム「BIWAKO GYM」公式WEBサイト",
+    subtitle: "滋賀県草津市のトレーニング＆コンディショニングジム 公式WEBサイト（2名共同開発）",
+    description:
+      "滋賀県草津市に構えるトレーニング＆ストレッチ＆コンディショニングジム「BIWAKO GYM（ビワコジム）」の公式WEBサイト。エンジニア2名体制での共同開発案件として参画し、企画設計からフロントエンド実装、レスポンシブ対応、UI/UX最適化、SEO構造化データマークアップまでを担当。",
+    overview:
+      "「もう、ジムで迷わない。」をキーコンセプトに、鍛錬マシン全29台と3ステップサポートを強みとするジムの魅力を伝えるWebサイト。無料体験（Trial）、料金体系表、店舗アクセス、お問い合わせまでのユーザー動線を徹底追求。視覚的な引き込みを図るファーストビューやスクロール連動アニメーション、スマートフォンからの操作性を考慮したモバイルファースト設計を採用。",
+    purpose:
+      "滋賀県草津市のトレーニング＆コンディショニングジム新規オープンに伴う公式WEBサイト制作。鍛錬マシン全29台の魅力と初心者サポート体制を訴求し、無料体験予約へのコンバージョンを高めるとともに地域SEO（MEO）を強化する。",
+    role: [
+      "企画・構成設計",
+      "フロントエンド実装",
+      "レスポンシブ最適化",
+      "Schema.org構造化マークアップ",
+      "2名共同開発・コードレビュー",
+    ],
+    image: biwakogymCaptureImg,
+    imageCaption: "BIWAKO GYM 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: biwakogymCapturePcImg,
+    imageMobile: biwakogymCaptureMobileImg,
+    imagePcCaption: "BIWAKO GYM 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
+    imageMobileCaption: "BIWAKO GYM 公式WEBサイト スマホ版トップ画面キャッチ（モバイルファースト・ナビゲーション）",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "レスポンシブWebデザイン",
+      "Google Fonts (Outfit / Zen Kaku Gothic New)",
+      "JSON-LD (HealthClub 構造化データ)",
+      "SEO / OGP",
+      "UI/UX設計",
+      "2名共同開発",
+    ],
+    features: [
+      "2名体制での役割分担・コードレビューを通じた効率的な共同開発推進",
+      "「BIWAKO GYM」の力強さと清潔感を両立させたダークトーン×アクセントブルーのモダンデザイン",
+      "鍛錬マシンフロアの臨場感を伝えるフルスクリーン・ファーストビューとマーキー（流れるテキスト）演出",
+      "無料体験（Trial）へのコンバージョンを最大化する導線設計（ヘッダー常設CTA・お問い合わせフォーム連動）",
+      "スマートフォン閲覧に最適化したハンバーガーメニュー・開閉ナビゲーションおよびタッチ操作対応",
+      "Schema.org（HealthClub / LocalBusiness）準拠のJSON-LD構造化マークアップによる地域SEO（MEO）強化",
+      "店舗情報（営業時間・定休日・電話・マップ・料金表）を迷わず確認できるアクセシビリティ設計",
+    ],
+    demo: "https://biwakogym.com/",
+    architecture: {
+      title: "ジム公式Webサイト構成・制作アーキテクチャ",
+      subtitle:
+        "HTML5/CSS3/JavaScript × 2名共同開発 × Schema.org 地域SEO",
+      description:
+        "「もう、ジムで迷わない。」をコンセプトに、2名体制での役割分担・コードレビューを通じた効率的なフロントエンド共同開発を推進。無料体験コンバージョン動線と、Schema.org準拠の地域SEO（MEO）構造化データを実装しました。",
+      steps: [
+        {
+          title: "閲覧者（PC / スマホ）",
+          detail: "レスポンシブWebデザインによる快適な閲覧体験",
+          tone: "blue",
+        },
+        {
+          title: "フロントエンド実装",
+          detail: "HTML5 / CSS3 / JavaScript (モダンUI演出)",
+          tone: "purple",
+        },
+        {
+          title: "コンバージョン動線",
+          detail: "ヘッダー常設CTA・無料体験予約フォーム連携",
+          tone: "green",
+        },
+        {
+          title: "検索エンジン（SEO/MEO）",
+          detail: "HealthClub / LocalBusiness JSON-LD構造化データ",
+          tone: "red",
+        },
+      ],
+      flowLabel: "ユーザー動線とWebサイト構成フロー",
+      groups: [
+        {
+          title: "共同開発・技術仕様",
+          tone: "indigo",
+          cards: [
+            {
+              title: "2名体制の共同開発",
+              detail: "GitHubを活用した役割分担と相互コードレビュー",
+            },
+            {
+              title: "モバイルファースト設計",
+              detail: "スマホ開閉ハンバーガーメニュー＆タッチ操作最適化",
+            },
+            {
+              title: "地域SEO強化",
+              detail:
+                "滋賀県草津市のジム検索に強いSchema.org構造化マークアップ",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: "flamenco-flyer",
+    category: "client_graphic",
+    categoryLabel: "実務制作案件（グラフィック・DTP・SNS広報）",
+    badgeType: "client_graphic",
+    isClientWork: true,
+    title: "フラメンコ＆音楽イベント公式フライヤー・SNSプロモーションデザイン",
+    subtitle: "クライアントワーク（実務制作案件）・Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
+    description:
+      "フラメンコスタジオや舞台主催者・音楽家からの直接依頼による実務制作案件。フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式印刷フライヤーおよびSNSプロモーション用デザイン群。クライアントのヒアリングに基づき、Adobe PhotoshopおよびIllustratorを使用し、A4印刷用フライヤー（ダークトーン／ライトトーンの2パターンデザイン提案）からInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウト、印刷入稿（CMYK/トンボ・塗り足し設定）までを一貫して担当しました。",
+    overview:
+      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマ、打楽器ワークショップのリズム感に合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメント、幾何学リズムパターンなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築。実際のクライアントワークとして高い集客成果と満足度を獲得しました。",
+    purpose:
+      "四季折々の舞台公演や打楽器ワークショップにおける集客・認知拡大。クライアントの要望に応じ、印刷用A4フライヤーとSNSタイムライン（Instagram/Facebook）それぞれの媒体特性に特化したビジュアルを制作。高精度の人物レタッチと季節感ある世界観で受講申込・チケット購買へ直結させること。",
+    role: [
+      "クライアント要件ヒアリング・コンセプト策定",
+      "グラフィックデザイン (DTP / A4フライヤー)",
+      "人物写真レタッチ・光彩エフェクト合成",
+      "タイポグラフィ・文字組み・情報階層化",
+      "SNSプロモーションバナー・スライド展開",
+      "印刷入稿データ作成 (CMYK / 塗り足し・トンボ)",
+    ],
+    image: flyerFlamencoImg,
+    imageCaption: "A4完成フライヤー 2パターン提案（左: ダークトーン / 右: ライトトーン）",
+    technologies: [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "DTP / 印刷入稿データ作成 (CMYK)",
+      "グラフィックデザイン",
+      "SNSバナー・カルーセル制作",
+      "人物写真切り抜き・レタッチ",
+      "色調補正・光彩エフェクト合成",
+      "タイポグラフィ・文字組み",
+      "情報アーキテクチャ（IA）",
+      "季節別コンセプトカラー設計",
+      "QRコード導線設計",
+      "クライアントワーク（実務制作）",
+    ],
+    features: [
+      "実務制作案件としてクライアントヒアリングからデザイン提案、印刷入稿まで一貫対応: 主催者・音楽家のニーズを丁寧に汲み取り、ダーク／ライトの2パターン提案や複数フォーマット展開を推進",
+      "四季（春・初夏・夏・初秋・冬）の開催時期やイベント特性に応じた色彩心理・モチーフの巧みな使い分けと世界観構築",
+      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや楽器テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
+      "クラス詳細（テクニカ・振付・コムニカシオン、初心者向け打楽器講座）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
+      "Instagram/Facebookのタイムラインで視線を引きつけるスクエア比率（1:1）のバナーおよびカルーセル解説スライドの展開",
+      "印刷入稿用（高解像度CMYK/塗り足し・トンボ設定）およびWeb・SNS配信（RGB）のマルチフォーマット制作",
+      "メールおよびSNS申込みへ直結するQRコード配置による高いコンバージョン導線設計",
+    ],
+    screenshots: [
+      {
+        src: flyerFlamencoImg,
+        title: "A4完成フライヤー 2パターン提案（初夏・第4弾）",
+        caption:
+          "左: フラメンコの格式と情熱を表現したブラックver / 右: 爽やかで可読性を重視したホワイトver。クライアントへのデザイン提案として制作した2パターンの印刷用フライヤーデータ",
+      },
+      {
+        src: graphicFlyerWinterImg,
+        title: "冬開催 公式フライヤー（12月・1月開催）",
+        caption:
+          "ホリデーシーズンを演出するバーガンディ×雪の結晶×オーナメント。ダンサー写真の立体的な光彩エフェクトとシックなA4フライヤーレイアウト",
+      },
+      {
+        src: graphicSnsEarlysummerImg,
+        title: "初夏開催 SNS告知バナー（6月開催）",
+        caption:
+          "水彩アルコールインクアート調のパープルグラデーションとゴールドフレーム。躍動感あふれる写真を活かしたInstagram用スクエアバナー（1:1）",
+      },
+      {
+        src: graphicSnsAutumnImg,
+        title: "初秋開催 SNS告知バナー（第7弾 9月開催）",
+        caption:
+          "フォレストグリーンと紅葉あしらいを取り入れた初秋の告知デザイン。ページめくり風の視覚演出でタイムライン上の視認性を高めたフィード画像",
+      },
+      {
+        src: graphicSnsSlideDetailImg,
+        title: "初秋開催 クラス解説カルーセルスライド",
+        caption:
+          "Instagramカルーセル投稿用に制作したクラス詳細解説スライド。各クラスの指導ポイントや対象レベル、受講条件を読みやすく構造化",
+      },
+      {
+        src: graphicSnsSpringImg,
+        title: "春開催 SNS告知スライド（5月開催）",
+        caption:
+          "爽やかなミントブルーとネイビーの配色。大判ショール（マントン）を羽織った人物写真の背景を精緻に切り抜いたモダンデザイン",
+      },
+      {
+        src: graphicSnsSummerImg,
+        title: "夏開催 SNS告知スライド（第5弾 7月開催）",
+        caption:
+          "シルバー×ブラックの星の煌めき・ボケ光彩エフェクト。夏の夜のワークショップを盛り上げるラグジュアリーな告知スライド",
+      },
+      {
+        src: graphicCajonWorkshopImg,
+        title: "打楽器ワークショップ SNS告知バナー（カホンクルシージョ）",
+        caption:
+          "イエロー×ボルドーの幾何学パターンと演奏者写真の切り抜き。初心者向けワークショップの親しみやすさとリズム感を表現したSNS告知バナー（秋葉原会場・QRコード導線設計）",
+      },
+    ],
+  },
+  {
+    id: "bank",
+    category: "client_enterprise",
+    categoryLabel: "参画案件（業務システム）",
+    badgeType: "client_enterprise",
+    isClientWork: true,
+    title: "銀行系決済システム",
+    subtitle: "大量明細処理・即日振込機能の実装",
+    description:
+      "大手銀行向けの決済インフラシステム。大量の振込明細の取得と即日振込処理を実装。ミッションクリティカルなシステムのため高い信頼性・可用性を確保。",
+    overview:
+      "企業向けの法人決済サービス。SVN による厳格なバージョン管理、Hulft による定期ジョブ実行、複雑なプロキシ設定を含むオンプレミス基盤上での運用。銀行の厳しい要件を満たす堅牢なシステム。",
+    purpose:
+      "大手都市銀行における企業向け法人決済サービスの高度化。大量の振込明細の高速中継と即日振込処理を実現し、ミッションクリティカルな決済インフラとして24/7の高可用性・高信頼性を担保する。",
+    role: [
+      "バックエンド開発 (Java)",
+      "大量明細バッチ処理設計",
+      "Hulftジョブ連携",
+      "ネットワーク・プロキシ設定",
+      "障害監視・保守運用",
+    ],
+    technologies: [
+      "Java 8",
+      "Hulft",
+      "SVN",
+      "Tomcat",
+      "Oracle Database",
+      "Bash",
+      "NAS",
+    ],
+    features: [
+      "大量明細の高速取得・処理機能",
+      "即日振込実行エンジン",
+      "Hulft カスタマーセンター連携",
+      "プロキシを含む複雑なネットワーク設定の管理",
+      "NAS導入時のセットアップ・動作検証",
+      "24/7 監視・対応体制による高可用性",
+    ],
+    architecture: {
+      title: "銀行系決済システム構成図・アーキテクチャ",
+      subtitle: "法人向け大量明細データ中継・即日振込決済インフラ",
+      description:
+        "法人の業務システムと銀行側の決済サービスを連携するシステムの保守開発を担当しました。大量明細の取得・処理、即日振込機能の実装に加え、Java 8・Tomcatのアプリケーション、Oracle Database、Hulftによるデータ連携やプロキシ設定を含む運用に携わりました。以下は公開情報と担当実績をもとにした概念図であり、会社名・製品名や個別の接続先は記載していません。",
+      steps: [
+        { title: "企業の業務システム", detail: "会計・ERP等", tone: "blue" },
+        { title: "連携・転送", detail: "ファイル連携 / Hulft", tone: "green" },
+        {
+          title: "決済アプリケーション",
+          detail: "Java 8 / Tomcat",
+          tone: "purple",
+        },
+        {
+          title: "銀行側決済サービス",
+          detail: "振込・口座情報連携",
+          tone: "red",
+        },
+      ],
+      flowLabel: "法人向け決済処理の流れ",
+      groups: [
+        {
+          title: "データベース",
+          description: "決済アプリケーションが振込・明細データを参照・更新します。",
+          tone: "slate",
+          cards: [
+            {
+              title: "Oracle Database",
+              detail: "振込・大量明細データ高速トランザクション",
+            },
+          ],
+        },
+        {
+          title: "開発・運用基盤",
+          tone: "slate",
+          cards: [
+            { title: "ネットワーク", detail: "プロキシ設定・保守" },
+            { title: "ソース管理", detail: "SVNによる厳格なバージョン管理" },
+            { title: "バッチ連携", detail: "Hulft / Bashスクリプト" },
+            { title: "ファイル共有", detail: "NAS セットアップ・動作検証" },
+            { title: "実行環境", detail: "24/7 高可用性オンプレミス基盤" },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "主な機能",
+          items: [
+            "大量の振込明細を高速に取得・処理する機能",
+            "即日振込実行エンジン",
+            "Hulftを利用した定期データ連携",
+            "企業内システムと決済アプリケーションの連携",
+          ],
+        },
+        {
+          title: "担当・使用技術",
+          items: [
+            "Java 8・Tomcat・Oracle Databaseを用いた保守開発を担当",
+            "SVNによる構成管理、Hulftでのデータ連携、プロキシを含むサーバー環境の設定・保守",
+            "NASのセットアップと動作検証も実施",
+            "24/7 監視・対応体制による高可用性の維持",
+          ],
+        },
+      ],
+      note: "担当機能：大量明細の取得・処理 ／ 即日振込機能の実装",
+    },
+  },
+  {
+    id: "oloroso",
+    category: "portfolio",
+    categoryLabel: "ポートフォリオ実績用制作物",
+    badgeType: "portfolio",
+    title: "フラメンコスタジオ「Estudio Oloroso」公式WEBサイト",
+    subtitle: "Next.js + Decap CMS によるモダンWeb制作・ヘッドレスCMS構築",
+    description:
+      "Web制作・フロントエンド開発実績用の架空フラメンコスタジオ「Estudio Oloroso（エストゥディオ・オロロソ）」のWebサイト。Next.js (App Router) と Decap CMS（旧 Netlify CMS）を採用し、GitベースのヘッドレスCMS構成により、非エンジニアでもMarkdown形式で手軽にお知らせやブログを更新できる運用設計を実現。",
+    overview:
+      "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。初期Excel要件定義からGitHub Issuesへ全タスクをチケット化し、進捗可視化・アジャイル管理を実践しています。",
+    purpose:
+      "フラメンコスタジオのWebリニューアルにおいて、アンダルシアの伝統美とモダンWeb技術を融合。非エンジニアの講師・スタッフでも手軽に休講情報やブログ記事を更新できるようGit直結のDecap CMSを組み込み、運用コストと更新工数を大幅に削減する。",
+    role: [
+      "企画・要件定義",
+      "情報アーキテクチャ (IA)",
+      "UI/UXデザイン",
+      "フロントエンド実装 (Next.js)",
+      "Decap CMS構築 (Git直結)",
+      "GitHub OAuth認証設計",
+      "SEO構造化データ",
+    ],
+    image: olorosoCaptureImg,
+    imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
+    imagePc: olorosoCapturePcImg,
+    imageMobile: olorosoCaptureMobileImg,
+    imagePcCaption: "Estudio Oloroso 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
+    imageMobileCaption: "Estudio Oloroso 公式WEBサイト スマホ版トップ画面キャッチ（iPhone最適化・追従CTA）",
+    technologies: [
+      "Next.js (App Router)",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Decap CMS",
+      "GitHub Issues (タスク管理)",
+      "GitHub (OAuth / API)",
+      "Vercel",
+      "Markdown / Frontmatter",
+      "Lucide React",
+      "JSON-LD (構造化データ)",
+      "SEO / OGP",
+    ],
+    features: [
+      "Next.js (App Router / Turbopack) による高速なページ遷移とSSG（静的サイト生成）/ SSRハイブリッド設計",
+      "Decap CMS（GitベースCMS）を導入し、GitHubリポジトリ（Markdown/Frontmatter）と直結したブログ・お知らせコンテンツ管理",
+      "初期Excel要件定義書からGitHub Issuesへ全タスクをチケット化し、ラベル・ステータスを活用した可視化タスク管理を実施",
+      "Next.js Route Handlerを活用したGitHub OAuth認証による、外部認証サーバー不要のセキュアなCMS管理画面連携（/admin/）",
+      "ブランドアイデンティティ（深みのあるワインレッド×シャンパンゴールド）に基づく上品で洗練されたUI/UXデザイン",
+      "スマートフォン追従型フローティングCTA（LINE予約・体験予約）、アコーディオンFAQ、Stickyヘッダーなどのモバイル最適化",
+      "DanceStudio / LocalBusiness の JSON-LD 構造化データマークアップ、OGP・Twitter Cards 設定による包括的なSEO対策",
+      "曜日タブ切り替え式のレッスンスケジュール表、レベル別受講フローチャート、体験レッスン予約・問い合わせフォームの実装",
+    ],
+    demo: "https://oloroso.vercel.app/",
+    github: "https://github.com/ikeda-haruka/oloroso",
+    issuesUrl: "https://github.com/ikeda-haruka/oloroso/issues",
+    documentProcessNote:
+      "本ドキュメント群は、GoogleスライドおよびGoogleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させたものを目視確認して詳細レビューを行ったものが成果物となっています。AIプロンプトによる迅速なドラフト作成と人間による入念な品質検証・精査を組み合わせたドキュメント作成プロセスを実践しています。",
+    documents: [
+      {
+        title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
+        filename: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案.pptx",
+        format: "PPTX",
+        size: "6.6 MB",
+        creationMethod: "Googleスライド × Geminiプロンプト作成 ＋ 目視レビュー",
+        description:
+          "Googleスライドを使用し、Geminiにプロンプトを投げかけて作成させた構成案・スライド内容を目視確認して詳細レビューを行った企画提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅した成果物です。",
+        keyPoints: [
+          "Googleスライドを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
+          "デザインコンセプト策定（洗練された情熱 / Sophisticated Passion）",
+          "情報アーキテクチャ（IA）およびサイトマップ設計",
+          "主要画面のUI改善案（ファーストビュー、スマホ最適化カレンダー、ブログ統合、予約フォーム等）",
+          "制作スケジュール・推進ロードマップ（全12スライド）",
+        ],
+        downloadUrl:
+          "/docs/oloroso/Estudio_Oloroso_Design_Preview_and_Renewal_Proposal.pptx",
+        githubUrl:
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%EF%BC%86%E3%83%AA%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%AB%E6%A7%8B%E6%88%90%E6%A1%88.pptx",
+      },
+      {
+        title: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧",
+        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧.xlsx",
+        format: "XLSX",
+        size: "29 KB",
+        statusBadge: "GitHub Issuesへタスク移行済（docs/old保管）",
+        creationMethod: "Googleスプレッドシート × Geminiプロンプト作成 ＋ 目視レビュー",
+        description:
+          "Googleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させた画面構成・要件定義項目を目視確認して詳細レビューを行った初期定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
+        keyPoints: [
+          "Googleスプレッドシートを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
+          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン初期要件定義",
+          "GitHub Issuesへのタスク移行（各画面・機能の実装課題をチケット化し、ラベル・マイルストーンで進捗管理）",
+          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
+          "外部サービス連携仕様（Instagram API、LINE・Googleフォーム連携等）および旧ブログ移行仕様",
+        ],
+        downloadUrl:
+          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.xlsx",
+        githubUrl:
+          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/old/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
+        githubButtonText: "GitHub (docs/old) で確認",
+        extraAction: {
+          label: "GitHub Issues（タスク管理）を見る",
+          url: "https://github.com/ikeda-haruka/oloroso/issues",
+        },
+      },
+    ],
+    screenshots: [
+      {
+        src: adminNewsListImg,
+        title: "お知らせ・休講情報一覧",
+        caption: "Decap CMSコレクション画面。休講・代講、発表会などの告知を一覧で視覚的に管理。",
+      },
+      {
+        src: adminNewsEditImg,
+        title: "お知らせ編集（リアルタイムプレビュー）",
+        caption: "左側で入力しながら右側で実画面のレンダリング結果をリアルタイム確認可能。",
+      },
+      {
+        src: adminBlogListImg,
+        title: "公式ブログ記事一覧",
+        caption: "Markdown / Frontmatter 形式でGitHubに自動保存・バージョン管理される記事一覧。",
+      },
+      {
+        src: adminBlogEditImg,
+        title: "ブログ記事編集・アイキャッチ設定",
+        caption: "画像アップロード、タグ・カテゴリー分類、Markdownエディタでの直感的な編集画面。",
+      },
+      {
+        src: adminSettingsImg,
+        title: "スタジオ基本設定",
+        caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
+      },
+    ],
+    architecture: {
+      title: "モダンWeb ＆ ヘッドレスCMSアーキテクチャ",
+      subtitle: "Next.js (App Router) × Decap CMS × GitHub OAuth連携",
+      description:
+        "Next.jsのハイブリッドレンダリング（SSG/SSR）と、GitベースのヘッドレスCMS（Decap CMS）を連携。非エンジニアでも管理画面（/admin/）からお知らせやブログを直接更新でき、GitHubリポジトリへのMarkdown自動保存とVercelのCI/CD自動デプロイが連動する運用コスト最小化アーキテクチャです。",
+      steps: [
+        {
+          title: "閲覧者 / スタッフ",
+          detail: "Webサイト閲覧 ／ CMS管理画面 (/admin/)",
+          tone: "blue",
+        },
+        {
+          title: "認証・Route Handler",
+          detail: "Next.js OAuth Route Handler (GitHub API連携)",
+          tone: "purple",
+        },
+        {
+          title: "コンテンツ管理基盤",
+          detail: "Decap CMS (Git直結・Markdown保存)",
+          tone: "green",
+        },
+        {
+          title: "ビルド・ホスティング",
+          detail: "Vercel SSG/SSR (自動CI/CDデプロイ)",
+          tone: "red",
+        },
+      ],
+      flowLabel: "コンテンツ更新から静的サイト生成・公開までのフロー",
+      groups: [
+        {
+          title: "コンテンツ・データ構造",
+          tone: "indigo",
+          cards: [
+            {
+              title: "お知らせコレクション",
+              detail: "休講情報・代講・発表会通知 (Markdown / Frontmatter)",
+            },
+            {
+              title: "ブログコレクション",
+              detail: "アイキャッチ画像・カテゴリー・Markdownエディタ連携",
+            },
+            {
+              title: "スタジオ設定",
+              detail: "所在地・営業時間・SEOメタデータなどのサイト共通設定を一元管理",
+            },
+          ],
+        },
+        {
+          title: "インフラ選定・運用コスト防衛（FinOps）",
+          tone: "amber",
+          cards: [
+            {
+              title: "Vercel Hobby（試作・デモ用）",
+              detail: "無料枠上限到達時は配信停止する仕様のため、追加請求・青天井リスクが完全ゼロ",
+            },
+            {
+              title: "Vercel Pro（商用防衛策）",
+              detail: "「Pause Production Deployments」をオンにし、設定予算到達時に自動停止させて請求事故を防止",
+            },
+            {
+              title: "Cloudflare選定（低コスト・転送量フリー）",
+              detail: "月額費用最小化・画像等の転送量を気にせず運用したい商用案件ではCloudflare Pagesを採用",
+            },
+          ],
+        },
+        {
+          title: "開発・SEO・外部連携",
+          tone: "slate",
+          cards: [
+            {
+              title: "GitHub OAuth認証",
+              detail: "外部認証サーバー不要のRoute HandlerによるセキュアCMS連携",
+            },
+            {
+              title: "JSON-LD構造化データ",
+              detail: "DanceStudio / LocalBusiness 準拠の地域SEO対策",
+            },
+            {
+              title: "チケット駆動開発",
+              detail: "初期Excel要件定義からGitHub Issuesへ全タスクを移行して管理",
+            },
+          ],
+        },
+      ],
+      highlights: [
+        {
+          title: "ヘッドレスCMS運用設計のポイント",
+          items: [
+            "非エンジニアのスタッフ・講師でもブラウザから手軽に休講情報やブログをリアルタイムプレビュー更新可能",
+            "データベースサーバー不要のGitベース（Markdownファイル）永続化による高可用性と低運用コストの両立",
+            "Next.js App Routerの静的生成（SSG）による高速表示パフォーマンス",
+          ],
+        },
+        {
+          title: "インフラ選定・運用コスト管理ポリシー（FinOps）",
+          items: [
+            "ポートフォリオ試作環境としてVercel Hobbyプラン（無料枠）を採用し、突発的な請求リスクを完全遮断",
+            "商用・実務案件ではProプラン選定＋「Pause Production Deployments」有効化により、青天井の費用膨張を防止",
+            "転送量を気にせず月額費用を最小限に抑えたいWebサイト案件では「Cloudflare」を採用し、転送量無料の配信基盤を提案",
+          ],
+        },
+      ],
+      note: "Vercelホスティングはポートフォリオ試作のためHobbyプラン（無料枠・超過時配信停止で安全）を採用。実際の商用案件ではProプラン＋Pause Production Deploymentsによる請求事故防止、またはデータ転送量無料のCloudflare Pages選定など、運用費が知らない間に膨れ上がらない設計を徹底しています。",
+    },
+    costPolicy: createVercelCostPolicy(
+      "Estudio Oloroso 公式WEBサイト",
+      "スタジオ案内やブログ写真・動画の配信においても、試作環境ではHobbyプランの安全停止仕様を活用しています。"
+    ),
+  },
+  {
     id: "dental",
     category: "portfolio",
     categoryLabel: "ポートフォリオ実績用制作物",
@@ -1215,247 +2207,6 @@ export const projectsData: Project[] = [
     ),
   },
   {
-    id: "oloroso",
-    category: "portfolio",
-    categoryLabel: "ポートフォリオ実績用制作物",
-    badgeType: "portfolio",
-    title: "フラメンコスタジオ「Estudio Oloroso」公式WEBサイト",
-    subtitle: "Next.js + Decap CMS によるモダンWeb制作・ヘッドレスCMS構築",
-    description:
-      "Web制作・フロントエンド開発実績用の架空フラメンコスタジオ「Estudio Oloroso（エストゥディオ・オロロソ）」のWebサイト。Next.js (App Router) と Decap CMS（旧 Netlify CMS）を採用し、GitベースのヘッドレスCMS構成により、非エンジニアでもMarkdown形式で手軽にお知らせやブログを更新できる運用設計を実現。",
-    overview:
-      "「洗練された深遠な情熱（Sophisticated Passion）」をコンセプトに、アンダルシア・ヘレスの伝統美とモダンなUI/UXを融合したデザイン。トップページ、スタジオ紹介、クラスカリキュラム、料金表、重要休講アラート付きお知らせ・ブログ、予約・お問い合わせフォームなどを包括的に設計・実装。初期Excel要件定義からGitHub Issuesへ全タスクをチケット化し、進捗可視化・アジャイル管理を実践しています。",
-    purpose:
-      "フラメンコスタジオのWebリニューアルにおいて、アンダルシアの伝統美とモダンWeb技術を融合。非エンジニアの講師・スタッフでも手軽に休講情報やブログ記事を更新できるようGit直結のDecap CMSを組み込み、運用コストと更新工数を大幅に削減する。",
-    role: [
-      "企画・要件定義",
-      "情報アーキテクチャ (IA)",
-      "UI/UXデザイン",
-      "フロントエンド実装 (Next.js)",
-      "Decap CMS構築 (Git直結)",
-      "GitHub OAuth認証設計",
-      "SEO構造化データ",
-    ],
-    image: olorosoCaptureImg,
-    imageCaption: "Estudio Oloroso 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: olorosoCapturePcImg,
-    imageMobile: olorosoCaptureMobileImg,
-    imagePcCaption: "Estudio Oloroso 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
-    imageMobileCaption: "Estudio Oloroso 公式WEBサイト スマホ版トップ画面キャッチ（iPhone最適化・追従CTA）",
-    technologies: [
-      "Next.js (App Router)",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Decap CMS",
-      "GitHub Issues (タスク管理)",
-      "GitHub (OAuth / API)",
-      "Vercel",
-      "Markdown / Frontmatter",
-      "Lucide React",
-      "JSON-LD (構造化データ)",
-      "SEO / OGP",
-    ],
-    features: [
-      "Next.js (App Router / Turbopack) による高速なページ遷移とSSG（静的サイト生成）/ SSRハイブリッド設計",
-      "Decap CMS（GitベースCMS）を導入し、GitHubリポジトリ（Markdown/Frontmatter）と直結したブログ・お知らせコンテンツ管理",
-      "初期Excel要件定義書からGitHub Issuesへ全タスクをチケット化し、ラベル・ステータスを活用した可視化タスク管理を実施",
-      "Next.js Route Handlerを活用したGitHub OAuth認証による、外部認証サーバー不要のセキュアなCMS管理画面連携（/admin/）",
-      "ブランドアイデンティティ（深みのあるワインレッド×シャンパンゴールド）に基づく上品で洗練されたUI/UXデザイン",
-      "スマートフォン追従型フローティングCTA（LINE予約・体験予約）、アコーディオンFAQ、Stickyヘッダーなどのモバイル最適化",
-      "DanceStudio / LocalBusiness の JSON-LD 構造化データマークアップ、OGP・Twitter Cards 設定による包括的なSEO対策",
-      "曜日タブ切り替え式のレッスンスケジュール表、レベル別受講フローチャート、体験レッスン予約・問い合わせフォームの実装",
-    ],
-    demo: "https://oloroso.vercel.app/",
-    github: "https://github.com/ikeda-haruka/oloroso",
-    issuesUrl: "https://github.com/ikeda-haruka/oloroso/issues",
-    documentProcessNote:
-      "本ドキュメント群は、GoogleスライドおよびGoogleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させたものを目視確認して詳細レビューを行ったものが成果物となっています。AIプロンプトによる迅速なドラフト作成と人間による入念な品質検証・精査を組み合わせたドキュメント作成プロセスを実践しています。",
-    documents: [
-      {
-        title: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案",
-        filename: "「Estudio Oloroso」WEBサイト デザインプレビュー＆リニューアル構成案.pptx",
-        format: "PPTX",
-        size: "6.6 MB",
-        creationMethod: "Googleスライド × Geminiプロンプト作成 ＋ 目視レビュー",
-        description:
-          "Googleスライドを使用し、Geminiにプロンプトを投げかけて作成させた構成案・スライド内容を目視確認して詳細レビューを行った企画提案書（全12スライド）。情報構造の課題分析からデザインコンセプト、サイトマップ、UI改善案、本公開に向けた推進計画までを網羅した成果物です。",
-        keyPoints: [
-          "Googleスライドを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
-          "デザインコンセプト策定（洗練された情熱 / Sophisticated Passion）",
-          "情報アーキテクチャ（IA）およびサイトマップ設計",
-          "主要画面のUI改善案（ファーストビュー、スマホ最適化カレンダー、ブログ統合、予約フォーム等）",
-          "制作スケジュール・推進ロードマップ（全12スライド）",
-        ],
-        downloadUrl:
-          "/docs/oloroso/Estudio_Oloroso_Design_Preview_and_Renewal_Proposal.pptx",
-        githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%EF%BC%86%E3%83%AA%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%AB%E6%A7%8B%E6%88%90%E6%A1%88.pptx",
-      },
-      {
-        title: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧",
-        filename: "「Estudio Oloroso」WEBサイト レイアウト構成・コンテンツ一覧.xlsx",
-        format: "XLSX",
-        size: "29 KB",
-        statusBadge: "GitHub Issuesへタスク移行済（docs/old保管）",
-        creationMethod: "Googleスプレッドシート × Geminiプロンプト作成 ＋ 目視レビュー",
-        description:
-          "Googleスプレッドシートを使用し、Geminiにプロンプトを投げかけて作成させた画面構成・要件定義項目を目視確認して詳細レビューを行った初期定義書。記載内容はすべてGitHub Issuesへチケット化してアジャイルなタスク・進捗管理へ移行したため、本ファイルはdocs/old配下に元資料としてアーカイブ保管しています。初期要件の設計根拠として引き続き閲覧・ダウンロードが可能です。",
-        keyPoints: [
-          "Googleスプレッドシートを使用しGeminiにプロンプトを投げかけて作成、目視確認・レビューを実施した成果物",
-          "全ページ（トップ、スタジオ紹介、クラス、料金、ブログ、予約等）の画面ID別コンテンツ・デザイン初期要件定義",
-          "GitHub Issuesへのタスク移行（各画面・機能の実装課題をチケット化し、ラベル・マイルストーンで進捗管理）",
-          "システム要件定義（Next.js SSG、Decap CMS Markdown連携、JSON-LD構造化データ、GA4等）",
-          "外部サービス連携仕様（Instagram API、LINE・Googleフォーム連携等）および旧ブログ移行仕様",
-        ],
-        downloadUrl:
-          "/docs/oloroso/Estudio_Oloroso_Layout_and_Content_List.xlsx",
-        githubUrl:
-          "https://github.com/ikeda-haruka/oloroso/blob/main/docs/old/%E3%80%8CEstudio%20Oloroso%E3%80%8DWEB%E3%82%B5%E3%82%A4%E3%83%88%20%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E4%B8%80%E8%A6%A7.xlsx",
-        githubButtonText: "GitHub (docs/old) で確認",
-        extraAction: {
-          label: "GitHub Issues（タスク管理）を見る",
-          url: "https://github.com/ikeda-haruka/oloroso/issues",
-        },
-      },
-    ],
-    screenshots: [
-      {
-        src: adminNewsListImg,
-        title: "お知らせ・休講情報一覧",
-        caption: "Decap CMSコレクション画面。休講・代講、発表会などの告知を一覧で視覚的に管理。",
-      },
-      {
-        src: adminNewsEditImg,
-        title: "お知らせ編集（リアルタイムプレビュー）",
-        caption: "左側で入力しながら右側で実画面のレンダリング結果をリアルタイム確認可能。",
-      },
-      {
-        src: adminBlogListImg,
-        title: "公式ブログ記事一覧",
-        caption: "Markdown / Frontmatter 形式でGitHubに自動保存・バージョン管理される記事一覧。",
-      },
-      {
-        src: adminBlogEditImg,
-        title: "ブログ記事編集・アイキャッチ設定",
-        caption: "画像アップロード、タグ・カテゴリー分類、Markdownエディタでの直感的な編集画面。",
-      },
-      {
-        src: adminSettingsImg,
-        title: "スタジオ基本設定",
-        caption: "スタジオ名、所在地、営業時間、SEOメタデータなどの全社・サイト共通設定を一元管理。",
-      },
-    ],
-    architecture: {
-      title: "モダンWeb ＆ ヘッドレスCMSアーキテクチャ",
-      subtitle: "Next.js (App Router) × Decap CMS × GitHub OAuth連携",
-      description:
-        "Next.jsのハイブリッドレンダリング（SSG/SSR）と、GitベースのヘッドレスCMS（Decap CMS）を連携。非エンジニアでも管理画面（/admin/）からお知らせやブログを直接更新でき、GitHubリポジトリへのMarkdown自動保存とVercelのCI/CD自動デプロイが連動する運用コスト最小化アーキテクチャです。",
-      steps: [
-        {
-          title: "閲覧者 / スタッフ",
-          detail: "Webサイト閲覧 ／ CMS管理画面 (/admin/)",
-          tone: "blue",
-        },
-        {
-          title: "認証・Route Handler",
-          detail: "Next.js OAuth Route Handler (GitHub API連携)",
-          tone: "purple",
-        },
-        {
-          title: "コンテンツ管理基盤",
-          detail: "Decap CMS (Git直結・Markdown保存)",
-          tone: "green",
-        },
-        {
-          title: "ビルド・ホスティング",
-          detail: "Vercel SSG/SSR (自動CI/CDデプロイ)",
-          tone: "red",
-        },
-      ],
-      flowLabel: "コンテンツ更新から静的サイト生成・公開までのフロー",
-      groups: [
-        {
-          title: "コンテンツ・データ構造",
-          tone: "indigo",
-          cards: [
-            {
-              title: "お知らせコレクション",
-              detail: "休講情報・代講・発表会通知 (Markdown / Frontmatter)",
-            },
-            {
-              title: "ブログコレクション",
-              detail: "アイキャッチ画像・カテゴリー・Markdownエディタ連携",
-            },
-            {
-              title: "スタジオ設定",
-              detail: "所在地・営業時間・SEOメタデータなどのサイト共通設定を一元管理",
-            },
-          ],
-        },
-        {
-          title: "インフラ選定・運用コスト防衛（FinOps）",
-          tone: "amber",
-          cards: [
-            {
-              title: "Vercel Hobby（試作・デモ用）",
-              detail: "無料枠上限到達時は配信停止する仕様のため、追加請求・青天井リスクが完全ゼロ",
-            },
-            {
-              title: "Vercel Pro（商用防衛策）",
-              detail: "「Pause Production Deployments」をオンにし、設定予算到達時に自動停止させて請求事故を防止",
-            },
-            {
-              title: "Cloudflare選定（低コスト・転送量フリー）",
-              detail: "月額費用最小化・画像等の転送量を気にせず運用したい商用案件ではCloudflare Pagesを採用",
-            },
-          ],
-        },
-        {
-          title: "開発・SEO・外部連携",
-          tone: "slate",
-          cards: [
-            {
-              title: "GitHub OAuth認証",
-              detail: "外部認証サーバー不要のRoute HandlerによるセキュアCMS連携",
-            },
-            {
-              title: "JSON-LD構造化データ",
-              detail: "DanceStudio / LocalBusiness 準拠の地域SEO対策",
-            },
-            {
-              title: "チケット駆動開発",
-              detail: "初期Excel要件定義からGitHub Issuesへ全タスクを移行して管理",
-            },
-          ],
-        },
-      ],
-      highlights: [
-        {
-          title: "ヘッドレスCMS運用設計のポイント",
-          items: [
-            "非エンジニアのスタッフ・講師でもブラウザから手軽に休講情報やブログをリアルタイムプレビュー更新可能",
-            "データベースサーバー不要のGitベース（Markdownファイル）永続化による高可用性と低運用コストの両立",
-            "Next.js App Routerの静的生成（SSG）による高速表示パフォーマンス",
-          ],
-        },
-        {
-          title: "インフラ選定・運用コスト管理ポリシー（FinOps）",
-          items: [
-            "ポートフォリオ試作環境としてVercel Hobbyプラン（無料枠）を採用し、突発的な請求リスクを完全遮断",
-            "商用・実務案件ではProプラン選定＋「Pause Production Deployments」有効化により、青天井の費用膨張を防止",
-            "転送量を気にせず月額費用を最小限に抑えたいWebサイト案件では「Cloudflare」を採用し、転送量無料の配信基盤を提案",
-          ],
-        },
-      ],
-      note: "Vercelホスティングはポートフォリオ試作のためHobbyプラン（無料枠・超過時配信停止で安全）を採用。実際の商用案件ではProプラン＋Pause Production Deploymentsによる請求事故防止、またはデータ転送量無料のCloudflare Pages選定など、運用費が知らない間に膨れ上がらない設計を徹底しています。",
-    },
-    costPolicy: createVercelCostPolicy(
-      "Estudio Oloroso 公式WEBサイト",
-      "スタジオ案内やブログ写真・動画の配信においても、試作環境ではHobbyプランの安全停止仕様を活用しています。"
-    ),
-  },
-  {
     id: "protein",
     category: "portfolio",
     categoryLabel: "ポートフォリオ実績用制作物",
@@ -2030,751 +2781,5 @@ export const projectsData: Project[] = [
       ],
       note: "閲覧時はブラウザがGitHub PagesからHTML・CSS・JavaScriptを取得し、Reactが各セクションを描画します。静的なポートフォリオのため、独自のバックエンドやデータベースは使用していません。",
     },
-  },
-  {
-    id: "sp-protein",
-    category: "client_web",
-    categoryLabel: "参画案件（Webサイト共同開発）",
-    badgeType: "client_web",
-    title: "野球専門サプリメント「SPプロテイン」公式ブランドLP",
-    subtitle: "2名体制での共同参画案件・リッチタイポグラフィ × スクロール連動ハイライト × 超高速Vanillaスタック",
-    description:
-      "アダプトゲン製薬（ARA）が展開する野球専門サプリメントブランド『SPECIALIST』のフラッグシップ商品「SPプロテイン」の公式ランディングページ。エンジニア2名体制での共同参画案件として制作し、フロントエンド実装、UI/UX設計、レスポンシブ最適化、スクロール連動アニメーション、EC計測連携（UTMパラメータ動的付与）を担当。『まだ、“ただ身体を大きくするだけ”のプロテインを飲んでるのか？』をキーメッセージに、サイズ（体づくり）・ケア（消耗対策）・リカバリー（翌日への回復）という独自の3本柱ストーリーを、強烈なタイポグラフィとエネルギッシュなオレンジ×ペーパーテクスチャの世界観で表現。スクロール位置に応じて1文字ずつハイライト点灯する見出し演出や、スマホ用スマート追従CTAなど、直感的で離脱を防ぐUIを外部ライブラリゼロの純粋なVanilla HTML/CSS/JSで極限まで軽量・高速に実装しました。本LPの優れた訴求骨格は、女性専用プロテインブランド「BERRY MILK」のリファレンス基盤としても発展・昇華されています。",
-    overview:
-      "「野球に必要なのは、デカさだけじゃない。」をコンセプトに、野球選手の体づくり（タンパク質20g/BCAA 4,000mg）、激しい投球・打撃での消耗ケア（コラーゲン/ヒアルロン酸）、ハードな練習からのリカバリー（乳酸菌1,000億個/コンブチャ）という3大価値を訴求する縦長ランディングページ。2名体制での密なコミュニケーションとコードレビューを通じ、ファーストビューからステートメント、3本柱の比較、製品スペック、製造元の信頼性、FAQ、公式ECショップへの購入導線までをシームレスに設計。Netlify Edgeからの高速配信により、モバイル環境でも表示遅延のない快適な閲覧体験を実現しています。",
-    purpose:
-      "野球選手・指導者・保護者層へ向けた「野球専門プロテイン」の認知拡大および公式ECショップへの購買誘導。単なる筋肥大プロテインとの明確な差別化（サイズ×ケア×リカバリー）を視覚的かつ直感的に伝え、2名体制による高品質・高パフォーマンスなLPをスピーディーに市場へ投入すること。",
-    role: [
-      "2名体制での共同フロントエンド開発",
-      "UI/UXデザイン・レスポンシブ設計",
-      "スクロール連動タイポグラフィ実装",
-      "追従スマートCTA＆ヘッダー透過制御",
-      "UTM計測パラメータ自動付与設計",
-      "Netlify Edgeホスティング環境整備",
-      "アクセシビリティ（prefers-reduced-motion）対応",
-    ],
-    image: spProteinCaptureImg,
-    imageCaption: "SPプロテイン 公式ブランドLP トップ画面キャッチ（ファーストビュー）",
-    imagePc: spProteinCapturePcImg,
-    imageMobile: spProteinCaptureMobileImg,
-    imagePcCaption: "SPプロテイン 公式ブランドLP PC版トップ画面キャッチ（エネルギッシュなオレンジ×迫力のパッケージ）",
-    imageMobileCaption: "SPプロテイン 公式ブランドLP スマホ版トップ画面キャッチ（モバイルファースト・追従CTA）",
-    technologies: [
-      "HTML5 (セマンティックマークアップ)",
-      "CSS3 (CSSカスタムプロパティ / clamp() / CSS Grid)",
-      "JavaScript (ES6+ / Intersection Observer)",
-      "Vanilla JS (外部ライブラリゼロ設計)",
-      "Netlify Edge (CDN超高速静的配信)",
-      "Google Fonts (Barlow Condensed / Barlow / Noto Sans JP)",
-      "レスポンシブWebデザイン (Mobile First)",
-      "アクセシビリティ (prefers-reduced-motion 対応)",
-      "マーケティング計測 (UTMクエリパラメータ自動付与)",
-      "2名共同開発・コードレビュー",
-    ],
-    features: [
-      "2名体制でのアジャイルな共同参画: 2名のエンジニアで役割分担とコードレビューを密に行い、デザインクオリティとパフォーマンスを両立させたWeb制作を推進",
-      "スクロール連動型テキスト点灯エフェクト（Text Highlight on Scroll）: 「まだ、“ただ身体を大きくするだけ”のプロテインを飲んでるのか？」のステートメント見出しにおいて、スクロール進捗に合わせて1文字ずつ鮮やかなオレンジ（#ee6b1f）へ点灯・ハイライトされる先進的なタイポグラフィ演出を軽量なVanilla JSで構築",
-      "サイズ × ケア × リカバリーの3本柱ストーリー設計: 野球選手の体づくり（サイズ）、激しいプレーでの消耗ケア（ケア）、翌日に備える回復（リカバリー）という3大ベネフィットを、巨大な背景ウォーターマークと数字・スペックで視覚的に整理",
-      "スマート追従CTAと固定ヘッダーの連動制御: ファーストビュー通過後に表示され、最終購入セクションでは邪魔にならないよう自動フェードアウトするスマホ追従CTAボタンや、スクロール時にすりガラス（backdrop-filter）のソリッド背景へ滑らかに切り替わるヘッダーを実装",
-      "EC連携を支えるUTMパラメータ自動付与機構: 公式ECショップへの離脱リンクに対し、キャンペーン・参照元（utm_source=specialist_lp, utm_medium=referral, utm_campaign=sp_protein）を動的に付与し、マーケティングROIやコンバージョン分析を正確に行える設計",
-      "外部ライブラリゼロによる極限の軽量・高速パフォーマンス: 重厚なJSライブラリやフレームワークに依存せず、素のHTML/CSS/JSのみで構成。Netlify Edge CDNからの配信と相まって、モバイル回線でも瞬時に表示される圧倒的なロード速度を達成",
-      "アクセシビリティ＆視覚負荷への配慮: OSの「動きを減らす（prefers-reduced-motion: reduce）」設定を検知し、アニメーションや文字点灯を自動で抑制するユーザー配慮設計",
-      "エネルギッシュなスポーツブランドデザイン: 熱量を感じさせるオレンジ（#ee6b1f）と黒（#141414）、ペーパーテクスチャ（SVGフラクタルノイズ）、力強いコンデンスドフォントを組み合わせた洗練のビジュアル設計",
-    ],
-    demo: "https://lovely-muffin-d4cf61.netlify.app/",
-    screenshotsBadge: "LP & Dynamic UI",
-    screenshotsTitle: "野球専門SPプロテイン LP 画面ギャラリー",
-    screenshotsNote:
-      "2名体制での共同開発により実現した、強烈なタイポグラフィとスクロール連動エフェクト、3本柱のストーリーテリング設計です。クリックで拡大プレビューできます。",
-    screenshots: [
-      {
-        src: spProteinUiPillarsImg,
-        title: "サイズ × ケア × リカバリーの3カラムストーリー",
-        caption:
-          "野球選手に特化した3大ベネフィット（サイズ：タンパク質20g/BCAA 4,000mg、ケア：コラーゲン/ヒアルロン酸、リカバリー：乳酸菌1,000億個/コンブチャ）を巨大な背景欧文ウォーターマークと数値で訴求。",
-      },
-      {
-        src: spProteinUiDetailImg,
-        title: "製品スペック・配合成分・オファー詳細セクション",
-        caption:
-          "カフェオレ味の飲みやすさ、低カロリー・低脂質、内容量1kg、付属スプーンすり切り3杯の美味しい飲み方、公式ECショップへの購入動線を整理したコンバージョンセクション。",
-      },
-      {
-        src: spProteinUiStatementImg,
-        title: "スクロール連動型テキスト点灯エフェクト「ここが違う。」",
-        caption:
-          "画面をスクロールするにつれて1文字ずつ文字色がオレンジへと点灯するインタラクティブタイポグラフィ演出。訪問者の視線を自然に引き込み、メッセージの精読率を向上。",
-      },
-    ],
-    siteStructure: {
-      title: "ランディングページ構成図・コンバージョン導線",
-      subtitle: "ファーストビュー × 3本柱ストーリー × 製品詳細 × 公式ECショップ連携",
-      description:
-        "1ページ完結の縦長ランディングページとして、訪問者が上から下へスクロールするにつれて興味・納得・購入意欲が高まるよう緻密に設計されています。",
-      categories: [
-        {
-          category: "1. ファーストビュー＆ステートメント層",
-          badge: "Hero & Statement",
-          badgeColor: "bg-orange-100 text-orange-800 border-orange-200",
-          pages: [
-            {
-              name: "Heroファーストビュー",
-              path: "#hero",
-              desc: "エネルギッシュなオレンジ背景・立体パッケージ写真・キャッチコピー",
-              url: "https://lovely-muffin-d4cf61.netlify.app/",
-              isHighlight: true,
-            },
-            {
-              name: "ロゴマーキー（流れるテキスト）",
-              path: "#band",
-              desc: "無限ループアニメーションによるブランドロゴ・タグライン提示",
-            },
-            {
-              name: "ステートメント＆文字スクロール点灯",
-              path: "#state",
-              desc: "「身体を大きくするだけ」への疑問提起・スクロール進捗ハイライト",
-              isHighlight: true,
-            },
-          ],
-        },
-        {
-          category: "2. ベネフィット訴求層（3 Pillars）",
-          badge: "3 Pillars",
-          badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
-          pages: [
-            {
-              name: "01. サイズ（身体を大きくする）",
-              path: "#size",
-              desc: "タンパク質20g・BCAA 4,000mg・ビタミンミネラル14種",
-            },
-            {
-              name: "02. ケア（消耗に向き合う）",
-              path: "#care",
-              desc: "コラーゲン配合・ヒアルロン酸配合・関節や疲労への配慮",
-            },
-            {
-              name: "03. リカバリー（次に備える）",
-              path: "#recovery",
-              desc: "乳酸菌1,000億個・コンブチャ（紅茶キノコエキス）配合",
-            },
-          ],
-        },
-        {
-          category: "3. プロダクト詳細＆スペック層",
-          badge: "Product Detail",
-          badgeColor: "bg-stone-100 text-stone-800 border-stone-200",
-          pages: [
-            {
-              name: "製品スペック・美味しい飲み方",
-              path: "#prod",
-              desc: "リッチカフェオレ味・1kg（約1ヶ月分）・付属スプーン3杯（200ml水/牛乳）",
-              isHighlight: true,
-            },
-            {
-              name: "圧倒的なリカバリー実感",
-              path: "#voice",
-              desc: "野球プレイヤーのリアルな体感・翌日のコンディショニング変化",
-            },
-            {
-              name: "つくる人、届ける人（製造元紹介）",
-              path: "#maker",
-              desc: "アダプトゲン製薬の安心安全な国内製造基準・開発ストーリー",
-            },
-            {
-              name: "よくある質問（FAQ）",
-              path: "#faq",
-              desc: "飲むタイミング・ドーピング検査対応・保管方法など",
-            },
-          ],
-        },
-        {
-          category: "4. コンバージョン＆EC連携層",
-          badge: "Conversion & EC",
-          badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
-          pages: [
-            {
-              name: "スマート追従CTAボタン",
-              path: "#stick",
-              desc: "ファーストビュー通過後に表示・購入セクションで自動フェードアウト",
-            },
-            {
-              name: "公式ECショップ遷移（UTM連携）",
-              path: "EC遷移",
-              desc: "utm_source=specialist_lp 動的クエリ付与による流入効果測定",
-              isHighlight: true,
-            },
-          ],
-        },
-      ],
-    },
-    architecture: {
-      title: "SPプロテイン LP システム構成・制作アーキテクチャ",
-      subtitle: "2名共同フロントエンド開発 × Vanilla JS × Netlify Edge高速CDN",
-      description:
-        "2名体制での役割分担とコードレビューを通じ、外部ライブラリに一切依存しないVanilla HTML/CSS/JSによる極限の軽量・高速ランディングページを構築。Netlify Edge CDNからの配信と、公式ECショップへのUTM計測連携を実装しました。",
-      steps: [
-        {
-          title: "閲覧者（PC / スマホ）",
-          detail: "レスポンシブWebデザイン（Mobile First）",
-          tone: "blue",
-        },
-        {
-          title: "フロントエンド基盤",
-          detail: "Vanilla HTML5 / CSS3 / ES6+（外部ライブラリ非依存）",
-          tone: "purple",
-        },
-        {
-          title: "動的演出・UI制御",
-          detail: "スクロール進捗ハイライト点灯 / 追従CTA / UTM付与",
-          tone: "green",
-        },
-        {
-          title: "ホスティング・CDN",
-          detail: "Netlify Edge CDN（世界規模の超高速配信）",
-          tone: "red",
-        },
-      ],
-      flowLabel: "ユーザーアクセスから動的UI制御・EC購入遷移までの処理フロー",
-      groups: [
-        {
-          title: "共同開発・品質管理",
-          tone: "indigo",
-          cards: [
-            {
-              title: "2名体制の共同開発",
-              detail: "役割分担とコードレビューを密に行い、高品質なUIと高速性を両立",
-            },
-            {
-              title: "アクセシビリティ配慮",
-              detail: "prefers-reduced-motionを検知し、アニメーションや文字点灯を自動抑制",
-            },
-            {
-              title: "セマンティックHTML",
-              detail: "SEOとアクセシビリティを考慮した綺麗なマークアップ設計",
-            },
-          ],
-        },
-        {
-          title: "動的演出・UI実装",
-          tone: "amber",
-          cards: [
-            {
-              title: "スクロール連動文字点灯",
-              detail: "DOMパースとスクロール進捗計算による滑らかなハイライト演出",
-            },
-            {
-              title: "スマート追従CTA",
-              detail: "ファーストビュー通過後に出現し、最終購入枠で隠れるスマート制御",
-            },
-            {
-              title: "Intersection Observer",
-              detail: "要素の画面内検知による軽量・低負荷なスクロールインアニメーション",
-            },
-          ],
-        },
-        {
-          title: "マーケティング・ホスティング",
-          tone: "blue",
-          cards: [
-            {
-              title: "Netlify Edgeホスティング",
-              detail: "グローバルCDNエッジ配信による圧倒的なページロード速度の実現",
-            },
-            {
-              title: "UTM動的パラメータ付与",
-              detail: "公式ECリンクへ自動で流入元パラメータを付与し効果測定を担保",
-            },
-            {
-              title: "リバースエンジニアリング基盤",
-              detail: "本実案件の優れた骨格は、D2Cブランド「BERRY MILK」の基盤へ昇華",
-            },
-          ],
-        },
-      ],
-      highlights: [
-        {
-          title: "2名共同参画における制作推進",
-          items: [
-            "エンジニア2名体制での密なコミュニケーションとコードレビューを通じたアジャイル開発",
-            "デザインニュアンスの再現とパフォーマンスの最適化を短納期で両立",
-          ],
-        },
-        {
-          title: "Vanilla JSによる極限のパフォーマンス追求",
-          items: [
-            "外部JSライブラリ（jQuery・GSAP等）を一切使わず、ネイティブAPIのみで軽量実装",
-            "Netlify Edge CDNと相まってモバイル回線でも瞬時に表示される圧倒的なロード速度",
-          ],
-        },
-        {
-          title: "データドリブンなECマーケティング連携",
-          items: [
-            "公式ECへの遷移リンクにキャンペーン計測用UTMクエリを自動付与し、流入ROIを可視化",
-            "離脱を防ぐスマート追従CTA設計によるコンバージョン最大化",
-          ],
-        },
-      ],
-      note: "本案件はエンジニア2名体制で実際に参画・共同制作したクライアントワークです。本LPの優れた訴求動線・セクション骨格は、女性専用プロテインブランド「BERRY MILK」のリファレンス基盤としても発展・昇華されています。",
-    },
-  },
-  {
-    id: "biwakogym",
-    category: "client_web",
-    categoryLabel: "参画案件（Webサイト共同開発）",
-    badgeType: "client_web",
-    title: "トレーニングジム「BIWAKO GYM」公式WEBサイト",
-    subtitle: "滋賀県草津市のトレーニング＆コンディショニングジム 公式WEBサイト（2名共同開発）",
-    description:
-      "滋賀県草津市に構えるトレーニング＆ストレッチ＆コンディショニングジム「BIWAKO GYM（ビワコジム）」の公式WEBサイト。エンジニア2名体制での共同開発案件として参画し、企画設計からフロントエンド実装、レスポンシブ対応、UI/UX最適化、SEO構造化データマークアップまでを担当。",
-    overview:
-      "「もう、ジムで迷わない。」をキーコンセプトに、鍛錬マシン全29台と3ステップサポートを強みとするジムの魅力を伝えるWebサイト。無料体験（Trial）、料金体系表、店舗アクセス、お問い合わせまでのユーザー動線を徹底追求。視覚的な引き込みを図るファーストビューやスクロール連動アニメーション、スマートフォンからの操作性を考慮したモバイルファースト設計を採用。",
-    purpose:
-      "滋賀県草津市のトレーニング＆コンディショニングジム新規オープンに伴う公式WEBサイト制作。鍛錬マシン全29台の魅力と初心者サポート体制を訴求し、無料体験予約へのコンバージョンを高めるとともに地域SEO（MEO）を強化する。",
-    role: [
-      "企画・構成設計",
-      "フロントエンド実装",
-      "レスポンシブ最適化",
-      "Schema.org構造化マークアップ",
-      "2名共同開発・コードレビュー",
-    ],
-    image: biwakogymCaptureImg,
-    imageCaption: "BIWAKO GYM 公式WEBサイト トップ画面キャッチ（ファーストビュー）",
-    imagePc: biwakogymCapturePcImg,
-    imageMobile: biwakogymCaptureMobileImg,
-    imagePcCaption: "BIWAKO GYM 公式WEBサイト PC版トップ画面キャッチ（ファーストビュー）",
-    imageMobileCaption: "BIWAKO GYM 公式WEBサイト スマホ版トップ画面キャッチ（モバイルファースト・ナビゲーション）",
-    technologies: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "レスポンシブWebデザイン",
-      "Google Fonts (Outfit / Zen Kaku Gothic New)",
-      "JSON-LD (HealthClub 構造化データ)",
-      "SEO / OGP",
-      "UI/UX設計",
-      "2名共同開発",
-    ],
-    features: [
-      "2名体制での役割分担・コードレビューを通じた効率的な共同開発推進",
-      "「BIWAKO GYM」の力強さと清潔感を両立させたダークトーン×アクセントブルーのモダンデザイン",
-      "鍛錬マシンフロアの臨場感を伝えるフルスクリーン・ファーストビューとマーキー（流れるテキスト）演出",
-      "無料体験（Trial）へのコンバージョンを最大化する導線設計（ヘッダー常設CTA・お問い合わせフォーム連動）",
-      "スマートフォン閲覧に最適化したハンバーガーメニュー・開閉ナビゲーションおよびタッチ操作対応",
-      "Schema.org（HealthClub / LocalBusiness）準拠のJSON-LD構造化マークアップによる地域SEO（MEO）強化",
-      "店舗情報（営業時間・定休日・電話・マップ・料金表）を迷わず確認できるアクセシビリティ設計",
-    ],
-    demo: "https://biwakogym.com/",
-    architecture: {
-      title: "ジム公式Webサイト構成・制作アーキテクチャ",
-      subtitle:
-        "HTML5/CSS3/JavaScript × 2名共同開発 × Schema.org 地域SEO",
-      description:
-        "「もう、ジムで迷わない。」をコンセプトに、2名体制での役割分担・コードレビューを通じた効率的なフロントエンド共同開発を推進。無料体験コンバージョン動線と、Schema.org準拠の地域SEO（MEO）構造化データを実装しました。",
-      steps: [
-        {
-          title: "閲覧者（PC / スマホ）",
-          detail: "レスポンシブWebデザインによる快適な閲覧体験",
-          tone: "blue",
-        },
-        {
-          title: "フロントエンド実装",
-          detail: "HTML5 / CSS3 / JavaScript (モダンUI演出)",
-          tone: "purple",
-        },
-        {
-          title: "コンバージョン動線",
-          detail: "ヘッダー常設CTA・無料体験予約フォーム連携",
-          tone: "green",
-        },
-        {
-          title: "検索エンジン（SEO/MEO）",
-          detail: "HealthClub / LocalBusiness JSON-LD構造化データ",
-          tone: "red",
-        },
-      ],
-      flowLabel: "ユーザー動線とWebサイト構成フロー",
-      groups: [
-        {
-          title: "共同開発・技術仕様",
-          tone: "indigo",
-          cards: [
-            {
-              title: "2名体制の共同開発",
-              detail: "GitHubを活用した役割分担と相互コードレビュー",
-            },
-            {
-              title: "モバイルファースト設計",
-              detail: "スマホ開閉ハンバーガーメニュー＆タッチ操作最適化",
-            },
-            {
-              title: "地域SEO強化",
-              detail:
-                "滋賀県草津市のジム検索に強いSchema.org構造化マークアップ",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "flamenco-flyer",
-    category: "client_graphic",
-    categoryLabel: "実務制作案件（グラフィック・DTP・SNS広報）",
-    badgeType: "client_graphic",
-    title: "フラメンコ＆音楽イベント公式フライヤー・SNSプロモーションデザイン",
-    subtitle: "クライアントワーク（実務制作案件）・Photoshop & Illustrator によるA4印刷フライヤー・SNS告知バナー・カルーセル画像制作",
-    description:
-      "フラメンコスタジオや舞台主催者・音楽家からの直接依頼による実務制作案件。フラメンコや打楽器（カホン）ワークショップなどの音楽・舞台イベントに向けた公式印刷フライヤーおよびSNSプロモーション用デザイン群。クライアントのヒアリングに基づき、Adobe PhotoshopおよびIllustratorを使用し、A4印刷用フライヤー（ダークトーン／ライトトーンの2パターンデザイン提案）からInstagram/Facebook向けの告知バナー、詳細解説カルーセルスライドまで幅広く制作。人物写真の切り抜き・レタッチ・光彩エフェクト加工から、タイポグラフィ、情報階層化、受講クラス・料金・アクセス案内のレイアウト、印刷入稿（CMYK/トンボ・塗り足し設定）までを一貫して担当しました。",
-    overview:
-      "四季（春・初夏・夏・初秋・冬）それぞれの開催時期や気候・テーマ、打楽器ワークショップのリズム感に合わせて、カラーパレットや装飾モチーフ（桜・新緑・紫陽花・紅葉・ホリデーオーナメント、幾何学リズムパターンなど）を綿密に設計。印刷用A4フライヤー（高解像度CMYK）とSNS用スクエアバナー（RGB）双方の媒体特性を最適化し、紙面・タイムライン双方で一目で目を引き、参加申込みへと繋がる導線（QRコード配置等）を構築。実際のクライアントワークとして高い集客成果と満足度を獲得しました。",
-    purpose:
-      "四季折々の舞台公演や打楽器ワークショップにおける集客・認知拡大。クライアントの要望に応じ、印刷用A4フライヤーとSNSタイムライン（Instagram/Facebook）それぞれの媒体特性に特化したビジュアルを制作。高精度の人物レタッチと季節感ある世界観で受講申込・チケット購買へ直結させること。",
-    role: [
-      "クライアント要件ヒアリング・コンセプト策定",
-      "グラフィックデザイン (DTP / A4フライヤー)",
-      "人物写真レタッチ・光彩エフェクト合成",
-      "タイポグラフィ・文字組み・情報階層化",
-      "SNSプロモーションバナー・スライド展開",
-      "印刷入稿データ作成 (CMYK / 塗り足し・トンボ)",
-    ],
-    image: flyerFlamencoImg,
-    imageCaption: "A4完成フライヤー 2パターン提案（左: ダークトーン / 右: ライトトーン）",
-    technologies: [
-      "Adobe Photoshop",
-      "Adobe Illustrator",
-      "DTP / 印刷入稿データ作成 (CMYK)",
-      "グラフィックデザイン",
-      "SNSバナー・カルーセル制作",
-      "人物写真切り抜き・レタッチ",
-      "色調補正・光彩エフェクト合成",
-      "タイポグラフィ・文字組み",
-      "情報アーキテクチャ（IA）",
-      "季節別コンセプトカラー設計",
-      "QRコード導線設計",
-      "クライアントワーク（実務制作）",
-    ],
-    features: [
-      "実務制作案件としてクライアントヒアリングからデザイン提案、印刷入稿まで一貫対応: 主催者・音楽家のニーズを丁寧に汲み取り、ダーク／ライトの2パターン提案や複数フォーマット展開を推進",
-      "四季（春・初夏・夏・初秋・冬）の開催時期やイベント特性に応じた色彩心理・モチーフの巧みな使い分けと世界観構築",
-      "人物写真の高精度な切り抜き・輪郭補正、衣装のゴールドフリンジや楽器テクスチャを活かした色調補正・光彩エフェクト加工（Photoshop）",
-      "クラス詳細（テクニカ・振付・コムニカシオン、初心者向け打楽器講座）、料金表、キャンセルポリシー、アクセス等の複雑な情報を一目で理解できる階層レイアウト（Illustrator）",
-      "Instagram/Facebookのタイムラインで視線を引きつけるスクエア比率（1:1）のバナーおよびカルーセル解説スライドの展開",
-      "印刷入稿用（高解像度CMYK/塗り足し・トンボ設定）およびWeb・SNS配信（RGB）のマルチフォーマット制作",
-      "メールおよびSNS申込みへ直結するQRコード配置による高いコンバージョン導線設計",
-    ],
-    screenshots: [
-      {
-        src: flyerFlamencoImg,
-        title: "A4完成フライヤー 2パターン提案（初夏・第4弾）",
-        caption:
-          "左: フラメンコの格式と情熱を表現したブラックver / 右: 爽やかで可読性を重視したホワイトver。クライアントへのデザイン提案として制作した2パターンの印刷用フライヤーデータ",
-      },
-      {
-        src: graphicFlyerWinterImg,
-        title: "冬開催 公式フライヤー（12月・1月開催）",
-        caption:
-          "ホリデーシーズンを演出するバーガンディ×雪の結晶×オーナメント。ダンサー写真の立体的な光彩エフェクトとシックなA4フライヤーレイアウト",
-      },
-      {
-        src: graphicSnsEarlysummerImg,
-        title: "初夏開催 SNS告知バナー（6月開催）",
-        caption:
-          "水彩アルコールインクアート調のパープルグラデーションとゴールドフレーム。躍動感あふれる写真を活かしたInstagram用スクエアバナー（1:1）",
-      },
-      {
-        src: graphicSnsAutumnImg,
-        title: "初秋開催 SNS告知バナー（第7弾 9月開催）",
-        caption:
-          "フォレストグリーンと紅葉あしらいを取り入れた初秋の告知デザイン。ページめくり風の視覚演出でタイムライン上の視認性を高めたフィード画像",
-      },
-      {
-        src: graphicSnsSlideDetailImg,
-        title: "初秋開催 クラス解説カルーセルスライド",
-        caption:
-          "Instagramカルーセル投稿用に制作したクラス詳細解説スライド。各クラスの指導ポイントや対象レベル、受講条件を読みやすく構造化",
-      },
-      {
-        src: graphicSnsSpringImg,
-        title: "春開催 SNS告知スライド（5月開催）",
-        caption:
-          "爽やかなミントブルーとネイビーの配色。大判ショール（マントン）を羽織った人物写真の背景を精緻に切り抜いたモダンデザイン",
-      },
-      {
-        src: graphicSnsSummerImg,
-        title: "夏開催 SNS告知スライド（第5弾 7月開催）",
-        caption:
-          "シルバー×ブラックの星の煌めき・ボケ光彩エフェクト。夏の夜のワークショップを盛り上げるラグジュアリーな告知スライド",
-      },
-      {
-        src: graphicCajonWorkshopImg,
-        title: "打楽器ワークショップ SNS告知バナー（カホンクルシージョ）",
-        caption:
-          "イエロー×ボルドーの幾何学パターンと演奏者写真の切り抜き。初心者向けワークショップの親しみやすさとリズム感を表現したSNS告知バナー（秋葉原会場・QRコード導線設計）",
-      },
-    ],
-  },
-  {
-    id: "chemical",
-    category: "client_enterprise",
-    categoryLabel: "参画案件（業務システム）",
-    badgeType: "client_enterprise",
-    title: "化学物質管理システム（PoC・バージョンアップ）",
-    subtitle: "AIエンジニア・機械エンジニア視点でSpecKit仕様駆動開発PoCを主導｜FDE・エンタープライズ移行・運用",
-    description:
-      "AIエンジニア・機械エンジニアとしてのドメイン理解力を活かし、大手化学メーカーのエンタープライズ案件でSpecKitを用いた『仕様駆動開発（Spec-Driven Development）』のPoCを主導。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、レガシーStruts+JSPからSpringBoot 3+Vue.jsへのマイグレーション検証、Figma UI設計、JAMPからCMPへの法令要件定義、IMDS連携、インフラ・リポジトリ移行からITSM保守運用まで一気通貫で担当。",
-    overview:
-      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを推進。JAMP（chemSHERPA）からCMPへの法改正対応、IMDS連携、業務主管部門との折衝・要件定義までFDEとして伴走しました。",
-    purpose:
-      "大手化学メーカーにおける化学物質管理の一元化および法改正（JAMPからCMPへの移行）への適合。レガシーなStruts/JSPからモダンなSpringBoot 3/Vue.jsへの段階的移行において、AIエンジニア・機械エンジニア視点でSpecKitを用いた仕様駆動開発（SDD）のPoCを主導。要件定義の曖昧さを排除し、保守性と開発生産性を抜本的に向上させること。",
-    role: [
-      "AIエンジニア / FDE（仕様駆動開発PoC主導）",
-      "要件定義・業務主管部門折衝（JAMP→CMP・法令対応）",
-      "Figma UI部品設計 & Vue.jsフロントエンド実装",
-      "バックエンド開発 (Java 21 / SpringBoot 3)",
-      "外部システム連携 (IMDS・リバースプロキシ・電子証明書)",
-      "インフラ移行 & ITSM保守運用・ジョブ自動化",
-    ],
-    technologies: [
-      "SpecKit (仕様駆動開発/SDD)",
-      "AI/LLM活用 (仕様定義・PoC)",
-      "Java 21",
-      "SpringBoot 3",
-      "Vue.js",
-      "TypeScript",
-      "Figma",
-      "Tomcat 11",
-      "Oracle DB",
-      "IMDS",
-      "SMTP",
-      "リバースプロキシ",
-      "電子証明書",
-      "GitLab",
-      "GitHub",
-      "JP1",
-      "ITSM",
-      "Windows タスク スケジューラ",
-    ],
-    features: [
-      "【AIエンジニア・FDE主導】SpecKitを用いた仕様駆動開発（Spec-Driven Development）のPoC検証をリード。自然言語仕様から設計・コード生成の整合性を高め、エンタープライズにおける開発生産性向上を実証",
-      "【機械エンジニア・ドメイン知見】化学・製造業の専門的要件（JAMP/chemSHERPAからCMPへの法改正移行、自動車業界材料DB・IMDS連携）をエンジニアリングに直結",
-      "Figmaのアプリデザインガイドラインを基に、システム向けにカスタマイズしたUI部品を設計・作成",
-      "Figmaの設計に沿ったVue.js部品をプロジェクト内に実装",
-      "マイグレーション: Struts/JSP から Java 21・SpringBoot 3・Vue.js への段階的リプレイス設計",
-      "JAMP から CMP への法令対応および業務主管部門との要件定義・折衝",
-      "IaaS クラウドリフト前提の設計およびマルチテナント対応の検討",
-      "電子証明書が必要なリバースプロキシ経由でのベンダーパッケージ連携、および IMDS（International Material Data System）との外部連携",
-      "複数部署共用サーバーからアプリ専用サーバーへの移行、GitLab から GitHub への移行",
-      "SMTP サーバーを利用したメール送信",
-      "ITSMによるインシデント・変更・問題・ナレッジ管理。エスカレーションされたインシデントへの対応と同部署内の変更管理アセスメント",
-      "月初の手動ログ削除を Windows タスク スケジューラで自動化。アプリのバッチジョブは JP1 で日次・5分間隔などで実行",
-      "業務主管部門からのデータ抽出・改修依頼への随時対応、共通管理の要件書レビュー",
-    ],
-    architecture: {
-      title: "化学物質管理システム構成図・アーキテクチャ",
-      subtitle: "AIエンジニア・FDE主導によるSpecKit仕様駆動開発PoC & レガシーからJava 21・SpringBoot 3・Vue.js移行構成",
-      description:
-        "AIエンジニア・機械エンジニアとしての視点を活かし、SpecKitを用いた仕様駆動開発（SDD）のPoCを主導。レガシー環境からJava 21・SpringBoot 3・Vue.jsを用いた構成への移行、外部サービス連携・サーバー／リポジトリ移行・ジョブ運用の改善をFDEとして一貫して推進しました。以下に論理構成と成果を示します。",
-      variants: [
-        {
-          label: "レガシー版（移行前）",
-          description:
-            "JDK 8・Struts・JSP・iBatisを中心とした従来構成です。複数部署共用サーバー上で稼働し、外部連携や手動作業を含む運用を行っていました。",
-          steps: [
-            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
-            { title: "画面", detail: "Struts / JSP", tone: "purple" },
-            { title: "アプリケーション", detail: "JDK 8 / iBatis", tone: "purple" },
-            { title: "データベース", detail: "Oracle Database", tone: "red" },
-          ],
-          groups: [
-            {
-              title: "外部サービス連携",
-              description: "アプリケーションから接続する外部サービス・連携先",
-              tone: "blue",
-              cards: [
-                { title: "業界標準", detail: "JAMP (chemSHERPA)" },
-                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
-                { title: "外部データ連携", detail: "IMDS" },
-                { title: "メール送信", detail: "SMTPサーバー" },
-              ],
-            },
-            {
-              title: "運用・開発基盤",
-              tone: "slate",
-              cards: [
-                { title: "サーバー", detail: "複数部署で共用" },
-                { title: "リポジトリ", detail: "GitLab" },
-                { title: "ログ削除", detail: "月初に手動実施" },
-                { title: "バッチ運用", detail: "JP1で定期実行" },
-              ],
-            },
-          ],
-        },
-        {
-          label: "モダナイゼーション後版（移行後・PoC検証）",
-          description:
-            "Java 21・SpringBoot 3・Vue.js・TypeScriptを用いた最新スタック構成。SpecKitによる仕様駆動開発PoCを組み込み、専用サーバーやGitHubへの移行、定期ジョブとITSMによる保守運用も図に含めています。",
-          steps: [
-            { title: "利用者", detail: "Webブラウザ", tone: "blue" },
-            { title: "Web画面", detail: "Vue.js / TypeScript", tone: "green" },
-            {
-              title: "API・アプリケーション",
-              detail: "Java 21 / SpringBoot 3",
-              tone: "purple",
-            },
-            { title: "データベース", detail: "Oracle Database", tone: "red" },
-          ],
-          groups: [
-            {
-              title: "外部サービス連携",
-              description: "アプリケーションから接続する外部サービス・連携先",
-              tone: "blue",
-              cards: [
-                { title: "業界標準", detail: "JAMP (chemSHERPA) → CMP" },
-                { title: "ベンダー連携", detail: "電子証明書 / リバースプロキシ" },
-                { title: "外部データ連携", detail: "IMDS" },
-                { title: "メール送信", detail: "SMTPサーバー" },
-              ],
-            },
-            {
-              title: "運用・開発基盤",
-              tone: "slate",
-              cards: [
-                { title: "仕様駆動開発", detail: "SpecKit PoC検証を主導" },
-                { title: "サーバー", detail: "アプリ専用環境へ移行" },
-                { title: "リポジトリ", detail: "GitHubへ移行" },
-                { title: "ジョブ運用", detail: "JP1 / タスクスケジューラ" },
-                { title: "保守運用", detail: "ITSMで管理" },
-              ],
-            },
-          ],
-          note: "【PoC成果】AIエンジニア・機械エンジニア視点でSpecKitによる仕様駆動開発を導入・検証",
-        },
-      ],
-      highlights: [
-        {
-          title: "SpecKit仕様駆動開発PoC & FDE推進の成果",
-          items: [
-            "AIエンジニア・機械エンジニアとして、SpecKitを用いた仕様駆動開発（SDD）のPoCをエンタープライズ現場で主導。要件・仕様の形式化と開発サイクルの迅速化を実証",
-            "顧客現場（業務主管部門・インフラ・開発）の最前線に入り込み、課題発見から要件定義・設計・実装・インフラ移行までを牽引するFDE（Forward Deployed Engineer）スタイルを確立",
-            "機械・化学分野のドメイン知見を活かし、JAMP（chemSHERPA）からCMPへの移行要件やIMDS外部連携など複雑な業務要件を的確に咀嚼・具現化",
-            "JDK 8・Struts・iBatisレガシーシステムから、Java 21・SpringBoot 3・Vue.jsへの段階的モダナイゼーション構成を検証",
-            "手動の月初ログ削除をタスクスケジューラで自動化し、JP1バッチ運用やITSMによる変更管理アセスメント・インシデント対応を整備",
-          ],
-        },
-        {
-          title: "主な機能・外部連携",
-          items: [
-            "化学物質情報の管理と、JAMP（chemSHERPA）からCMPへの法改正適応に伴う要件整理",
-            "電子証明書を用いたリバースプロキシ経由のベンダーパッケージ連携",
-            "IMDSとの外部連携およびSMTPサーバーを利用したメール送信",
-            "JP1による日次・定期バッチ運用と、Windowsタスクスケジューラによるログ削除の自動化",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    id: "bank",
-    category: "client_enterprise",
-    categoryLabel: "参画案件（業務システム）",
-    badgeType: "client_enterprise",
-    title: "銀行系決済システム",
-    subtitle: "大量明細処理・即日振込機能の実装",
-    description:
-      "大手銀行向けの決済インフラシステム。大量の振込明細の取得と即日振込処理を実装。ミッションクリティカルなシステムのため高い信頼性・可用性を確保。",
-    overview:
-      "企業向けの法人決済サービス。SVN による厳格なバージョン管理、Hulft による定期ジョブ実行、複雑なプロキシ設定を含むオンプレミス基盤上での運用。銀行の厳しい要件を満たす堅牢なシステム。",
-    purpose:
-      "大手都市銀行における企業向け法人決済サービスの高度化。大量の振込明細の高速中継と即日振込処理を実現し、ミッションクリティカルな決済インフラとして24/7の高可用性・高信頼性を担保する。",
-    role: [
-      "バックエンド開発 (Java)",
-      "大量明細バッチ処理設計",
-      "Hulftジョブ連携",
-      "ネットワーク・プロキシ設定",
-      "障害監視・保守運用",
-    ],
-    technologies: [
-      "Java 8",
-      "Hulft",
-      "SVN",
-      "Tomcat",
-      "Oracle Database",
-      "Bash",
-      "NAS",
-    ],
-    features: [
-      "大量明細の高速取得・処理機能",
-      "即日振込実行エンジン",
-      "Hulft カスタマーセンター連携",
-      "プロキシを含む複雑なネットワーク設定の管理",
-      "NAS導入時のセットアップ・動作検証",
-      "24/7 監視・対応体制による高可用性",
-    ],
-    architecture: {
-      title: "銀行系決済システム構成図・アーキテクチャ",
-      subtitle: "法人向け大量明細データ中継・即日振込決済インフラ",
-      description:
-        "法人の業務システムと銀行側の決済サービスを連携するシステムの保守開発を担当しました。大量明細の取得・処理、即日振込機能の実装に加え、Java 8・Tomcatのアプリケーション、Oracle Database、Hulftによるデータ連携やプロキシ設定を含む運用に携わりました。以下は公開情報と担当実績をもとにした概念図であり、会社名・製品名や個別の接続先は記載していません。",
-      steps: [
-        { title: "企業の業務システム", detail: "会計・ERP等", tone: "blue" },
-        { title: "連携・転送", detail: "ファイル連携 / Hulft", tone: "green" },
-        {
-          title: "決済アプリケーション",
-          detail: "Java 8 / Tomcat",
-          tone: "purple",
-        },
-        {
-          title: "銀行側決済サービス",
-          detail: "振込・口座情報連携",
-          tone: "red",
-        },
-      ],
-      flowLabel: "法人向け決済処理の流れ",
-      groups: [
-        {
-          title: "データベース",
-          description: "決済アプリケーションが振込・明細データを参照・更新します。",
-          tone: "slate",
-          cards: [
-            {
-              title: "Oracle Database",
-              detail: "振込・大量明細データ高速トランザクション",
-            },
-          ],
-        },
-        {
-          title: "開発・運用基盤",
-          tone: "slate",
-          cards: [
-            { title: "ネットワーク", detail: "プロキシ設定・保守" },
-            { title: "ソース管理", detail: "SVNによる厳格なバージョン管理" },
-            { title: "バッチ連携", detail: "Hulft / Bashスクリプト" },
-            { title: "ファイル共有", detail: "NAS セットアップ・動作検証" },
-            { title: "実行環境", detail: "24/7 高可用性オンプレミス基盤" },
-          ],
-        },
-      ],
-      highlights: [
-        {
-          title: "主な機能",
-          items: [
-            "大量の振込明細を高速に取得・処理する機能",
-            "即日振込実行エンジン",
-            "Hulftを利用した定期データ連携",
-            "企業内システムと決済アプリケーションの連携",
-          ],
-        },
-        {
-          title: "担当・使用技術",
-          items: [
-            "Java 8・Tomcat・Oracle Databaseを用いた保守開発を担当",
-            "SVNによる構成管理、Hulftでのデータ連携、プロキシを含むサーバー環境の設定・保守",
-            "NASのセットアップと動作検証も実施",
-            "24/7 監視・対応体制による高可用性の維持",
-          ],
-        },
-      ],
-      note: "担当機能：大量明細の取得・処理 ／ 即日振込機能の実装",
-    },
-  },
+  }
 ];
