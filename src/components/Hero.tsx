@@ -54,8 +54,8 @@ export default function Hero({
                 "AI Engineer / FDE",
                 "Next.js / React",
                 "TypeScript",
-                "Java / SpringBoot 3",
-                "Vue.js",
+                "Spring Boot 4.x (Java 21)",
+                "Vue.js 3 / Vite",
                 "UI/UX & Figma",
                 "Adobe Photoshop & Illustrator",
                 "IMDS / エンタープライズ",
@@ -135,7 +135,7 @@ export default function Hero({
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">得意スタック</span>
                     <span className="font-bold text-slate-800">
-                      SpecKit / Java 21 / Next.js / Vue
+                      SpecKit / Spring Boot 4.x / Vue 3 / Next
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">

@@ -32,7 +32,7 @@ const skillsData: SkillCategory[] = [
       "React",
       "TypeScript",
       "Tailwind CSS",
-      "Vue.js",
+      "Vue.js 3 / Vite",
       "Decap CMS (Git-based)",
       "WordPress",
       "SEO対策 / 構造化データ (JSON-LD)",
@@ -46,7 +46,8 @@ const skillsData: SkillCategory[] = [
     description: "大規模・金融開発で培った堅牢なロジック設計とセキュアな外部連携",
     skills: [
       "Java (JDK 8〜21)",
-      "SpringBoot 3",
+      "Spring Boot 4.x / 3.x",
+      "JUnit 5 (単体テスト / 仕様駆動TDD)",
       "RESTful API",
       "GitHub OAuth認証",
       "Oracle DB",
