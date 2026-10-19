@@ -4,7 +4,6 @@ import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import ProjectDetailPage from "./components/ProjectDetailPage";
 import Skills from "./components/Skills";
-import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import profileImage from "./assets/profile.jpg";
@@ -19,7 +18,6 @@ type SectionKey =
   | "profile"
   | "projects"
   | "skills"
-  | "experience"
   | "contact";
 
 function App() {
@@ -30,7 +28,6 @@ function App() {
   const profileRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
-  const experienceRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (section: SectionKey) => {
@@ -38,7 +35,6 @@ function App() {
       profile: profileRef,
       projects: projectsRef,
       skills: skillsRef,
-      experience: experienceRef,
       contact: contactRef,
     };
     targetMap[section]?.current?.scrollIntoView({ behavior: "smooth" });
@@ -126,11 +122,6 @@ function App() {
       {/* スキル・対応領域（Adobe認定資格統合） */}
       <div ref={skillsRef}>
         <Skills />
-      </div>
-
-      {/* 経歴・バックグラウンド */}
-      <div ref={experienceRef}>
-        <Experience />
       </div>
 
       {/* お問い合わせ */}
