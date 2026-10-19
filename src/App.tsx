@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
+import About from "./components/About";
 import ProjectDetailPage from "./components/ProjectDetailPage";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
@@ -16,6 +17,7 @@ function parseProjectHash(hash: string): string | null {
 
 type SectionKey =
   | "profile"
+  | "about"
   | "projects"
   | "skills"
   | "contact";
@@ -26,6 +28,7 @@ function App() {
   });
 
   const profileRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
@@ -33,6 +36,7 @@ function App() {
   const scrollToSection = (section: SectionKey) => {
     const targetMap: Record<SectionKey, React.RefObject<HTMLDivElement | null>> = {
       profile: profileRef,
+      about: aboutRef,
       projects: projectsRef,
       skills: skillsRef,
       contact: contactRef,
@@ -51,6 +55,10 @@ function App() {
         if (rawHash === "projects") {
           setTimeout(() => {
             projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+          }, 50);
+        } else if (rawHash === "about") {
+          setTimeout(() => {
+            aboutRef.current?.scrollIntoView({ behavior: "smooth" });
           }, 50);
         }
       }
@@ -110,6 +118,7 @@ function App() {
         <Hero
           profileImage={profileImage}
           onExploreWorks={() => handleNavClick("projects")}
+          onAboutClick={() => handleNavClick("about")}
           onContactClick={() => handleNavClick("contact")}
         />
       </div>
@@ -117,6 +126,11 @@ function App() {
       {/* 制作実績・プロジェクト一覧（検索＆サマリーカード） */}
       <div ref={projectsRef}>
         <Projects onSelectProject={handleSelectProject} />
+      </div>
+
+      {/* 自己紹介・歩んできた道 */}
+      <div ref={aboutRef}>
+        <About onContactClick={() => handleNavClick("contact")} />
       </div>
 
       {/* スキル・対応領域（Adobe認定資格統合） */}

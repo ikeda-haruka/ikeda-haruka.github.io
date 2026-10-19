@@ -1,12 +1,14 @@
 interface HeroProps {
   profileImage: string;
   onExploreWorks?: () => void;
+  onAboutClick?: () => void;
   onContactClick?: () => void;
 }
 
 export default function Hero({
   profileImage,
   onExploreWorks,
+  onAboutClick,
   onContactClick,
 }: HeroProps) {
   return (
@@ -70,11 +72,11 @@ export default function Hero({
             </div>
 
             {/* CTAボタングループ */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4">
               <button
                 type="button"
                 onClick={onExploreWorks}
-                className="px-7 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm tracking-wide rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
+                className="px-6 sm:px-7 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm tracking-wide rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
                 <span>実務参画実績を見る</span>
                 <span className="text-xs">↓</span>
@@ -82,8 +84,17 @@ export default function Hero({
 
               <button
                 type="button"
+                onClick={onAboutClick}
+                className="px-5 sm:px-6 py-3.5 bg-white hover:bg-slate-50 text-indigo-700 border border-indigo-200 font-semibold text-sm tracking-wide rounded-xl shadow-xs hover:border-indigo-400 hover:bg-indigo-50/40 transition-all cursor-pointer flex items-center gap-1.5"
+              >
+                <span>自己紹介・歩み</span>
+                <span className="text-xs">🌱</span>
+              </button>
+
+              <button
+                type="button"
                 onClick={onContactClick}
-                className="px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-semibold text-sm tracking-wide rounded-xl shadow-xs hover:border-slate-400 transition-all cursor-pointer"
+                className="px-5 sm:px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-semibold text-sm tracking-wide rounded-xl shadow-xs hover:border-slate-400 transition-all cursor-pointer"
               >
                 お問い合わせ
               </button>
@@ -92,7 +103,7 @@ export default function Hero({
                 href="https://github.com/ikeda-haruka"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3.5 text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors flex items-center gap-1.5"
+                className="px-3 py-3.5 text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors flex items-center gap-1"
               >
                 <span>GitHub</span>
                 <span className="text-xs">↗</span>
@@ -105,24 +116,35 @@ export default function Hero({
             <div className="relative w-full max-w-sm sm:max-w-md">
               {/* カード本体 */}
               <div className="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl relative overflow-hidden">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative">
-                    <img
-                      src={profileImage}
-                      alt="池田遥香"
-                      className="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-200 shadow-sm"
-                    />
-                    <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full"></span>
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="relative">
+                      <img
+                        src={profileImage}
+                        alt="池田遥香"
+                        className="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-200 shadow-sm"
+                      />
+                      <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full"></span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900">池田 遥香</h3>
+                      <p className="text-xs font-semibold text-indigo-600 mt-0.5">
+                        Haruka Ikeda
+                      </p>
+                      <p className="text-xs text-slate-500 mt-1">
+                        WEB Designer & AI Engineer (FDE)
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900">池田 遥香</h3>
-                    <p className="text-xs font-semibold text-indigo-600 mt-0.5">
-                      Haruka Ikeda
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">
-                      WEB Designer & AI Engineer (FDE)
-                    </p>
-                  </div>
+
+                  <button
+                    type="button"
+                    onClick={onAboutClick}
+                    className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer hidden sm:block shrink-0"
+                    title="自己紹介セクションへ移動"
+                  >
+                    自己紹介 →
+                  </button>
                 </div>
 
                 <div className="space-y-3 pt-2 border-t border-slate-100 text-xs text-slate-600">
