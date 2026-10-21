@@ -163,7 +163,7 @@ export default function About({ onContactClick }: AboutProps) {
                   </div>
                 </div>
                 <span className="text-xs text-slate-500 font-medium bg-white px-3 py-1.5 rounded-full border border-slate-200 self-start md:self-auto">
-                  デザイン学習 → SES研修 → フリーランスSE
+                  デザイン学習 → SES（関西） → フリーランスSE（岡山）
                 </span>
               </div>
 
@@ -183,11 +183,13 @@ export default function About({ onContactClick }: AboutProps) {
                     <span>ライフスタイルの変化に備え、働き方の選択肢を自ら広げる選択</span>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    元々はSESエンジニアとして働いていましたが、将来の母親の介護や、旦那さん・子どもとの生活というライフスタイルの変化を見据え、「今のうちから自分で働き方や収入の選択肢を広げていこう」という想いが強くなりました。
-                    自身のこれからの生き方や理想の働き方について真剣に悩み、深く向き合った末に、<strong className="text-slate-900 font-bold bg-white/80 px-1.5 py-0.5 rounded border border-blue-200">フリーランスのシステムエンジニアとして独立</strong>する道を選びました。
+                    SESエンジニア時代は関西に拠点を置いて働いていましたが、将来の家族との生活やライフスタイルの変化を見据え、「今のうちから自分で働き方や収入の選択肢を広げていこう」と自身の生き方に深く向き合い、<strong className="text-slate-900 font-bold bg-white/80 px-1.5 py-0.5 rounded border border-blue-200">フリーランスのシステムエンジニアとして独立</strong>しました。
                   </p>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    将来子どもができたり、自身の親や結婚相手の親の介護が必要になったりしたときにも、<strong className="text-indigo-900 font-bold underline decoration-indigo-400 decoration-2 underline-offset-2">大切な人との時間を何よりも大切にしながら、場所や時間に縛られずに自由に働ける環境</strong>をつくっていきたいと思っています。
+                    フリーランスエンジニアになってからは、地元の岡山県の実家に帰省し、拠点を置いています。地元に戻る決断をした大きなきっかけは、地元で暮らす母親が緑内障を患い「日々の運転が不便になってきた」という連絡を受けたことでした。ちょうどそのタイミングで母親の定年退職の時期が重なったこともあり、「離れた場所から心配するのではなく、身近に寄り添って日常生活を支えたい」という想いから、地元・岡山へ帰ることを決めました。
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    将来子どもができたり、自身や結婚相手の親の介護が必要になったりしたときにも、<strong className="text-indigo-900 font-bold underline decoration-indigo-400 decoration-2 underline-offset-2">大切な人との時間を何よりも大切にしながら、場所や時間に縛られずに自由に働ける環境</strong>をつくっていきたいと思っています。
                   </p>
                 </div>
 

@@ -186,6 +186,12 @@ export default function Hero({
 
                 <div className="space-y-3 pt-2 border-t border-slate-100 text-xs text-slate-600">
                   <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
+                    <span className="font-medium text-slate-500">活動拠点</span>
+                    <span className="font-bold text-slate-800">
+                      岡山県（全国フルリモート対応）
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl">
                     <span className="font-medium text-slate-500">専門領域</span>
                     <span className="font-bold text-slate-800">
                       実務参画・Webデザイン & AI/FDE
