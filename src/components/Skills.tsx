@@ -73,6 +73,7 @@ const skillsData: SkillCategory[] = [
       "デザインシステム移植・カスタマイズ (React 19 → Vue.js/Vite)",
       "FDE（Forward Deployed Engineer / 顧客現場課題解決）",
       "AIエンジニアリング / プロンプト設計 (Claude・Gemini・Copilot)",
+      "Copilot for VSCode (プロンプトによるHTML画面モック作成・業務要件調整)",
       "機械エンジニア・製造ドメイン知見（化学・素材・IMDS）",
       "GitHub Issues（自動タスク起票・チケット管理）",
       "GitHub REST API / 自動化スクリプト (Node.js)",

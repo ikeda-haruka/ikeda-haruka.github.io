@@ -115,14 +115,15 @@ export const projectsData: Project[] = [
     title: "化学物質管理システム（PoC・バージョンアップ）",
     subtitle: "AIエンジニア・機械エンジニア視点でSpecKit仕様駆動開発PoCを主導｜Vue.js 3+Vite × Spring Boot 4.x (Java 21) × JUnit 5",
     description:
-      "大手化学メーカーのエンタープライズ案件において、AIエンジニア・機械エンジニア視点を活かし、SpecKitを使用した『仕様駆動開発（Spec-Driven Development）』のPoCを主導。複数人開発を前提に機能単位でspec.md/plan.md/task.mdを分割策定し、speckit.orchestratorへの自然言語指示から適切なSKILL.mdを自律選定・実行する高度なAIエージェントワークフローを構築。さらにSourceTree手動運用から、プロンプト指示によるコミットの自動グルーピング・機密情報チェック・コミット自動化を実現。UI設計では当初検討のFigma MCP連携を見直し、社内既存のReact 19デザインガイドラインをVue.js 3+TypeScript+Viteへカスタマイズ移植する現実的かつ迅速な方針転換を断行。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、StrutsからJava 21+Spring Boot 4.xへのモダナイゼーション、JUnit 5による単体テスト実装からITSM保守運用まで一気通貫で推進しました。",
+      "大手化学メーカーのエンタープライズ案件において、AIエンジニア・機械エンジニア視点を活かし、SpecKitを使用した『仕様駆動開発（Spec-Driven Development）』のPoCを主導。複数人開発を前提に機能単位でspec.md/plan.md/task.mdを分割策定し、speckit.orchestratorへの自然言語指示から適切なSKILL.mdを自律選定・実行する高度なAIエージェントワークフローを構築。さらにSourceTree手動運用から、プロンプト指示によるコミットの自動グルーピング・機密情報チェック・コミット自動化を実現。UI設計では当初検討のFigma MCP連携を見直し、社内既存のReact 19デザインガイドラインをVue.js 3+TypeScript+Viteへカスタマイズ移植する現実的かつ迅速な方針転換を断行。さらにCopilot for VSCodeを活用し、プロジェクト内でプロンプトを投げることでHTMLでの画面モックを迅速に作成できるように工夫。これにより非エンジニアである業務主管部門や営業担当者との認識齟齬をなくし、要件調整・合意形成を極めてスムーズに推進しました。顧客現場に入り込んで課題解決を牽引するFDE（Forward Deployed Engineer）として、StrutsからJava 21+Spring Boot 4.xへのモダナイゼーション、JUnit 5による単体テスト実装からITSM保守運用まで一気通貫で推進しました。",
     overview:
-      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを主導。フロントエンドはVue.js 3 + TypeScript + Vite、バックエンドはSpring Boot 4.x（Java 21）、単体テストはJUnit 5を採用。複数人での並行開発を可能にする機能単位のspec/plan/taskドキュメント設計、speckit.orchestratorとSKILL.mdによるAIスキル自動実行、SourceTree手動コミットからの脱却（自動グルーピング・機密チェック）、そして社内React 19デザインガイドラインのVue.js 3+Viteへの移植など、現場のリアルな課題に即した実務適用をFDEとして完遂しました。",
+      "大手総合化学メーカーにおける化学物質管理業務のモダナイゼーション案件。AI・機械エンジニアとしての工学系バックグラウンドを背景に、現場の複雑な法令・物質データ要件を咀嚼し、SpecKitによる仕様駆動開発PoCを主導。フロントエンドはVue.js 3 + TypeScript + Vite、バックエンドはSpring Boot 4.x（Java 21）、単体テストはJUnit 5を採用。複数人での並行開発を可能にする機能単位のspec/plan/taskドキュメント設計、speckit.orchestratorとSKILL.mdによるAIスキル自動実行、SourceTree手動コミットからの脱却（自動グルーピング・機密チェック）、社内React 19デザインガイドラインのVue.js 3+Viteへの移植、さらにCopilot for VSCodeを活用したプロンプトからのHTML画面モック迅速生成による業務主管部門・営業との要件調整円滑化など、現場のリアルな課題に即した実務適用をFDEとして完遂しました。",
     purpose:
       "大手化学メーカーにおける化学物質管理の一元化および法改正（JAMPからCMPへの移行）への適合。レガシーなStruts/JSPからモダンなSpring Boot 4.x（Java 21）、Vue.js 3 + TypeScript + Vite、JUnit 5への段階的移行において、AIエンジニア・機械エンジニア視点でSpecKitを用いた仕様駆動開発（SDD）のPoCを主導。要件定義の曖昧さを排除し、保守性と開発生産性を抜本的に向上させること。",
     role: [
       "AIエンジニア / FDE（SpecKit仕様駆動開発PoC・オーケストレーター設計）",
       "要件定義・業務主管部門折衝（JAMP→CMP・法令対応）",
+      "Copilot for VSCodeによるHTML画面モック迅速作成 & 業務・営業要件調整",
       "UI設計・社内デザインシステム移植（React 19 → Vue.js 3/Vite）",
       "フロントエンド実装 (Vue.js 3 + TypeScript + Vite)",
       "バックエンド開発 (Java 21 / Spring Boot 4.x)",
@@ -138,6 +139,8 @@ export const projectsData: Project[] = [
       "Spring Boot 4.x",
       "Java 21",
       "JUnit 5",
+      "Copilot for VSCode",
+      "HTML画面モック生成 (プロンプト駆動)",
       "SpecKit (仕様駆動開発/SDD)",
       "speckit.orchestrator",
       "SKILL.md (スキル自律選定)",
@@ -160,6 +163,7 @@ export const projectsData: Project[] = [
     features: [
       "【最新モダナイゼーションスタック】レガシーな Struts/JSP（JDK 8）から、フロントエンドは Vue.js 3 + TypeScript + Vite、バックエンドは Spring Boot 4.x（Java 21）、単体テストは JUnit 5 へと段階的にリプレイス・検証を推進",
       "【複数人対応の仕様駆動開発（SDD）】一枚岩の仕様書を排し、チーム開発でコンフリクトせず並行開発を進められるよう、機能単位ごとに spec.md（要件仕様）、plan.md（実装計画）、task.md（具体的作業タスク）を分割管理する実践的ワークフローを確立",
+      "【Copilot for VSCode による画面モック生成 & 要件調整の円滑化】VSCode 上で GitHub Copilot をフル活用し、プロジェクト内でプロンプトを投げることで迅速に HTML での画面モックを作成できるワークフローを確立。抽象的なテキスト仕様書ではなく、実際にブラウザ上で動作を確認できるモックを早い段階で提示できたことにより、非エンジニアである業務主管部門や営業担当者との認識齟齬を未然に防ぎ、要件定義や画面レビューの合意形成を大幅にスムーズ化",
       "【speckit.orchestrator による自律スキル選定】プロンプトを speckit.orchestrator へ投入することで、文脈やタスク内容に応じた最適な SKILL.md をオーケストレーターが自動的に選択・実行してくれる自律的エージェント構造を導入し、開発効率を飛躍的に向上",
       "【Gitコミット自動化 & 機密情報漏洩チェック】従来 SourceTree から手動で行っていたコミット運用から脱却。「コミットしてください」とプロンプトを投げるだけで、変更差分の論理グルーピング、適切なコミットメッセージの自動生成、さらに社内機密・クレデンシャルの誤混入を検知する機密チェックを自動実行した上でコミットを完結する安全なパイプラインを構築",
       "【デザインシステム導入の迅速な方針転換】当初予定していた Figma MCP（Model Context Protocol）連携は現場の運用コスト・依存関係を考慮して見直し方針転換。社内で先行実績のあった公式アプリデザインガイドライン（React 19製）リポジトリをクローンし、本システムの Vue.js 3 + TypeScript + Vite 向けにカスタマイズ・移植する現実的なアプローチを採用してUI統一を迅速に達成",
@@ -245,6 +249,7 @@ export const projectsData: Project[] = [
               cards: [
                 { title: "仕様駆動開発", detail: "機能別 spec / plan / task" },
                 { title: "AIエージェント", detail: "speckit.orchestrator / SKILL.md" },
+                { title: "モック自動生成", detail: "Copilot for VSCode (HTMLモック)" },
                 { title: "単体テスト", detail: "JUnit 5 による自動テスト網羅" },
                 { title: "Git運用自動化", detail: "自動グルーピング・機密チェック" },
                 { title: "UI基盤移植", detail: "React 19ガイドライン→Vue 3+Vite" },
@@ -262,6 +267,7 @@ export const projectsData: Project[] = [
           items: [
             "【最新スタック移行】フロントエンドを Vue.js 3 + TypeScript + Vite、バックエンドを Spring Boot 4.x（Java 21）、単体テストを JUnit 5 で構成し、開発体験と品質を大幅強化",
             "【機能別仕様駆動開発】複数人での並行開発を可能にするため、機能単位ごとに spec.md、plan.md、task.md を分割策定する運用を主導",
+            "【Copilot活用による画面モック迅速生成】Copilot for VSCode を駆使し、プロジェクト内でのプロンプト指示から HTML 画面モックを短時間で作成。非エンジニアの業務主管部門や営業との要件調整・合意形成を極めてスムーズに推進",
             "【speckit.orchestrator】プロンプト投入から最適な SKILL.md を自律選定・実行するオーケストレーター構造を導入し、AI活用開発プロセスを最適化",
             "【コミット自動化 & 機密チェック】SourceTreeによる手動コミットから脱却し、プロンプト指示による自動グルーピング・メッセージ生成・機密情報漏洩チェックパイプラインを確立",
             "【デザインシステム移植の断行】当初検討したFigma MCP連携を見直し、社内既存のReact 19ガイドラインリポジトリをクローンしてVue.js 3+TypeScript+Viteへ移植・カスタマイズする迅速な方針転換を実現",
